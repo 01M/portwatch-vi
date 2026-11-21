@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T22:54:01.167Z",
+  "updated": "2026-11-21T23:18:15.969Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -29,7 +29,11 @@
         "From today, the scout compares every new repository's README against the projects we track and flags close copies instead of listing them. Unreviewed repositories are no longer linked from this site. If you're following a project, use only the original repository linked in the race."
       ],
       "sources": [
-        { "outlet": "PortWatch VI", "title": "The race: tracked projects and their original repositories", "url": "#race" }
+        {
+          "outlet": "PortWatch VI",
+          "title": "The race: tracked projects and their original repositories",
+          "url": "#race"
+        }
       ],
       "image": null,
       "by": "PortWatch"
@@ -47,11 +51,27 @@
         "Cyberleek also predicted that PC players would be emulating the build within a week. As Gamereactor points out, no working Xbox Series X|S emulator exists yet. That gap is exactly what the projects on this page are trying to close."
       ],
       "sources": [
-        { "outlet": "TalkEsport", "title": "Cyberleek claims it leaked GTA 6's Xbox build, key file locked behind a meme coin", "url": "https://www.talkesport.com/gta-6/cyberleek-gta-6-xbox-build-leak/" },
-        { "outlet": "KeenGamer", "title": "GTA 6 Xbox build allegedly leaked by Cyberleek, 209GB files surface online", "url": "https://www.keengamer.com/articles/news/gta-6-xbox-build-allegedly-leaked-by-cyberleek-209gb-files-surface-online/" },
-        { "outlet": "Gamereactor", "title": "Cyberleak's leaked GTA 6 build runs into a wall: there is no Xbox Series X|S emulator", "url": "https://www.gamereactor.eu/gta-6-cyberleak-emulation-wall/" }
+        {
+          "outlet": "TalkEsport",
+          "title": "Cyberleek claims it leaked GTA 6's Xbox build, key file locked behind a meme coin",
+          "url": "https://www.talkesport.com/gta-6/cyberleek-gta-6-xbox-build-leak/"
+        },
+        {
+          "outlet": "KeenGamer",
+          "title": "GTA 6 Xbox build allegedly leaked by Cyberleek, 209GB files surface online",
+          "url": "https://www.keengamer.com/articles/news/gta-6-xbox-build-allegedly-leaked-by-cyberleek-209gb-files-surface-online/"
+        },
+        {
+          "outlet": "Gamereactor",
+          "title": "Cyberleak's leaked GTA 6 build runs into a wall: there is no Xbox Series X|S emulator",
+          "url": "https://www.gamereactor.eu/gta-6-cyberleak-emulation-wall/"
+        }
       ],
-      "image": { "url": "https://www.talkesport.com/wp-content/uploads/GTA-6-key-art-with-an-Xbox-One-console.webp", "credit": "TalkEsport", "link": "https://www.talkesport.com/gta-6/cyberleek-gta-6-xbox-build-leak/" },
+      "image": {
+        "url": "https://www.talkesport.com/wp-content/uploads/GTA-6-key-art-with-an-Xbox-One-console.webp",
+        "credit": "TalkEsport",
+        "link": "https://www.talkesport.com/gta-6/cyberleek-gta-6-xbox-build-leak/"
+      },
       "by": "PortWatch"
     },
     {
@@ -67,11 +87,27 @@
         "The warning signs are consistent. Instructions ask you to run the file as administrator, click past security warnings or add an antivirus exclusion, and some offers ask for payment in crypto or gift cards. With Cyberleek's missing executable due Monday, expect a flood of files claiming to be it. If you've already run one, treat the PC as compromised and change your passwords from a different device."
       ],
       "sources": [
-        { "outlet": "TechRadar", "title": "Fake GTA 6 PC downloads are spreading malware through dark web scam bundle, NordVPN warns", "url": "https://www.techradar.com/vpn/vpn-privacy-security/fake-gta-6-pc-downloads-are-spreading-malware-through-dark-web-scam-bundle-nordvpn-warns" },
-        { "outlet": "Help Net Security", "title": "Fake GTA 6 download goes after Steam logins and crypto wallet data", "url": "https://www.helpnetsecurity.com/2026/11/13/fake-gta-6-download-scam/" },
-        { "outlet": "Digital Trends", "title": "27,000 reasons not to download “GTA VI for PC”", "url": "https://www.digitaltrends.com/gaming/27000-reasons-not-to-download-gta-vi-for-pc/" }
+        {
+          "outlet": "TechRadar",
+          "title": "Fake GTA 6 PC downloads are spreading malware through dark web scam bundle, NordVPN warns",
+          "url": "https://www.techradar.com/vpn/vpn-privacy-security/fake-gta-6-pc-downloads-are-spreading-malware-through-dark-web-scam-bundle-nordvpn-warns"
+        },
+        {
+          "outlet": "Help Net Security",
+          "title": "Fake GTA 6 download goes after Steam logins and crypto wallet data",
+          "url": "https://www.helpnetsecurity.com/2026/11/13/fake-gta-6-download-scam/"
+        },
+        {
+          "outlet": "Digital Trends",
+          "title": "27,000 reasons not to download “GTA VI for PC”",
+          "url": "https://www.digitaltrends.com/gaming/27000-reasons-not-to-download-gta-vi-for-pc/"
+        }
       ],
-      "image": { "url": "https://cdn.mos.cms.futurecdn.net/t76MpckovBjZrspNxABUy9-2000-80.png", "credit": "TechRadar", "link": "https://www.techradar.com/vpn/vpn-privacy-security/fake-gta-6-pc-downloads-are-spreading-malware-through-dark-web-scam-bundle-nordvpn-warns" },
+      "image": {
+        "url": "https://cdn.mos.cms.futurecdn.net/t76MpckovBjZrspNxABUy9-2000-80.png",
+        "credit": "TechRadar",
+        "link": "https://www.techradar.com/vpn/vpn-privacy-security/fake-gta-6-pc-downloads-are-spreading-malware-through-dark-web-scam-bundle-nordvpn-warns"
+      },
       "by": "PortWatch"
     },
     {
@@ -87,11 +123,27 @@
         "Every GTA VI project on this tracker uses the same “use your own copy” disclaimer. Developers can contest a takedown with a counter-notice, which obliges GitHub to restore the code unless Take-Two sues, as it did over the re3 and reVC projects in 2021."
       ],
       "sources": [
-        { "outlet": "GitHub DMCA repository", "title": "2026-11-18 Take-Two notice", "url": "https://github.com/github/dmca/blob/master/2026/11/2026-11-18-take-two.md" },
-        { "outlet": "TorrentFreak", "title": "Take-Two targets hundreds of GTA V mobile ports on GitHub ahead of GTA VI launch", "url": "https://torrentfreak.com/take-two-targets-hundreds-of-gta-v-mobile-ports-on-github-ahead-of-gta-vi-launch/" },
-        { "outlet": "Clubic", "title": "GTA V sur iPhone et Android : Take-Two fait supprimer plus de 600 projets sur GitHub", "url": "https://clubic.com/actualite-640069-gta-v-sur-iphone-et-android-a-l-heure-de-gta-6-take-two-fait-supprimer-plus-de-600-projets-sur-github.html" }
+        {
+          "outlet": "GitHub DMCA repository",
+          "title": "2026-11-18 Take-Two notice",
+          "url": "https://github.com/github/dmca/blob/master/2026/11/2026-11-18-take-two.md"
+        },
+        {
+          "outlet": "TorrentFreak",
+          "title": "Take-Two targets hundreds of GTA V mobile ports on GitHub ahead of GTA VI launch",
+          "url": "https://torrentfreak.com/take-two-targets-hundreds-of-gta-v-mobile-ports-on-github-ahead-of-gta-vi-launch/"
+        },
+        {
+          "outlet": "Clubic",
+          "title": "GTA V sur iPhone et Android : Take-Two fait supprimer plus de 600 projets sur GitHub",
+          "url": "https://clubic.com/actualite-640069-gta-v-sur-iphone-et-android-a-l-heure-de-gta-6-take-two-fait-supprimer-plus-de-600-projets-sur-github.html"
+        }
       ],
-      "image": { "url": "https://torrentfreak.com/images/gta6f.png", "credit": "TorrentFreak", "link": "https://torrentfreak.com/take-two-targets-hundreds-of-gta-v-mobile-ports-on-github-ahead-of-gta-vi-launch/" },
+      "image": {
+        "url": "https://torrentfreak.com/images/gta6f.png",
+        "credit": "TorrentFreak",
+        "link": "https://torrentfreak.com/take-two-targets-hundreds-of-gta-v-mobile-ports-on-github-ahead-of-gta-vi-launch/"
+      },
       "by": "PortWatch"
     },
     {
@@ -106,10 +158,22 @@
         "The two leaks are separate. The 2022 breach exposed unfinished footage from inside Rockstar. Cyberleek's 2026 release claims to be a finished console build of the shipped game."
       ],
       "sources": [
-        { "outlet": "Make Tech Easier", "title": "GTA 6 hacker Arion Kurtaj pleads guilty", "url": "https://maketecheasier.com/gta-6-hacker-arion-kurtaj-guilty-plea/" },
-        { "outlet": "Windows Report", "title": "Rockstar Games hacker Arion Kurtaj pleads guilty just days before GTA 6 release", "url": "https://windowsreport.com/rockstar-games-hacker-arion-kurtaj-pleads-guilty-just-days-before-gta-6-release/" }
+        {
+          "outlet": "Make Tech Easier",
+          "title": "GTA 6 hacker Arion Kurtaj pleads guilty",
+          "url": "https://maketecheasier.com/gta-6-hacker-arion-kurtaj-guilty-plea/"
+        },
+        {
+          "outlet": "Windows Report",
+          "title": "Rockstar Games hacker Arion Kurtaj pleads guilty just days before GTA 6 release",
+          "url": "https://windowsreport.com/rockstar-games-hacker-arion-kurtaj-pleads-guilty-just-days-before-gta-6-release/"
+        }
       ],
-      "image": { "url": "https://maketecheasier.com/wp-content/uploads/2026/11/gta-6-hacker-arion-kurtaj-guilty-plea-featured-scaled.jpg", "credit": "Make Tech Easier", "link": "https://maketecheasier.com/gta-6-hacker-arion-kurtaj-guilty-plea/" },
+      "image": {
+        "url": "https://maketecheasier.com/wp-content/uploads/2026/11/gta-6-hacker-arion-kurtaj-guilty-plea-featured-scaled.jpg",
+        "credit": "Make Tech Easier",
+        "link": "https://maketecheasier.com/gta-6-hacker-arion-kurtaj-guilty-plea/"
+      },
       "by": "PortWatch"
     }
   ],
@@ -153,12 +217,12 @@
         "drycheetah84/TomBox"
       ],
       "stats": {
-        "stars": 714,
+        "stars": 728,
         "forks": 37,
-        "openIssues": 59,
+        "openIssues": 62,
         "createdAt": "2026-11-21T08:08:39Z",
-        "pushedAt": "2026-11-21T22:38:20Z",
-        "commits7d": 86,
+        "pushedAt": "2026-11-21T23:14:58Z",
+        "commits7d": 88,
         "archived": false,
         "missing": false
       },
@@ -202,11 +266,11 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 61,
-        "forks": 7,
-        "openIssues": 2,
+        "stars": 63,
+        "forks": 8,
+        "openIssues": 1,
         "createdAt": "2026-11-20T20:03:21Z",
-        "pushedAt": "2026-11-21T22:53:28Z",
+        "pushedAt": "2026-11-21T22:54:04Z",
         "commits7d": 100,
         "archived": false,
         "missing": false
@@ -252,7 +316,7 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 89,
+        "stars": 91,
         "forks": 12,
         "openIssues": 47,
         "createdAt": "2026-11-20T06:54:47Z",
@@ -306,8 +370,8 @@
         "forks": 0,
         "openIssues": 0,
         "createdAt": "2026-11-21T12:07:28Z",
-        "pushedAt": "2026-11-21T21:23:00Z",
-        "commits7d": 5,
+        "pushedAt": "2026-11-21T23:17:45Z",
+        "commits7d": 6,
         "archived": false,
         "missing": false
       },
@@ -355,9 +419,9 @@
         "boykopovar/AnyPS5"
       ],
       "stats": {
-        "stars": 144,
+        "stars": 147,
         "forks": 33,
-        "openIssues": 14,
+        "openIssues": 15,
         "createdAt": "2026-11-20T15:33:20Z",
         "pushedAt": "2026-11-21T22:18:33Z",
         "commits7d": 100,
@@ -405,9 +469,9 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 4457,
-        "forks": 306,
-        "openIssues": 47,
+        "stars": 4708,
+        "forks": 326,
+        "openIssues": 96,
         "createdAt": "2026-11-20T20:07:13Z",
         "pushedAt": "2026-11-21T22:46:20Z",
         "commits7d": 100,
@@ -458,8 +522,8 @@
         "forks": 2,
         "openIssues": 1,
         "createdAt": "2026-11-21T14:35:25Z",
-        "pushedAt": "2026-11-21T22:51:51Z",
-        "commits7d": 98,
+        "pushedAt": "2026-11-21T23:02:41Z",
+        "commits7d": 100,
         "archived": false,
         "missing": false
       },
@@ -551,11 +615,11 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 871,
-        "forks": 78,
-        "openIssues": 84,
+        "stars": 880,
+        "forks": 81,
+        "openIssues": 91,
         "createdAt": "2026-11-20T17:43:52Z",
-        "pushedAt": "2026-11-21T22:27:35Z",
+        "pushedAt": "2026-11-21T22:58:10Z",
         "commits7d": 100,
         "archived": false,
         "missing": false
@@ -602,9 +666,9 @@
       "stats": {
         "stars": 14,
         "forks": 1,
-        "openIssues": 10,
+        "openIssues": 15,
         "createdAt": "2026-11-21T00:18:13Z",
-        "pushedAt": "2026-11-21T22:52:57Z",
+        "pushedAt": "2026-11-21T23:05:19Z",
         "commits7d": 91,
         "archived": false,
         "missing": false
@@ -924,17 +988,18 @@
       "stats": {
         "stars": 0,
         "forks": 0,
-        "openIssues": 7,
+        "openIssues": 12,
         "createdAt": "2026-11-21T21:05:28Z",
-        "pushedAt": "2026-11-21T22:46:22Z",
-        "commits7d": 27,
+        "pushedAt": "2026-11-21T23:18:23Z",
+        "commits7d": 34,
         "archived": false,
         "missing": false
       },
       "assessedAt": "2026-11-21",
       "assessedBy": "manual",
-      "readmeSha": "13531e75779ec09d684e37b74445d5571ed4e965bf0c54eedb6b8a77ba574d3f",
-      "claims": []
+      "readmeSha": "d75e5cb19c7bf6c5384b4effeb0b516d435c52070fee85e38102d25624ea3829",
+      "claims": [],
+      "readmeChangedAt": "2026-11-21"
     }
   ],
   "tools": [
@@ -944,8 +1009,8 @@
       "kind": "Asset extractor",
       "desc": "CLI and desktop app: models to glTF, textures and map data from your own install.",
       "stats": {
-        "stars": 27,
-        "pushedAt": "2026-11-21T22:47:46Z"
+        "stars": 29,
+        "pushedAt": "2026-11-21T23:15:08Z"
       }
     },
     {
@@ -964,7 +1029,7 @@
       "kind": "Archive explorer",
       "desc": "Windows RPF explorer with model, texture, audio and video previews. Leonida builds on its decoders.",
       "stats": {
-        "stars": 26,
+        "stars": 27,
         "pushedAt": "2026-11-20T18:49:00Z"
       }
     },
@@ -975,7 +1040,7 @@
       "desc": "Clean-room decoder for Xbox BCPack textures. BC1 works; BC7 in progress.",
       "stats": {
         "stars": 1,
-        "pushedAt": "2026-11-21T22:19:07Z"
+        "pushedAt": "2026-11-21T23:15:37Z"
       }
     },
     {
@@ -984,7 +1049,7 @@
       "kind": "RE toolkit",
       "desc": "Explore and analyse RPF9 / TTPF archives.",
       "stats": {
-        "stars": 6,
+        "stars": 7,
         "pushedAt": "2026-11-21T20:10:39Z"
       }
     },
@@ -1021,53 +1086,6 @@
   ],
   "candidates": [
     {
-      "repo": "ZuanCrisp/GETEA-6",
-      "name": "GETEA-6",
-      "description": "Just Study",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-21T16:50:14Z",
-      "pushedAt": "2026-11-21T22:12:04Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-21T22:54:01.167Z",
-      "substance": 85,
-      "signals": [
-        "Python",
-        "22 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "amrly02/Leonida",
-      "name": "Leonida",
-      "description": "",
-      "language": null,
-      "stars": 0,
-      "createdAt": "2026-11-21T16:16:50Z",
-      "pushedAt": "2026-11-21T04:47:45Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-21T22:54:01.167Z",
-      "substance": 75,
-      "signals": [
-        "22 technical terms",
-        "status table",
-        "29 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "BLMChoosen/xbox2pc-public",
       "name": "xbox2pc-public",
       "description": "",
@@ -1087,29 +1105,6 @@
         "9 technical terms",
         "tests",
         "19 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "elmoudir12/Leonida",
-      "name": "Leonida",
-      "description": "",
-      "language": null,
-      "stars": 0,
-      "createdAt": "2026-11-20T22:40:37Z",
-      "pushedAt": "2026-11-20T22:05:56Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-21T22:54:01.167Z",
-      "substance": 60,
-      "signals": [
-        "22 technical terms",
-        "status table",
-        "8 commits/7d"
       ],
       "kind": "effort",
       "status": "new"
@@ -1185,28 +1180,6 @@
       "status": "new"
     },
     {
-      "repo": "0xyfann/makefun-gta6-01",
-      "name": "makefun-gta6-01",
-      "description": "Sundown: Port Aurelia — open-world crime game with driving, police chases and missions. Built by an AI agent for make.fun's \"Make GTA 6\" bounty, $1,666 in USDC.",
-      "language": "JavaScript",
-      "stars": 0,
-      "createdAt": "2026-11-19T08:46:58Z",
-      "pushedAt": "2026-11-19T15:50:53Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-21T22:54:01.167Z",
-      "substance": 47,
-      "signals": [
-        "JavaScript",
-        "40 commits/7d"
-      ],
-      "kind": "tool",
-      "status": "new"
-    },
-    {
       "repo": "SentinelInteractive/0x52504639",
       "name": "0x52504639",
       "description": "RPF9 format research notes, catalogues and tooling for GTA VI. Own-copy research; no game assets.",
@@ -1225,72 +1198,6 @@
         "Python",
         "5 technical terms",
         "14 commits/7d"
-      ],
-      "kind": "tool",
-      "status": "new"
-    },
-    {
-      "repo": "zokay23/porto-verde",
-      "name": "porto-verde",
-      "description": "Porto Verde - complete open-world crime game (three.js) - make.fun gta6-01 bounty entry",
-      "language": "JavaScript",
-      "stars": 0,
-      "createdAt": "2026-11-19T10:34:55Z",
-      "pushedAt": "2026-11-19T11:54:22Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-21T22:54:01.167Z",
-      "substance": 41,
-      "signals": [
-        "JavaScript",
-        "24 commits/7d"
-      ],
-      "kind": "tool",
-      "status": "new"
-    },
-    {
-      "repo": "penawarlawas/makefun-gta6-01",
-      "name": "makefun-gta6-01",
-      "description": "Port Solara — an original sun-soaked open-world crime game: drive, steal, evade the SPD, four story missions. Built by an AI agent for make.fun's Make GTA 6 bounty, $1,666 in USDC.",
-      "language": "JavaScript",
-      "stars": 0,
-      "createdAt": "2026-11-19T22:33:24Z",
-      "pushedAt": "2026-11-20T19:31:38Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-21T22:54:01.167Z",
-      "substance": 39,
-      "signals": [
-        "JavaScript",
-        "7 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "YamiNixa/gta6-01",
-      "name": "gta6-01",
-      "description": "Porto Verde is an original open-world crime game set in a sun-soaked port city. Play courier Luz Ferrer: steal cars, dodge the law as your wanted level rises, and run story missions for fixer Rio Marín across a living city of traffic, pedestrians, and police. Built by AI agents for make.fun's 'Make GTA 6' bounty, $1,666 in prizes.",
-      "language": "JavaScript",
-      "stars": 0,
-      "createdAt": "2026-11-20T03:19:13Z",
-      "pushedAt": "2026-11-20T22:13:05Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-21T22:54:01.167Z",
-      "substance": 35,
-      "signals": [
-        "JavaScript",
-        "9 commits/7d"
       ],
       "kind": "tool",
       "status": "new"
@@ -1333,12 +1240,27 @@
       "id": "auto-clone-networks",
       "pattern": "Networks of cloned repos",
       "label": "",
-      "count": 3,
+      "count": 6,
       "reason": "Same description as 3+ other new repos. Flagged automatically by the scout.",
       "members": [
         "FREE-GTA6-LOADING/.github",
         "FREE-GTA6-INSTALLING/.github",
-        "EstevaoTerci/Leonida"
+        "EstevaoTerci/Leonida",
+        "0xyfann/makefun-gta6-01",
+        "penawarlawas/makefun-gta6-01",
+        "YamiNixa/gta6-01"
+      ]
+    },
+    {
+      "id": "copies",
+      "pattern": "Re-uploads of tracked projects under other accounts",
+      "label": "",
+      "count": 3,
+      "reason": "Copies can be quietly modified to bundle malware. Only use the original repositories linked in the race above.",
+      "members": [
+        "ZuanCrisp/GETEA-6",
+        "amrly02/Leonida",
+        "elmoudir12/Leonida"
       ]
     }
   ],
@@ -1809,6 +1731,28 @@
       "auto": true,
       "seenAt": "2026-11-21",
       "pushedAt": "2026-11-20T05:04:23Z"
+    },
+    {
+      "repo": "ZuanCrisp/GETEA-6",
+      "reason": "copy of ItsNotRexed/Leonida (97% same README)",
+      "seenAt": "2026-11-21"
+    },
+    {
+      "repo": "amrly02/Leonida",
+      "reason": "copy of ItsNotRexed/Leonida (90% same README)",
+      "seenAt": "2026-11-21"
+    },
+    {
+      "repo": "elmoudir12/Leonida",
+      "reason": "copy of ItsNotRexed/Leonida (88% same README)",
+      "seenAt": "2026-11-21"
+    },
+    {
+      "repo": "zokay23/porto-verde",
+      "reason": "off-topic (original fan game, not a port)",
+      "auto": true,
+      "seenAt": "2026-11-21",
+      "pushedAt": "2026-11-19T11:54:22Z"
     }
   ],
   "changes": [
@@ -1927,7 +1871,7 @@
       "xbox series emulator"
     ],
     "x": "(\"gta 6\" OR \"gta vi\" OR gta6) (recomp OR emulator OR \"pc port\" OR scarlett) github.com -is:retweet",
-    "lastRun": "2026-11-21T22:54:01.167Z",
-    "lastSummary": "17 refreshed, 0 READMEs changed, 12 new candidates, 3 flagged, 1 errors."
+    "lastRun": "2026-11-21T23:18:15.969Z",
+    "lastSummary": "17 refreshed, 1 READMEs changed, 0 new candidates, 6 flagged, 1 errors."
   }
 }
