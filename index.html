@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PortWatch VI: Does GTA VI run on PC yet?</title>
+  <meta name="description" content="Live tracker of every community effort to recompile, emulate or port the leaked Xbox Series build of GTA VI to PC, scored from groundwork to stable 30 FPS.">
+  <meta property="og:title" content="Does GTA VI run on PC yet?">
+  <meta property="og:description" content="Every serious recompilation and emulation effort, scored on one ladder. Updated daily.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/hero.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="module" src="assets/js/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#race">Skip to the leaderboard</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="PortWatch VI home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a5cff"/><stop offset=".55" stop-color="#ff2e7e"/><stop offset="1" stop-color="#ff8a3d"/></linearGradient></defs>
+          <circle cx="16" cy="16" r="12" fill="none" stroke="#eceef3" stroke-width="5"/>
+          <circle cx="16" cy="16" r="12" fill="none" stroke="url(#bm)" stroke-width="5" stroke-linecap="round" stroke-dasharray="52 76" transform="rotate(-90 16 16)"/>
+        </svg>
+        <span>PortWatch<b>VI</b></span>
+      </a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#race">Race</a>
+        <a href="#news">News</a>
+        <a href="#watchlist">Watchlist</a>
+        <a href="#toolkit">Toolkit</a>
+        <a href="#method">Scoring</a>
+        <a href="#safety" class="nav-warn">Fake downloads</a>
+      </nav>
+      <span class="nav-updated" id="nav-updated">Loading…</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-art" aria-hidden="true">
+        <svg class="hero-illustration" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMax slice">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#160f3a"/>
+              <stop offset=".32" stop-color="#4b2386"/>
+              <stop offset=".58" stop-color="#e0337f"/>
+              <stop offset=".74" stop-color="#ff7a4d"/>
+              <stop offset=".86" stop-color="#ffc56e"/>
+            </linearGradient>
+            <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fff1b0"/>
+              <stop offset=".55" stop-color="#ffb05c"/>
+              <stop offset="1" stop-color="#ff3d7f"/>
+            </linearGradient>
+            <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ff7a8a"/>
+              <stop offset=".25" stop-color="#9b3a8f"/>
+              <stop offset="1" stop-color="#160f3a"/>
+            </linearGradient>
+            <mask id="sunStripes">
+              <rect x="0" y="0" width="1600" height="760" fill="#fff"/>
+              <rect x="900" y="452" width="500" height="6" fill="#000"/>
+              <rect x="900" y="474" width="500" height="8" fill="#000"/>
+              <rect x="900" y="498" width="500" height="10" fill="#000"/>
+              <rect x="900" y="524" width="500" height="12" fill="#000"/>
+            </mask>
+            <symbol id="palm" viewBox="-200 -40 400 520" overflow="visible">
+              <path d="M-7 0 C 2 140 22 300 48 470 L 70 470 C 42 300 20 140 7 0 Z"/>
+              <g>
+                <path d="M0 0 C 45 -34 110 -38 175 6 C 112 -14 50 -12 0 0 Z"/>
+                <path d="M0 0 C 40 -55 100 -85 160 -70 C 100 -60 45 -35 0 0 Z"/>
+                <path d="M0 0 C 20 -60 55 -105 100 -120 C 65 -90 30 -50 0 0 Z"/>
+                <path d="M0 0 C -45 -34 -110 -38 -175 6 C -112 -14 -50 -12 0 0 Z"/>
+                <path d="M0 0 C -40 -55 -100 -85 -160 -70 C -100 -60 -45 -35 0 0 Z"/>
+                <path d="M0 0 C -20 -60 -55 -105 -100 -120 C -65 -90 -30 -50 0 0 Z"/>
+                <path d="M0 0 C 50 -5 115 20 160 80 C 110 35 55 15 0 0 Z"/>
+                <path d="M0 0 C -50 -5 -115 20 -160 80 C -110 35 -55 15 0 0 Z"/>
+              </g>
+            </symbol>
+          </defs>
+          <rect width="1600" height="560" fill="url(#sky)"/>
+          <g fill="#fff" opacity=".7">
+            <circle cx="180" cy="80" r="1.6"/><circle cx="420" cy="140" r="1.2"/><circle cx="640" cy="60" r="1.4"/>
+            <circle cx="860" cy="120" r="1"/><circle cx="1040" cy="50" r="1.5"/><circle cx="1330" cy="110" r="1.2"/>
+            <circle cx="1500" cy="40" r="1.4"/><circle cx="300" cy="210" r="1"/><circle cx="760" cy="200" r="1.1"/>
+          </g>
+          <circle cx="1150" cy="440" r="178" fill="url(#sun)" mask="url(#sunStripes)"/>
+          <g fill="#2a1452" opacity=".55">
+            <path d="M0 560 V 500 h40 v-30 h28 v40 h22 v-70 h34 v70 h18 v-44 h40 v44 h30 v-90 h26 v-18 h20 v108 h36 v-56 h44 v56 h22 v-34 h38 v34 h60 v-120 h14 v-14 h24 v134 h40 v-62 h30 v62 h70 v-40 h36 v40 h44 v-86 h28 v86 h56 v-30 h40 v30 h90 V 560 Z"/>
+          </g>
+          <rect y="556" width="1600" height="204" fill="url(#sea)"/>
+          <g fill="#ffd38a" opacity=".75">
+            <rect x="1010" y="574" width="280" height="4" rx="2"/>
+            <rect x="1040" y="592" width="220" height="4" rx="2"/>
+            <rect x="1070" y="612" width="160" height="3" rx="1.5"/>
+            <rect x="1095" y="632" width="110" height="3" rx="1.5"/>
+            <rect x="1120" y="652" width="60" height="2" rx="1"/>
+          </g>
+          <g fill="#140b2a">
+            <use href="#palm" x="-60" y="250" width="420" height="560" transform="rotate(-6 150 520)"/>
+            <use href="#palm" x="120" y="330" width="300" height="420"/>
+            <use href="#palm" x="1390" y="270" width="380" height="520" transform="rotate(7 1580 540)"/>
+          </g>
+          <rect y="728" width="1600" height="32" fill="#140b2a"/>
+        </svg>
+        <div class="hero-photo" id="hero-photo"></div>
+        <div class="hero-scrim"></div>
+      </div>
+
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span>Live tracker · updated daily</p>
+          <h1>Does GTA VI run on&nbsp;PC&nbsp;yet?</h1>
+          <p class="answer" id="answer">Not yet.</p>
+          <p class="lede">Every serious attempt to recompile, emulate or port the leaked Xbox Series build to PC, scored on one ladder from groundwork to a stable 30&nbsp;FPS.</p>
+        </div>
+
+        <aside class="countdown" id="countdown" aria-live="polite">
+          <p class="cd-label"><span class="cd-pulse" aria-hidden="true"></span><span id="cd-title">Executable drop</span></p>
+          <div class="cd-digits" id="cd-digits">
+            <div><span id="cd-d">--</span><small>days</small></div>
+            <i>:</i>
+            <div><span id="cd-h">--</span><small>hours</small></div>
+            <i>:</i>
+            <div><span id="cd-m">--</span><small>min</small></div>
+            <i>:</i>
+            <div><span id="cd-s">--</span><small>sec</small></div>
+          </div>
+          <p class="cd-status" id="cd-status"></p>
+          <p class="cd-foot" id="cd-foot"></p>
+        </aside>
+      </div>
+      <p class="art-credit" id="art-credit"></p>
+    </section>
+
+    <section class="wrap overall-wrap" aria-labelledby="ov-title">
+      <div class="card overall" id="overall">
+        <div class="overall-head">
+          <div class="ov-main">
+            <p class="kicker" id="ov-title">Overall progress · closest effort to playable</p>
+            <div class="big-score"><span id="ov-score">0</span><span class="pct">%</span></div>
+            <p class="ov-leader" id="ov-leader">&nbsp;</p>
+          </div>
+          <div class="ov-stats">
+            <div class="ov-stat"><b id="ov-stage">-</b><small>Furthest milestone</small></div>
+            <div class="ov-stat"><b id="ov-top3">-</b><small>Top-3 average</small></div>
+            <div class="ov-stat"><b id="ov-boot">-</b><small>Boot GTA VI</small></div>
+            <div class="ov-stat"><b id="ov-count">-</b><small>Efforts tracked</small></div>
+          </div>
+        </div>
+        <div class="mega" id="mega">
+          <div class="mega-markers" id="mega-markers"></div>
+          <div class="mega-track"><div class="mega-fill" id="mega-fill"></div><div class="mega-ticks" id="mega-ticks"></div></div>
+          <div class="mega-labels" id="mega-labels"></div>
+        </div>
+        <div class="ov-history" id="ov-history" hidden></div>
+      </div>
+    </section>
+
+    <section class="wrap section changes-section" id="changes" aria-labelledby="changes-title">
+      <div class="changes-card card">
+        <h2 class="mini-title" id="changes-title">What changed</h2>
+        <ol class="changes" id="changes-list"></ol>
+      </div>
+    </section>
+
+    <section class="wrap section" id="race" aria-labelledby="race-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Leaderboard</p>
+          <h2 id="race-title">The race</h2>
+          <p class="sub">The efforts with real code behind them, ranked by how close each is to running the game. Scores come from each project's public README, commits and issues. Self-reported claims are labelled.</p>
+        </div>
+        <div class="controls">
+          <div class="chips" role="group" aria-label="Filter efforts">
+            <button class="chip is-on" data-filter="all">All</button>
+            <button class="chip" data-filter="gta">GTA VI-specific</button>
+            <button class="chip" data-filter="generic">Any-game layers</button>
+          </div>
+          <label class="sort">Sort
+            <select id="sort">
+              <option value="score">Progress</option>
+              <option value="stars">Stars</option>
+              <option value="active">Recently active</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <ol class="race" id="race-list"></ol>
+    </section>
+
+    <section class="wrap section" id="news" aria-labelledby="news-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">What's happening</p>
+          <h2 id="news-title">News</h2>
+          <p class="sub">The moves that matter around the leak: takedowns, confirmed leaks, legal news and scams. Short summaries in our own words, with links to the original reporting.</p>
+        </div>
+      </div>
+      <div class="news" id="news-list"></div>
+    </section>
+
+    <dialog class="reader" id="reader" aria-labelledby="reader-title">
+      <button class="reader-close" id="reader-close" aria-label="Close article">×</button>
+      <div id="reader-body"></div>
+    </dialog>
+
+    <section class="wrap section" id="watchlist" aria-labelledby="watch-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Early or stalled</p>
+          <h2 id="watch-title">Watchlist</h2>
+          <p class="sub">Real but early projects: scaffolding, research probes or a different route. They move up to the race when they ship something you can measure.</p>
+        </div>
+      </div>
+      <div class="watch card" id="watch-list" role="table" aria-label="Watchlist"></div>
+    </section>
+
+    <section class="wrap section" id="toolkit" aria-labelledby="tool-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">The asset side</p>
+          <h2 id="tool-title">Toolkit</h2>
+          <p class="sub">These won't run the game, but every port leans on them: archive explorers, texture codecs and format notes.</p>
+        </div>
+      </div>
+      <div class="tools" id="tools-list"></div>
+    </section>
+
+    <section class="wrap section" id="inbox" aria-labelledby="inbox-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Spotted by the scout</p>
+          <h2 id="inbox-title">New candidates</h2>
+          <p class="sub" id="inbox-sub">Every day the scout searches GitHub, Reddit, Hacker News and X for new efforts. Repos with real code are listed here until they're reviewed. They are deliberately not linked, and copies of tracked projects are filtered out.</p>
+        </div>
+      </div>
+      <div class="inbox" id="inbox-list"></div>
+    </section>
+
+    <section class="wrap section" id="safety" aria-labelledby="safety-title">
+      <div class="safety card">
+        <div class="safety-head">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1.5 21h21L12 2Zm0 6.2 1 7h-2l1-7Zm0 9.3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z" fill="currentColor"/></svg>
+          <div>
+            <h2 id="safety-title">There is no download</h2>
+            <p>No project on this page hosts the game, keys or an executable, and this site never links to any. Anything offering a ready-to-play GTA VI for PC this week is a scam.</p>
+          </div>
+        </div>
+        <ul class="flags" id="flag-list"></ul>
+      </div>
+    </section>
+
+    <section class="wrap section" id="method" aria-labelledby="method-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Methodology</p>
+          <h2 id="method-title">How the progress bar works</h2>
+          <p class="sub">One ladder for every project. Groundwork fills the first 25%: the parts that can be built before the executable exists. After that, a project only moves by reaching real milestones in GTA VI itself.</p>
+        </div>
+      </div>
+      <div class="method">
+        <ol class="ladder-explain" id="ladder-explain"></ol>
+        <div class="card gw-explain">
+          <h3>Groundwork, weighted</h3>
+          <ul id="gw-explain"></ul>
+          <p class="fine">Past "In-game", the last 30 points split between frame rate (average FPS ÷ 30) and stability (from crashes often up to stable). Partial milestones, such as a menu that renders but is broken, count half.</p>
+          <p class="fine">Maintain a project and think it's mis-scored? Open an issue with a link to your evidence.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div>
+        <a class="brand brand-sm" href="#top"><span>PortWatch<b>VI</b></span></a>
+        <p>Fan-made tracker. Not affiliated with or endorsed by Rockstar Games, Take-Two or Microsoft. Grand Theft Auto and related marks belong to their owners. No game files, keys or executables are hosted or linked here.</p>
+      </div>
+      <div class="footer-meta">
+        <p>Data: <a href="data/tracker.json">tracker.json</a>, refreshed daily by the scout.</p>
+        <p id="scout-status">&nbsp;</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+</body>
+</html>
