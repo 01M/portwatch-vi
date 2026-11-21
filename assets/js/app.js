@@ -1,4 +1,5 @@
 import { MILESTONES, GROUNDWORK, STABILITY, scoreEffort, overall, ladderValue } from './scoring.js';
+import { backendReady, trackView } from './backend.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -61,6 +62,7 @@ async function main() {
   renderMethod();
   bindControls();
   observeBars();
+  trackView('/');
 }
 
 /* ---------- Meta & hero ---------- */
@@ -330,6 +332,7 @@ function effortCard(e, rank, open) {
         <span class="stat-i" title="Last push">${ICON.clock}pushed ${esc(ago(st.pushedAt))}</span>
         <span class="spacer"></span>
         <span class="w-muted" title="When this score was last reviewed">${e.assessedBy === 'claude' ? 'Assessed by Claude' : 'Reviewed'} ${esc(e.assessedAt || '')}</span>
+        ${backendReady() ? `<a class="discuss" href="board.html#/b/${esc(e.id)}">Discuss</a>` : ''}
         <button class="toggle" data-toggle aria-expanded="${open}">${open ? 'Hide details' : 'Details'}</button>
         <a class="gh-link" href="${esc(repoUrl(e.repo, e.branch))}" target="_blank" rel="noopener">${ICON.gh}GitHub</a>
       </div>

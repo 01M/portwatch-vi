@@ -30,7 +30,7 @@ jobs:
       - name: Collect site files
         run: |
           mkdir -p _site
-          cp -r index.html assets data _site/
+          cp -r index.html board.html assets data _site/   # dashboard/ is private and never deployed
           touch _site/.nojekyll
 
       - uses: actions/configure-pages@v5

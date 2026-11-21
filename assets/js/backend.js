@@ -1,0 +1,39 @@
+// Shared Supabase access for the public pages: board data and anonymous page views.
+import { SUPABASE_URL, SUPABASE_KEY } from './config.js';
+
+const LIB = 'https://esm.sh/@supabase/supabase-js@2';
+let clientPromise = null;
+
+export const backendReady = () => Boolean(SUPABASE_URL && SUPABASE_KEY);
+
+export function getClient() {
+  if (!backendReady()) return Promise.resolve(null);
+  clientPromise ??= import(LIB).then(({ createClient }) => createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  }));
+  return clientPromise;
+}
+
+// A random id per browser tab (sessionStorage, not a cookie) so visits can be counted without identifying anyone.
+function sessionId() {
+  try {
+    let sid = sessionStorage.getItem('pw_sid');
+    const isNew = !sid;
+    if (!sid) { sid = crypto.randomUUID().replace(/-/g, '').slice(0, 20); sessionStorage.setItem('pw_sid', sid); }
+    return { sid, isNew };
+  } catch { return { sid: 'nostorage', isNew: true }; }
+}
+
+// Counts the view and joins the live-presence channel the private dashboard watches.
+export async function trackView(page) {
+  if (!backendReady() || navigator.doNotTrack === '1') return;
+  try {
+    const client = await getClient();
+    const { sid, isNew } = sessionId();
+    let ref = '';
+    try { if (document.referrer) { const r = new URL(document.referrer); if (r.host !== location.host) ref = r.host.replace(/^www\./, ''); } } catch {}
+    await client.rpc('track_view', { p_page: page, p_ref: ref, p_sid: sid, p_new: isNew });
+    const channel = client.channel('online', { config: { presence: { key: sid } } });
+    channel.subscribe((status) => { if (status === 'SUBSCRIBED') channel.track({ page, at: Date.now() }); });
+  } catch { /* analytics must never break the page */ }
+}

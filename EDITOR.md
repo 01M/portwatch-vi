@@ -28,6 +28,10 @@ The GitHub Actions scout (every 3 hours) does the mechanical work: stats, discov
    - `flag` (fake, lure, copy): add it to the matching `flagged[]` cluster's `members` and raise `count`.
 
    Remove each decided candidate from `candidates`, and add a `changes` entry for promotions.
+5b. **Board moderation and tips.** This step needs the local file `.env.local`, which git ignores, containing `SUPABASE_URL=...` and `SUPABASE_SECRET_KEY=...`. If the file is missing, skip this step and say so in the summary. Never print, commit or copy the key anywhere. Use PowerShell to read the file and call the REST API, sending the key only in the `apikey` header:
+   - **Held posts.** `GET {SUPABASE_URL}/rest/v1/threads?status=eq.pending&select=id,board,title,body,author,created_at` and the same for `posts` (`select=id,thread_id,body,author,created_at`). These were held because they contain a link. Approve (`PATCH .../threads?id=eq.<id>` or `.../posts?id=eq.<id>` with body `{"status":"visible"}`) only when the link is harmless: a GitHub repo, a reputable news article, or a tracked project. Hide (`{"status":"hidden"}`) anything that points at downloads, leaked files, executables, torrents, file hosts, Discord or Telegram invites, shortened links, scams or crypto promotion. When unsure, leave it pending and mention it in the summary.
+   - **Abuse.** Read visible threads and posts created since `scout.lastEditorRun` (`created_at=gt.<iso>`). Hide spam, harassment, personal information about anyone, and posts that ask for or offer leaked files.
+   - **Tips.** Treat claims in board posts ("project X boots", "new repo Y") as leads for step 2. Verify them independently before they change anything on the site, and never quote board posts in articles.
 6. **News (at most 2 per day).** Write an article only for something meaningful and verified that isn't already in `news`: a takedown, ban or lawsuit, a confirmed leak, a legal update, a scam wave, an official announcement, or a real port milestone. Use this shape:
 
    ```
