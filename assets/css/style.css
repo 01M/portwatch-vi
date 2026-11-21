@@ -412,6 +412,15 @@ h1, h2, h3, h4 { font-family: var(--display); letter-spacing: -.02em; margin: 0;
 .reader .sources a { color: var(--ink); }
 .reader .fine { margin-top: 14px; }
 
+.headlines { margin-top: 18px; padding: 18px 22px; }
+.headlines ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 28px; }
+.headlines li { display: flex; flex-direction: column; padding: 9px 0; border-top: 1px solid var(--line); min-width: 0; }
+.headlines li a { font-weight: 600; font-size: 14px; text-decoration: none; color: var(--ink); line-height: 1.35; }
+.headlines li a:hover { text-decoration: underline; }
+.headlines li span { font-size: 12px; color: var(--faint); margin-top: 2px; }
+a.tag { text-decoration: none; }
+@media (max-width: 760px) { .headlines ul { grid-template-columns: 1fr; } }
+
 /* ---------- Watchlist ---------- */
 .watch { padding: 6px 0; overflow: hidden; }
 .w-row { display: grid; grid-template-columns: minmax(200px, 1.3fr) minmax(130px, .8fr) minmax(170px, 1fr) 80px 100px; gap: 18px; align-items: center; padding: 14px 24px; border-top: 1px solid var(--line); font-size: 13.5px; }

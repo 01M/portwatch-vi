@@ -284,6 +284,7 @@ function effortCard(e, rank, open) {
     e.provenOn && ladderValue(e.groundwork?.proven) > 0 && `<span class="tag tag-proven" title="Runs another game">Runs: ${esc(e.provenOn)}</span>`,
     stale && `<span class="tag tag-stale">Quiet for ${Math.floor(daysSince(st.pushedAt))}d</span>`,
     st.missing && '<span class="tag tag-stale">Repo gone (404)</span>',
+    st.dmca && `<a class="tag tag-stale" href="${esc(safeHttp(st.dmca.url))}" target="_blank" rel="noopener" title="Named in a DMCA notice in GitHub's public log">DMCA notice ${esc(st.dmca.date || '')}</a>`,
   ].filter(Boolean).join('');
   const gwRows = GROUNDWORK.map((g) => {
     const v = Math.max(0, Math.min(1, +(e.groundwork?.[g.key]) || 0));
@@ -415,6 +416,14 @@ function renderNews(news) {
       </div>
     </button>`;
   $('#news-list').innerHTML = card(items[0], false) + `<div class="news-list">${items.slice(1, 7).map((n) => card(n, true)).join('')}</div>`;
+  const heads = (state.data.headlines || []).slice(0, 10);
+  if (heads.length) {
+    $('#news-list').insertAdjacentHTML('afterend', `
+      <div class="headlines card">
+        <h3 class="mini-title">Latest headlines <span class="w-muted">· gathered automatically from news feeds every 3 hours</span></h3>
+        <ul>${heads.map((h) => `<li><a href="${esc(safeHttp(h.link))}" target="_blank" rel="noopener noreferrer">${esc(h.title)}</a><span>${esc(h.outlet)} · ${esc(ago(h.date))}</span></li>`).join('')}</ul>
+      </div>`);
+  }
 
   const dlg = $('#reader');
   $('#news-list').addEventListener('click', (ev) => {

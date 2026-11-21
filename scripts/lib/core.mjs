@@ -178,6 +178,130 @@ export async function fourchanSearch(board, { maxThreads = 8 } = {}) {
   return out;
 }
 
+/* ---------- Bluesky (public AppView search, no key) ---------- */
+export async function blueskySearch(query) {
+  const p = new URLSearchParams({ q: query, sort: 'latest', limit: '50' });
+  const res = await fetch(`https://api.bsky.app/xrpc/app.bsky.feed.searchPosts?${p}`, { headers: IN_NODE ? { 'User-Agent': UA } : {} });
+  if (!res.ok) throw new Error(`Bluesky ${res.status}`);
+  return ((await res.json()).posts || []).map((post) => ({
+    source: 'Bluesky',
+    title: String(post.record?.text || '').slice(0, 120),
+    text: JSON.stringify([post.record, post.embed]), // links live in facets and embeds
+    link: `https://bsky.app/profile/${post.author?.handle}/post/${String(post.uri || '').split('/').pop()}`,
+    score: (post.likeCount || 0) + (post.repostCount || 0),
+  }));
+}
+
+/* ---------- Mastodon (public hashtag timelines, no key) ---------- */
+export async function mastodonTag(tag, instance = 'mastodon.social') {
+  const res = await fetch(`https://${instance}/api/v1/timelines/tag/${encodeURIComponent(tag)}?limit=40`, { headers: IN_NODE ? { 'User-Agent': UA } : {} });
+  if (!res.ok) throw new Error(`Mastodon #${tag} ${res.status}`);
+  return ((await res.json()) || []).map((s) => ({
+    source: 'Mastodon',
+    title: decode4(s.content).slice(0, 120),
+    text: `${decode4(s.content)} ${s.card?.url || ''}`,
+    link: s.url,
+    score: (s.favourites_count || 0) + (s.reblogs_count || 0),
+  }));
+}
+
+/* ---------- Lemmy (public search, no key) ---------- */
+export async function lemmySearch(query, instance = 'lemmy.world') {
+  const p = new URLSearchParams({ q: query, type_: 'Posts', sort: 'New', limit: '30' });
+  const res = await fetch(`https://${instance}/api/v3/search?${p}`, { headers: IN_NODE ? { 'User-Agent': UA } : {} });
+  if (!res.ok) throw new Error(`Lemmy ${res.status}`);
+  return ((await res.json()).posts || []).map(({ post, counts }) => ({
+    source: 'Lemmy',
+    title: post.name || '',
+    text: `${post.name || ''} ${post.url || ''} ${post.body || ''}`,
+    link: post.ap_id,
+    score: counts?.score || 0,
+  }));
+}
+
+/* ---------- GitLab (public project search, no key) — where projects go after a GitHub takedown ---------- */
+export async function gitlabSearch(query, sinceIso) {
+  const p = new URLSearchParams({ search: query, order_by: 'last_activity_at', per_page: '30', simple: 'true' });
+  if (sinceIso) p.set('last_activity_after', sinceIso);
+  const res = await fetch(`https://gitlab.com/api/v4/projects?${p}`, { headers: IN_NODE ? { 'User-Agent': UA } : {} });
+  if (!res.ok) throw new Error(`GitLab ${res.status}`);
+  return ((await res.json()) || []).map((pr) => ({
+    host: 'gitlab',
+    id: pr.id,
+    fullName: pr.path_with_namespace,
+    name: pr.path,
+    description: pr.description || '',
+    stars: pr.star_count || 0,
+    createdAt: pr.created_at,
+    pushedAt: pr.last_activity_at,
+    defaultBranch: pr.default_branch || 'main',
+    url: pr.web_url,
+  }));
+}
+export async function gitlabReadme(meta) {
+  for (const f of ['README.md', 'readme.md', 'README']) {
+    const res = await fetch(`https://gitlab.com/api/v4/projects/${meta.id}/repository/files/${encodeURIComponent(f)}/raw?ref=${encodeURIComponent(meta.defaultBranch)}`, { headers: IN_NODE ? { 'User-Agent': UA } : {} });
+    if (res.ok) return res.text();
+  }
+  return '';
+}
+
+/* ---------- News headlines (Google News + Bing News RSS, no key) ---------- */
+const xmlText = (s) => String(s || '').replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').replace(/<[^>]+>/g, '')
+  .replace(/&#0?39;/g, "'").replace(/&quot;/g, '"').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&').trim();
+const tagOf = (block, tag) => block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'i'))?.[1] || '';
+
+export async function newsFeed(url, feedName) {
+  const res = await fetch(url, { headers: IN_NODE ? { 'User-Agent': 'Mozilla/5.0 (compatible; PortWatchVI/1.0)' } : {} });
+  if (!res.ok) throw new Error(`${feedName} ${res.status}`);
+  const xml = await res.text();
+  return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)].map(([, b]) => {
+    let title = xmlText(tagOf(b, 'title'));
+    let outlet = xmlText(tagOf(b, 'source')) || xmlText(tagOf(b, 'News:Source'));
+    if (!outlet && / - [^-]{2,40}$/.test(title)) outlet = title.split(' - ').pop();
+    if (outlet && title.endsWith(` - ${outlet}`)) title = title.slice(0, -(outlet.length + 3));
+    let link = xmlText(tagOf(b, 'link'));
+    // Bing wraps links in a click-tracker; the real article URL is in its "url" parameter.
+    try { const real = new URL(link).searchParams.get('url'); if (/bing\.com\/news\/apiclick/i.test(link) && real) link = real; } catch {}
+    link = link.replace(/^http:\/\//i, 'https://');
+    const t = Date.parse(xmlText(tagOf(b, 'pubDate')));
+    return { title, outlet: outlet || feedName, link, date: Number.isFinite(t) ? new Date(t).toISOString() : null, via: feedName };
+  }).filter((h) => /^https:\/\//.test(h.link) && h.title && h.date);
+}
+// Keep only headlines about the leak, ports, takedowns, scams or official news.
+const HEADLINE_RE = /(gta ?(vi|6)|grand theft auto (vi|6)).*(leak|pc\b|port|emulat|recomp|dmca|take-two|takedown|lawsuit|rockstar|cyberle+k|hack|malware|scam|fake|executable|xbox build|ban)|(leak|pc\b|port|emulat|recomp|dmca|take-two|takedown|lawsuit|cyberle+k|hack|malware|scam|fake|executable|xbox build|ban).*(gta ?(vi|6)|grand theft auto (vi|6))/i;
+export const isLeakHeadline = (h) => HEADLINE_RE.test(h.title);
+
+/* ---------- GitHub DMCA notices (github/dmca repo) ---------- */
+const DMCA_FILE = /(take-?two|rockstar|2k-games)/i;
+export async function dmcaNotices(gh, sinceIso, token) {
+  const headers = { Accept: 'application/vnd.github+json', ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(IN_NODE ? { 'User-Agent': UA } : {}) };
+  const res = await fetch(`https://api.github.com/repos/github/dmca/commits?since=${encodeURIComponent(sinceIso)}&per_page=60`, { headers });
+  if (!res.ok) throw new Error(`DMCA log ${res.status}`);
+  const commits = await res.json();
+  const notices = [];
+  for (const c of commits) {
+    const msg = c.commit?.message || '';
+    // Commit messages normally name the notice file; only open the ones that look like Take-Two / Rockstar.
+    if (!DMCA_FILE.test(msg)) continue;
+    const d = await fetch(`https://api.github.com/repos/github/dmca/commits/${c.sha}`, { headers });
+    if (!d.ok) continue;
+    for (const f of (await d.json()).files || []) {
+      if (!DMCA_FILE.test(f.filename) || !/\.md$/.test(f.filename) || f.status === 'removed') continue;
+      const raw = await fetch(`https://raw.githubusercontent.com/github/dmca/master/${f.filename.split('/').map(encodeURIComponent).join('/')}`);
+      const body = raw.ok ? await raw.text() : '';
+      notices.push({
+        path: f.filename,
+        url: `https://github.com/github/dmca/blob/master/${f.filename}`,
+        date: (f.filename.match(/\d{4}-\d{2}-\d{2}/) || [c.commit?.author?.date?.slice(0, 10)])[0],
+        repos: extractGithubRepos(body),
+        gta6: /(gta ?(vi|6)|grand theft auto (vi|6))/i.test(body),
+      });
+    }
+  }
+  return notices;
+}
+
 /* ---------- X (needs a paid API bearer token) ---------- */
 export async function xSearch(query, bearer) {
   if (!bearer) return [];
@@ -230,7 +354,18 @@ export function spamCheck(meta, descCounts) {
 }
 
 const TECH = ['pe loader', 'pe32+', 'imports', 'd3d12', 'd3d12_xs', 'xgameruntime', 'kernelx', 'xmem', 'gdk', 'rdna2', 'rdna 2', 'spir-v', 'spirv', 'dxil', 'hlsl', 'shader', 'recompil', 'relink', 'vulkan', 'directstorage', 'bcpack', 'xma2', 'swizzle', 'tiling', 'unicorn', 'hle', 'iat', 'tls', 'relocation', 'command list', 'descriptor', 'pipeline', 'rpf9', 'ttpf', 'awc', 'bink'];
-const RELEVANT = /(gta ?(vi|6)|grand theft auto|scarlett|xbox series|series x\|s|series x|gdk|rpf9|leonida|game ?core|d3d12_xs|xgameruntime|gen9)/i;
+// Relevant = clearly about GTA VI, or substantially about Xbox Series/GDK rather than another console.
+// (A single "Xbox Series" mention in, say, an Xbox 360 port's button-prompt list doesn't count.)
+const STRONG_REL = /(gta ?(vi|6)|grand theft auto (vi|6)|leonida|rpf9|cyberle+k)/i;
+const XS_REL = /(scarlett|xbox series|series x\|s|series x|\bgdk\b|game ?core|d3d12_xs|xgameruntime|kernelx|gen9)/gi;
+const OTHER_CONSOLE = /(xbox 360|xenon|\bxex\b|playstation 3|\bps3\b|\bps4\b|\bps2\b|wii u|\bwii\b|nintendo switch|gamecube|\bn64\b)/gi;
+export function isRelevant(meta, readme = '') {
+  const blob = `${meta.name || ''} ${meta.fullName || ''} ${meta.description || ''} ${readme}`;
+  if (STRONG_REL.test(blob)) return true;
+  const xs = (blob.match(XS_REL) || []).length;
+  const other = (blob.match(OTHER_CONSOLE) || []).length;
+  return xs >= 3 && xs >= other;
+}
 const TOOLISH = /(extract|explorer|archive|viewer|asset|rpf9|ttpf|awc|texture|decoder|format notes)/i;
 const RUNTIMEISH = /(loader|d3d12_xs|xgameruntime|kernelx|compatibility layer|translation layer|emulat|recompil|relink|runtime|hle)/i;
 
@@ -252,7 +387,7 @@ export function substance(meta, readme = '', commits7d = null) {
   if (/(download|installer)/i.test(text) && hits.length < 3) score -= 25;
   if (/(ai hallucination|doesn'?t work|does not work|joke repo|meme)/i.test(text)) score -= 20;
   const blob = `${meta.name} ${meta.description} ${readme}`;
-  const relevant = RELEVANT.test(blob);
+  const relevant = isRelevant(meta, readme);
   const kind = TOOLISH.test(blob) && !RUNTIMEISH.test(blob) ? 'tool' : 'effort';
   return { score: Math.max(0, Math.min(100, score)), signals, relevant, kind };
 }

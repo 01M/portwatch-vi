@@ -154,6 +154,18 @@ export async function runScout(data, opts = {}) {
       try { posts.push(...(await core.fourchanSearch(b))); } catch (err) { errorOut(`4chan /${b}/`, err); }
     }
   }
+  if (sources.social !== false) {
+    log('Searching Bluesky, Mastodon and Lemmy…');
+    for (const q of scout.bluesky || ['gta 6 emulator', 'gta 6 recomp', 'gta vi pc port', 'xbox series emulator', 'leonida gta']) {
+      try { posts.push(...(await core.blueskySearch(q))); } catch (err) { errorOut(`Bluesky "${q}"`, err); break; }
+    }
+    for (const tag of scout.mastodon || ['gta6', 'gtavi', 'emulation', 'reverseengineering']) {
+      try { posts.push(...(await core.mastodonTag(tag))); } catch (err) { errorOut(`Mastodon #${tag}`, err); }
+    }
+    for (const q of scout.lemmy || ['gta 6 pc', 'gta 6 emulator', 'xbox series emulator']) {
+      try { posts.push(...(await core.lemmySearch(q))); } catch (err) { errorOut(`Lemmy "${q}"`, err); break; }
+    }
+  }
   if (sources.x && env.X_BEARER_TOKEN && scout.x) {
     log('Searching X…');
     try { posts.push(...(await core.xSearch(scout.x, env.X_BEARER_TOKEN))); } catch (err) { errorOut('X', err); }
@@ -229,6 +241,7 @@ export async function runScout(data, opts = {}) {
     if ((ownersByName.get(lc(name))?.size || 0) >= 3) return { clone: true };
     if (core.isFanGame(meta, readme)) return { ignore: 'off-topic (original fan game, not a port)' };
     if (empty) return { ignore: 'no real README' };
+    if (!core.isRelevant(meta, readme)) return { ignore: 'off-topic (not about GTA VI or Xbox Series)' };
     return null;
   };
   const applyScreen = (meta, verdict) => {
@@ -239,7 +252,7 @@ export async function runScout(data, opts = {}) {
 
   // Re-screen candidates already waiting for review, so older finds get the same rules.
   for (const c of [...data.candidates]) {
-    if (c.status !== 'new') continue;
+    if (c.status !== 'new' || c.host === 'gitlab') continue;
     try {
       const readme = (await gh.readme(c.repo, c.defaultBranch)) || '';
       const verdict = screen({ fullName: c.repo, description: c.description, pushedAt: c.pushedAt }, readme);
@@ -307,9 +320,80 @@ export async function runScout(data, opts = {}) {
       summary.newCandidates++;
     } catch (err) { errorOut(`classify ${f.full}`, err); }
   }
+  // GitLab: projects that may have moved off GitHub (e.g. after a takedown).
+  if (sources.gitlab !== false) {
+    log('Searching GitLab…');
+    const sinceIso = `${sinceDate}T00:00:00Z`;
+    for (const q of scout.gitlab || ['gta vi', 'gta6', 'xbox series emulator', 'scarlett xbox', 'rpf9', 'leonida']) {
+      try {
+        for (const g of await core.gitlabSearch(q, sinceIso)) {
+          const key = lc(`gitlab.com/${g.fullName}`);
+          if (known.has(key) || data.candidates.some((c) => lc(c.repo) === key) || data.ignored.some((i) => lc(i.repo) === key)) continue;
+          known.add(key);
+          const readme = await core.gitlabReadme(g);
+          const meta = { ...g, language: null, size: 0 };
+          const verdict = screen({ ...meta, fullName: `gitlab.com/${g.fullName}` }, readme);
+          const sub = core.substance(meta, readme, null);
+          if (verdict || !sub.relevant || sub.score < CANDIDATE_MIN) {
+            data.ignored.push({ repo: `gitlab.com/${g.fullName}`, reason: verdict?.ignore || (verdict?.copyOf ? `copy of ${verdict.copyOf}` : !sub.relevant ? 'off-topic' : `thin (substance ${sub.score})`), auto: true, seenAt: today, pushedAt: g.pushedAt });
+            continue;
+          }
+          data.candidates.push({ repo: `gitlab.com/${g.fullName}`, host: 'gitlab', name: g.name, description: g.description, stars: g.stars, createdAt: g.createdAt, pushedAt: g.pushedAt, sources: ['GitLab search'], links: [], foundAt: now.toISOString(), substance: sub.score, signals: sub.signals, kind: sub.kind, status: 'new' });
+          addChange('new', `Scout spotted gitlab.com/${g.fullName} (substance ${sub.score}).`);
+          summary.newCandidates++;
+        }
+      } catch (err) { errorOut(`GitLab "${q}"`, err); }
+    }
+  }
+
+  // Headlines from news feeds (no AI needed): only stories about the leak, ports, takedowns, scams or official news.
+  if (sources.news !== false) {
+    log('Reading news feeds…');
+    const qs = scout.newsQueries || ['GTA 6 leak', 'GTA 6 PC', 'GTA 6 emulator', 'Take-Two DMCA', 'Cyberleek'];
+    const fresh = [];
+    for (const q of qs) {
+      const enc = encodeURIComponent(q);
+      for (const [url, name] of [[`https://news.google.com/rss/search?q=${enc}+when:7d&hl=en-US&gl=US&ceid=US:en`, 'Google News'], [`https://www.bing.com/news/search?q=${enc}&format=rss`, 'Bing News']]) {
+        try { fresh.push(...(await core.newsFeed(url, name)).filter(core.isLeakHeadline)); } catch (err) { errorOut(`${name} "${q}"`, err); }
+      }
+    }
+    const norm = (t) => lc(t).replace(/[^a-z0-9]+/g, ' ').trim();
+    const seen = new Set();
+    data.headlines = [...fresh, ...(data.headlines || [])]
+      .filter((h) => (now - Date.parse(h.date)) < 14 * 864e5)
+      .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+      .filter((h) => { const k = norm(h.title).slice(0, 70); if (seen.has(k)) return false; seen.add(k); return true; })
+      .slice(0, 30);
+  }
+
+  // DMCA watch: new Take-Two / Rockstar notices in GitHub's public DMCA log.
+  if (sources.dmca !== false) {
+    log('Checking GitHub DMCA notices…');
+    try {
+      const since = scout.lastDmcaCheck || new Date(now - 7 * 864e5).toISOString();
+      const notices = await core.dmcaNotices(gh, since, token);
+      data.dmca ||= [];
+      for (const n of notices) {
+        if (data.dmca.some((d) => d.path === n.path)) continue;
+        const named = data.efforts.filter((e) => n.repos.some((r) => lc(r) === lc(e.repo)));
+        data.dmca.unshift({ path: n.path, url: n.url, date: n.date, repoCount: n.repos.length, gta6: n.gta6, tracked: named.map((e) => e.id) });
+        for (const e of named) {
+          e.stats = { ...(e.stats || {}), dmca: { date: n.date, url: n.url } };
+          addChange('flag', `${e.name} is named in a new DMCA notice (${n.date}).`);
+        }
+        if (n.gta6 || named.length) {
+          addChange('flag', `New ${/rockstar/i.test(n.path) ? 'Rockstar' : 'Take-Two'} DMCA notice on GitHub (${n.repos.length} repos${n.gta6 ? ', mentions GTA VI' : ''}).`);
+          data.headlines = [{ title: `New ${/rockstar/i.test(n.path) ? 'Rockstar' : 'Take-Two'} DMCA notice filed on GitHub (${n.repos.length} repositories)`, outlet: 'GitHub DMCA log', link: n.url, date: `${n.date}T12:00:00.000Z`, via: 'DMCA watch' }, ...(data.headlines || [])].slice(0, 30);
+        }
+      }
+      data.dmca = data.dmca.slice(0, 40);
+      scout.lastDmcaCheck = now.toISOString();
+    } catch (err) { errorOut('DMCA watch', err); }
+  }
+
   // Refresh candidate stats and keep the best ones.
   for (const c of data.candidates.slice(0, limit)) {
-    if (c.status !== 'new' || found.has(lc(c.repo))) continue;
+    if (c.status !== 'new' || c.host === 'gitlab' || found.has(lc(c.repo))) continue;
     try {
       const m = await gh.repo(c.repo);
       if (m.missing) { c.status = 'rejected'; c.rejectReason = 'gone'; continue; }
@@ -337,7 +421,7 @@ export async function runScout(data, opts = {}) {
     }
     for (const c of [...data.candidates]) {
       if (budget-- <= 0) break;
-      if (c.status !== 'new' || (c.kind === 'tool' && c.substance < 50)) continue;
+      if (c.status !== 'new' || c.host === 'gitlab' || (c.kind === 'tool' && c.substance < 50)) continue;
       try {
         const readme = (await gh.readme(c.repo, c.defaultBranch)) || '';
         const commits = await gh.recentCommits(c.repo, c.defaultBranch);
