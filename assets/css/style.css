@@ -136,6 +136,9 @@ h1, h2, h3, h4 { font-family: var(--display); letter-spacing: -.02em; margin: 0;
   letter-spacing: -.045em;
   background: linear-gradient(90deg, #ffd27a, #ff7a59 45%, #ff2e7e);
   -webkit-background-clip: text; background-clip: text; color: transparent;
+  /* Gradient text only paints inside the box; extend it so descenders (the "y") aren't clipped. */
+  padding-bottom: .16em;
+  margin-bottom: -.16em;
 }
 .lede { margin: 22px 0 0; max-width: 46ch; font-size: 17px; color: rgba(255, 255, 255, .86); }
 .art-credit { position: absolute; right: 22px; bottom: 14px; margin: 0; font-size: 11px; color: rgba(255, 255, 255, .6); }

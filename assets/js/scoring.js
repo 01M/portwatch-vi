@@ -1,4 +1,4 @@
-// Scoring model shared by the website (assets/js/app.js) and the daily scout (scripts/).
+// Scoring model shared by the website (assets/js/app.js) and the scout (scripts/).
 // Keep this file dependency-free so it runs unchanged in browsers and in Node.
 //
 // A project's score is "how close is it to playing GTA VI on PC", 0-100.

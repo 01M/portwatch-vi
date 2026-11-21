@@ -135,6 +135,49 @@ export async function redditSearch({ subreddit, query, token }) {
   }));
 }
 
+/* ---------- 4chan (free read-only JSON API, no key; max 1 request per second) ---------- */
+const decode4 = (html) => String(html || '')
+  .replace(/<wbr>/gi, '') // 4chan inserts <wbr> inside long URLs
+  .replace(/<br\s*\/?>/gi, ' ')
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/&#0?39;/g, "'").replace(/&quot;/g, '"').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&')
+  .replace(/\[\.\]|\(dot\)|\s+dot\s+(?=com\b)/gi, '.'); // "github[.]com" style obfuscation
+
+const CHAN_GTA = /(gta ?(vi|6)|grand theft|scarlett|leonida|xbox series)/i;
+const CHAN_PORT = /(recomp|emulat|\bport\b|\.exe|executable|leak|\bbuild\b|github|scarlett|leonida|cyberle+k)/i;
+const CHAN_GENERAL = /\/(gtag|emugen)\//i;
+
+export async function fourchanSearch(board, { maxThreads = 8 } = {}) {
+  const headers = IN_NODE ? { 'User-Agent': UA } : {};
+  const res = await fetch(`https://a.4cdn.org/${board}/catalog.json`, { headers });
+  if (!res.ok) throw new Error(`4chan /${board}/ ${res.status}`);
+  const threads = (await res.json()).flatMap((p) => p.threads || []);
+  const picked = threads
+    .filter((t) => {
+      const sub = decode4(t.sub || '');
+      if (/^\s*\/\w+\/\s*-/.test(sub)) return CHAN_GENERAL.test(sub); // other "/xyz/ - General" threads: skip
+      const s = `${sub} ${decode4(t.com || '')}`;
+      return CHAN_GTA.test(s) && CHAN_PORT.test(s);
+    })
+    .sort((a, b) => (b.replies || 0) - (a.replies || 0))
+    .slice(0, maxThreads);
+  const out = [];
+  for (const t of picked) {
+    await sleep(1100);
+    const tr = await fetch(`https://a.4cdn.org/${board}/thread/${t.no}.json`, { headers });
+    if (!tr.ok) continue;
+    const posts = (await tr.json()).posts || [];
+    out.push({
+      source: `4chan /${board}/`,
+      title: decode4(t.sub || t.com || '').slice(0, 120),
+      text: posts.map((p) => decode4(p.com)).join(' '),
+      link: `https://boards.4chan.org/${board}/thread/${t.no}`,
+      score: t.replies || 0,
+    });
+  }
+  return out;
+}
+
 /* ---------- X (needs a paid API bearer token) ---------- */
 export async function xSearch(query, bearer) {
   if (!bearer) return [];

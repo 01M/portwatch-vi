@@ -70,7 +70,7 @@ function renderMeta(data) {
   const sc = data.scout || {};
   $('#scout-status').textContent = sc.lastRun
     ? `Last scout run ${ago(sc.lastRun)}${sc.lastSummary ? `: ${sc.lastSummary}` : ''}`
-    : 'The scout runs daily at 06:17 UTC.';
+    : 'The scout runs every 3 hours.';
   window.addEventListener('scroll', () => $('#nav').classList.toggle('is-scrolled', window.scrollY > 8), { passive: true });
 }
 
@@ -367,7 +367,7 @@ function renderTools(tools) {
 function renderInbox(data) {
   const c = (data.candidates || []).filter((x) => x.status !== 'rejected');
   if (!c.length) {
-    $('#inbox-list').innerHTML = `<div class="empty">Nothing waiting for review. ${data.scout?.lastRun ? `The scout last ran ${esc(ago(data.scout.lastRun))}.` : 'The scout runs daily at 06:17 UTC.'}</div>`;
+    $('#inbox-list').innerHTML = `<div class="empty">Nothing waiting for review. ${data.scout?.lastRun ? `The scout last ran ${esc(ago(data.scout.lastRun))}.` : 'The scout runs every 3 hours.'}</div>`;
     return;
   }
   // Deliberately plain text: unreviewed repos can be copies or lures, so we don't link them.

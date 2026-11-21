@@ -2,7 +2,7 @@
   "name": "portwatch-vi",
   "private": true,
   "type": "module",
-  "description": "Tracker of community efforts to run GTA VI on PC, plus the daily scout that updates it.",
+  "description": "Tracker of community efforts to run GTA VI on PC, plus the scout that updates it every 3 hours.",
   "scripts": {
     "scout": "node scripts/scout.mjs",
     "scout:dry": "node scripts/scout.mjs --dry-run"

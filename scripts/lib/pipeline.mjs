@@ -1,4 +1,4 @@
-// The daily scout pipeline. Pure data-in / data-out: the caller loads and saves tracker.json.
+// The scout pipeline (runs every 3 hours). Pure data-in / data-out: the caller loads and saves tracker.json.
 // Runs in Node (GitHub Actions) and in a browser (local testing).
 import { scoreEffort, overall } from '../../assets/js/scoring.js';
 import * as core from './core.mjs';
@@ -134,7 +134,8 @@ export async function runScout(data, opts = {}) {
       try { posts.push(...(await core.hnSearch(q, sinceEpoch))); } catch (err) { errorOut(`HN "${q}"`, err); }
     }
   }
-  if (sources.reddit && scout.reddit) {
+  // Reddit blocks anonymous API and RSS access, so it's only searched with approved app keys.
+  if (sources.reddit && scout.reddit && env.REDDIT_CLIENT_ID && env.REDDIT_CLIENT_SECRET) {
     log('Searching Reddit…');
     let rtoken = null;
     try { rtoken = await core.redditToken(env.REDDIT_CLIENT_ID, env.REDDIT_CLIENT_SECRET); } catch (err) { errorOut('Reddit auth', err); }
@@ -144,6 +145,13 @@ export async function runScout(data, opts = {}) {
     ];
     for (const p of pairs) {
       try { posts.push(...(await core.redditSearch({ ...p, token: rtoken }))); } catch (err) { errorOut(`Reddit ${p.subreddit || p.query}`, err); break; }
+    }
+  }
+  if (sources.chan !== false) {
+    const boards = scout.chan?.boards || ['v', 'vg'];
+    log(`Scanning 4chan (${boards.map((b) => `/${b}/`).join(', ')})…`);
+    for (const b of boards) {
+      try { posts.push(...(await core.fourchanSearch(b))); } catch (err) { errorOut(`4chan /${b}/`, err); }
     }
   }
   if (sources.x && env.X_BEARER_TOKEN && scout.x) {
