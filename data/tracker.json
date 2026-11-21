@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T23:18:15.969Z",
+  "updated": "2026-11-21T23:26:37.236Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -217,9 +217,9 @@
         "drycheetah84/TomBox"
       ],
       "stats": {
-        "stars": 728,
+        "stars": 732,
         "forks": 37,
-        "openIssues": 62,
+        "openIssues": 65,
         "createdAt": "2026-11-21T08:08:39Z",
         "pushedAt": "2026-11-21T23:14:58Z",
         "commits7d": 88,
@@ -419,9 +419,9 @@
         "boykopovar/AnyPS5"
       ],
       "stats": {
-        "stars": 147,
+        "stars": 146,
         "forks": 33,
-        "openIssues": 15,
+        "openIssues": 16,
         "createdAt": "2026-11-20T15:33:20Z",
         "pushedAt": "2026-11-21T22:18:33Z",
         "commits7d": 100,
@@ -469,19 +469,21 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 4708,
-        "forks": 326,
-        "openIssues": 96,
+        "stars": 4790,
+        "forks": 329,
+        "openIssues": 91,
         "createdAt": "2026-11-20T20:07:13Z",
-        "pushedAt": "2026-11-21T22:46:20Z",
+        "pushedAt": "2026-11-21T23:26:09Z",
         "commits7d": 100,
         "archived": false,
-        "missing": false
+        "missing": false,
+        "mentions7d": 2
       },
       "assessedAt": "2026-11-21",
       "assessedBy": "manual",
-      "readmeSha": "665f53cb9a3f1939fcf6b15974aba62aa34362e1e7e22e400f6e359880315c5b",
-      "claims": []
+      "readmeSha": "bbb7bf99cef9a17e24e9c242cc5347c13f184dde0d73cbac38753a7b1aedc76a",
+      "claims": [],
+      "readmeChangedAt": "2026-11-21"
     },
     {
       "id": "openscarlett",
@@ -615,11 +617,11 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 880,
-        "forks": 81,
-        "openIssues": 91,
+        "stars": 886,
+        "forks": 82,
+        "openIssues": 95,
         "createdAt": "2026-11-20T17:43:52Z",
-        "pushedAt": "2026-11-21T22:58:10Z",
+        "pushedAt": "2026-11-21T23:26:10Z",
         "commits7d": 100,
         "archived": false,
         "missing": false
@@ -666,9 +668,9 @@
       "stats": {
         "stars": 14,
         "forks": 1,
-        "openIssues": 15,
+        "openIssues": 19,
         "createdAt": "2026-11-21T00:18:13Z",
-        "pushedAt": "2026-11-21T23:05:19Z",
+        "pushedAt": "2026-11-21T23:24:57Z",
         "commits7d": 91,
         "archived": false,
         "missing": false
@@ -760,7 +762,7 @@
         "forks": 0,
         "openIssues": 1,
         "createdAt": "2026-11-20T22:59:15Z",
-        "pushedAt": "2026-11-21T22:48:53Z",
+        "pushedAt": "2026-11-21T23:24:31Z",
         "commits7d": 3,
         "archived": false,
         "missing": false
@@ -988,16 +990,16 @@
       "stats": {
         "stars": 0,
         "forks": 0,
-        "openIssues": 12,
+        "openIssues": 13,
         "createdAt": "2026-11-21T21:05:28Z",
-        "pushedAt": "2026-11-21T23:18:23Z",
-        "commits7d": 34,
+        "pushedAt": "2026-11-21T23:25:27Z",
+        "commits7d": 35,
         "archived": false,
         "missing": false
       },
       "assessedAt": "2026-11-21",
       "assessedBy": "manual",
-      "readmeSha": "d75e5cb19c7bf6c5384b4effeb0b516d435c52070fee85e38102d25624ea3829",
+      "readmeSha": "09704fd2faea05fe22b9c14f448d2e5b2c30a744e7bb2293d8add2b720845c90",
       "claims": [],
       "readmeChangedAt": "2026-11-21"
     }
@@ -1029,8 +1031,8 @@
       "kind": "Archive explorer",
       "desc": "Windows RPF explorer with model, texture, audio and video previews. Leonida builds on its decoders.",
       "stats": {
-        "stars": 27,
-        "pushedAt": "2026-11-20T18:49:00Z"
+        "stars": 28,
+        "pushedAt": "2026-11-21T23:22:13Z"
       }
     },
     {
@@ -1049,7 +1051,7 @@
       "kind": "RE toolkit",
       "desc": "Explore and analyse RPF9 / TTPF archives.",
       "stats": {
-        "stars": 7,
+        "stars": 8,
         "pushedAt": "2026-11-21T20:10:39Z"
       }
     },
@@ -1105,6 +1107,31 @@
         "9 technical terms",
         "tests",
         "19 commits/7d"
+      ],
+      "kind": "effort",
+      "status": "new"
+    },
+    {
+      "repo": "TekRantGaming/Battlefield-1943-Reborn",
+      "name": "Battlefield-1943-Reborn",
+      "description": "Battlefield 1943 Reborn: the Xbox 360 game running natively on PC, with its online multiplayer restored. Releases and server packages.",
+      "language": "C++",
+      "stars": 158,
+      "createdAt": "2026-11-06T13:31:51Z",
+      "pushedAt": "2026-11-21T05:28:57Z",
+      "defaultBranch": "in-dev",
+      "sources": [
+        "4chan /v/"
+      ],
+      "links": [
+        "https://boards.4chan.org/v/thread/752147734"
+      ],
+      "foundAt": "2026-11-21T23:26:37.236Z",
+      "substance": 71,
+      "signals": [
+        "C++",
+        "6 technical terms",
+        "100+ commits/7d"
       ],
       "kind": "effort",
       "status": "new"
@@ -1753,6 +1780,62 @@
       "auto": true,
       "seenAt": "2026-11-21",
       "pushedAt": "2026-11-19T11:54:22Z"
+    },
+    {
+      "repo": "ThroatyMumbo/LoopyDOOM",
+      "reason": "off-topic",
+      "auto": true,
+      "seenAt": "2026-11-21",
+      "pushedAt": "2026-07-10T20:49:13Z"
+    },
+    {
+      "repo": "gminustwo/red_two",
+      "reason": "off-topic",
+      "auto": true,
+      "seenAt": "2026-11-21",
+      "pushedAt": "2026-11-20T03:13:11Z"
+    },
+    {
+      "repo": "ps4star/WhiteRecomp",
+      "reason": "off-topic",
+      "auto": true,
+      "seenAt": "2026-11-21",
+      "pushedAt": "2026-11-21T23:14:34Z"
+    },
+    {
+      "repo": "notsapinho/Eglantine",
+      "reason": "off-topic",
+      "auto": true,
+      "seenAt": "2026-11-21",
+      "pushedAt": "2026-11-07T10:48:14Z"
+    },
+    {
+      "repo": "MorpheusCode117/Lichii",
+      "reason": "fork",
+      "auto": true,
+      "seenAt": "2026-11-21",
+      "pushedAt": "2026-11-17T22:42:58Z"
+    },
+    {
+      "repo": "StevenMXZ/Adreno-Tools-Drivers",
+      "reason": "off-topic",
+      "auto": true,
+      "seenAt": "2026-11-21",
+      "pushedAt": "2026-11-19T15:18:03Z"
+    },
+    {
+      "repo": "nvd123-YT/WiiSportsWiiCompiled",
+      "reason": "fork",
+      "auto": true,
+      "seenAt": "2026-11-21",
+      "pushedAt": "2026-11-13T13:58:31Z"
+    },
+    {
+      "repo": "zortos293/Lichii",
+      "reason": "off-topic",
+      "auto": true,
+      "seenAt": "2026-11-21",
+      "pushedAt": "2026-11-21T23:13:42Z"
     }
   ],
   "changes": [
@@ -1820,6 +1903,11 @@
       "date": "2026-11-21",
       "kind": "new",
       "text": "Scout spotted SentinelInteractive/0x52504639 (tool, substance 47)."
+    },
+    {
+      "date": "2026-11-21",
+      "kind": "new",
+      "text": "Scout spotted TekRantGaming/Battlefield-1943-Reborn (possible effort, substance 71)."
     }
   ],
   "history": [
@@ -1871,7 +1959,7 @@
       "xbox series emulator"
     ],
     "x": "(\"gta 6\" OR \"gta vi\" OR gta6) (recomp OR emulator OR \"pc port\" OR scarlett) github.com -is:retweet",
-    "lastRun": "2026-11-21T23:18:15.969Z",
-    "lastSummary": "17 refreshed, 1 READMEs changed, 0 new candidates, 6 flagged, 1 errors."
+    "lastRun": "2026-11-21T23:26:37.236Z",
+    "lastSummary": "17 refreshed, 2 READMEs changed, 1 new candidates, 0 flagged."
   }
 }
