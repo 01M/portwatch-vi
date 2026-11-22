@@ -348,7 +348,7 @@ export function spamCheck(meta, descCounts) {
   if (/switch[-_ ]?version.*emulator/i.test(name)) return { cluster: 'switch-emulator-network', reason: 'Clone of the "Switch Version PC Emulator" network' };
   if (SPAM_NAME.test(name)) return { cluster: 'auto-download-lures', reason: 'Name matches a download-lure pattern' };
   const d = normDesc(meta.description);
-  if (d.length > 25 && (descCounts.get(d) || 0) >= 3) return { cluster: 'auto-clone-networks', reason: 'Same description as 3+ other new repos' };
+  if (d.length > 25 && (descCounts.get(d) || 0) >= 3) return { cluster: 'auto-clone-networks', reason: 'Same description on three or more different repos' };
   if (SPAM_DESC.test(meta.description || '')) return { cluster: 'auto-download-lures', reason: 'Description promotes a download' };
   return null;
 }

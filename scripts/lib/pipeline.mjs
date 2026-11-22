@@ -183,11 +183,17 @@ export async function runScout(data, opts = {}) {
   }
 
   /* 3. Classify anything new */
-  const descCounts = new Map();
+  // Count repos, not search hits: one repo often turns up in several searches.
+  const byDesc = new Map(); // description -> repo -> created at
   for (const m of allSearchMetas) {
     const d = core.normDesc(m.description);
-    if (d.length > 25) descCounts.set(d, (descCounts.get(d) || 0) + 1);
+    if (d.length <= 25) continue;
+    if (!byDesc.has(d)) byDesc.set(d, new Map());
+    byDesc.get(d).set(lc(m.fullName), m.createdAt);
   }
+  const descCounts = new Map([...byDesc].map(([d, repos]) => [d, repos.size]));
+  // The oldest repo with a description is the one being copied, so its description never counts against it.
+  const originals = new Set([...byDesc.values()].map((repos) => [...repos].sort((a, b) => Date.parse(a[1]) - Date.parse(b[1]))[0][0]));
   const fresh = [...found.values()].filter((f) => !known.has(lc(f.full)));
   log(`Classifying ${fresh.length} unknown repos…`);
   data.candidates ||= [];
@@ -238,8 +244,14 @@ export async function runScout(data, opts = {}) {
       const o = core.overlap(sh, ts);
       if (o >= 0.6 && lc(repo) !== lc(meta.fullName)) return { copyOf: repo, pct: Math.round(o * 100) };
     }
-    if ((ownersByName.get(lc(name))?.size || 0) >= 3) return { clone: true };
     if (core.isFanGame(meta, readme)) return { ignore: 'off-topic (original fan game, not a port)' };
+    // Unrelated projects can share a generic name, so a shared name marks a clone only without real code and substance.
+    // (A wordy landing page can score as substance, hence the code check. Candidates keep the score they got in on.)
+    if ((ownersByName.get(lc(name))?.size || 0) >= 3) {
+      const hasCode = meta.language && meta.language !== 'HTML';
+      if (!hasCode || (meta.substance ?? core.substance(meta, readme).score) < CANDIDATE_MIN) return { clone: true };
+    }
+    if (name === '.github') return { ignore: 'organization profile, not a project' };
     if (empty) return { ignore: 'no real README' };
     if (!core.isRelevant(meta, readme)) return { ignore: 'off-topic (not about GTA VI or Xbox Series)' };
     return null;
@@ -255,7 +267,7 @@ export async function runScout(data, opts = {}) {
     if (c.status !== 'new' || c.host === 'gitlab') continue;
     try {
       const readme = (await gh.readme(c.repo, c.defaultBranch)) || '';
-      const verdict = screen({ fullName: c.repo, description: c.description, pushedAt: c.pushedAt }, readme);
+      const verdict = screen({ fullName: c.repo, description: c.description, pushedAt: c.pushedAt, language: c.language, substance: c.substance }, readme);
       if (verdict) {
         data.candidates = data.candidates.filter((x) => x !== c);
         applyScreen({ fullName: c.repo, pushedAt: c.pushedAt }, verdict);
@@ -275,7 +287,7 @@ export async function runScout(data, opts = {}) {
       // Re-check an auto-ignored repo only if it has been pushed since we last looked, at most weekly.
       if (prevIgnored && (Date.parse(meta.pushedAt) <= Date.parse(prevIgnored.pushedAt || 0) || (now - Date.parse(prevIgnored.seenAt || 0)) < 7 * 864e5)) continue;
 
-      const spam = core.spamCheck(meta, descCounts);
+      const spam = core.spamCheck(meta, originals.has(lc(meta.fullName)) ? new Map() : descCounts);
       if (spam) {
         let cluster = data.flagged.find((c) => c.id === spam.cluster);
         if (!cluster) {
