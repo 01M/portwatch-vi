@@ -441,7 +441,7 @@
       "tier": "tracked",
       "approach": "Static recompilation",
       "target": "GTA VI only",
-      "summary": "The most-starred effort and the only one built for GTA VI alone. You build it on your PC from your own copy; it has already translated every one of the game's shaders for Vulkan.",
+      "summary": "The most-starred effort and the only one made just for GTA VI, by Hookshot's author (a PC recomp of the Switch 2 Ocarina of Time remake). You build it from your own copy; all shaders are translated for Vulkan.",
       "highlights": [
         "All 26,503 GTA VI shaders translated RDNA2 → SPIR-V, each passing spirv-val",
         "One-click Build.bat finds your copy and exports models, textures and audio",
