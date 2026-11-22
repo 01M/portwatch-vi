@@ -238,3 +238,10 @@ do $$ begin
   begin alter publication supabase_realtime add table public.threads; exception when duplicate_object then null; end;
   begin alter publication supabase_realtime add table public.posts; exception when duplicate_object then null; end;
 end $$;
+
+-- ---------- Server-side access for the daily editor (secret key = service_role) ----------
+-- This project doesn't grant table access to API roles by default, so the editor's moderation
+-- calls (read held posts, set status) need explicit privileges. service_role bypasses row-level security.
+grant usage on schema public to service_role;
+grant select on public.threads, public.posts, public.admins, public.pageviews to service_role;
+grant update (status) on public.threads, public.posts to service_role;
