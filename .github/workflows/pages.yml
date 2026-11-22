@@ -35,6 +35,7 @@ jobs:
         run: |
           mkdir -p _site
           cp -r index.html board.html assets data _site/   # dashboard/ is private and never deployed
+          cp google*.html _site/   # Google Search Console ownership file; keep it, or Google un-verifies the site
           touch _site/.nojekyll
 
       - name: Build article pages, news archive, RSS feed and sitemap
