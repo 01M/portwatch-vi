@@ -694,15 +694,16 @@
       "tier": "tracked",
       "approach": "Static recompilation",
       "target": "Any Xbox Series game",
-      "summary": "Research into lifting Xbox x64 machine code to C++ and rebuilding it for Windows. It has the largest community testing on real GPUs.",
+      "summary": "Static recompilation research turning Xbox Series x64 code and shaders into Windows C++ and DXIL, with over 50 code contributors. Running GTA VI's own code is unverified.",
       "highlights": [
-        "The FidelityFX upscaler provider from the package, recompiled, creates its resources on RTX and WARP",
+        "851 of 12,101 GTA VI pixel shaders (7%) match controlled test output on RTX and WARP",
         "A source-built EXE draws a triangle identically when run natively, mapped or recompiled",
         "Native wave64 BVH test passes on 19 Radeon models plus many NVIDIA cards"
       ],
       "blockers": [
         "Running the game's own CPU code, full startup and frame rate are unverified",
-        "Only selected pixel shaders translate so far"
+        "Only 865 of 26,503 shaders have output verified by its own tests so far",
+        "Its tests cover about a quarter of shader instruction forms"
       ],
       "groundwork": {
         "loader": 0.4,
@@ -981,15 +982,15 @@
       "tier": "watchlist",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Rust translation layer for GTA VI from the author of the PercyStar explorer, with a PE loader, nine stand-in system DLLs and an early shader recompiler.",
+      "summary": "Rust translation layer with a PE loader, nine stand-in system DLLs and an early shader recompiler. Its shader output is untested, and the code swaps instructions it doesn't know for stand-ins.",
       "highlights": [
         "Its own sample program presents frames through the stand-in DLLs",
-        "Six of GTA VI's package DLLs load on Windows 11",
-        "Reports 21,522 shaders compiling to DXIL; output correctness untested"
+        "Six of GTA VI's package DLLs load on Windows 11"
       ],
       "blockers": [
         "Only its own test programs run; no Xbox title",
-        "Its shader stage counts don't match GTA VI's known breakdown"
+        "Its shader stage counts don't match GTA VI's known breakdown",
+        "Translator swaps unknown instructions for stand-ins, so its 100% figure doesn't show working shaders"
       ],
       "groundwork": {
         "loader": 0.3,
