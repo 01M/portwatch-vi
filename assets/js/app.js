@@ -89,7 +89,9 @@ function renderHeroArt(site) {
 }
 
 /* ---------- Live viewers ----------
-   Polled once a minute from visible tabs only. No realtime connection: those ran out when the site went viral. */
+   Read on load, then every 5 minutes from visible tabs only: the free backend plan has tight egress, log and
+   realtime-connection limits, so don't poll faster or hold a connection open. */
+const LIVE_REFRESH_MS = 5 * 60_000;
 function watchViewers() {
   const pill = $('#watching');
   let last = 0;
@@ -101,8 +103,8 @@ function watchViewers() {
     if (n !== null) pill.textContent = `${n.toLocaleString()} watching now`;
   };
   refresh();
-  setInterval(refresh, 60_000);
-  document.addEventListener('visibilitychange', () => { if (Date.now() - last >= 60_000) refresh(); });
+  setInterval(refresh, LIVE_REFRESH_MS);
+  document.addEventListener('visibilitychange', () => { if (Date.now() - last >= LIVE_REFRESH_MS) refresh(); });
 }
 
 /* ---------- Countdown ---------- */
