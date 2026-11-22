@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22T19:01:44.988Z",
+  "updated": "2026-11-22T19:46:26.373Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -281,14 +281,14 @@
       "tier": "tracked",
       "approach": "Compatibility runtime",
       "target": "Any Xbox Series game",
-      "summary": "Rust runtime that runs dumped Xbox Series builds as normal Windows processes, continuing the TomBox project. The only effort so far that has a retail Series game reaching its lobby.",
+      "summary": "Rust runtime that runs dumped Xbox Series builds as normal Windows processes, continuing the TomBox project. It has brought retail Fortnite to its lobby.",
       "highlights": [
         "Boots Fortnite (Ch. 2 S4) through login and hotfix to the Battle Royale lobby",
         "Covers all 671 system functions its test title imports; 105,506 shaders translated",
         "Already examined GTA VI's 26,503 shaders: a 4,000-shader sample disassembles cleanly"
       ],
       "blockers": [
-        "Only about a third of GTA VI vertex shaders translate; mesh shaders unsupported",
+        "A third of GTA VI vertex shaders translate; its mesh shaders need the executable's binding data",
         "Fortnite's 3D scene is still wrong, with no audio or gameplay",
         "GTA VI not run: the executable is missing"
       ],
@@ -335,24 +335,24 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Wine-style layer: the game's x64 code runs natively while XCL stands in for the console libraries and recompiles RDNA2 shaders to DXIL. It now runs retail Xbox Series games, with Minecraft Preview reported fully playable.",
+      "summary": "Wine-style layer: the game's x64 code runs natively while XCL replaces console libraries and recompiles RDNA2 shaders to DXIL. It reports two retail Xbox Series games fully playable.",
       "highlights": [
-        "Minecraft Preview reported fully playable: worlds, sound, controller (self-reported, Nov 22)",
-        "Fortnite and XDefiant reach their title screens and menus, as far as they go offline",
+        "Minecraft Preview and Unicorn Overlord reported fully playable (self-reported, Nov 22)",
+        "Fortnite and XDefiant reported working as far as they go offline",
         "All 26,698 RDNA2 programs in GTA VI's shader pack become HLSL; samples compile to DXIL"
       ],
       "blockers": [
         "GTA VI not run: the executable is missing",
-        "XMA2 audio voices are still silent",
+        "Console-tiled MSAA textures and performance work are still to do",
         "Results are self-reported and not yet reproduced by others"
       ],
       "groundwork": {
         "loader": 0.9,
         "shaders": 0.9,
         "graphics": 0.85,
-        "proven": 0.85
+        "proven": 0.9
       },
-      "provenOn": "Minecraft Preview: playable",
+      "provenOn": "Minecraft Preview and Unicorn Overlord: playable",
       "gta": {
         "loads": 0,
         "boots": 0,
@@ -386,24 +386,24 @@
       "tier": "tracked",
       "approach": "HLE emulator",
       "target": "Any Xbox Series game",
-      "summary": "Clean-room high-level emulator of the Scarlett OS and GDK runtime. It claims the first retail Xbox Series game running on Windows: Concept Destruction, in menus and in-game.",
+      "summary": "Clean-room high-level emulator of the Scarlett OS and GDK runtime. It reports two retail Xbox Series games, Concept Destruction and Unicorn Overlord, playable on Windows.",
       "highlights": [
-        "Concept Destruction reaches the main menu and gameplay; README reports ~188 FPS average in-game",
-        "281 of 422 tracked HLE functions done; 42 of 46 Concept Destruction bring-up milestones",
-        "DirectStorage, XGameSave, GameInput and XAudio2 shims in place"
+        "Concept Destruction and Unicorn Overlord reported playable on a hardware GPU",
+        "281 of 422 tracked functions done; 42 of 46 Concept Destruction bring-up milestones",
+        "Controller input, audio output and saves work in Concept Destruction"
       ],
       "blockers": [
         "No RDNA2 shader lifting yet (0%). GTA VI ships precompiled console shaders",
-        "Xbox unified memory and kernelx not started",
-        "Concept Destruction result is self-reported and not yet reproduced"
+        "Xbox unified memory and full kernelx not started",
+        "Game results are self-reported and not yet reproduced"
       ],
       "groundwork": {
         "loader": 0.8,
         "shaders": 0,
         "graphics": 0.6,
-        "proven": 0.8
+        "proven": 0.85
       },
-      "provenOn": "Concept Destruction: menu + in-game",
+      "provenOn": "Concept Destruction and Unicorn Overlord: playable",
       "gta": {
         "loads": 0,
         "boots": 0,
@@ -596,9 +596,9 @@
       "target": "Any Xbox Series game",
       "summary": "MIT-licensed C++20 translation layer targeting D3D12 and Vulkan, with a 60-second hardware test bundle for contributors.",
       "highlights": [
-        "Shader lifter decodes 774 of 779 RDNA2 opcodes; 3,120-shader test corpus validates",
-        "Runs a homebrew Freedoom port and GDK samples at 60 FPS on a GTX 1650 Ti",
-        "51/51 automated tests passing"
+        "Six unmodified Microsoft Scarlett samples run live at 4K",
+        "764 of 779 RDNA2 opcodes checked on a real GPU",
+        "Runs a homebrew Freedoom port at 60 FPS; 67 automated tests pass"
       ],
       "blockers": [
         "No retail game run end to end",
@@ -608,10 +608,10 @@
       "groundwork": {
         "loader": 0.65,
         "shaders": 0.45,
-        "graphics": 0.45,
-        "proven": 0.1
+        "graphics": 0.5,
+        "proven": 0.15
       },
-      "provenOn": "Freedoom homebrew port and GDK samples (not retail)",
+      "provenOn": "Six Scarlett GDK samples and a Freedoom homebrew port (not retail)",
       "gta": {
         "loads": 0,
         "boots": 0,
@@ -649,7 +649,7 @@
       "highlights": [
         "loader.exe starts a title suspended, rewrites its imports and injects a hook DLL",
         "Microsoft's desktop GDK SimpleTriangle sample boots, renders and exits through it",
-        "74 automated checks passing"
+        "78 self-written synthetic checks passing"
       ],
       "blockers": [
         "No commercial title has run end-to-end through the layer"
@@ -697,7 +697,7 @@
       "summary": "Research into lifting Xbox x64 machine code to C++ and rebuilding it for Windows. It has the largest community testing on real GPUs.",
       "highlights": [
         "The FidelityFX upscaler provider from the package, recompiled, creates its resources on RTX and WARP",
-        "A source-built EXE runs end-to-end through translated code and DLL imports",
+        "A source-built EXE draws a triangle identically when run natively, mapped or recompiled",
         "Native wave64 BVH test passes on 19 Radeon models plus many NVIDIA cards"
       ],
       "blockers": [
@@ -748,7 +748,7 @@
       "highlights": [
         "All 16 DLLs of the Scarlett package initialise with zero unemulated calls",
         "Runs the free SimpleTriangle and SDL3 testgdk games natively",
-        "RDNA2 → DXIL recompiler draws its first vertex shader; 35% of GPU encodings interpreted"
+        "With Leonida's translator, 51 of the package's 52 ray-tracing builder shaders translate"
       ],
       "blockers": [
         "Most GPU shader translation still to do",
@@ -840,16 +840,18 @@
       "tier": "watchlist",
       "approach": "Compatibility layer",
       "target": "GTA VI only",
-      "summary": "GTA VI-only translation layer. It ships a small sample game that checks the loader's menu, presentation and input.",
+      "summary": "GTA VI-only translation layer with a PE mapper borrowed from Xbox2Windows, an early scalar shader lifter and a sample game that tests presentation and input.",
       "highlights": [
-        "Import inspector and a D3D12 bootstrap verified on an RTX 5070 Ti Laptop and WARP"
+        "Sample game presents frames on an RTX 5070 Ti Laptop and WARP",
+        "PE mapper runs a synthetic test executable",
+        "Lifts some RDNA2 scalar instructions to HLSL"
       ],
       "blockers": [
         "GTA VI blocked before start: no executable and missing APIs"
       ],
       "groundwork": {
-        "loader": 0.2,
-        "shaders": 0,
+        "loader": 0.25,
+        "shaders": 0.05,
         "graphics": 0.1,
         "proven": 0
       },
@@ -873,8 +875,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "32da05be734a513ea7ab5e97fee287889fec4efb1afa16e8a846ef0c5ede20d6",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -979,17 +981,20 @@
       "tier": "watchlist",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Pure-Rust PE32+/GDK inspection toolkit and early translation layer, from the author of the PercyStar archive explorer.",
+      "summary": "Rust translation layer for GTA VI from the author of the PercyStar explorer, with a PE loader, nine stand-in system DLLs and an early shader recompiler.",
       "highlights": [
-        "Scanned the 16 shipped DLLs: all native x64, most resolve against plain Windows"
+        "Its own sample program presents frames through the stand-in DLLs",
+        "Six of GTA VI's package DLLs load on Windows 11",
+        "Reports 21,522 shaders compiling to DXIL; output correctness untested"
       ],
       "blockers": [
-        "Inspection only so far"
+        "Only its own test programs run; no Xbox title",
+        "Its shader stage counts don't match GTA VI's known breakdown"
       ],
       "groundwork": {
-        "loader": 0.15,
-        "shaders": 0,
-        "graphics": 0,
+        "loader": 0.3,
+        "shaders": 0.15,
+        "graphics": 0.1,
         "proven": 0
       },
       "provenOn": null,
@@ -1012,8 +1017,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "059d63b79b9f930a71f6f431361f232eab96d16dd4eba0a2155cb28e25a607c6",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -1072,12 +1077,13 @@
       "tier": "watchlist",
       "approach": "Research probes",
       "target": "Any Xbox Series game",
-      "summary": "Small clean-room probes for how Game Core software meets Windows, plus a radar that watches other projects.",
+      "summary": "Clean-room test programs for how Game Core software meets Windows, covering loading, memory, presentation and input, plus a radar that watches other projects.",
       "highlights": [
-        "Read-only PE intake and platform API probes"
+        "Executable inspection, memory, D3D12 and input tests pass in CI",
+        "Built another project's loader from source and ran its own test programs through it"
       ],
       "blockers": [
-        "Research only; not an emulator"
+        "Research only; no Xbox title or console shader has run"
       ],
       "groundwork": {
         "loader": 0.05,
@@ -1105,8 +1111,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "029e724f877256dc0f47a3f5c687a012cd370728370328e31c870baf049c63cf",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -1348,127 +1354,19 @@
         "stars": 1,
         "pushedAt": "2026-11-22T16:18:09Z"
       }
-    }
-  ],
-  "candidates": [
-    {
-      "repo": "SomeTweaks/ViceWin",
-      "name": "ViceWin",
-      "description": "Grand Theft Auto VI XBOX X/s version translator for windows",
-      "language": null,
-      "stars": 0,
-      "createdAt": "2026-11-22T16:12:06Z",
-      "pushedAt": "2026-11-22T19:00:40Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T19:01:44.988Z",
-      "substance": 62,
-      "signals": [
-        "16 technical terms",
-        "status table",
-        "10 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Alwwex/Xbox_em",
-      "name": "Xbox_em",
-      "description": "",
-      "language": "C++",
-      "stars": 0,
-      "createdAt": "2026-11-22T16:48:03Z",
-      "pushedAt": "2026-11-22T17:33:59Z",
-      "defaultBranch": "claude/upbeat-wozniak-tttljq",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T19:01:44.988Z",
-      "substance": 62,
-      "signals": [
-        "C++",
-        "14 technical terms",
-        "tests",
-        "1 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "pusssnpur/xsxemu",
-      "name": "xsxemu",
-      "description": "Clean-room Xbox Series X|S game translation layer in Rust targeting Windows x86_64 with native Direct3D 12",
-      "language": "Rust",
-      "stars": 0,
-      "createdAt": "2026-11-22T17:50:04Z",
-      "pushedAt": "2026-11-22T18:56:24Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T19:01:44.988Z",
-      "substance": 56,
-      "signals": [
-        "Rust",
-        "10 technical terms",
-        "tests",
-        "1 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "DesignWithTommy/6to5m",
-      "name": "6to5m",
-      "description": "Pure-Rust RPF9 extractor and GTA V/FiveM converter",
-      "language": "Rust",
-      "stars": 1,
-      "createdAt": "2026-11-22T17:24:20Z",
-      "pushedAt": "2026-11-22T18:55:39Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T19:01:44.988Z",
-      "substance": 52,
-      "signals": [
-        "Rust",
-        "6 technical terms",
-        "8 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
     },
     {
       "repo": "Librett0/vice-lens",
-      "name": "vice-lens",
-      "description": "An unofficial, open-source explorer for the files of GTA VI (Xbox Series data): map, 3D models, vehicles, people, animations, cutscenes and a 3D world. No game files included: it reads your own copy.",
-      "language": "Rust",
-      "stars": 0,
-      "createdAt": "2026-11-22T18:05:16Z",
-      "pushedAt": "2026-11-22T18:59:16Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T19:01:44.988Z",
-      "substance": 41,
-      "signals": [
-        "Rust",
-        "5 technical terms",
-        "2 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
+      "name": "Vice Lens",
+      "kind": "Asset explorer",
+      "desc": "Desktop explorer for the map, models, animations, movies and sound in your own copy.",
+      "stats": {
+        "stars": 1,
+        "pushedAt": "2026-11-22T18:59:16Z"
+      }
     }
   ],
+  "candidates": [],
   "flagged": [
     {
       "id": "switch-emulator-network",
@@ -1530,14 +1428,15 @@
       "id": "copies",
       "pattern": "Re-uploads of tracked projects under other accounts",
       "label": "",
-      "count": 5,
+      "count": 6,
       "reason": "Copies can be quietly modified to bundle malware. Only use the original repositories linked in the race above.",
       "members": [
         "ZuanCrisp/GETEA-6",
         "amrly02/Leonida",
         "elmoudir12/Leonida",
         "pixl27/ProjectReCity",
-        "ONAJANO11/LeonidaP"
+        "ONAJANO11/LeonidaP",
+        "SomeTweaks/ViceWin"
       ]
     }
   ],
@@ -2815,6 +2714,30 @@
       "auto": true,
       "seenAt": "2026-11-22",
       "pushedAt": "2026-11-15T20:16:26Z"
+    },
+    {
+      "repo": "SomeTweaks/ViceWin",
+      "reason": "modified, renamed copy of Freminet/ScarlettX (7 of 10 compared source files identical)",
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-22T19:10:04Z"
+    },
+    {
+      "repo": "Alwwex/Xbox_em",
+      "reason": "early general loader for Linux and WSL; no graphics, no Xbox title runs",
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-22T17:33:59Z"
+    },
+    {
+      "repo": "pusssnpur/xsxemu",
+      "reason": "early scaffold; only runs its own generated test program",
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-22T18:56:24Z"
+    },
+    {
+      "repo": "DesignWithTommy/6to5m",
+      "reason": "out of scope (converts GTA VI assets into GTA V mods)",
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-22T19:41:33Z"
     }
   ],
   "changes": [
@@ -2992,6 +2915,36 @@
       "date": "2026-11-22",
       "kind": "new",
       "text": "Scout spotted DesignWithTommy/6to5m (possible effort, substance 52)."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "up",
+      "text": "XCL reports a second retail game, Unicorn Overlord, fully playable."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "up",
+      "text": "OpenScarlett reports six unmodified Scarlett GDK samples running."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "up",
+      "text": "PercyScarlett grows from an inspection tool into an early loader and shader recompiler."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "up",
+      "text": "AnyXboxSeries adds a PE mapper and an early shader lifter."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "new",
+      "text": "Vice Lens added to the toolkit."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "flag",
+      "text": "SomeTweaks/ViceWin flagged as a modified, renamed copy of ScarlettX with a binary release attached."
     }
   ],
   "history": [
@@ -3054,7 +3007,7 @@
     "lastRun": "2026-11-22T19:01:44.988Z",
     "lastSummary": "19 refreshed, 6 READMEs changed, 5 new candidates, 3 flagged.",
     "lastDmcaCheck": "2026-11-22T19:01:44.988Z",
-    "lastEditorRun": "2026-11-22T18:08:17.387Z"
+    "lastEditorRun": "2026-11-22T19:46:26.373Z"
   },
   "headlines": [
     {
