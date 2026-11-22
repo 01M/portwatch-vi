@@ -266,6 +266,17 @@ $$;
 revoke all on function public.track_view(text, text, text, boolean) from public;
 grant execute on function public.track_view(text, text, text, boolean) to anon, authenticated;
 
+-- ---------- Public live viewer count ----------
+-- Same definition as the dashboard: tabs seen in the last 5 minutes. The threshold lives here, so small
+-- numbers never leave the database; below 25 the answer is null and the site shows nothing.
+create or replace function public.live_viewers() returns integer
+language sql stable security definer set search_path = '' as $$
+  select case when count(distinct sid) >= 25 then count(distinct sid)::integer end
+  from public.pageviews where ts >= now() - interval '5 minutes' and sid <> '';
+$$;
+revoke all on function public.live_viewers() from public;
+grant execute on function public.live_viewers() to anon, authenticated;
+
 -- ---------- Dashboard numbers (admins only) ----------
 create or replace function public.admin_stats() returns json
 language plpgsql stable security definer set search_path = '' as $$

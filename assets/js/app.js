@@ -1,5 +1,5 @@
 import { MILESTONES, GROUNDWORK, STABILITY, scoreEffort, overall, ladderValue } from './scoring.js';
-import { backendReady, trackView } from './backend.js';
+import { backendReady, getLiveViewers, trackView } from './backend.js';
 import { coverHtml, articlePath } from './news-shared.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -63,7 +63,7 @@ async function main() {
   renderMethod();
   bindControls();
   observeBars();
-  trackView('/');
+  trackView('/').then(watchViewers); // afterwards, so this visitor is in the count
 }
 
 /* ---------- Meta & hero ---------- */
@@ -86,6 +86,23 @@ function renderHeroArt(site) {
     if (site.heroCredit) $('#art-credit').textContent = site.heroCredit;
   };
   img.src = site.heroImage;
+}
+
+/* ---------- Live viewers ----------
+   Polled once a minute from visible tabs only. No realtime connection: those ran out when the site went viral. */
+function watchViewers() {
+  const pill = $('#watching');
+  let last = 0;
+  const refresh = async () => {
+    if (document.hidden) return;
+    last = Date.now();
+    const n = await getLiveViewers();
+    pill.hidden = n === null;
+    if (n !== null) pill.textContent = `${n.toLocaleString()} watching now`;
+  };
+  refresh();
+  setInterval(refresh, 60_000);
+  document.addEventListener('visibilitychange', () => { if (Date.now() - last >= 60_000) refresh(); });
 }
 
 /* ---------- Countdown ---------- */

@@ -24,6 +24,15 @@ function sessionId() {
   } catch { return { sid: 'nostorage', isNew: true }; }
 }
 
+// How many people are on the site now, or null when there's nothing to show (under 25, or unavailable).
+export async function getLiveViewers() {
+  if (!backendReady()) return null;
+  try {
+    const { data, error } = await (await getClient()).rpc('live_viewers');
+    return !error && Number.isInteger(data) ? data : null;
+  } catch { return null; }
+}
+
 // Counts the view. The dashboard's "people on the site right now" is worked out from these views
 // (sessions seen in the last few minutes), so visitors don't hold a realtime connection open:
 // that hit the realtime plan's connection limit under heavy traffic.
