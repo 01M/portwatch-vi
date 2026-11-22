@@ -1367,7 +1367,81 @@
       }
     }
   ],
-  "candidates": [],
+  "candidates": [
+    {
+      "repo": "sammwyy/xvalkyrie",
+      "name": "xvalkyrie",
+      "description": "Experimental Xbox One (Durango) & Series X|S (Scarlett) compatibility layer for Windows",
+      "language": "C++",
+      "stars": 104,
+      "createdAt": "2026-11-20T00:25:27Z",
+      "pushedAt": "2026-11-22T19:35:23Z",
+      "defaultBranch": "main",
+      "sources": [
+        "GitHub search"
+      ],
+      "links": [],
+      "foundAt": "2026-11-22T20:24:14.797Z",
+      "substance": 90,
+      "signals": [
+        "C++",
+        "11 technical terms",
+        "tests",
+        "20 commits/7d"
+      ],
+      "kind": "effort",
+      "status": "new"
+    },
+    {
+      "repo": "Mizushi148/MizuBox",
+      "name": "MizuBox",
+      "description": "Xbox Series X|S (Scarlett) Pure Direct3D 12 SM 6.6 + DXR Tier 1.1 compatibility layer for Windows x64 — Enhanced Fork of AnyXboxSeries (CPAL-1.0)",
+      "language": "C++",
+      "stars": 2,
+      "createdAt": "2026-11-22T18:25:09Z",
+      "pushedAt": "2026-11-22T18:31:35Z",
+      "defaultBranch": "main",
+      "sources": [
+        "GitHub search"
+      ],
+      "links": [],
+      "foundAt": "2026-11-22T20:24:14.797Z",
+      "substance": 81,
+      "signals": [
+        "C++",
+        "15 technical terms",
+        "status table",
+        "tests",
+        "4 commits/7d"
+      ],
+      "kind": "effort",
+      "status": "new"
+    },
+    {
+      "repo": "NightFury-Supreme/Oryx",
+      "name": "Oryx",
+      "description": "Native x86-64 execution environment & Microsoft GDK compatibility runtime for Xbox Series X|S software on Windows 11",
+      "language": "C++",
+      "stars": 1,
+      "createdAt": "2026-11-22T15:34:59Z",
+      "pushedAt": "2026-11-22T15:54:14Z",
+      "defaultBranch": "main",
+      "sources": [
+        "GitHub search"
+      ],
+      "links": [],
+      "foundAt": "2026-11-22T20:24:14.797Z",
+      "substance": 62,
+      "signals": [
+        "C++",
+        "15 technical terms",
+        "tests",
+        "1 commits/7d"
+      ],
+      "kind": "effort",
+      "status": "new"
+    }
+  ],
   "flagged": [
     {
       "id": "switch-emulator-network",
@@ -1405,23 +1479,16 @@
       "id": "auto-clone-networks",
       "pattern": "Networks of cloned repos",
       "label": "",
-      "count": 15,
-      "reason": "Same description as 3+ other new repos. Flagged automatically by the scout.",
+      "count": 8,
+      "reason": "Installer lures and re-uploads sharing a name or description across several repos. Flagged automatically by the scout.",
       "members": [
         "FREE-GTA6-LOADING/.github",
         "FREE-GTA6-INSTALLING/.github",
         "EstevaoTerci/Leonida",
-        "0xyfann/makefun-gta6-01",
-        "penawarlawas/makefun-gta6-01",
-        "YamiNixa/gta6-01",
         "GTA-VI-Launcher/.github",
         "Free-GTA-VI/.github",
         "GTA-VI-Installer-PC/.github",
-        "sammwyy/xvalkyrie",
         "alez04/leonida",
-        "bayusantosz3995/gta6-01",
-        "NightFury-Supreme/Oryx",
-        "Mizushi148/MizuBox",
         "useravsr/Leonida"
       ]
     },
@@ -2739,6 +2806,34 @@
       "reason": "out of scope (converts GTA VI assets into GTA V mods)",
       "seenAt": "2026-11-22",
       "pushedAt": "2026-11-22T19:41:33Z"
+    },
+    {
+      "repo": "0xyfann/makefun-gta6-01",
+      "reason": "off-topic (original fan game, not a port)",
+      "auto": true,
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-19T15:50:53Z"
+    },
+    {
+      "repo": "penawarlawas/makefun-gta6-01",
+      "reason": "off-topic (original fan game, not a port)",
+      "auto": true,
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-20T19:31:38Z"
+    },
+    {
+      "repo": "YamiNixa/gta6-01",
+      "reason": "off-topic (original fan game, not a port)",
+      "auto": true,
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-20T22:13:05Z"
+    },
+    {
+      "repo": "bayusantosz3995/gta6-01",
+      "reason": "off-topic (original fan game, not a port)",
+      "auto": true,
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-22T12:42:08Z"
     }
   ],
   "changes": [
@@ -2946,6 +3041,11 @@
       "date": "2026-11-22",
       "kind": "flag",
       "text": "SomeTweaks/ViceWin flagged as a modified, renamed copy of ScarlettX with a binary release attached."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "new",
+      "text": "Correction: a scout bug wrongly flagged 7 repos as clones. xValkyrie, MizuBox and Oryx now await review; 4 original fan games are no longer flagged."
     }
   ],
   "history": [
