@@ -545,18 +545,18 @@
       "summary": "The most-starred effort and the only one made just for GTA VI, by Hookshot's author (a PC recomp of the Switch 2 Ocarina of Time remake). You build it from your own copy; all shaders are translated for Vulkan.",
       "highlights": [
         "All 26,503 GTA VI shaders translated RDNA2 → SPIR-V, each passing spirv-val",
-        "PE loader runs a stand-in executable end to end through its GDK shims; controllers via SDL3",
-        "One-click Build.bat finds your copy and exports models, textures and audio"
+        "Its Xbox D3D12 layer draws pixel-exact frames with translated shaders in its own tests on AMD and NVIDIA",
+        "PE loader runs a stand-in executable end to end through its GDK shims; controllers via SDL3"
       ],
       "blockers": [
         "The game does not boot: the executable is missing",
-        "Vulkan graphics layer still in progress: no draws or swapchain yet",
-        "Wave64 shaders are approximate on 32-wide GPUs (NVIDIA)"
+        "Graphics has run only its own test programs; game shader output is unchecked",
+        "Some wave64 vertex, pixel and geometry shaders are approximate on 32-wide GPUs (NVIDIA, Intel)"
       ],
       "groundwork": {
         "loader": 0.5,
         "shaders": 0.9,
-        "graphics": 0.4,
+        "graphics": 0.45,
         "proven": 0
       },
       "provenOn": null,
