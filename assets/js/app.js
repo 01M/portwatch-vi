@@ -195,8 +195,8 @@ function drawMarkers(ranked, leader) {
   const avatarY = H - 66;
   const lines = items.map((it) => {
     const y0 = avatarY + 32;
-    return `<path d="M${it.a} ${y0} C ${it.a} ${y0 + 18}, ${it.x} ${H - 18}, ${it.x} ${H}" fill="none" stroke="${it.r.effort === leader ? '#ff2e7e' : '#c9ccd6'}" stroke-width="1.6"/>
-            <circle cx="${it.x}" cy="${H - 1}" r="3" fill="${it.r.effort === leader ? '#ff2e7e' : '#9a9eac'}"/>`;
+    return `<path d="M${it.a} ${y0} C ${it.a} ${y0 + 18}, ${it.x} ${H - 18}, ${it.x} ${H}" fill="none" stroke="${it.r.effort === leader ? '#ff2e7e' : 'var(--line-2)'}" stroke-width="1.6"/>
+            <circle cx="${it.x}" cy="${H - 1}" r="3" fill="${it.r.effort === leader ? '#ff2e7e' : 'var(--faint)'}"/>`;
   }).join('');
   box.innerHTML = `<svg width="${W}" height="${H}" style="position:absolute;inset:0;overflow:visible" aria-hidden="true">${lines}</svg>` +
     items.map((it) => {
@@ -399,7 +399,8 @@ function storyMedia(n) {
 }
 
 function renderNews(news) {
-  const items = [...news].sort((a, b) => (a.date < b.date ? 1 : -1));
+  // Newest day first; stories from the same day keep their order in the data (newest first).
+  const items = [...news].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
   if (!items.length) { $('#news').hidden = true; return; }
   // Real links to each article's own page (built at deploy) so search engines can follow them;
   // a plain click opens the article in the reader instead.

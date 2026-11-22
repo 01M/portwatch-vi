@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22T15:56:07.006Z",
+  "updated": "2026-11-22T18:08:17.387Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -8,14 +8,82 @@
   "exe": {
     "status": "expected",
     "expected": "2026-11-23",
-    "expectedAt": "2026-11-23T00:00:00Z",
-    "timeAnnounced": false,
+    "expectedAt": "2026-11-23T17:00:00Z",
+    "timeAnnounced": true,
     "releasedAt": null,
     "by": "Cyberleek",
-    "note": "The leaked Xbox Series build is missing its main executable. The leaker says it will follow on Monday, Nov 23; that has not been confirmed. Until it exists, no project can boot GTA VI.",
-    "source": "https://www.notebookcheck.net/Cyberleek-releases-GTA-6-Xbox-build-making-playable-PC-port-more-realistic.1454770.0.html"
+    "note": "The leaked Xbox Series build is missing its main executable. The leaker's own countdown and paid poll end on Monday, Nov 23 at 18:00 CET (17:00 UTC), when it says the file drops; RockstarINTEL reports the same time. Nothing about it is confirmed, and the early-release token goal is reported as lowered from $15M to $6M. Until the file exists, no project can boot GTA VI.",
+    "source": "https://rockstarintel.com/could-this-major-gta-vi-leak-make-it-playable-on-pc/"
   },
   "news": [
+    {
+      "id": "2026-11-22-xcl-takes-lead",
+      "date": "2026-11-22",
+      "category": "Port",
+      "title": "XCL takes the lead after running its first retail Xbox games on PC",
+      "dek": "The Wine-style layer says Minecraft Preview is fully playable on Windows. GTA VI still can't start, because its executable is missing.",
+      "body": [
+        "XCL runs Xbox Series code natively and swaps in its own versions of the console's system libraries. On Nov 22 its README began reporting that Minecraft Preview is fully playable on a PC, with worlds, sound and a controller. Fortnite and XDefiant reach their title screens and menus, going as far as they can without their online services.",
+        "Its commit history over the day matches that account: Fortnite's splash screen in the morning, Minecraft's main menu by early afternoon and a playable build by the evening. The results are self-reported, and nobody else has reproduced them yet.",
+        "For GTA VI, XCL says all 26,698 GPU programs in the game's shader pack translate to HLSL and that sampled ones compile for PC. Running another retail game end to end is the strongest sign yet that a layer like this could carry GTA VI. XCL's score rises to about 22%, ahead of xbox-emulator.",
+        "Elsewhere, americas-recomp now translates almost all of the game's shaders, and Leonida's loader runs a stand-in program end to end. Every project is still waiting on the same file."
+      ],
+      "sources": [
+        {
+          "outlet": "GitHub",
+          "title": "XCL README: games and project state",
+          "url": "https://github.com/ivall/xcl"
+        },
+        {
+          "outlet": "VideoCardz",
+          "title": "GTA VI PC efforts have already kicked off, with multiple Xbox emulation projects underway",
+          "url": "https://videocardz.com/newz/gta-vi-pc-efforts-have-already-kicked-off-with-multiple-xbox-emulation-projects-underway"
+        },
+        {
+          "outlet": "DSOGaming",
+          "title": "Modders are trying to create a PC native version of GTA 6 with its leaked Xbox Series X build",
+          "url": "https://www.dsogaming.com/news/modders-are-trying-to-create-a-pc-native-version-of-gta-6-with-its-leaked-xbox-series-x-build/"
+        }
+      ],
+      "image": null,
+      "by": "claude"
+    },
+    {
+      "id": "2026-11-22-exe-deadline-time",
+      "date": "2026-11-22",
+      "category": "Leak",
+      "title": "The missing GTA VI executable is due Monday at 18:00 CET, and votes cost money",
+      "dek": "Cyberleek's countdown ends at 17:00 UTC on Nov 23 while its site charges for poll votes; the early-release token goal is reportedly down to $6 million.",
+      "body": [
+        "Cyberleek's own countdown for the withheld executable ends on Monday, Nov 23 at 18:00 CET (17:00 UTC), and RockstarINTEL reports the same deadline. That is more precise than the \"Monday\" first announced, and it is the time the countdown on this page now uses.",
+        "The leaker's site pairs the timer with a poll on what happens next, and votes are cast by paying in cryptocurrency. RockstarINTEL also reports that the token goal for an early release has dropped to $6 million, after $30 million in October and $15 million earlier this week. Reports put the token at about $1.4 million.",
+        "None of this is verified. No outlet has confirmed that the group holds a working executable, and Decrypt and others describe the countdown as a way to pump the token. The group ended a similar campaign in October when its goal wasn't met.",
+        "If a file does appear, expect fakes first. Security researchers have already found fake \"GTA VI installers\" carrying the Vidar info-stealer and hundreds of domains pushing fake launchers. This tracker will report a release only once outlets confirm it, and will never link to it."
+      ],
+      "sources": [
+        {
+          "outlet": "RockstarINTEL",
+          "title": "Could this major GTA VI leak make it playable on PC?",
+          "url": "https://rockstarintel.com/could-this-major-gta-vi-leak-make-it-playable-on-pc/"
+        },
+        {
+          "outlet": "Decrypt",
+          "title": "GTA 6 leaker dangles a PC port behind a $15 million crypto pump",
+          "url": "https://decrypt.co/383756/gta-6-leaker-dangles-pc-port-15-million-crypto-pump"
+        },
+        {
+          "outlet": "Cyber Security News",
+          "title": "Hackers use 355 domains to spread fake GTA 6 PC launchers delivering malware",
+          "url": "https://cybersecuritynews.com/fake-gta-6-pc-launchers/"
+        }
+      ],
+      "image": {
+        "url": "https://cdn.decrypt.co/resize/1024/height/512/wp-content/uploads/2026/11/grand-theft-auto-6-gta-vi-decrypt-style-gID_7.jpg",
+        "credit": "Decrypt",
+        "link": "https://decrypt.co/383756/gta-6-leaker-dangles-pc-port-15-million-crypto-pump"
+      },
+      "by": "claude"
+    },
     {
       "id": "2026-11-22-copies",
       "date": "2026-11-22",
@@ -226,8 +294,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "41bc104b1d41ef4df9e1183960a59ec82389fd94bece2d0543b986ce3c2c2b8b",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -240,23 +308,24 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Wine-style layer: the game's x64 code runs natively while XCL stands in for kernelx, XGameRuntime and d3d12_xs, and recompiles RDNA2 shaders to DXIL. It was built and tested against GTA VI's own shader pack, textures, movies and DLLs.",
+      "summary": "Wine-style layer: the game's x64 code runs natively while XCL stands in for the console libraries and recompiles RDNA2 shaders to DXIL. It now runs retail Xbox Series games, with Minecraft Preview reported fully playable.",
       "highlights": [
-        "All 24,064 RDNA2 programs in a retail shader pack translate to HLSL; sampled DXIL compiles cleanly",
-        "The game's own DLLs run on PC: Bink 2 video, ray-tracing BVH builder, FSR 4 setup",
-        "909 of 912 retail textures untile byte-exact; 150 automated tests"
+        "Minecraft Preview reported fully playable: worlds, sound, controller (self-reported, Nov 22)",
+        "Fortnite and XDefiant reach their title screens and menus, as far as they go offline",
+        "All 26,698 RDNA2 programs in GTA VI's shader pack become HLSL; samples compile to DXIL"
       ],
       "blockers": [
-        "Draw submission and PresentX need the game executable",
-        "XMA2 audio voices are silent for now"
+        "GTA VI not run: the executable is missing",
+        "XMA2 audio voices are still silent",
+        "Results are self-reported and not yet reproduced by others"
       ],
       "groundwork": {
-        "loader": 0.8,
-        "shaders": 0.75,
-        "graphics": 0.55,
-        "proven": 0
+        "loader": 0.9,
+        "shaders": 0.9,
+        "graphics": 0.85,
+        "proven": 0.85
       },
-      "provenOn": null,
+      "provenOn": "Minecraft Preview: playable",
       "gta": {
         "loads": 0,
         "boots": 0,
@@ -276,8 +345,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "0733636262c5d279d28281c1fd30891ff85616a500486c11e8c88b48921026f0",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -293,7 +362,7 @@
       "summary": "Clean-room high-level emulator of the Scarlett OS and GDK runtime. It claims the first retail Xbox Series game running on Windows: Concept Destruction, in menus and in-game.",
       "highlights": [
         "Concept Destruction reaches the main menu and gameplay; README reports ~188 FPS average in-game",
-        "260 of 404 tracked HLE functions done; d3d12_xs → PC D3D12 bridge at 96%",
+        "281 of 422 tracked HLE functions done; 42 of 46 Concept Destruction bring-up milestones",
         "DirectStorage, XGameSave, GameInput and XAudio2 shims in place"
       ],
       "blockers": [
@@ -327,8 +396,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "d6881fdffe0e3afee79751e1cc5e23b817bce89a59041b24a509f90e208c1dec",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -343,14 +412,14 @@
       "target": "Any Xbox Series game",
       "summary": "Native-first layer for unpacked Xbox Series games, tested mostly on Linux through Proton. It has a second retail-grade title showing real output.",
       "highlights": [
-        "The Matrix Awakens shows its menu animation, opens Settings and plays the start of the chase cinematic",
+        "The Matrix Awakens reached the highway chase and open city in Linux tests at reduced settings",
         "Ships a small test game (Lanes) that uses its Xbox graphics, memory and input libraries",
         "Publishes shader coverage and per-library support pages"
       ],
       "blockers": [
-        "Driving and shooting in Matrix Awakens unverified",
+        "At original settings Matrix Awakens stops on a black frame",
         "Windows support still in development",
-        "Very new (3★): results not yet reproduced"
+        "Very new: results not yet reproduced"
       ],
       "groundwork": {
         "loader": 0.6,
@@ -378,8 +447,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "5f46ea2538aed5b2a25f87f7251dce334db212fba5da98c023236caff927cf19",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -394,9 +463,9 @@
       "target": "GTA VI first",
       "summary": "Fork of AnyPS5 (branch xbox-series) that asks whether the PS5 port tool's RDNA2 shader recompiler can handle the Xbox game, and builds the Xbox platform pieces around it.",
       "highlights": [
-        "Valid SPIR-V for 96.7% of compute, 95.9% of mesh, 61% of vertex and 58% of pixel shaders (strict)",
+        "Valid SPIR-V for 100% of vertex, 99.97% of pixel, 99.99% of mesh and 99.6% of compute shaders",
         "Recompiled shaders checked bit-for-bit against an independent CPU interpreter on a GPU",
-        "xgameruntime stand-in implements 365 of 398 methods; all 611 DLL imports resolve"
+        "xgameruntime stand-in implements 388 of 398 methods; all 611 DLL imports resolve"
       ],
       "blockers": [
         "No frame rendered yet",
@@ -404,8 +473,8 @@
         "Ray-tracing BVH layout not decoded"
       ],
       "groundwork": {
-        "loader": 0.6,
-        "shaders": 0.7,
+        "loader": 0.65,
+        "shaders": 0.9,
         "graphics": 0.3,
         "proven": 0
       },
@@ -432,8 +501,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "12c7930af7957f9fe62fdcb2d904d17e36f7e458bc85494d874e1e60177abace",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -449,18 +518,18 @@
       "summary": "The most-starred effort and the only one made just for GTA VI, by Hookshot's author (a PC recomp of the Switch 2 Ocarina of Time remake). You build it from your own copy; all shaders are translated for Vulkan.",
       "highlights": [
         "All 26,503 GTA VI shaders translated RDNA2 → SPIR-V, each passing spirv-val",
-        "One-click Build.bat finds your copy and exports models, textures and audio",
-        "Vulkan-backed Xbox D3D12 device: queues, command lists, heaps, copies and clears work"
+        "PE loader runs a stand-in executable end to end through its GDK shims; controllers via SDL3",
+        "One-click Build.bat finds your copy and exports models, textures and audio"
       ],
       "blockers": [
-        "No shader views, pipelines, draws or swapchain yet",
-        "PE loader is a skeleton, untested against the real executable",
+        "The game does not boot: the executable is missing",
+        "Vulkan graphics layer still in progress: no draws or swapchain yet",
         "Wave64 shaders are approximate on 32-wide GPUs (NVIDIA)"
       ],
       "groundwork": {
-        "loader": 0.3,
+        "loader": 0.5,
         "shaders": 0.9,
-        "graphics": 0.3,
+        "graphics": 0.4,
         "proven": 0
       },
       "provenOn": null,
@@ -484,8 +553,8 @@
         "missing": false,
         "mentions7d": 2
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "c2d7d550722d68448785a021e7d98b7e44bab022c47a35f7b226f15e785bbbc1",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -500,21 +569,22 @@
       "target": "Any Xbox Series game",
       "summary": "MIT-licensed C++20 translation layer targeting D3D12 and Vulkan, with a 60-second hardware test bundle for contributors.",
       "highlights": [
-        "PE loader with copy-on-write virtual file system, live-tested on 6 PCs",
-        "Decoders for GDeflate, BCPack, XMA2, Opus and Bink2 DCT; Vulkan compute backend",
-        "26/26 automated tests passing"
+        "Shader lifter decodes 774 of 779 RDNA2 opcodes; 3,120-shader test corpus validates",
+        "Runs a homebrew Freedoom port and GDK samples at 60 FPS on a GTX 1650 Ti",
+        "51/51 automated tests passing"
       ],
       "blockers": [
-        "No real game run end-to-end",
-        "Its \"100% readiness\" headline measures its own checklist, not GTA VI"
+        "No retail game run end to end",
+        "Its shader corpus is its own, not GTA VI's",
+        "Status percentages measure its own checklist, not GTA VI"
       ],
       "groundwork": {
-        "loader": 0.6,
-        "shaders": 0.3,
-        "graphics": 0.3,
-        "proven": 0
+        "loader": 0.65,
+        "shaders": 0.45,
+        "graphics": 0.45,
+        "proven": 0.1
       },
-      "provenOn": null,
+      "provenOn": "Freedoom homebrew port and GDK samples (not retail)",
       "gta": {
         "loads": 0,
         "boots": 0,
@@ -534,8 +604,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "3542c01b0f888164b0fff42d08474d583c18aef8844ba0923cd76f7788999731",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -551,8 +621,8 @@
       "summary": "Loader plus injected hook DLL that redirects console-only calls to Windows shims, with its own d3d12_xs wrapper and shader lifter.",
       "highlights": [
         "loader.exe starts a title suspended, rewrites its imports and injects a hook DLL",
-        "d3d12_xs wrapper with PresentX, frame pacing, PSO cache and an RDNA2 → HLSL lifter",
-        "64/64 automated checks passing"
+        "Microsoft's desktop GDK SimpleTriangle sample boots, renders and exits through it",
+        "74 automated checks passing"
       ],
       "blockers": [
         "No commercial title has run end-to-end through the layer"
@@ -583,8 +653,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "cce337be4a7ed671db2d66ca5fd458d8ed9618734c4a4c19ef78d234c7f6e7f9",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -633,8 +703,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "1f1b11518d180f261ee5934b3ce3a020ed46c7bc04e8f5a842be118807522f31",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -651,15 +721,15 @@
       "highlights": [
         "All 16 DLLs of the Scarlett package initialise with zero unemulated calls",
         "Runs the free SimpleTriangle and SDL3 testgdk games natively",
-        "Built-in FPS counter and a \"constant 60 fps\" bench; 272 automated tests"
+        "RDNA2 → DXIL recompiler draws its first vertex shader; 35% of GPU encodings interpreted"
       ],
       "blockers": [
-        "GPU shader translation not started (0%)",
+        "Most GPU shader translation still to do",
         "No retail game has run"
       ],
       "groundwork": {
         "loader": 0.65,
-        "shaders": 0,
+        "shaders": 0.15,
         "graphics": 0.15,
         "proven": 0.15
       },
@@ -683,8 +753,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
       "readmeSha": "0b9a7d2c7529a1c054d1b826883d064e7330a480c7037eb471e2fd14a5b111e6",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
@@ -1013,6 +1083,100 @@
       "readmeSha": "029e724f877256dc0f47a3f5c687a012cd370728370328e31c870baf049c63cf",
       "claims": [],
       "readmeChangedAt": "2026-11-22"
+    },
+    {
+      "id": "dedsec",
+      "name": "DedSec",
+      "repo": "Hylanderry/DedSec",
+      "branch": "dedsec-clean",
+      "tier": "watchlist",
+      "approach": "Static recompilation (DX12)",
+      "target": "GTA VI",
+      "summary": "Portuguese-language GTA VI port that targets DirectX 12 directly, translating RDNA2 shaders to HLSL instead of going through Vulkan. Built from your own copy; it does not boot yet.",
+      "highlights": [
+        "Extracts and disassembles all 26,503 GTA VI shaders",
+        "RDNA2 to HLSL translator claims all 1,630 instruction forms"
+      ],
+      "blockers": [
+        "Coverage is counted in instruction forms, not translated game shaders",
+        "Nothing shown running yet; days old"
+      ],
+      "groundwork": {
+        "loader": 0.15,
+        "shaders": 0.2,
+        "graphics": 0.1,
+        "proven": 0
+      },
+      "provenOn": null,
+      "gta": {
+        "loads": 0,
+        "boots": 0,
+        "menu": 0,
+        "ingame": 0,
+        "fps": 0,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {
+        "stars": 0,
+        "forks": 0,
+        "openIssues": 0,
+        "createdAt": "2026-11-22T07:31:37Z",
+        "pushedAt": "2026-11-22T08:55:17Z",
+        "commits7d": 0,
+        "archived": false,
+        "missing": false
+      },
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
+      "claims": []
+    },
+    {
+      "id": "xbgtasix",
+      "name": "Xbgtasix",
+      "repo": "ljm-233/Xbgtasix",
+      "branch": "main",
+      "tier": "watchlist",
+      "approach": "Compatibility layer",
+      "target": "Any Xbox Series game",
+      "summary": "Chinese-language layer that places stand-in xgameruntime, xmem and d3d12_xs DLLs next to an executable, plus sourced research notes on the archive, shader and texture formats.",
+      "highlights": [
+        "15-step test ladder from import binding to DXR ray tracing and a real asset render",
+        "17 research notes on RPF9 archives, the shader corpus and texture pools"
+      ],
+      "blockers": [
+        "Tests use its own programs; no Xbox title has run",
+        "No RDNA2 shader translation yet"
+      ],
+      "groundwork": {
+        "loader": 0.2,
+        "shaders": 0,
+        "graphics": 0.25,
+        "proven": 0
+      },
+      "provenOn": null,
+      "gta": {
+        "loads": 0,
+        "boots": 0,
+        "menu": 0,
+        "ingame": 0,
+        "fps": 0,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {
+        "stars": 0,
+        "forks": 0,
+        "openIssues": 0,
+        "createdAt": "2026-11-22T14:40:55Z",
+        "pushedAt": "2026-11-22T15:56:17Z",
+        "commits7d": 0,
+        "archived": false,
+        "missing": false
+      },
+      "assessedAt": "2026-11-22",
+      "assessedBy": "claude",
+      "claims": []
     }
   ],
   "tools": [
@@ -1095,320 +1259,69 @@
         "stars": 71,
         "pushedAt": "2026-11-22T14:42:59Z"
       }
-    }
-  ],
-  "candidates": [
-    {
-      "repo": "pixl27/ProjectReCity",
-      "name": "ProjectReCity",
-      "description": "Project ReCity: GTA VI (Xbox Series) static recompilation for Windows, built on your PC from your own copy. No game files included.",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-22T04:40:06Z",
-      "pushedAt": "2026-11-22T05:54:55Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T07:25:03.739Z",
-      "substance": 98,
-      "signals": [
-        "Python",
-        "15 technical terms",
-        "status table",
-        "tests",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Hylanderry/DedSec",
-      "name": "DedSec",
-      "description": "DedSec — GTA VI (Xbox Series) nativo no Windows via DX12. Port PC completo com pipeline RDNA2→HLSL SM 6.6.",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-22T07:31:37Z",
-      "pushedAt": "2026-11-22T08:55:17Z",
-      "defaultBranch": "dedsec-clean",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T09:57:55.076Z",
-      "substance": 86,
-      "signals": [
-        "Python",
-        "13 technical terms",
-        "status table",
-        "10 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "ljm-233/Xbgtasix",
-      "name": "Xbgtasix",
-      "description": "",
-      "language": "Shell",
-      "stars": 0,
-      "createdAt": "2026-11-22T14:40:55Z",
-      "pushedAt": "2026-11-22T15:56:17Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T15:56:07.006Z",
-      "substance": 85,
-      "signals": [
-        "Shell",
-        "13 technical terms",
-        "status table",
-        "39 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
     },
     {
       "repo": "HolyRoses/gta6-explorer",
       "name": "gta6-explorer",
-      "description": "Read-only, dependency-free Python toolkit for exploring GTA VI Xbox packages and extracting textures, audio, video, shaders, and metadata. Optional SixNG integration adds model and world exports.",
-      "language": "Python",
-      "stars": 1,
-      "createdAt": "2026-11-21T22:29:15Z",
-      "pushedAt": "2026-11-22T06:37:03Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T07:25:03.739Z",
-      "substance": 84,
-      "signals": [
-        "Python",
-        "15 technical terms",
-        "status table",
-        "tests",
-        "7 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "BLMChoosen/xbox2pc-public",
-      "name": "xbox2pc-public",
-      "description": "",
-      "language": "TypeScript",
-      "stars": 0,
-      "createdAt": "2026-11-20T22:57:41Z",
-      "pushedAt": "2026-11-21T19:09:50Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-21T22:54:01.167Z",
-      "substance": 73,
-      "signals": [
-        "TypeScript",
-        "9 technical terms",
-        "tests",
-        "19 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Its3rr0rsWRLD/XPortPC",
-      "name": "XPortPC",
-      "description": "Converts Xbox Series X|S programs to run on Windows PCs: native x64 loading, console library shims and a gfx1013-to-DXIL shader converter checked on hardware.",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-22T00:45:18Z",
-      "pushedAt": "2026-11-22T01:17:31Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T01:23:42.546Z",
-      "substance": 66,
-      "signals": [
-        "Python",
-        "6 technical terms",
-        "status table",
-        "tests",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "JoshRob297/rpf9-research",
-      "name": "rpf9-research",
-      "description": "Ingenieria inversa del contenedor RPF9 de GTA VI (Xbox Series): cabecera, TOC y tabla de nombres",
-      "language": "Python",
-      "stars": 1,
-      "createdAt": "2026-11-21T18:44:27Z",
-      "pushedAt": "2026-11-22T15:43:47Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T15:56:07.006Z",
-      "substance": 65,
-      "signals": [
-        "Python",
-        "6 technical terms",
-        "21 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Albotterin/AWC_from_RPF9_Extractor",
-      "name": "AWC_from_RPF9_Extractor",
-      "description": "A Tool to Extract Music Streams from RPF9 Files",
-      "language": "Python",
-      "stars": 1,
-      "createdAt": "2026-11-22T04:54:56Z",
-      "pushedAt": "2026-11-22T05:27:40Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T07:25:03.739Z",
-      "substance": 61,
-      "signals": [
-        "Python",
-        "4 technical terms",
-        "status table",
-        "3 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "MuhammedAmeerHamza/any-xbox",
-      "name": "any-xbox",
-      "description": "An independent open-source research project exploring Xbox One and Xbox Series X|S game compatibility on Windows PC.",
-      "language": "C++",
-      "stars": 0,
-      "createdAt": "2026-11-19T07:11:25Z",
-      "pushedAt": "2026-11-20T10:30:44Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-21T22:54:01.167Z",
-      "substance": 52,
-      "signals": [
-        "C++",
-        "tests",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
+      "kind": "Asset explorer",
+      "desc": "Read-only Python toolkit: browse your packages and extract textures, audio, video and shaders.",
+      "stats": {
+        "stars": 1,
+        "pushedAt": "2026-11-22T06:37:03Z"
+      }
     },
     {
       "repo": "meetox80/6stars",
       "name": "6stars",
-      "description": " Independent engine for GTA VI",
-      "language": "C++",
-      "stars": 2,
-      "createdAt": "2026-11-21T15:22:32Z",
-      "pushedAt": "2026-11-22T12:37:16Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T13:09:38.579Z",
-      "substance": 52,
-      "signals": [
-        "C++",
-        "4 technical terms",
-        "8 commits/7d"
-      ],
-      "kind": "tool",
-      "status": "new"
-    },
-    {
-      "repo": "aidenhrld/MyXboxRunner",
-      "name": "MyXboxRunner",
-      "description": "",
-      "language": "C++",
-      "stars": 0,
-      "createdAt": "2026-11-21T21:16:13Z",
-      "pushedAt": "2026-11-21T21:16:53Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-21T22:54:01.167Z",
-      "substance": 49,
-      "signals": [
-        "C++",
-        "15 technical terms",
-        "1 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "SentinelInteractive/0x52504639",
-      "name": "0x52504639",
-      "description": "RPF9 format research notes, catalogues and tooling for GTA VI. Own-copy research; no game assets.",
-      "language": "Python",
-      "stars": 2,
-      "createdAt": "2026-11-21T19:16:38Z",
-      "pushedAt": "2026-11-21T22:30:21Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-21T22:54:01.167Z",
-      "substance": 47,
-      "signals": [
-        "Python",
-        "5 technical terms",
-        "14 commits/7d"
-      ],
-      "kind": "tool",
-      "status": "new"
+      "kind": "World viewer",
+      "desc": "From-scratch macOS engine (Swift, Metal) that renders the map, vegetation and weather from your own archives.",
+      "stats": {
+        "stars": 2,
+        "pushedAt": "2026-11-22T12:37:16Z"
+      }
     },
     {
       "repo": "Ahmet-Dedeler/rage9-re",
       "name": "rage9-re",
-      "description": "Decoder for RAGE9 script.rpf and anim.rpf (PSO script data, crAnimation channels) with glTF 2.0 export. Rust + Python.",
-      "language": "Rust",
-      "stars": 0,
-      "createdAt": "2026-11-21T18:13:06Z",
-      "pushedAt": "2026-11-22T14:43:00Z",
-      "defaultBranch": "master",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T15:56:07.006Z",
-      "substance": 44,
-      "signals": [
-        "Rust",
-        "4 technical terms",
-        "tests",
-        "7 commits/7d"
-      ],
-      "kind": "tool",
-      "status": "new"
+      "kind": "Data decoder",
+      "desc": "Decodes the script and animation archives (PSO data, animations) with glTF export.",
+      "stats": {
+        "stars": 0,
+        "pushedAt": "2026-11-22T14:43:00Z"
+      }
+    },
+    {
+      "repo": "Albotterin/AWC_from_RPF9_Extractor",
+      "name": "AWC from RPF9",
+      "kind": "Audio extractor",
+      "desc": "Pulls music streams (AWC) out of RPF9 archives.",
+      "stats": {
+        "stars": 1,
+        "pushedAt": "2026-11-22T05:27:40Z"
+      }
+    },
+    {
+      "repo": "SentinelInteractive/0x52504639",
+      "name": "0x52504639",
+      "kind": "Format research",
+      "desc": "RPF9 format notes, catalogues and tooling.",
+      "stats": {
+        "stars": 2,
+        "pushedAt": "2026-11-21T22:30:21Z"
+      }
+    },
+    {
+      "repo": "JoshRob297/rpf9-research",
+      "name": "rpf9-research",
+      "kind": "Format research",
+      "desc": "Spanish-language reverse engineering of the RPF9 header, table of contents and name table.",
+      "stats": {
+        "stars": 1,
+        "pushedAt": "2026-11-22T15:43:47Z"
+      }
     }
   ],
+  "candidates": [],
   "flagged": [
     {
       "id": "switch-emulator-network",
@@ -1468,12 +1381,13 @@
       "id": "copies",
       "pattern": "Re-uploads of tracked projects under other accounts",
       "label": "",
-      "count": 3,
+      "count": 4,
       "reason": "Copies can be quietly modified to bundle malware. Only use the original repositories linked in the race above.",
       "members": [
         "ZuanCrisp/GETEA-6",
         "amrly02/Leonida",
-        "elmoudir12/Leonida"
+        "elmoudir12/Leonida",
+        "pixl27/ProjectReCity"
       ]
     }
   ],
@@ -2694,6 +2608,30 @@
       "auto": true,
       "seenAt": "2026-11-22",
       "pushedAt": "2026-11-15T20:16:26Z"
+    },
+    {
+      "repo": "Its3rr0rsWRLD/XPortPC",
+      "reason": "fork of the tracked Xbox2Windows; no independent results yet",
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-22T01:17:31Z"
+    },
+    {
+      "repo": "BLMChoosen/xbox2pc-public",
+      "reason": "dashboard of private research metrics; no runnable code",
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-21T19:09:50Z"
+    },
+    {
+      "repo": "MuhammedAmeerHamza/any-xbox",
+      "reason": "early research scaffold; no Xbox code runs",
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-20T10:30:44Z"
+    },
+    {
+      "repo": "aidenhrld/MyXboxRunner",
+      "reason": "no README",
+      "seenAt": "2026-11-22",
+      "pushedAt": "2026-11-21T21:16:53Z"
     }
   ],
   "changes": [
@@ -2811,6 +2749,41 @@
       "date": "2026-11-22",
       "kind": "new",
       "text": "Scout spotted Ahmet-Dedeler/rage9-re (tool, substance 44)."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "new",
+      "text": "Countdown corrected: the executable is due Mon, Nov 23 at 18:00 CET (17:00 UTC)."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "up",
+      "text": "XCL reports Minecraft Preview fully playable on PC and takes the lead."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "up",
+      "text": "americas-recomp now translates almost all GTA VI shaders (vertex 100%, pixel 99.97%)."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "up",
+      "text": "Leonida's loader runs a stand-in executable end to end."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "up",
+      "text": "OpenScarlett runs a homebrew Freedoom port and GDK samples at 60 FPS."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "new",
+      "text": "DedSec and Xbgtasix join the watchlist; six asset tools added to the toolkit."
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "flag",
+      "text": "pixl27/ProjectReCity flagged as a renamed copy of Leonida."
     }
   ],
   "history": [
@@ -2872,7 +2845,8 @@
     "x": "(\"gta 6\" OR \"gta vi\" OR gta6) (recomp OR emulator OR \"pc port\" OR scarlett) github.com -is:retweet",
     "lastRun": "2026-11-22T15:56:07.006Z",
     "lastSummary": "17 refreshed, 7 READMEs changed, 3 new candidates, 1 flagged.",
-    "lastDmcaCheck": "2026-11-22T15:56:07.006Z"
+    "lastDmcaCheck": "2026-11-22T15:56:07.006Z",
+    "lastEditorRun": "2026-11-22T18:08:17.387Z"
   },
   "headlines": [
     {

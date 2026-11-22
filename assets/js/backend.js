@@ -24,7 +24,9 @@ function sessionId() {
   } catch { return { sid: 'nostorage', isNew: true }; }
 }
 
-// Counts the view and joins the live-presence channel the private dashboard watches.
+// Counts the view. The dashboard's "people on the site right now" is worked out from these views
+// (sessions seen in the last few minutes), so visitors don't hold a realtime connection open:
+// that hit the realtime plan's connection limit under heavy traffic.
 export async function trackView(page) {
   if (!backendReady() || navigator.doNotTrack === '1') return;
   try {
@@ -33,7 +35,5 @@ export async function trackView(page) {
     let ref = '';
     try { if (document.referrer) { const r = new URL(document.referrer); if (r.host !== location.host) ref = r.host.replace(/^www\./, ''); } } catch {}
     await client.rpc('track_view', { p_page: page, p_ref: ref, p_sid: sid, p_new: isNew });
-    const channel = client.channel('online', { config: { presence: { key: sid } } });
-    channel.subscribe((status) => { if (status === 'SUBSCRIBED') channel.track({ page, at: Date.now() }); });
   } catch { /* analytics must never break the page */ }
 }

@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#ffffff">
   <title>Dashboard · PortWatch VI (private)</title>
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="dashboard.css">
+  <script src="../assets/js/theme.js"></script>
   <script type="module" src="dashboard.js"></script>
 </head>
 <body>
@@ -36,7 +38,7 @@
 
     <section id="db-app" hidden>
       <div class="db-live card">
-        <div><span class="live-dot"></span><b id="live-count">0</b> people on the site right now</div>
+        <div><span class="live-dot"></span><b id="live-count">…</b><span>people on the site right now<small id="live-note">counting…</small></span></div>
         <ul id="live-pages"></ul>
       </div>
 

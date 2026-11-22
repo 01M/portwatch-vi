@@ -53,26 +53,34 @@ async function start(session) {
   }
   $('#db-status').textContent = `Signed in as admin`;
   $('#db-app').hidden = false;
-  watchPresence();
   watchFeed();
-  await Promise.all([loadStats(), loadQueue(), loadRecent()]);
+  await Promise.all([loadLive(), loadStats(), loadQueue(), loadRecent()]);
+  setInterval(loadLive, 20_000);
   setInterval(loadStats, 60_000);
   setInterval(() => { loadQueue(); loadRecent(); }, 120_000);
 }
 
-/* ---------- Live presence (same channel the public pages join) ---------- */
-function watchPresence() {
-  const ch = sb.channel('online');
-  const render = () => {
-    const state = ch.presenceState();
-    const keys = Object.keys(state);
-    $('#live-count').textContent = keys.length;
-    const pages = {};
-    for (const k of keys) for (const m of state[k]) pages[m.page || '/'] = (pages[m.page || '/'] || 0) + 1;
-    $('#live-pages').innerHTML = Object.entries(pages).sort((a, b) => b[1] - a[1]).slice(0, 8)
-      .map(([p, n]) => `<li>${esc(p)} · ${n}</li>`).join('');
-  };
-  ch.on('presence', { event: 'sync' }, render).subscribe();
+/* ---------- People on the site right now ----------
+   Counted from page views: everyone who opened a page in the last 5 minutes (one per browser tab).
+   The old version had every visitor hold a realtime presence connection, which stopped working
+   once traffic passed the realtime plan's connection limit and always showed 0. */
+const LIVE_WINDOW_MIN = 5;
+async function loadLive() {
+  const since = new Date(Date.now() - LIVE_WINDOW_MIN * 60e3).toISOString();
+  const latest = new Map(); // session id -> the page it viewed most recently
+  for (let from = 0; from < 50_000; from += 1000) {
+    const { data, error } = await sb.from('pageviews').select('sid,page').gte('ts', since)
+      .order('ts', { ascending: false }).range(from, from + 999);
+    if (error) { $('#live-note').textContent = `Couldn't count live visitors: ${error.message}`; return; }
+    for (const r of data) if (r.sid && !latest.has(r.sid)) latest.set(r.sid, r.page || '/');
+    if (data.length < 1000) break;
+  }
+  const pages = {};
+  for (const p of latest.values()) pages[p] = (pages[p] || 0) + 1;
+  $('#live-count').textContent = fmt(latest.size);
+  $('#live-note').textContent = `active in the last ${LIVE_WINDOW_MIN} minutes · ${new Date().toLocaleTimeString()}`;
+  $('#live-pages').innerHTML = Object.entries(pages).sort((a, b) => b[1] - a[1]).slice(0, 8)
+    .map(([p, n]) => `<li>${esc(p)} · ${fmt(n)}</li>`).join('');
 }
 
 /* ---------- Numbers and charts ---------- */
@@ -111,7 +119,7 @@ function bars(points, label) {
     const h = (p.views / max) * (H - pad - 6);
     const hv = (p.visitors / max) * (H - pad - 6);
     return `<rect x="${pad + i * w + 1}" y="${H - pad - h}" width="${Math.max(1, w - 2)}" height="${h}" rx="2" fill="url(#g)"><title>${label(p.t)}: ${p.views} views, ${p.visitors} visitors</title></rect>
-            <rect x="${pad + i * w + w * 0.3}" y="${H - pad - hv}" width="${Math.max(1, w * 0.4)}" height="${hv}" rx="1" fill="rgba(13,14,20,.28)"/>`;
+            <rect x="${pad + i * w + w * 0.3}" y="${H - pad - hv}" width="${Math.max(1, w * 0.4)}" height="${hv}" rx="1" fill="currentColor" fill-opacity=".28"/>`;
   }).join('');
   const ticks = [0, Math.floor(points.length / 2), points.length - 1]
     .map((i) => `<text class="axis" x="${pad + i * w + w / 2}" y="${H - 4}" text-anchor="middle">${esc(label(points[i].t))}</text>`).join('');
