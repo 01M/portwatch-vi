@@ -60,6 +60,8 @@ create table if not exists public.posts (
 );
 create index if not exists threads_board_activity on public.threads (board, last_activity desc);
 create index if not exists posts_thread_created on public.posts (thread_id, created_at);
+-- Added after launch, so it can't live in the create table above. Must exist before the column grants below.
+alter table public.posts add column if not exists like_count int not null default 0;
 
 -- Salted, daily-rotating hash of the client address, used only for flood limits. Raw IPs are never stored.
 create or replace function private.client_hash() returns text
@@ -160,7 +162,7 @@ alter table public.threads enable row level security;
 alter table public.posts enable row level security;
 revoke all on public.threads, public.posts from anon, authenticated;
 grant select (id, board, title, body, author, status, flag_reason, reply_count, created_at, last_activity) on public.threads to anon, authenticated;
-grant select (id, thread_id, body, author, status, flag_reason, created_at) on public.posts to anon, authenticated;
+grant select (id, thread_id, body, author, status, flag_reason, created_at, like_count) on public.posts to anon, authenticated;
 grant update (status) on public.threads, public.posts to authenticated;
 
 drop policy if exists "read visible threads" on public.threads;
@@ -174,6 +176,71 @@ create policy "admins moderate posts" on public.posts for update to authenticate
 
 revoke all on function public.create_thread(text, text, text, text), public.create_post(uuid, text, text), public.board_stats() from public;
 grant execute on function public.create_thread(text, text, text, text), public.create_post(uuid, text, text), public.board_stats() to anon, authenticated;
+
+-- ---------- Likes on replies ----------
+-- One like per browser per reply: voter is a salted hash of the reply and a random token kept in that browser,
+-- so it can't link one browser's likes across replies. Tokens are easy to reset, so the daily client hash caps
+-- likes too (3 per reply, to leave room for shared connections, and 60 per 10 minutes).
+create table if not exists public.post_likes (
+  post_id uuid not null references public.posts (id) on delete cascade,
+  voter text not null,
+  ip_hash text,
+  created_at timestamptz not null default now(),
+  primary key (post_id, voter)
+);
+create index if not exists post_likes_client on public.post_likes (ip_hash, created_at);
+alter table public.post_likes enable row level security;
+revoke all on public.post_likes from public, anon, authenticated;
+
+create or replace function private.sync_likes() returns trigger
+language plpgsql security definer set search_path = '' as $$
+begin
+  if tg_op = 'INSERT' then
+    update public.posts set like_count = like_count + 1 where id = new.post_id;
+  else
+    update public.posts set like_count = like_count - 1 where id = old.post_id;
+  end if;
+  return null;
+end $$;
+drop trigger if exists post_likes_sync on public.post_likes;
+create trigger post_likes_sync after insert or delete on public.post_likes for each row execute function private.sync_likes();
+
+-- Sets the state instead of toggling it, so a repeated or retried request can't flip a like back.
+create or replace function public.set_post_like(p_post uuid, p_token uuid, p_liked boolean) returns json
+language plpgsql security definer set search_path = '' as $$
+declare h text; v_voter text; salt text;
+begin
+  if p_post is null or p_token is null or p_liked is null then raise exception 'Invalid like.'; end if;
+  if not exists (select 1 from public.posts p join public.threads t on t.id = p.thread_id
+                 where p.id = p_post and p.status = 'visible' and t.status = 'visible') then
+    raise exception 'Reply not found.';
+  end if;
+  select value into salt from private.settings where key = 'ip_salt';
+  v_voter := encode(extensions.digest(p_post::text || '|' || p_token::text || '|' || coalesce(salt, ''), 'sha256'), 'hex');
+
+  if p_liked then
+    h := private.client_hash();
+    if h is not null then
+      perform pg_advisory_xact_lock(hashtext(h)); -- one client at a time, so parallel requests can't beat the caps
+      if not exists (select 1 from public.post_likes where post_id = p_post and voter = v_voter) then
+        if (select count(*) from public.post_likes where ip_hash = h and post_id = p_post) >= 3 then
+          raise exception 'Like limit reached for this reply on your connection.';
+        end if;
+        if (select count(*) from public.post_likes where ip_hash = h and created_at > now() - interval '10 minutes') >= 60 then
+          raise exception 'Slow down: too many likes in a short time. Try again in a few minutes.';
+        end if;
+      end if;
+    end if;
+    insert into public.post_likes (post_id, voter, ip_hash) values (p_post, v_voter, h) on conflict do nothing;
+  else
+    delete from public.post_likes where post_id = p_post and voter = v_voter;
+  end if;
+
+  return json_build_object('liked', p_liked, 'likes', (select like_count from public.posts where id = p_post));
+end $$;
+revoke all on function public.set_post_like(uuid, uuid, boolean) from public;
+grant execute on function public.set_post_like(uuid, uuid, boolean) to anon, authenticated;
+notify pgrst, 'reload schema';
 
 -- ---------- Anonymous page views (no cookies, no IPs) ----------
 create table if not exists public.pageviews (

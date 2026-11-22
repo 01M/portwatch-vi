@@ -98,7 +98,10 @@ async function viewThread(client, id) {
   const { data: t } = await client.from('threads').select('id,board,title,body,author,created_at,reply_count').eq('id', id).maybeSingle();
   if (!t) { $('#board-main').innerHTML = '<p class="empty">This thread doesn\'t exist or was removed. <a href="#/">Back to the boards</a></p>'; return; }
   renderNav(t.board);
-  const { data: posts } = await client.from('posts').select('id,body,author,created_at').eq('thread_id', id).eq('status', 'visible').order('created_at').limit(500);
+  const getPosts = (cols) => client.from('posts').select(cols).eq('thread_id', id).eq('status', 'visible').order('created_at').limit(500);
+  let { data: posts, error } = await getPosts('id,body,author,created_at,like_count');
+  // A database without the likes column rejects the whole query: still show the replies, just without likes.
+  if (error) ({ data: posts } = await getPosts('id,body,author,created_at'));
   $('#board-main').innerHTML = `
     <p class="crumbs"><a href="#/b/${esc(t.board)}">← ${esc(boardName(t.board))}</a></p>
     <article class="post post-op">
@@ -110,9 +113,57 @@ async function viewThread(client, id) {
       <article class="post" id="p-${esc(p.id)}">
         <p class="p-meta"><b>${esc(p.author)}</b> · ${esc(ago(p.created_at))} <span class="p-no">#${i + 1}</span></p>
         <div class="p-body">${esc(p.body)}</div>
+        ${Number.isInteger(p.like_count) ? likeButton(p) : ''}
       </article>`).join('')}
     ${composer('reply')}`;
+  bindLikes(client);
   bindComposer(client, 'reply', { thread: id });
+}
+
+/* ---------- Likes ----------
+   No accounts: a random token in localStorage stands for this browser. The database does the counting. */
+let voter = null;
+let liked = new Set();
+
+function loadLikes() {
+  try {
+    voter = localStorage.getItem('pw_voter');
+    if (!UUID.test(voter || '')) { voter = crypto.randomUUID(); localStorage.setItem('pw_voter', voter); }
+    liked = new Set(JSON.parse(localStorage.getItem('pw_liked') || '[]'));
+  } catch { voter ||= crypto.randomUUID(); }
+}
+
+function likeButton(p) {
+  return `<div class="p-actions">
+          <button type="button" class="like" data-like="${esc(p.id)}" aria-pressed="false">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.8S1.8 10.1 1.8 5.7A3 3 0 0 1 8 4.2a3 3 0 0 1 6.2 1.5c0 4.4-6.2 8.1-6.2 8.1Z"/></svg>
+            <span>Like</span> <b>${p.like_count}</b>
+          </button>
+          <span class="like-note" role="status"></span>
+        </div>`;
+}
+
+function bindLikes(client) {
+  const buttons = document.querySelectorAll('[data-like]');
+  if (!buttons.length) return;
+  loadLikes();
+  buttons.forEach((btn) => {
+    const id = btn.dataset.like;
+    const note = btn.nextElementSibling;
+    btn.setAttribute('aria-pressed', String(liked.has(id)));
+    btn.addEventListener('click', async () => {
+      if (btn.getAttribute('aria-busy') === 'true') return; // not disabled, which would drop keyboard focus
+      btn.setAttribute('aria-busy', 'true');
+      note.textContent = '';
+      const { data, error } = await client.rpc('set_post_like', { p_post: id, p_token: voter, p_liked: !liked.has(id) });
+      btn.removeAttribute('aria-busy');
+      if (error) { note.textContent = error.message || 'Couldn\'t save that like. Try again.'; return; }
+      if (data.liked) liked.add(id); else liked.delete(id);
+      try { localStorage.setItem('pw_liked', JSON.stringify([...liked])); } catch { /* lasts until reload */ }
+      btn.setAttribute('aria-pressed', String(data.liked));
+      btn.querySelector('b').textContent = data.likes;
+    });
+  });
 }
 
 /* ---------- Posting ---------- */
