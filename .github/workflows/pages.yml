@@ -41,6 +41,16 @@ jobs:
       - name: Build article pages, news archive, RSS feed and sitemap
         run: node scripts/build-site.mjs _site
 
+      # Pages lets browsers reuse files for 10 minutes, so after a deploy a browser could pair the new
+      # page with a stylesheet or script it cached from the previous one. Giving every CSS/JS URL and
+      # module import this commit as a version makes each deploy load as one consistent set.
+      - name: Stamp asset versions
+        run: |
+          v="${GITHUB_SHA::8}"
+          find _site -name '*.html' -exec sed -i -E "s#(assets/(css|js)/[A-Za-z0-9_-]+\.(css|js))([\"'])#\1?v=$v\4#g" {} +
+          sed -i -E "s#(from '\./[A-Za-z0-9_-]+\.js)'#\1?v=$v'#g" _site/assets/js/*.js
+          echo "Stamped ?v=$v into $(grep -rl "?v=$v" _site | wc -l) files"
+
       - uses: actions/configure-pages@v6
 
       - uses: actions/upload-pages-artifact@v5
