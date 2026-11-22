@@ -27,11 +27,18 @@ jobs:
         with:
           ref: ${{ github.event.repository.default_branch }}
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
       - name: Collect site files
         run: |
           mkdir -p _site
           cp -r index.html board.html assets data _site/   # dashboard/ is private and never deployed
           touch _site/.nojekyll
+
+      - name: Build article pages, news archive, RSS feed and sitemap
+        run: node scripts/build-site.mjs _site
 
       - uses: actions/configure-pages@v5
 
@@ -41,3 +48,14 @@ jobs:
 
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # Tells Bing, Yandex and other IndexNow engines which URLs are new or changed. Never fails the deploy.
+      - name: Ping IndexNow
+        continue-on-error: true
+        run: |
+          if [ -f indexnow.json ]; then
+            curl -sS -m 30 -o /dev/null -w "IndexNow answered HTTP %{http_code}\n" -X POST https://api.indexnow.org/indexnow \
+              -H 'Content-Type: application/json; charset=utf-8' --data @indexnow.json
+          else
+            echo "Nothing new to ping."
+          fi

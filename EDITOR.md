@@ -40,7 +40,7 @@ The GitHub Actions scout (every 3 hours) does the mechanical work: stats, discov
      "sources": [{ "outlet", "title", "url" }], "image": { "url", "credit", "link" } | null, "by": "claude" }
    ```
 
-   For `image`, use the main source's `og:image`. Fetch the page with `curl -sL -A "Mozilla/5.0"` and read `<meta property="og:image">`; use `null` if there isn't one. Add new articles to the front of `news` and keep at most 40.
+   The `id` becomes the article's public URL (`news/<id>.html`, built at deploy and listed in the sitemap), so use only lowercase letters, digits and hyphens, and never change an id once it's published. For `image`, use the main source's `og:image`. Fetch the page with `curl -sL -A "Mozilla/5.0"` and read `<meta property="og:image">`; use `null` if there isn't one. Add new articles to the front of `news` and keep at most 40.
 7. **Finish.**
    - Set `scout.lastEditorRun` and `updated` to the current UTC time in ISO format.
    - Validate the JSON: `powershell -NoProfile -Command "Get-Content -Raw data/tracker.json | ConvertFrom-Json | Out-Null"`. It must succeed.

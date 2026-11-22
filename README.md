@@ -16,6 +16,8 @@ No game files, keys or executables are hosted or linked, ever.
 3. Open **Settings → Actions → General** and make sure workflows are allowed.
 4. Open **Actions → Scout → Run workflow** to run the first scout. It commits fresh data and deploys the site.
 
+Each deploy also runs `scripts/build-site.mjs`, which turns `data/tracker.json` into pages search engines can read: one page per news story (`news/<id>.html`), a news archive, an RSS feed (`news/feed.xml`) and `sitemap.xml`. It then pings [IndexNow](https://www.indexnow.org/) (Bing, Yandex and others; no account needed) with the URLs that changed since the last deploy. For Google, add the site in Search Console and submit `sitemap.xml`.
+
 From then on, `Scout` runs every 3 hours (00:17, 03:17, 06:17 … UTC) on GitHub's servers, so no computer of yours needs to be on. Any push to `main` redeploys the site through `Deploy site`. To change the frequency, edit the `cron` line in `.github/workflows/scout.yml`. For example, `17 6 * * *` runs it once a day. GitHub can delay scheduled runs by a few minutes when it's busy.
 
 ## What the scout does (`scripts/scout.mjs`)

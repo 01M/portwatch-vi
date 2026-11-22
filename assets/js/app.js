@@ -1,5 +1,6 @@
 import { MILESTONES, GROUNDWORK, STABILITY, scoreEffort, overall, ladderValue } from './scoring.js';
 import { backendReady, trackView } from './backend.js';
+import { coverHtml, articlePath } from './news-shared.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -387,14 +388,6 @@ function renderInbox(data) {
 }
 
 /* ---------- News ---------- */
-const COVER_ICON = {
-  Leak: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 2h8l5 5v8.5l-2-2V8h-4V4H6v16h7.5l2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm12.5 13.5L21 18l-3 4-3-4 2.5-2.5Z"/></svg>',
-  Takedown: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm0 2a8 8 0 0 0-6.3 12.9L16.9 5.7A8 8 0 0 0 12 4Zm6.3 3.1L7.1 18.3A8 8 0 0 0 18.3 7.1Z"/></svg>',
-  Security: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1 6h2v6h-2V8Zm0 8h2v2h-2v-2Z"/></svg>',
-  Legal: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 3h2v2h6v2h-1.2l2.7 6.3A3.5 3.5 0 0 1 17 16a3.5 3.5 0 0 1-3.5-2.7L16.2 7H13v12h4v2H7v-2h4V7H7.8l2.7 6.3A3.5 3.5 0 0 1 7 16a3.5 3.5 0 0 1-3.5-2.7L6.2 7H5V5h6V3Zm-4 6.2L5.6 12.5h2.8L7 9.2Zm10 0-1.4 3.3h2.8L17 9.2Z"/></svg>',
-  Safety: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 13.6L7 11.8l1.4-1.4 2.4 2.4 4.8-4.8L17 9.4l-6.2 6.2Z"/></svg>',
-};
-const coverHtml = (cat) => `<div class="cover cover-${esc(cat)}">${COVER_ICON[cat] || COVER_ICON.Leak}</div>`;
 const safeLink = (u) => (/^#[\w-]+$/.test(u || '') ? u : safeHttp(u));
 const fmtDay = (d) => new Date(`${d}T12:00:00Z`).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
 
@@ -408,8 +401,10 @@ function storyMedia(n) {
 function renderNews(news) {
   const items = [...news].sort((a, b) => (a.date < b.date ? 1 : -1));
   if (!items.length) { $('#news').hidden = true; return; }
+  // Real links to each article's own page (built at deploy) so search engines can follow them;
+  // a plain click opens the article in the reader instead.
   const card = (n, small) => `
-    <button class="story ${small ? 'is-small' : ''}" data-story="${esc(n.id)}">
+    <a class="story ${small ? 'is-small' : ''}" href="${esc(articlePath(n) || '#news')}" data-story="${esc(n.id)}">
       ${storyMedia(n)}
       <div class="story-body">
         <time>${esc(fmtDay(n.date))}</time>
@@ -417,7 +412,7 @@ function renderNews(news) {
         <p>${esc(n.dek)}</p>
         ${!small && n.image?.credit ? `<span class="story-credit">Image: ${esc(n.image.credit)}</span>` : ''}
       </div>
-    </button>`;
+    </a>`;
   $('#news-list').innerHTML = card(items[0], false) + `<div class="news-list">${items.slice(1, 7).map((n) => card(n, true)).join('')}</div>`;
   const heads = (state.data.headlines || []).slice(0, 10);
   if (heads.length) {
@@ -432,8 +427,11 @@ function renderNews(news) {
   $('#news-list').addEventListener('click', (ev) => {
     const btn = ev.target.closest('[data-story]');
     if (!btn) return;
+    if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return; // new tab/window: let the link work
     const n = items.find((x) => x.id === btn.dataset.story);
     if (!n) return;
+    ev.preventDefault();
+    const page = articlePath(n);
     $('#reader-body').innerHTML = `
       ${storyMedia(n)}
       <div class="reader-inner">
@@ -444,7 +442,7 @@ function renderNews(news) {
         <div class="sources">
           <h4>Sources</h4>
           <ul>${(n.sources || []).map((s) => `<li><a href="${esc(safeLink(s.url))}" ${s.url?.startsWith('#') ? '' : 'target="_blank" rel="noopener"'}>${esc(s.outlet)}: ${esc(s.title)}</a></li>`).join('')}</ul>
-          <p class="fine">${n.image?.credit ? `Image: <a href="${esc(safeHttp(n.image.link || n.image.url))}" target="_blank" rel="noopener">${esc(n.image.credit)}</a>. ` : ''}${n.by === 'claude' ? 'Written automatically by Claude from the linked sources.' : 'Written by PortWatch from the linked sources.'}</p>
+          <p class="fine">${n.image?.credit ? `Image: <a href="${esc(safeHttp(n.image.link || n.image.url))}" target="_blank" rel="noopener">${esc(n.image.credit)}</a>. ` : ''}${n.by === 'claude' ? 'Written automatically by Claude from the linked sources.' : 'Written by PortWatch from the linked sources.'}${page ? ` <a href="${esc(page)}">Link to this article</a>` : ''}</p>
         </div>
       </div>`;
     dlg.showModal();
