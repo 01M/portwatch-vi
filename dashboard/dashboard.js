@@ -55,32 +55,32 @@ async function start(session) {
   $('#db-app').hidden = false;
   watchFeed();
   await Promise.all([loadLive(), loadStats(), loadQueue(), loadRecent()]);
-  setInterval(loadLive, 20_000);
-  setInterval(loadStats, 60_000);
-  setInterval(() => { loadQueue(); loadRecent(); }, 120_000);
+  // The backend is on the free plan (0.5 GB of RAM): on 2026-11-23 this page's 20 s / 60 s polling was about
+  // half of the database's work and helped push it into swap. Refresh slowly, and not while the tab is hidden.
+  every(60_000, loadLive);
+  every(5 * 60_000, loadStats);
+  every(120_000, () => { loadQueue(); loadRecent(); });
+}
+
+// Runs fn every `ms` while the tab is visible, and once on return if it missed a turn while hidden.
+function every(ms, fn) {
+  let last = Date.now();
+  const run = () => { last = Date.now(); fn(); };
+  setInterval(() => { if (!document.hidden) run(); }, ms);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - last >= ms) run(); });
 }
 
 /* ---------- People on the site right now ----------
    Counted from page views: everyone who opened a page in the last 5 minutes (one per browser tab).
-   The old version had every visitor hold a realtime presence connection, which stopped working
-   once traffic passed the realtime plan's connection limit and always showed 0. */
+   The database does the counting (admin_live); fetching every recent page view to count them here
+   moved thousands of rows a minute under heavy traffic. */
 const LIVE_WINDOW_MIN = 5;
 async function loadLive() {
-  const since = new Date(Date.now() - LIVE_WINDOW_MIN * 60e3).toISOString();
-  const latest = new Map(); // session id -> the page it viewed most recently
-  for (let from = 0; from < 50_000; from += 1000) {
-    const { data, error } = await sb.from('pageviews').select('sid,page').gte('ts', since)
-      .order('ts', { ascending: false }).range(from, from + 999);
-    if (error) { $('#live-note').textContent = `Couldn't count live visitors: ${error.message}`; return; }
-    for (const r of data) if (r.sid && !latest.has(r.sid)) latest.set(r.sid, r.page || '/');
-    if (data.length < 1000) break;
-  }
-  const pages = {};
-  for (const p of latest.values()) pages[p] = (pages[p] || 0) + 1;
-  $('#live-count').textContent = fmt(latest.size);
+  const { data, error } = await sb.rpc('admin_live', { p_minutes: LIVE_WINDOW_MIN });
+  if (error) { $('#live-note').textContent = `Couldn't count live visitors: ${error.message}`; return; }
+  $('#live-count').textContent = fmt(data.total);
   $('#live-note').textContent = `active in the last ${LIVE_WINDOW_MIN} minutes · ${new Date().toLocaleTimeString()}`;
-  $('#live-pages').innerHTML = Object.entries(pages).sort((a, b) => b[1] - a[1]).slice(0, 8)
-    .map(([p, n]) => `<li>${esc(p)} · ${fmt(n)}</li>`).join('');
+  $('#live-pages').innerHTML = (data.pages || []).map((p) => `<li>${esc(p.page)} · ${fmt(p.n)}</li>`).join('');
 }
 
 /* ---------- Numbers and charts ---------- */
@@ -183,8 +183,8 @@ function watchFeed() {
     $('#feed').prepend(li);
     while ($('#feed').children.length > 40) $('#feed').lastChild.remove();
   };
+  // Page views are no longer published to realtime (see supabase/schema.sql); only board activity is live.
   sb.channel('db-feed')
-    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'pageviews' }, ({ new: v }) => push(`View: ${esc(v.page)}${v.ref ? ` · from ${esc(v.ref)}` : ''}${v.new_session ? ' · new visitor' : ''}`))
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'threads' }, ({ new: t }) => { push(`<b>New thread</b> in ${esc(t.board)}: ${esc(t.title)}${t.status === 'pending' ? ' (held)' : ''}`); loadQueue(); loadRecent(); })
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'posts' }, ({ new: p }) => { push(`<b>New reply</b>${p.status === 'pending' ? ' (held)' : ''}: ${esc(p.body.slice(0, 80))}`); loadQueue(); loadRecent(); })
     .subscribe();

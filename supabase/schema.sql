@@ -269,11 +269,32 @@ grant execute on function public.track_view(text, text, text, boolean) to anon, 
 -- ---------- Public live viewer count ----------
 -- Same definition as the dashboard: tabs seen in the last 5 minutes. The threshold lives here, so small
 -- numbers never leave the database; below 25 the answer is null and the site shows nothing.
+-- Every visitor asks on load, so the count is worked out at most once a minute and the answer shared:
+-- on 2026-11-23, with ~3,000 visitors, recounting per call was 39% of the database's time.
+create table if not exists private.live_cache (
+  id smallint primary key default 1 check (id = 1),
+  n integer,
+  at timestamptz not null default '-infinity'
+);
+insert into private.live_cache (id) values (1) on conflict (id) do nothing;
+alter table private.live_cache enable row level security;  -- no policies: only the owner (live_viewers) reads it
+
 create or replace function public.live_viewers() returns integer
-language sql stable security definer set search_path = '' as $$
-  select case when count(distinct sid) >= 25 then count(distinct sid)::integer end
+language plpgsql volatile security definer set search_path = '' as $$
+declare
+  cached_n integer;
+  cached_at timestamptz;
+begin
+  select n, at into cached_n, cached_at from private.live_cache where id = 1;
+  -- Fresh enough, or another call is already recounting: hand out the last answer.
+  if cached_at > now() - interval '60 seconds' or not pg_try_advisory_xact_lock(hashtext('live_viewers')) then
+    return cached_n;
+  end if;
+  select case when count(distinct sid) >= 25 then count(distinct sid)::integer end into cached_n
   from public.pageviews where ts >= now() - interval '5 minutes' and sid <> '';
-$$;
+  update private.live_cache set n = cached_n, at = now() where id = 1;
+  return cached_n;
+end $$;
 revoke all on function public.live_viewers() from public;
 grant execute on function public.live_viewers() to anon, authenticated;
 
@@ -310,9 +331,35 @@ end $$;
 revoke all on function public.admin_stats() from public, anon;
 grant execute on function public.admin_stats() to authenticated;
 
+-- People on the site right now, for the dashboard: one row per tab seen in the last few minutes, counted
+-- here instead of shipping every page view to the browser.
+create or replace function public.admin_live(p_minutes integer default 5) returns json
+language plpgsql stable security definer set search_path = '' as $$
+begin
+  if not public.is_admin() then raise exception 'not allowed'; end if;
+  return (
+    with latest as (
+      select distinct on (sid) sid, page from public.pageviews
+      where ts >= now() - make_interval(mins => least(greatest(coalesce(p_minutes, 5), 1), 60)) and sid <> ''
+      order by sid, ts desc
+    )
+    select json_build_object(
+      'total', (select count(*) from latest),
+      'pages', coalesce((select json_agg(p) from (
+        select page, count(*) as n from latest group by page order by 2 desc limit 8) p), '[]'::json))
+  );
+end $$;
+revoke all on function public.admin_live(integer) from public, anon;
+grant execute on function public.admin_live(integer) to authenticated;
+
 -- Live updates for the dashboard (row-level security still applies to what each client receives).
+-- Page views are not published: decoding and checking every visit for the dashboard's feed was 31% of the
+-- database's time under heavy traffic (2026-11-23). New threads and replies still arrive live.
 do $$ begin
-  begin alter publication supabase_realtime add table public.pageviews; exception when duplicate_object then null; end;
+  if exists (select 1 from pg_publication_tables
+             where pubname = 'supabase_realtime' and schemaname = 'public' and tablename = 'pageviews') then
+    alter publication supabase_realtime drop table public.pageviews;
+  end if;
   begin alter publication supabase_realtime add table public.threads; exception when duplicate_object then null; end;
   begin alter publication supabase_realtime add table public.posts; exception when duplicate_object then null; end;
 end $$;
