@@ -303,8 +303,10 @@ function ladderCells(e) {
   const stabV = (STABILITY[g.stability] || STABILITY.unknown).value;
   const fpsLabel = t('effort.fps', { n: g.fps ? Math.round(g.fps) : 30 });
   const stab = g.stability && g.stability !== 'unknown' && STABILITY[g.stability] ? stabLabel(g.stability) : msLabel('stable');
+  // Past "Exe runs" the score no longer depends on groundwork, so that step reads as done.
+  const pastGroundwork = ladderValue(g.loads) >= 1;
   return `
-    <span class="${st(gw)}" title="${esc(msDesc(MILESTONES[0]))}">${esc(t('effort.groundworkPct', { n: Math.round(gw * 100) }))}</span>
+    <span class="${pastGroundwork ? 'is-reached' : st(gw)}" title="${esc(msDesc(MILESTONES[0]))}">${esc(pastGroundwork ? msLabel('groundwork') : t('effort.groundworkPct', { n: Math.round(gw * 100) }))}</span>
     <span class="${st(ladderValue(g.loads))}">${esc(msLabel('loads'))}</span>
     <span class="${st(ladderValue(g.boots))}">${esc(msLabel('boots'))}</span>
     <span class="${st(ladderValue(g.menu))}">${esc(msLabel('menu'))}</span>
