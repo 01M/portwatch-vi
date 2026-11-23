@@ -164,6 +164,7 @@
   "news.sources": "Fuentes",
   "news.byClaude": "Escrito automáticamente por Claude a partir de las fuentes enlazadas.",
   "news.byPortWatch": "Escrito por PortWatch a partir de las fuentes enlazadas.",
+  "news.byReport": "Información de PortWatch; aún sin confirmar por una fuente pública.",
   "news.link": "Enlace a este artículo",
   "cat.Leak": "Filtración",
   "cat.Takedown": "Retirada",

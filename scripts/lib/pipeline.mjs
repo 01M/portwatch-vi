@@ -4,6 +4,8 @@ import { scoreEffort, overall } from '../../assets/js/scoring.js';
 import * as core from './core.mjs';
 
 const lc = (s) => String(s || '').toLowerCase();
+// An effort with no public code has `repo: null`: there is nothing on GitHub to refresh, so the scout skips it.
+const hasRepo = (e) => typeof e.repo === 'string' && e.repo.includes('/');
 const CANDIDATE_MIN = 35; // substance needed to show up in "New candidates"
 const MAX_CANDIDATES = 30;
 const MAX_IGNORED = 2500;
@@ -43,7 +45,7 @@ export async function runScout(data, opts = {}) {
   log('Refreshing tracked efforts…');
   const changedReadmes = [];
   const trackedText = new Map(); // repo -> README shingles, to catch re-uploads
-  for (const e of data.efforts.slice(0, limit)) {
+  for (const e of data.efforts.filter(hasRepo).slice(0, limit)) {
     try {
       const meta = await gh.repo(e.repo);
       if (meta.missing) {
@@ -203,6 +205,7 @@ export async function runScout(data, opts = {}) {
   // Rules that keep copies and junk out of the public candidate list.
   const trackedByName = new Map(
     [...data.efforts.flatMap((e) => [e.repo, ...(e.related || [])]), ...(data.tools || []).map((t) => t.repo)]
+      .filter((r) => typeof r === 'string' && r.includes('/'))
       .map((r) => [lc(r.split('/')[1]), r]),
   );
   const ownersByName = new Map(); // repo name -> owners seen among new finds (clone networks)

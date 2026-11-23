@@ -151,7 +151,9 @@ function articlePage(n, others) {
   const credit = n.image?.credit && img
     ? `Image: ${httpsOnly(n.image.link) ? `<a href="${esc(httpsOnly(n.image.link))}" target="_blank" rel="noopener">${esc(n.image.credit)}</a>` : esc(n.image.credit)}. `
     : '';
-  const byline = n.by === 'claude' ? 'Written automatically by Claude from the linked sources.' : 'Written by PortWatch from the linked sources.';
+  const byline = n.by === 'claude' ? 'Written automatically by Claude from the linked sources.'
+    : n.by === 'report' ? 'Reported by PortWatch; not yet confirmed by a public source.'
+    : 'Written by PortWatch from the linked sources.';
   const more = others.slice(0, 6);
   const main = `    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">PortWatch VI</a><span aria-hidden="true">/</span><a href="./">News</a></nav>
     <article class="reader reader-page">

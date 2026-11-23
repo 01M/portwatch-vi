@@ -133,6 +133,7 @@
   "news.sources": "Sources",
   "news.byClaude": "Written automatically by Claude from the linked sources.",
   "news.byPortWatch": "Written by PortWatch from the linked sources.",
+  "news.byReport": "Reported by PortWatch; not yet confirmed by a public source.",
   "news.link": "Link to this article",
   "cat.Leak": "Leak",
   "cat.Takedown": "Takedown",

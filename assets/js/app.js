@@ -13,6 +13,10 @@ const REPO_RE = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 const repoUrl = (repo, branch) => (REPO_RE.test(repo || '') ? `https://github.com/${repo}${branch && branch !== 'main' && branch !== 'master' ? `/tree/${encodeURIComponent(branch)}` : ''}` : '#');
 const owner = (repo) => (repo || '').split('/')[0];
 const avatar = (repo) => (REPO_RE.test(repo || '') ? `https://github.com/${encodeURIComponent(owner(repo))}.png?size=88` : '');
+// Efforts with no public code have `repo: null`. They may give a local `avatar` image and a `link` to our own article.
+const hasRepo = (e) => REPO_RE.test(e.repo || '');
+const effortAvatar = (e) => (/^assets\/img\/[\w/.-]+$/.test(e.avatar || '') ? e.avatar : avatar(e.repo));
+const effortUrl = (e) => (hasRepo(e) ? repoUrl(e.repo, e.branch) : /^news\/[a-z0-9-]+\.html$/.test(e.link || '') ? e.link : '');
 const safeHttp = (u) => (/^https:\/\//.test(u || '') ? u : '#');
 const pct = (v) => `${Math.round(v * 10) / 10}`;
 
@@ -176,7 +180,7 @@ function renderOverall(data) {
   const leader = ov.leader?.effort;
   animateNumber($('#ov-score'), ov.score);
   $('#ov-leader').innerHTML = leader
-    ? `${esc(t('ov.leader'))} <a href="#effort-${esc(leader.id)}">${esc(leader.name)}</a> ${esc(t('ov.byOwner', { owner: owner(leader.repo) }))} ${esc(ov.leader.reached === 'groundwork' ? t('ov.stillGroundwork') : t('ov.reached', { label: msLabel(ov.leader.reached) }))}`
+    ? `${esc(t('ov.leader'))} <a href="#effort-${esc(leader.id)}">${esc(leader.name)}</a> ${hasRepo(leader) ? `${esc(t('ov.byOwner', { owner: owner(leader.repo) }))} ` : ''}${esc(ov.leader.reached === 'groundwork' ? t('ov.stillGroundwork') : t('ov.reached', { label: msLabel(ov.leader.reached) }))}`
     : esc(t('ov.none'));
   $('#ov-stage').textContent = msLabel(ov.furthest.key);
   $('#ov-top3').textContent = `${pct(ov.top3)}%`;
@@ -232,7 +236,7 @@ function drawMarkers(ranked, leader) {
   box.innerHTML = `<svg width="${W}" height="${H}" style="position:absolute;inset:0;overflow:visible" aria-hidden="true">${lines}</svg>` +
     items.map((it) => {
       const e = it.r.effort;
-      const src = avatar(e.repo);
+      const src = effortAvatar(e);
       return `<a class="marker ${e === leader ? 'is-leader' : ''}" href="#effort-${esc(e.id)}" style="left:${it.a}px;bottom:${H - avatarY - 32}px"
                 data-tip-title="${esc(e.name)} · ${pct(it.r.score)}%" data-tip="${esc(msLabel(it.r.reached))} · ${esc(e.approach || '')}">
                 <span class="mk-name">${esc(e.name)} · ${pct(it.r.score)}%</span>
@@ -335,7 +339,9 @@ function effortCard(e, rank, open, overallRank = null) {
     return `<div class="gw-row" title="${esc(gwDesc(g))}"><span>${esc(gwLabel(g))}</span><b>${Math.round(v * 100)}%</b><div class="gw-bar"><i data-width="${v * 100}"></i></div></div>`;
   }).join('');
   const claims = (e.claims || []).slice(0, 2).map((c) => `<div class="claim"><b>${esc(t('effort.claim'))}</b> “${esc(c.text)}”, ${esc(t('effort.mayMean'))} <em>${esc(MILESTONES.some((m) => m.key === c.milestone) ? msLabel(c.milestone) : c.milestone)}</em>. ${esc(t('effort.awaiting'))}</div>`).join('');
-  const src = avatar(e.repo);
+  const src = effortAvatar(e);
+  const url = effortUrl(e);
+  const external = hasRepo(e) ? ' target="_blank" rel="noopener"' : '';
   return `
   <li class="effort ${rank <= 3 ? 'is-top' : ''}" id="effort-${esc(e.id)}">
     <div class="e-rank">${rank}${overallRank ? `<small class="e-rank-overall" title="${esc(t('race.overallTitle'))}">${esc(t('race.overall', { n: overallRank }))}</small>` : ''}</div>
@@ -343,8 +349,8 @@ function effortCard(e, rank, open, overallRank = null) {
       <div class="e-top">
         ${src ? `<img class="e-avatar" src="${esc(src)}" alt="" loading="lazy" data-hide-on-error>` : ''}
         <div class="e-title">
-          <h3><a href="${esc(repoUrl(e.repo, e.branch))}" target="_blank" rel="noopener">${esc(e.name)}</a></h3>
-          <p class="e-by">${esc(e.repo)}${e.branch && !['main', 'master'].includes(e.branch) ? ` · ${esc(t('effort.branch', { b: e.branch }))}` : ''}</p>
+          <h3>${url ? `<a href="${esc(url)}"${external}>${esc(e.name)}</a>` : esc(e.name)}</h3>
+          <p class="e-by">${hasRepo(e) ? `${esc(e.repo)}${e.branch && !['main', 'master'].includes(e.branch) ? ` · ${esc(t('effort.branch', { b: e.branch }))}` : ''}` : esc(e.byline || '')}</p>
         </div>
         <div class="e-score"><b>${pct(s.score)}<span>%</span></b><small>${esc(msLabel(s.reached))}</small></div>
       </div>
@@ -356,27 +362,27 @@ function effortCard(e, rank, open, overallRank = null) {
       </div>
       ${claims}
       <div class="e-details" ${open ? '' : 'hidden'}>
-        <div class="gw">
+        ${e.groundwork ? `<div class="gw">
           <h4>${esc(t('effort.gwBreakdown'))}</h4>
           ${gwRows}
           ${e.provenOn ? `<p class="gw-proven">${esc(t('effort.provenOn', { x: e.provenOn }))}</p>` : ''}
-        </div>
+        </div>` : ''}
         <div class="notes">
           <div class="works"><h4>${esc(t('effort.works'))}</h4><ul>${(e.highlights || []).map((h) => `<li>${esc(h)}</li>`).join('')}</ul></div>
           <div class="blocks"><h4>${esc(t('effort.blocking'))}</h4><ul>${(e.blockers || []).map((h) => `<li>${esc(h)}</li>`).join('')}</ul></div>
         </div>
       </div>
       <div class="e-foot">
-        <span class="stat-i" title="${esc(t('effort.stars'))}">${ICON.star}${fmtK(st.stars)}</span>
+        ${hasRepo(e) ? `<span class="stat-i" title="${esc(t('effort.stars'))}">${ICON.star}${fmtK(st.stars)}</span>
         <span class="stat-i" title="${esc(t('effort.forks'))}">${ICON.fork}${fmtK(st.forks)}</span>
         <span class="stat-i" title="${esc(t('effort.issues'))}">${ICON.issue}${fmtK(st.openIssues)}</span>
         ${st.commits7d != null ? `<span class="stat-i" title="${esc(t('effort.commitsTitle'))}">${ICON.commit}${esc(t('effort.commits', { n: st.commits7d >= 100 ? '100+' : st.commits7d }))}</span>` : ''}
-        <span class="stat-i" title="${esc(t('effort.lastPush'))}">${ICON.clock}${esc(t('effort.pushed', { ago: ago(st.pushedAt) }))}</span>
+        <span class="stat-i" title="${esc(t('effort.lastPush'))}">${ICON.clock}${esc(t('effort.pushed', { ago: ago(st.pushedAt) }))}</span>` : ''}
         <span class="spacer"></span>
         <span class="w-muted" title="${esc(t('effort.reviewedTitle'))}">${esc(e.assessedBy === 'claude' ? t('effort.byClaude') : t('effort.reviewed'))} ${esc(e.assessedAt || '')}</span>
         ${backendReady() ? `<a class="discuss" href="board.html#/b/${esc(e.id)}">${esc(t('effort.discuss'))}</a>` : ''}
         <button class="toggle" data-toggle aria-expanded="${open}">${esc(open ? t('effort.hideDetails') : t('effort.details'))}</button>
-        <a class="gh-link" href="${esc(repoUrl(e.repo, e.branch))}" target="_blank" rel="noopener">${ICON.gh}GitHub</a>
+        ${hasRepo(e) ? `<a class="gh-link" href="${esc(repoUrl(e.repo, e.branch))}" target="_blank" rel="noopener">${ICON.gh}GitHub</a>` : ''}
       </div>
     </div>
   </li>`;
@@ -485,7 +491,7 @@ function renderNews(news) {
         <div class="sources">
           <h4>${esc(t('news.sources'))}</h4>
           <ul>${(n.sources || []).map((s) => `<li><a href="${esc(safeLink(s.url))}" ${s.url?.startsWith('#') ? '' : 'target="_blank" rel="noopener"'}>${esc(s.outlet)}: ${esc(s.title)}</a></li>`).join('')}</ul>
-          <p class="fine">${n.image?.credit ? `${esc(t('news.image'))} <a href="${esc(safeHttp(n.image.link || n.image.url))}" target="_blank" rel="noopener">${esc(n.image.credit)}</a>. ` : ''}${esc(n.by === 'claude' ? t('news.byClaude') : t('news.byPortWatch'))}${page ? ` <a href="${esc(page)}">${esc(t('news.link'))}</a>` : ''}</p>
+          <p class="fine">${n.image?.credit ? `${esc(t('news.image'))} <a href="${esc(safeHttp(n.image.link || n.image.url))}" target="_blank" rel="noopener">${esc(n.image.credit)}</a>. ` : ''}${esc(n.by === 'claude' ? t('news.byClaude') : n.by === 'report' ? t('news.byReport') : t('news.byPortWatch'))}${page ? ` <a href="${esc(page)}">${esc(t('news.link'))}</a>` : ''}</p>
         </div>
       </div>`;
     dlg.showModal();

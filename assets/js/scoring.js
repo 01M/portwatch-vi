@@ -47,8 +47,9 @@ export function ladderValue(v) {
   return clamp01(v);
 }
 
-export function groundworkFraction(gw = {}) {
-  return GROUNDWORK.reduce((sum, g) => sum + g.weight * clamp01(gw[g.key]), 0);
+export function groundworkFraction(gw) {
+  // An effort with no public code has no groundwork to rate (the field is missing or null).
+  return GROUNDWORK.reduce((sum, g) => sum + g.weight * clamp01(gw?.[g.key]), 0);
 }
 
 export function scoreEffort(effort) {
