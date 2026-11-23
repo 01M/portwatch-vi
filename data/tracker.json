@@ -1365,6 +1365,55 @@
       "claims": [],
       "readmeSha": "64590564eea6b2cf23823de0b9f2b79b5b867fa6f93cbebe3d4100b598a4a004",
       "readmeChangedAt": "2026-11-23"
+    },
+    {
+      "id": "xlaunchvi",
+      "name": "XlaunchVI",
+      "repo": "JPTuba9/xlaunch-vi",
+      "branch": "main",
+      "tier": "watchlist",
+      "approach": "Compatibility layer",
+      "target": "Any Xbox Series game",
+      "summary": "Multi-contributor C++ layer with a PE loader, a D3D12 backend and an RDNA2 shader translator that matches AMD-compiled test shaders bit for bit. Most code sits in open pull requests, and no Xbox title has run.",
+      "highlights": [
+        "Reports 12 of 12 AMD-compiled compute shaders matching CPU results bit for bit",
+        "Its translator refuses instructions it doesn't support instead of faking them",
+        "Decoder tables checked against AMD's official RDNA2 instruction spec"
+      ],
+      "blockers": [
+        "No Xbox title has run; its Matrix Awakens bring-up is still at diagnostics",
+        "Most features sit in open pull requests; the main branch holds only docs",
+        "Tested on its own shaders, not GTA VI's; no console texture tiling yet"
+      ],
+      "groundwork": {
+        "loader": 0.3,
+        "shaders": 0.05,
+        "graphics": 0.2,
+        "proven": 0
+      },
+      "provenOn": null,
+      "gta": {
+        "loads": 0,
+        "boots": 0,
+        "menu": 0,
+        "ingame": 0,
+        "fps": 0,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {
+        "stars": 1,
+        "forks": 0,
+        "openIssues": 12,
+        "createdAt": "2026-11-22T20:45:44Z",
+        "pushedAt": "2026-11-23T03:31:11Z",
+        "commits7d": 4,
+        "archived": false,
+        "missing": false
+      },
+      "assessedAt": "2026-11-23",
+      "assessedBy": "claude",
+      "claims": []
     }
   ],
   "tools": [
@@ -1727,10 +1776,6 @@
     }
   ],
   "ignored": [
-    {
-      "repo": "JPTuba9/xlaunch-vi",
-      "reason": "Default branch holds only the README and images; its code sits on side branches, and it says no Xbox software runs yet"
-    },
     {
       "repo": "SerfOscillator/gta-6-early-access",
       "reason": "SEO text, no code"
@@ -3496,6 +3541,11 @@
       "date": "2026-11-23",
       "kind": "new",
       "text": "Scout spotted aasaasaasss/XS-2-D3D (possible effort, substance 68)."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "new",
+      "text": "XlaunchVI joins the watchlist after a code review: a tested loader, D3D12 backend and shader translator, with no Xbox title run yet."
     }
   ],
   "history": [
