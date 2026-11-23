@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T19:14:29.039Z",
+  "updated": "2026-11-23T21:52:54.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -16,6 +16,32 @@
     "source": "https://www.xda-developers.com/gta-6-xbox-executable-leaked-opening-door-for-pc-recompilation-projects-begin-testing/"
   },
   "news": [
+    {
+      "id": "2026-11-23-marvis-menus-stream",
+      "date": "2026-11-23",
+      "category": "Port",
+      "title": "Exclusive: Marvis livestreams GTA VI reaching its menus at about 15 fps",
+      "dek": "He hasn't released any code, so nobody can reproduce it yet, but viewers who studied the stream think it is most likely real.",
+      "body": [
+        "A developer who goes by Marvis livestreamed GTA VI running on a PC on Monday, getting as far as the game's menus at roughly 15 frames per second. No public project has shown that much yet: Leonida, XCL and TuxBox all run the game's own code, but their screens are still black or blank.",
+        "Marvis hasn't published his code or a build, and hasn't explained how his version works. Without either, nobody outside the stream can reproduce the result, and we haven't been able to verify it ourselves.",
+        "Viewers who went through the stream closely mostly concluded it is genuine. A staged fake would take a very elaborate setup, and few think that is what happened. The timing also fits: an outside contributor's unmerged change to XCL reports reaching the first menus on the same day.",
+        "We have added Marvis to the tracker at our Main menu stage, 55%, marked as unverified. We'll update the entry when code, a build or an independent reproduction appears, and take it down if the stream turns out to be staged."
+      ],
+      "sources": [
+        {
+          "outlet": "GitHub",
+          "title": "XCL pull request 195: a retail game shows its first menus (unmerged)",
+          "url": "https://github.com/ivall/xcl/pull/195"
+        }
+      ],
+      "image": {
+        "url": "https://portwatch-vi.xyz/assets/img/news/2026-11-23-marvis-menus-stream.png",
+        "credit": "Marvis's Discord profile, cropped by PortWatch",
+        "link": "https://portwatch-vi.xyz/assets/img/news/2026-11-23-marvis-menus-stream.png"
+      },
+      "by": "report"
+    },
     {
       "id": "2026-11-23-leonida-exe-runs",
       "date": "2026-11-23",
@@ -388,6 +414,40 @@
     }
   ],
   "efforts": [
+    {
+      "id": "marvis",
+      "name": "Marvis",
+      "repo": null,
+      "avatar": "assets/img/efforts/marvis.png",
+      "link": "news/2026-11-23-marvis-menus-stream.html",
+      "byline": "No public code yet · shown on a livestream",
+      "tier": "tracked",
+      "approach": "Not disclosed",
+      "target": "GTA VI",
+      "summary": "Livestreamed GTA VI reaching its menus at about 15 fps. No code or build is public, so nobody can reproduce it; viewers who studied the stream think it is most likely real. Unverified.",
+      "highlights": [
+        "A livestream showed GTA VI's menus running at about 15 fps",
+        "Viewers who went through the stream found it most likely genuine"
+      ],
+      "blockers": [
+        "No code or build is public, so nobody can reproduce the result",
+        "How it works hasn't been disclosed"
+      ],
+      "provenOn": null,
+      "gta": {
+        "loads": 1,
+        "boots": 1,
+        "menu": 1,
+        "ingame": 0,
+        "fps": 0,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {},
+      "assessedAt": "2026-11-23",
+      "assessedBy": "manual",
+      "claims": []
+    },
     {
       "id": "xbox-emulator",
       "name": "xbox-emulator",
@@ -4183,6 +4243,11 @@
       "date": "2026-11-23",
       "kind": "new",
       "text": "Scout spotted Jake-Jensen/GTAVI_Xbox_ReverseEngineering (possible effort, substance 50)."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "new",
+      "text": "Marvis joins at #1 with 55% (“Main menu”): a livestream showed GTA VI's menus at about 15 fps. No code is public yet, so it is unverified."
     }
   ],
   "history": [
