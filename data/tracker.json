@@ -1,21 +1,57 @@
 {
-  "updated": "2026-11-23T13:48:48.000Z",
+  "updated": "2026-11-23T15:00:41.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
     "heroCredit": "Artwork © Rockstar Games. Used for fan commentary; not affiliated."
   },
   "exe": {
-    "status": "expected",
+    "status": "released",
     "expected": "2026-11-23",
     "expectedAt": "2026-11-23T17:00:00Z",
     "timeAnnounced": true,
-    "releasedAt": null,
+    "releasedAt": "2026-11-23T14:36:00Z",
     "by": "Cyberleek",
-    "note": "The leaked Xbox Series build is missing its main executable. The leaker's own countdown and paid poll end on Monday, Nov 23 at 18:00 CET (17:00 UTC), when it says the file drops; RockstarINTEL reports the same time. Nothing about it is confirmed, and the early-release token goal is reported as lowered from $15M to $6M. Until the file exists, no project can boot GTA VI.",
-    "source": "https://rockstarintel.com/could-this-major-gta-vi-leak-make-it-playable-on-pc/"
+    "note": "Cyberleek posted on Monday, Nov 23 at 15:36 CET (14:36 UTC) that the missing executable is out, about 2.5 hours before its own 18:00 CET deadline. Set by the owner from the leaker's post; no outlet had confirmed the file was genuine when the countdown was switched. No project has booted GTA VI yet.",
+    "source": "https://4lwayz.github.io/portwatch-vi/news/2026-11-23-exe-released.html"
   },
   "news": [
+    {
+      "id": "2026-11-23-exe-released",
+      "date": "2026-11-23",
+      "category": "Leak",
+      "title": "Cyberleek says the missing GTA VI executable is out, hours before its own deadline",
+      "dek": "The leaker posted the release at 15:36 CET. Nobody has confirmed the file is genuine yet, and no project has booted the game.",
+      "body": [
+        "Cyberleek posted on Monday, Nov 23 at 15:36 CET (14:36 UTC) that the executable missing from its leaked Xbox Series build of GTA VI is now out. That is about two and a half hours before the 18:00 CET deadline the leaker had set itself. The post calls the release free and says it hands the work over to the open-source recompilation and emulation projects.",
+        "We haven't downloaded or checked the file, and we won't link to it. When we published, no outlet had confirmed it is genuine. The post also asks for crypto donations, and Cyberleek has tied earlier releases to a token, so treat the claims around it with care.",
+        "Expect fakes. Leaked files are an easy way to spread malware, and fake GTA VI downloads were circulating before this drop. Don't run executables you got from strangers, and only use the original project repositories linked in the race on our homepage.",
+        "For the race, this is the starting gun: until now no project could even try to boot GTA VI. Nothing on the tracker changes until one shows it running, and the countdown on our homepage now counts up from the release."
+      ],
+      "sources": [
+        {
+          "outlet": "RockstarINTEL",
+          "title": "Could this major GTA VI leak make it playable on PC?",
+          "url": "https://rockstarintel.com/could-this-major-gta-vi-leak-make-it-playable-on-pc/"
+        },
+        {
+          "outlet": "PC Gamer",
+          "title": "Cyberleek drops what they claim is a near-complete GTA 6 Xbox build online",
+          "url": "https://www.pcgamer.com/games/grand-theft-auto/cyberleek-drops-what-they-claim-is-a-near-complete-gta-6-xbox-build-online/"
+        },
+        {
+          "outlet": "Cyber Security News",
+          "title": "Hackers use 355 domains to spread fake GTA 6 PC launchers delivering malware",
+          "url": "https://cybersecuritynews.com/fake-gta-6-pc-launchers/"
+        }
+      ],
+      "image": {
+        "url": "https://4lwayz.github.io/portwatch-vi/assets/img/news/2026-11-23-exe-released.png",
+        "credit": "Cyberleek's post, cropped by PortWatch to leave out file hashes and wallet addresses",
+        "link": "https://4lwayz.github.io/portwatch-vi/assets/img/news/2026-11-23-exe-released.png"
+      },
+      "by": "claude"
+    },
     {
       "id": "2026-11-22-anyps5-developer-x-suspended",
       "date": "2026-11-22",
@@ -3651,6 +3687,11 @@
       "date": "2026-11-23",
       "kind": "up",
       "text": "scarlett-layer rises to 8.5%: it reports Terraria's GDK build reaching its menus with audio."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "new",
+      "text": "Cyberleek says the executable is out, about 2.5 hours early. The countdown now counts up from the release."
     }
   ],
   "history": [
