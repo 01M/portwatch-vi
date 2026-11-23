@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T01:28:44.972Z",
+  "updated": "2026-11-23T01:45:54.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -795,7 +795,7 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "Any Xbox One or Series game",
-      "summary": "Wine-style C++ layer for Xbox One and Series titles: code runs natively, console libraries are reimplemented and RDNA2 shaders become HLSL. Retail Series titles start and present frames, but their picture isn't right yet.",
+      "summary": "Wine-style C++ layer for Xbox One and Series titles with native code and RDNA2-to-HLSL shaders. It now calls Minecraft Preview and Unicorn Overlord playable, though its Minecraft note describes only the main menu. Unverified.",
       "highlights": [
         "All 40 public GDK samples that build for Series draw their picture",
         "Its shader translator stops on instructions it doesn't know instead of faking them",
@@ -804,7 +804,7 @@
       "blockers": [
         "GTA VI not run: the executable is missing, and its shader pack hasn't been tried",
         "No mesh or geometry shaders yet; shaders it can't translate draw nothing",
-        "Retail Series titles show black or wrong frames; results not reproduced by others"
+        "Other retail Series titles stop early or lose the D3D12 device; results not reproduced by others"
       ],
       "groundwork": {
         "loader": 0.6,
@@ -812,7 +812,7 @@
         "graphics": 0.35,
         "proven": 0.15
       },
-      "provenOn": "GDK samples draw; retail Series titles start, picture wrong",
+      "provenOn": "GDK samples draw; it reports two retail Series titles playable",
       "gta": {
         "loads": 0,
         "boots": 0,
@@ -832,7 +832,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "claims": [],
       "readmeSha": "cb3527462854242eece05865058caf65505f8697c3621b7fc9156b539415294a",
@@ -1034,7 +1034,7 @@
       "tier": "watchlist",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Rust translation layer with a PE loader, nine stand-in system DLLs and an early shader recompiler. Its shader output is untested, and the code swaps instructions it doesn't know for stand-ins.",
+      "summary": "Rust layer with a PE loader, nine stand-in system DLLs and an early shader recompiler. It swapped its 100% shader figure for a stricter 3,060 of 21,522, but its stage counts still don't match other projects'.",
       "highlights": [
         "Its own sample program presents frames through the stand-in DLLs",
         "Six of GTA VI's package DLLs load on Windows 11"
@@ -1042,7 +1042,7 @@
       "blockers": [
         "Only its own test programs run; no Xbox title",
         "Its shader stage counts don't match GTA VI's known breakdown",
-        "Translator swaps unknown instructions for stand-ins, so its 100% figure doesn't show working shaders"
+        "Strict count is decoder-based, so it doesn't yet show the shaders work"
       ],
       "groundwork": {
         "loader": 0.3,
@@ -1070,7 +1070,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "readmeSha": "a29f3b839a0009ef77472a115969503934542e53896b99b50631494f590f846d",
       "claims": [],
@@ -1266,9 +1266,66 @@
       "claims": [],
       "readmeSha": "021ede69c4ea1f0ebb9c6e3d1a62f68357692296ee31d918abd426de1d728753",
       "readmeChangedAt": "2026-11-22"
+    },
+    {
+      "id": "seriesx-emulator",
+      "name": "SeriesX Emulator",
+      "repo": "anrq0/SeriesX-Emulator",
+      "branch": "main",
+      "tier": "watchlist",
+      "approach": "Emulator",
+      "target": "Any Xbox Series game",
+      "summary": "C++ emulator that interprets x86-64 code instead of running it natively, with a launcher and seven XGameRuntime functions. Only programs it builds itself run; it says no commercial game works.",
+      "highlights": [
+        "Decodes 627 of the 1,153 RDNA2 instructions and runs 43 on a test interpreter",
+        "Its status page counts every API and instruction as stub, partial or validated"
+      ],
+      "blockers": [
+        "No Xbox title has run; no GPU, kernel or shader translation yet",
+        "An interpreter is likely far too slow for a modern console game"
+      ],
+      "groundwork": {
+        "loader": 0.15,
+        "shaders": 0,
+        "graphics": 0,
+        "proven": 0
+      },
+      "provenOn": null,
+      "gta": {
+        "loads": 0,
+        "boots": 0,
+        "menu": 0,
+        "ingame": 0,
+        "fps": 0,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {
+        "stars": 2,
+        "forks": 0,
+        "openIssues": 0,
+        "createdAt": "2026-11-22T15:09:24Z",
+        "pushedAt": "2026-11-22T21:26:28Z",
+        "commits7d": 8,
+        "archived": false,
+        "missing": false
+      },
+      "assessedAt": "2026-11-23",
+      "assessedBy": "claude",
+      "claims": []
     }
   ],
   "tools": [
+    {
+      "repo": "fishingpvalues/gta6-pc-port-hub",
+      "name": "GTA VI PC port hub",
+      "kind": "Coordination hub",
+      "desc": "Shared notes for port projects: package inventory, shader census format, common blockers.",
+      "stats": {
+        "stars": 0,
+        "pushedAt": "2026-11-22T19:08:36Z"
+      }
+    },
     {
       "repo": "holdmysocks/SixNG",
       "name": "SixNG",
@@ -1421,104 +1478,7 @@
       }
     }
   ],
-  "candidates": [
-    {
-      "repo": "anrq0/SeriesX-Emulator",
-      "name": "SeriesX-Emulator",
-      "description": "Open-source experimental Xbox Series X|S emulation project",
-      "language": "C++",
-      "stars": 2,
-      "createdAt": "2026-11-22T15:09:24Z",
-      "pushedAt": "2026-11-22T21:26:28Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T21:56:04.333Z",
-      "substance": 91,
-      "signals": [
-        "C++",
-        "14 technical terms",
-        "status table",
-        "tests",
-        "8 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "NEXARYSE/nexaverse-gta-toolkit",
-      "name": "nexaverse-gta-toolkit",
-      "description": "Standalone Windows research toolkit for executable loading, graphics diagnostics and local asset inspection. Game executable not included.",
-      "language": "Batchfile",
-      "stars": 2,
-      "createdAt": "2026-11-22T20:51:45Z",
-      "pushedAt": "2026-11-22T21:22:52Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T21:56:04.333Z",
-      "substance": 72,
-      "signals": [
-        "Batchfile",
-        "15 technical terms",
-        "4 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "fishingpvalues/gta6-pc-port-hub",
-      "name": "gta6-pc-port-hub",
-      "description": "Coordination hub for running GTA VI (Xbox Series 1.0.2.1, RAGE 9) natively on Windows: package inventory, shader census convention, shared blockers, conformance corpus, licence matrix.",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-22T19:08:20Z",
-      "pushedAt": "2026-11-22T19:08:36Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-22T21:56:04.333Z",
-      "substance": 70,
-      "signals": [
-        "Python",
-        "19 technical terms",
-        "status table",
-        "tests",
-        "1 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "JPTuba9/xlaunch-vi",
-      "name": "xlaunch-vi",
-      "description": "Experimental Xbox Series X|S compatibility layer for Windows x64, featuring native PE loading, KernelX/XGameRuntime, RDNA2 translation, D3D12, Vulkan and XlaunchVI Home.",
-      "language": null,
-      "stars": 1,
-      "createdAt": "2026-11-22T20:45:44Z",
-      "pushedAt": "2026-11-23T01:13:16Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T01:28:44.972Z",
-      "substance": 64,
-      "signals": [
-        "22 technical terms",
-        "status table",
-        "4 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    }
-  ],
+  "candidates": [],
   "flagged": [
     {
       "id": "switch-emulator-network",
@@ -1575,7 +1535,7 @@
       "id": "copies",
       "pattern": "Re-uploads of tracked projects under other accounts",
       "label": "",
-      "count": 9,
+      "count": 10,
       "reason": "Copies can be quietly modified to bundle malware. Only use the original repositories linked in the race above.",
       "members": [
         "ZuanCrisp/GETEA-6",
@@ -1586,11 +1546,16 @@
         "SomeTweaks/ViceWin",
         "LeonardWernke/fusion-emu",
         "Jolymmiles/macos-ci-probe2",
-        "zsy-miao/RageForge"
+        "zsy-miao/RageForge",
+        "NEXARYSE/nexaverse-gta-toolkit"
       ]
     }
   ],
   "ignored": [
+    {
+      "repo": "JPTuba9/xlaunch-vi",
+      "reason": "Default branch holds only the README and images; its code sits on side branches, and it says no Xbox software runs yet"
+    },
     {
       "repo": "SerfOscillator/gta-6-early-access",
       "reason": "SEO text, no code"
@@ -3208,6 +3173,16 @@
       "date": "2026-11-23",
       "kind": "new",
       "text": "Scout spotted JPTuba9/xlaunch-vi (possible effort, substance 64)."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "new",
+      "text": "SeriesX Emulator joins the watchlist; a shared coordination hub for port projects added to the toolkit."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "flag",
+      "text": "NEXARYSE/nexaverse-gta-toolkit flagged: it repackages Leonida, XCL and Xbox2Windows into one prebuilt EXE."
     }
   ],
   "history": [
@@ -3278,7 +3253,7 @@
     "lastRun": "2026-11-23T01:28:44.972Z",
     "lastSummary": "20 refreshed, 8 READMEs changed, 1 new candidates, 4 flagged.",
     "lastDmcaCheck": "2026-11-23T01:28:44.972Z",
-    "lastEditorRun": "2026-11-22T21:09:16.000Z"
+    "lastEditorRun": "2026-11-23T01:45:54.000Z"
   },
   "headlines": [
     {
