@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T13:34:26.236Z",
+  "updated": "2026-11-23T13:48:48.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -281,24 +281,24 @@
       "tier": "tracked",
       "approach": "Compatibility runtime",
       "target": "Any Xbox Series game",
-      "summary": "Rust runtime that runs dumped Xbox Series builds as normal Windows processes, continuing the TomBox project. It has brought retail Fortnite to its lobby.",
+      "summary": "Rust runtime that runs dumped Xbox Series builds as normal Windows processes, continuing the TomBox project. It reports Trackmania races driving at about 60 fps and Terraria reaching its world, plus Fortnite's lobby. Self-reported.",
       "highlights": [
-        "Boots Fortnite (Ch. 2 S4) through login and hotfix to the Battle Royale lobby",
-        "Covers all 671 system functions its test title imports; 105,506 shaders translated",
+        "Reports Trackmania races driving at ~60 fps with keyboard and controller",
+        "Reports Terraria reaching its world at 60 fps; Fortnite boots to the Battle Royale lobby",
         "Already examined GTA VI's 26,503 shaders: a 4,000-shader sample disassembles cleanly"
       ],
       "blockers": [
         "A third of GTA VI vertex shaders translate; its mesh shaders need the executable's binding data",
-        "Fortnite's 3D scene is still wrong, with no audio or gameplay",
+        "3D scenes still wrong: black video and streamed textures, dark lighting passes",
         "GTA VI not run: the executable is missing"
       ],
       "groundwork": {
         "loader": 0.85,
         "shaders": 0.35,
         "graphics": 0.7,
-        "proven": 0.7
+        "proven": 0.8
       },
-      "provenOn": "Fortnite: lobby, 2D UI correct",
+      "provenOn": "Trackmania: races drive; Terraria: in-world; Fortnite: lobby (self-reported)",
       "gta": {
         "loads": 0,
         "boots": 0,
@@ -321,7 +321,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "readmeSha": "bd169712dd4dc6d36ca44a2e90a599351c7f52e4dc94c164993f2d4792a0d650",
       "claims": [],
@@ -645,22 +645,23 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Loader plus injected hook DLL that redirects console-only calls to Windows shims, with its own d3d12_xs wrapper and shader lifter.",
+      "summary": "Loader plus injected hook DLL that redirects console-only calls to Windows shims, with its own d3d12_xs wrapper and shader lifter. It reports Terraria's GDK build rendering its menus with audio; no gameplay yet.",
       "highlights": [
+        "Reports Terraria (unpacked GDK build) booting to clean menus with audio",
         "loader.exe starts a title suspended, rewrites its imports and injects a hook DLL",
-        "Microsoft's desktop GDK SimpleTriangle sample boots, renders and exits through it",
-        "78 self-written synthetic checks passing"
+        "Microsoft's desktop GDK SimpleTriangle sample boots, renders and exits through it"
       ],
       "blockers": [
-        "No commercial title has run end-to-end through the layer"
+        "No title played yet: Terraria's input and gameplay are next",
+        "Shader lifter tested on its own 255-program sweep, not GTA VI's shaders"
       ],
       "groundwork": {
         "loader": 0.6,
         "shaders": 0.2,
         "graphics": 0.35,
-        "proven": 0
+        "proven": 0.25
       },
-      "provenOn": null,
+      "provenOn": "Terraria (GDK build): menus and audio (self-reported)",
       "gta": {
         "loads": 0,
         "boots": 0,
@@ -680,7 +681,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "readmeSha": "bd463e679089c3e28f205b882874e64b8c1ebf23c3bb4e0e2e82409d494e4ac7",
       "claims": [],
@@ -946,7 +947,8 @@
         "28 of 28 shared D3D12 interface IDs are byte-identical"
       ],
       "blockers": [
-        "Console extension surface still to build"
+        "Nothing runs a title yet; memory and present adapters are interfaces only",
+        "Shader recompilation still in progress after extraction"
       ],
       "groundwork": {
         "loader": 0.25,
@@ -974,8 +976,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-23",
+      "assessedBy": "claude",
       "readmeSha": "f9ada1bc3e3b4645bd612f50a90e937e2114b41e7d9d888e1703324e8fa9364b",
       "claims": [],
       "readmeChangedAt": "2026-11-23"
@@ -1180,14 +1182,15 @@
       "tier": "watchlist",
       "approach": "Static recompilation (DX12)",
       "target": "GTA VI",
-      "summary": "Portuguese-language GTA VI port that targets DirectX 12 directly, translating RDNA2 shaders to HLSL instead of going through Vulkan. Built from your own copy; it does not boot yet.",
+      "summary": "Portuguese-language GTA VI port targeting DirectX 12 with an RDNA2-to-HLSL translator. Most of its files sit at the same paths as Leonida's, 86 of them identical, and its README doesn't credit Leonida. It does not boot.",
       "highlights": [
         "Extracts and disassembles all 26,503 GTA VI shaders",
         "RDNA2 to HLSL translator claims all 1,630 instruction forms"
       ],
       "blockers": [
         "Coverage is counted in instruction forms, not translated game shaders",
-        "Nothing shown running yet; days old"
+        "README calls FSR3 'active and tested' though nothing runs yet",
+        "Largely shares Leonida's file layout; its own share of the work is unclear"
       ],
       "groundwork": {
         "loader": 0.15,
@@ -1215,7 +1218,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "claims": [],
       "readmeSha": "c6c6f49486fe3a1b559d2818b153caf47141027b8409e48cbf4f7c463058fffb",
@@ -1232,7 +1235,8 @@
       "summary": "Chinese-language layer that places stand-in xgameruntime, xmem and d3d12_xs DLLs next to an executable, plus sourced research notes on the archive, shader and texture formats.",
       "highlights": [
         "15-step test ladder from import binding to DXR ray tracing and a real asset render",
-        "17 research notes on RPF9 archives, the shader corpus and texture pools"
+        "17 research notes on RPF9 archives, the shader corpus and texture pools",
+        "Reports all 16 of GTA VI's side DLLs loading against its stand-ins (unchecked here)"
       ],
       "blockers": [
         "Tests use its own programs; no Xbox title has run",
@@ -1264,7 +1268,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "claims": [],
       "readmeSha": "434dbdd04addfad1e3d8cd00e5cc54bda7bbc8ee564de508aa9705ae68e15aa3",
@@ -1417,9 +1421,166 @@
       "assessedBy": "claude",
       "claims": [],
       "readmeSha": "c186bc4db9933b3df608262d97007ddf1423ada0ca9cd17d768832b186dc657d"
+    },
+    {
+      "id": "openscarlett-ce",
+      "name": "OpenScarlett (Community Edition)",
+      "repo": "OpenCommunityEdition/OpenScarlett",
+      "branch": "main",
+      "tier": "tracked",
+      "approach": "Compatibility layer",
+      "target": "Any Xbox Series game",
+      "summary": "AGPL C++ layer, separate from the other OpenScarlett, that swaps console DLLs for PC Direct3D 12 ones and translates console GPU code. It reports Minecraft Preview playable at about 60 fps. Self-reported; GTA VI untried.",
+      "highlights": [
+        "Reports Minecraft Preview playable at ~60 fps on Windows and Linux, with video",
+        "Reports The Matrix Awakens running menus and the opening chase at ~20 fps",
+        "Its shader translator stops on instructions it doesn't know instead of faking them"
+      ],
+      "blockers": [
+        "GTA VI's shaders haven't been tried; no audio yet",
+        "Ray-traced passes unverified: some Matrix Awakens scenes render black",
+        "GTA VI not run: the executable is missing"
+      ],
+      "groundwork": {
+        "loader": 0.7,
+        "shaders": 0.15,
+        "graphics": 0.6,
+        "proven": 0.6
+      },
+      "provenOn": "Minecraft Preview: playable; The Matrix Awakens: opening chase (self-reported)",
+      "gta": {
+        "loads": 0,
+        "boots": 0,
+        "menu": 0,
+        "ingame": 0,
+        "fps": 0,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {
+        "stars": 11,
+        "forks": 0,
+        "openIssues": 1,
+        "createdAt": "2026-11-21T04:47:46Z",
+        "pushedAt": "2026-11-23T09:54:45Z",
+        "commits7d": 82,
+        "archived": false,
+        "missing": false
+      },
+      "assessedAt": "2026-11-23",
+      "assessedBy": "claude",
+      "claims": []
+    },
+    {
+      "id": "five-star-recomp",
+      "name": "Five Star Recomp",
+      "repo": "ThatRecompDev/five-star-recomp",
+      "branch": "main",
+      "tier": "watchlist",
+      "approach": "Compatibility layer",
+      "target": "GTA VI only",
+      "summary": "C# toolkit for GTA VI: an RDNA2-to-HLSL translator checked against a reference model on WARP, a loader for the game's support DLLs, and asset readers. Its 25,884-program compile count doesn't match the 26,503 others report.",
+      "highlights": [
+        "Translator marks unsupported instructions as failures instead of faking them",
+        "Reports the game's support libraries loading with every import resolved",
+        "Draws game models and textures with a translated pass in its own D3D12 code"
+      ],
+      "blockers": [
+        "Compiling isn't proof: shader output is checked only on handwritten test programs",
+        "No Xbox title has run; the graphics layer waits on the executable",
+        "BCPack textures can't be decoded yet"
+      ],
+      "groundwork": {
+        "loader": 0.35,
+        "shaders": 0.2,
+        "graphics": 0.2,
+        "proven": 0
+      },
+      "provenOn": null,
+      "gta": {
+        "loads": 0,
+        "boots": 0,
+        "menu": 0,
+        "ingame": 0,
+        "fps": 0,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {
+        "stars": 0,
+        "forks": 0,
+        "openIssues": 0,
+        "createdAt": "2026-11-23T09:57:42Z",
+        "pushedAt": "2026-11-23T11:09:09Z",
+        "commits7d": 48,
+        "archived": false,
+        "missing": false
+      },
+      "assessedAt": "2026-11-23",
+      "assessedBy": "claude",
+      "claims": []
+    },
+    {
+      "id": "g6recomp",
+      "name": "G6Recomp",
+      "repo": "Kajcsi/G6Recomp",
+      "branch": "main",
+      "tier": "watchlist",
+      "approach": "Compatibility layer",
+      "target": "GTA VI only",
+      "summary": "Carefully tested C++ loader and console-runtime rewrite for GTA VI, with its own code throughout. The game's side DLLs initialise under it; shaders are only decoded so far and there is no graphics layer yet.",
+      "highlights": [
+        "Reports GTA VI's side DLLs initialising under its loader",
+        "Every loader change is tested on original fixture DLLs, with Windows behaviour measured",
+        "Unimplemented calls fail with documented errors instead of pretending to succeed"
+      ],
+      "blockers": [
+        "No shader translation yet: the tool decodes RDNA2 code only",
+        "No graphics layer yet; first frame is a later milestone",
+        "GTA VI not run: the executable is missing"
+      ],
+      "groundwork": {
+        "loader": 0.3,
+        "shaders": 0.05,
+        "graphics": 0,
+        "proven": 0
+      },
+      "provenOn": null,
+      "gta": {
+        "loads": 0,
+        "boots": 0,
+        "menu": 0,
+        "ingame": 0,
+        "fps": 0,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {
+        "stars": 0,
+        "forks": 0,
+        "openIssues": 0,
+        "createdAt": "2026-11-20T15:07:18Z",
+        "pushedAt": "2026-11-23T13:36:38Z",
+        "commits7d": 10,
+        "archived": false,
+        "missing": false
+      },
+      "assessedAt": "2026-11-23",
+      "assessedBy": "claude",
+      "claims": []
     }
   ],
   "tools": [
+    {
+      "repo": "lynxnathan/rage-tools-vi",
+      "name": "Rage Tools VI",
+      "kind": "Archive toolkit",
+      "desc": "Python RPF9 toolkit: rebuilds archive entries from verified payloads, decodes audio and the script schema.",
+      "stats": {
+        "stars": 0,
+        "pushedAt": "2026-11-23T13:33:06Z"
+      }
+    },
     {
       "repo": "fishingpvalues/gta6-pc-port-hub",
       "name": "GTA VI PC port hub",
@@ -1582,152 +1743,7 @@
       }
     }
   ],
-  "candidates": [
-    {
-      "repo": "FaelSemW/RafaVI",
-      "name": "RafaVI",
-      "description": "RafaVI: GTA VI (Xbox Series) static recompilation for Windows, built on your PC from your own copy. No game files included.",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-23T04:57:35Z",
-      "pushedAt": "2026-11-23T06:57:56Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T07:50:10.353Z",
-      "substance": 84,
-      "signals": [
-        "Python",
-        "15 technical terms",
-        "status table",
-        "tests",
-        "1 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Kajcsi/G6Recomp",
-      "name": "G6Recomp",
-      "description": "Unofficial static recompilation of an Xbox Series X|S game executable to native Windows. Contains no game code, data, or assets.",
-      "language": "C++",
-      "stars": 0,
-      "createdAt": "2026-11-20T15:07:18Z",
-      "pushedAt": "2026-11-23T10:21:20Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T10:25:08.620Z",
-      "substance": 84,
-      "signals": [
-        "C++",
-        "9 technical terms",
-        "status table",
-        "tests",
-        "10 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "OpenCommunityEdition/OpenScarlett",
-      "name": "OpenScarlett",
-      "description": "",
-      "language": "C++",
-      "stars": 6,
-      "createdAt": "2026-11-21T04:47:46Z",
-      "pushedAt": "2026-11-23T09:54:45Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T10:25:08.620Z",
-      "substance": 77,
-      "signals": [
-        "C++",
-        "16 technical terms",
-        "status table",
-        "82 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "ThatRecompDev/five-star-recomp",
-      "name": "five-star-recomp",
-      "description": "Pre-work for a PC port of the Xbox Series GTA VI release: formats, shader translation and an offline console runtime",
-      "language": "C#",
-      "stars": 0,
-      "createdAt": "2026-11-23T09:57:42Z",
-      "pushedAt": "2026-11-23T10:15:18Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T10:25:08.620Z",
-      "substance": 71,
-      "signals": [
-        "C#",
-        "10 technical terms",
-        "status table",
-        "48 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "aasaasaasss/XS-2-D3D",
-      "name": "XS-2-D3D",
-      "description": "Xbox Series Compat Layer",
-      "language": "C++",
-      "stars": 0,
-      "createdAt": "2026-11-22T21:47:46Z",
-      "pushedAt": "2026-11-23T09:04:04Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T10:25:08.620Z",
-      "substance": 68,
-      "signals": [
-        "C++",
-        "20 technical terms",
-        "6 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "lynxnathan/rage-tools-vi",
-      "name": "rage-tools-vi",
-      "description": "RPF9 extraction and analysis toolkit",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-21T00:36:06Z",
-      "pushedAt": "2026-11-23T13:33:06Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T13:34:26.236Z",
-      "substance": 60,
-      "signals": [
-        "Python",
-        "7 technical terms",
-        "1 commits/7d"
-      ],
-      "kind": "tool",
-      "status": "new"
-    }
-  ],
+  "candidates": [],
   "flagged": [
     {
       "id": "switch-emulator-network",
@@ -1784,9 +1800,10 @@
       "id": "copies",
       "pattern": "Re-uploads of tracked projects under other accounts",
       "label": "",
-      "count": 11,
+      "count": 12,
       "reason": "Copies can be quietly modified to bundle malware. Only use the original repositories linked in the race above.",
       "members": [
+        "FaelSemW/RafaVI",
         "ZuanCrisp/GETEA-6",
         "amrly02/Leonida",
         "elmoudir12/Leonida",
@@ -1802,6 +1819,10 @@
     }
   ],
   "ignored": [
+    {
+      "repo": "aasaasaasss/XS-2-D3D",
+      "reason": "Early loader and shader front end, partly adapted from Leonida with credit; no results reported yet"
+    },
     {
       "repo": "SerfOscillator/gta-6-early-access",
       "reason": "SEO text, no code"
@@ -3605,6 +3626,31 @@
       "date": "2026-11-23",
       "kind": "new",
       "text": "Scout spotted lynxnathan/rage-tools-vi (tool, substance 60)."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "new",
+      "text": "OpenScarlett (Community Edition) joins the race at 12.4%: a separate layer from the other OpenScarlett that reports Minecraft Preview playable."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "new",
+      "text": "Five Star Recomp (4.8%) and G6Recomp (1.9%) join the watchlist; Rage Tools VI added to the toolkit."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "flag",
+      "text": "FaelSemW/RafaVI flagged as a copy: 645 of its 649 files sit at the same paths as Leonida's, uploaded in one commit."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "up",
+      "text": "xbox-emulator rises to 16.3%: it now reports Trackmania races driving at about 60 fps and Terraria reaching its world."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "up",
+      "text": "scarlett-layer rises to 8.5%: it reports Terraria's GDK build reaching its menus with audio."
     }
   ],
   "history": [
@@ -3675,7 +3721,7 @@
     "lastRun": "2026-11-23T13:34:26.236Z",
     "lastSummary": "23 refreshed, 9 READMEs changed, 1 new candidates, 0 flagged, 5 errors.",
     "lastDmcaCheck": "2026-11-23T13:34:26.236Z",
-    "lastEditorRun": "2026-11-23T07:43:30.000Z"
+    "lastEditorRun": "2026-11-23T13:48:48.000Z"
   },
   "headlines": [
     {
