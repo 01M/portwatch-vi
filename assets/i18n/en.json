@@ -97,6 +97,8 @@
   "effort.runs": "Runs: {x}",
   "effort.quiet": "Quiet for {n}d",
   "effort.gone": "Repo gone (404)",
+  "effort.nuked": "Nuked",
+  "effort.nukedTitle": "Taken offline on {date}. Kept here for the record; no longer ranked.",
   "effort.dmcaTitle": "Named in a DMCA notice in GitHub's public log",
   "effort.dmca": "DMCA notice {date}",
   "effort.claim": "Unverified claim in README:",

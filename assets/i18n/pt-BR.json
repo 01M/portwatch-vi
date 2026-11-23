@@ -128,6 +128,8 @@
   "effort.runs": "Roda: {x}",
   "effort.quiet": "Parado há {n} d",
   "effort.gone": "Repositório removido (404)",
+  "effort.nuked": "Derrubado",
+  "effort.nukedTitle": "Retirado do ar em {date}. Mantido aqui como registro; fora da classificação.",
   "effort.dmcaTitle": "Citado em uma notificação DMCA no registro público do GitHub",
   "effort.dmca": "Notificação DMCA {date}",
   "effort.claim": "Alegação não verificada no README:",

@@ -425,6 +425,19 @@ html:not([lang="en"]) .nav-links a { padding-inline: 9px; }
 .e-rank { font-family: var(--display); font-weight: 900; font-size: 34px; line-height: 1; color: var(--rank); text-align: center; padding-top: 4px; letter-spacing: -.04em; }
 .e-rank-overall { display: block; margin-top: 6px; font-family: var(--body, inherit); font-size: 11px; font-weight: 600; letter-spacing: 0; color: var(--muted, #8a8fa3); -webkit-text-fill-color: var(--muted, #8a8fa3); white-space: normal; line-height: 1.25; }
 .effort.is-top .e-rank { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* Nuked: an effort taken offline. Kept on the board for the record, greyed out, unranked. */
+.effort.is-nuked { border-color: rgba(255, 196, 0, .55); background-image: repeating-linear-gradient(-45deg, rgba(255, 196, 0, .05) 0 14px, transparent 14px 28px); }
+.effort.is-nuked .e-main > :not(.nuke-banner) { filter: grayscale(1); opacity: .62; }
+.nuke-rank svg { width: 34px; height: 34px; fill: #e0ad00; }
+.nuke-banner { position: relative; overflow: hidden; display: flex; align-items: center; gap: 10px; margin: 0 0 14px; padding: 9px 14px; border: 2px solid #ffc400; border-radius: 12px; background: #17140a; color: #ffd84a; box-shadow: 0 0 0 4px rgba(255, 196, 0, .12), 0 0 22px rgba(255, 150, 0, .25); animation: nuke-glow 2.6s ease-in-out infinite; }
+.nuke-banner::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, rgba(255, 196, 0, .11) 0 10px, transparent 10px 20px); pointer-events: none; }
+.nuke-banner > * { position: relative; }
+.nuke-banner svg { width: 24px; height: 24px; flex: none; fill: #ffc400; animation: nuke-spin 7s linear infinite; }
+.nuke-banner b { font-family: var(--display); font-weight: 900; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; }
+.nuke-banner span { min-width: 0; font-size: 13.5px; line-height: 1.35; color: #f1e8c4; }
+@keyframes nuke-glow { 50% { box-shadow: 0 0 0 4px rgba(255, 196, 0, .22), 0 0 34px rgba(255, 120, 0, .45); } }
+@keyframes nuke-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .nuke-banner, .nuke-banner svg { animation: none; } }
 .e-top { display: flex; gap: 14px; align-items: center; }
 .e-avatar { width: 44px; height: 44px; border-radius: 12px; background: var(--soft-2); flex: none; object-fit: cover; }
 .e-title { min-width: 0; flex: 1; }

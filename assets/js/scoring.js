@@ -93,6 +93,7 @@ export const byStars = (a, b) => (b.stats?.stars || 0) - (a.stats?.stars || 0);
 // The headline number: how close the leading effort is, plus the top-3 average.
 export function overall(efforts) {
   const scored = efforts
+    .filter((e) => !e.nuked) // taken offline: still shown on the board, no longer ranked
     .map((e) => ({ effort: e, ...scoreEffort(e) }))
     .sort((a, b) => b.score - a.score || byStars(a.effort, b.effort));
   const top = scored.slice(0, 3);
