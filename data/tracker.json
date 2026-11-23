@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T04:22:21.982Z",
+  "updated": "2026-11-23T07:43:30.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -372,7 +372,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "readmeSha": "2a916379129207c8b257e222fdf496be14d62453b0e2024562edbb1eb637fb8a",
       "claims": [],
@@ -474,7 +474,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "readmeSha": "ac8c9482fcb9025df2f1061d51de3260be834217575d8eef0e4aa694e3484984",
       "claims": [],
@@ -580,7 +580,7 @@
         "missing": false,
         "mentions7d": 2
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "readmeSha": "91add28146a6cc8d7eb8d6ff77b5ed142f7f03bbc57ed453d2d42fffe7959ea5",
       "claims": [],
@@ -597,11 +597,11 @@
       "summary": "MIT-licensed C++20 translation layer targeting D3D12 and Vulkan, with a 60-second hardware test bundle for contributors.",
       "highlights": [
         "Six unmodified Microsoft Scarlett samples run live at 4K",
-        "764 of 779 RDNA2 opcodes checked on a real GPU",
-        "Runs a homebrew Freedoom port at 60 FPS; 67 automated tests pass"
+        "Reports 775 of 779 RDNA2 opcodes checked on a real GPU",
+        "Runs a homebrew Freedoom port at 60 FPS; 79 automated tests pass"
       ],
       "blockers": [
-        "No retail game run end to end",
+        "No retail game run end to end; Minecraft and Matrix Awakens bring-up is still on branches",
         "Its shader corpus is its own, not GTA VI's",
         "Status percentages measure its own checklist, not GTA VI"
       ],
@@ -631,7 +631,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "readmeSha": "d267be4545175635822d401c830e4b6cfbb9909a420a64db8eb1d13a046b27ad",
       "claims": [],
@@ -731,7 +731,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "readmeSha": "26e216b31f79b82ea812104e7df291573854c146296301134d5d3fca191b5c2b",
       "claims": [],
@@ -781,7 +781,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "readmeSha": "9b5f1dcef7eac870a020e7629bb441f5f055521842346aec8d0e163da9026470",
       "claims": [],
@@ -992,7 +992,8 @@
         "Relinker, library build and run reports work on a test title"
       ],
       "blockers": [
-        "Most system functions are stubs; d3d12_x is entirely stubs"
+        "Most system functions are stubs; d3d12_x implements 4 of its 7 known exports",
+        "Its Vulkan graphics path and shader store have no title rendering yet"
       ],
       "groundwork": {
         "loader": 0.35,
@@ -1020,8 +1021,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-21",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-23",
+      "assessedBy": "claude",
       "readmeSha": "c0ab4b4eaea75079aec728ce5a3c82f89ba99528c9004f00dd67fd44b9ecadf7",
       "claims": [],
       "readmeChangedAt": "2026-11-23"
@@ -1314,6 +1315,53 @@
       "assessedBy": "claude",
       "claims": [],
       "readmeSha": "d0be605c0a80c1ab23f3cfee5b8ec9b8f97fd2b52e47d1b026a9ceb5839fc7c2"
+    },
+    {
+      "id": "gta6-compat-layer",
+      "name": "GTA6-COMPAT-LAYER (ScarlettCompat)",
+      "repo": "SSTGxf/GTA6-COMPAT-LAYER",
+      "branch": "main",
+      "tier": "watchlist",
+      "approach": "Compatibility layer",
+      "target": "GTA VI (Xbox Series)",
+      "summary": "Day-old C++ layer with a PE loader, TLS setup and a small registry of Xbox functions, some of them stubs; its first runtime call just returns success. Its rendered frame comes from its own test, not a console title.",
+      "highlights": [
+        "PE loader with relocations, TLS and imports routed to its own shims",
+        "Labels each Xbox function it covers as implemented, stub or missing"
+      ],
+      "blockers": [
+        "No Xbox title has run; no shader translation or texture de-tiling",
+        "Audio, input and DirectStorage are stubs"
+      ],
+      "groundwork": {
+        "loader": 0.15,
+        "shaders": 0,
+        "graphics": 0,
+        "proven": 0
+      },
+      "provenOn": null,
+      "gta": {
+        "loads": 0,
+        "boots": 0,
+        "menu": 0,
+        "ingame": 0,
+        "fps": 0,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {
+        "stars": 1,
+        "forks": 0,
+        "openIssues": 0,
+        "createdAt": "2026-11-23T02:45:46Z",
+        "pushedAt": "2026-11-23T04:06:35Z",
+        "commits7d": 3,
+        "archived": false,
+        "missing": false
+      },
+      "assessedAt": "2026-11-23",
+      "assessedBy": "claude",
+      "claims": []
     }
   ],
   "tools": [
@@ -1479,32 +1527,7 @@
       }
     }
   ],
-  "candidates": [
-    {
-      "repo": "SSTGxf/GTA6-COMPAT-LAYER",
-      "name": "GTA6-COMPAT-LAYER",
-      "description": "a quick possible tester before recomp for giggles ",
-      "language": "C++",
-      "stars": 1,
-      "createdAt": "2026-11-23T02:45:46Z",
-      "pushedAt": "2026-11-23T04:06:35Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T04:22:21.982Z",
-      "substance": 65,
-      "signals": [
-        "C++",
-        "23 technical terms",
-        "status table",
-        "3 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    }
-  ],
+  "candidates": [],
   "flagged": [
     {
       "id": "switch-emulator-network",
@@ -3249,6 +3272,11 @@
       "date": "2026-11-23",
       "kind": "new",
       "text": "Scout spotted SSTGxf/GTA6-COMPAT-LAYER (possible effort, substance 65)."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "new",
+      "text": "GTA6-COMPAT-LAYER joins the watchlist: an early C++ loader and shim set, with no Xbox title run yet."
     }
   ],
   "history": [
@@ -3319,7 +3347,7 @@
     "lastRun": "2026-11-23T04:22:21.982Z",
     "lastSummary": "21 refreshed, 6 READMEs changed, 1 new candidates, 0 flagged.",
     "lastDmcaCheck": "2026-11-23T04:22:21.982Z",
-    "lastEditorRun": "2026-11-23T01:45:54.000Z"
+    "lastEditorRun": "2026-11-23T07:43:30.000Z"
   },
   "headlines": [
     {
