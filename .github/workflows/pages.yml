@@ -45,6 +45,7 @@ jobs:
       # page with a stylesheet or script it cached from the previous one. Giving every CSS/JS URL and
       # module import this commit as a version makes each deploy load as one consistent set.
       - name: Stamp asset versions
+        id: stamp
         run: |
           v="${GITHUB_SHA::8}"
           find _site -name '*.html' -exec sed -i -E "s#(assets/(css|js)/[A-Za-z0-9_-]+\.(css|js))([\"'])#\1?v=$v\4#g" {} +
@@ -79,6 +80,29 @@ jobs:
       - id: deployment_retry2
         if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome == 'failure'
         uses: actions/deploy-pages@v5
+
+      # Mirror at https://portwatch-vi.xyz/ (Cloudflare Pages project "portwatch-vi"), so the site stays up if
+      # GitHub Pages goes down: the same files, with the site's own address switched to the domain. Runs even
+      # when the GitHub Pages deploy failed, and never fails the workflow. Does nothing until the
+      # CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repository secrets exist. The scout passes them on
+      # with "secrets: inherit".
+      - name: Deploy the Cloudflare mirror
+        if: ${{ !cancelled() && steps.stamp.outcome == 'success' }}
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "No Cloudflare secrets set, so the mirror isn't updated."
+            exit 0
+          fi
+          rm -rf _cloudflare && cp -r _site _cloudflare
+          grep -rlZ --include='*.html' --include='*.xml' --include='*.json' 'https://4lwayz.github.io/portwatch-vi/' _cloudflare \
+            | xargs -0 -r sed -i 's#https://4lwayz\.github\.io/portwatch-vi/#https://portwatch-vi.xyz/#g'
+          echo "Old address left in the mirror: $(grep -rl 'https://4lwayz.github.io/portwatch-vi/' _cloudflare | wc -l) files"
+          npx --yes wrangler@4 pages deploy _cloudflare --project-name=portwatch-vi --branch=main --commit-dirty=true
 
       # Tells Bing, Yandex and other IndexNow engines which URLs are new or changed. Never fails the deploy.
       - name: Ping IndexNow

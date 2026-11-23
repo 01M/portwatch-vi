@@ -53,3 +53,4 @@ jobs:
   deploy:
     needs: scout
     uses: ./.github/workflows/pages.yml
+    secrets: inherit # the deploy's Cloudflare mirror step needs the Cloudflare secrets
