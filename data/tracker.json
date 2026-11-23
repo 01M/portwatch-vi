@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T10:25:08.620Z",
+  "updated": "2026-11-23T13:34:26.236Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -312,11 +312,11 @@
         "drycheetah84/TomBox"
       ],
       "stats": {
-        "stars": 1455,
-        "forks": 89,
-        "openIssues": 67,
+        "stars": 1502,
+        "forks": 90,
+        "openIssues": 75,
         "createdAt": "2026-11-21T08:08:39Z",
-        "pushedAt": "2026-11-23T10:13:15Z",
+        "pushedAt": "2026-11-23T11:58:17Z",
         "commits7d": 100,
         "archived": false,
         "missing": false
@@ -363,18 +363,18 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 359,
-        "forks": 21,
-        "openIssues": 21,
+        "stars": 387,
+        "forks": 23,
+        "openIssues": 19,
         "createdAt": "2026-11-20T20:03:21Z",
-        "pushedAt": "2026-11-23T10:20:38Z",
+        "pushedAt": "2026-11-23T12:51:31Z",
         "commits7d": 100,
         "archived": false,
         "missing": false
       },
       "assessedAt": "2026-11-23",
       "assessedBy": "claude",
-      "readmeSha": "d5ee7cf5f4f6ba0fa8a3315c4b40162f8282342f9b258947d97a7604807c89dc",
+      "readmeSha": "03a01c5ff4885f5a47a7e30449e26c26ec895f7f86b555b20a111963246279ab",
       "claims": [],
       "readmeChangedAt": "2026-11-23"
     },
@@ -414,9 +414,9 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 185,
-        "forks": 19,
-        "openIssues": 28,
+        "stars": 189,
+        "forks": 20,
+        "openIssues": 29,
         "createdAt": "2026-11-20T06:54:47Z",
         "pushedAt": "2026-11-22T10:38:07Z",
         "commits7d": 57,
@@ -519,9 +519,9 @@
         "boykopovar/AnyPS5"
       ],
       "stats": {
-        "stars": 549,
-        "forks": 85,
-        "openIssues": 19,
+        "stars": 560,
+        "forks": 87,
+        "openIssues": 21,
         "createdAt": "2026-11-20T15:33:20Z",
         "pushedAt": "2026-11-23T10:03:50Z",
         "commits7d": 100,
@@ -570,11 +570,11 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 18323,
-        "forks": 1558,
-        "openIssues": 1960,
+        "stars": 19920,
+        "forks": 1667,
+        "openIssues": 2262,
         "createdAt": "2026-11-20T20:07:13Z",
-        "pushedAt": "2026-11-23T06:20:06Z",
+        "pushedAt": "2026-11-23T11:36:50Z",
         "commits7d": 100,
         "archived": false,
         "missing": false,
@@ -582,7 +582,7 @@
       },
       "assessedAt": "2026-11-23",
       "assessedBy": "claude",
-      "readmeSha": "91add28146a6cc8d7eb8d6ff77b5ed142f7f03bbc57ed453d2d42fffe7959ea5",
+      "readmeSha": "68a91d410b92e9345a37638d0259b5d219981665e33df5fc7024165e3839a4e8",
       "claims": [],
       "readmeChangedAt": "2026-11-23"
     },
@@ -622,18 +622,18 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 25,
-        "forks": 6,
-        "openIssues": 0,
+        "stars": 29,
+        "forks": 5,
+        "openIssues": 6,
         "createdAt": "2026-11-21T14:35:25Z",
-        "pushedAt": "2026-11-23T09:09:43Z",
+        "pushedAt": "2026-11-23T12:45:04Z",
         "commits7d": 100,
         "archived": false,
         "missing": false
       },
       "assessedAt": "2026-11-23",
       "assessedBy": "claude",
-      "readmeSha": "dbd87330c45a4bd32459555145ac730fc41cfe2bdb875fd05dfc8a9f5e2efc3b",
+      "readmeSha": "3b7e807ecc34d691cf98493ab74a34f62465fff1fe2e741c0d8229de949d5305",
       "claims": [],
       "readmeChangedAt": "2026-11-23"
     },
@@ -671,9 +671,9 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 25,
-        "forks": 2,
-        "openIssues": 1,
+        "stars": 26,
+        "forks": 3,
+        "openIssues": 2,
         "createdAt": "2026-11-20T23:54:18Z",
         "pushedAt": "2026-11-23T07:34:52Z",
         "commits7d": 100,
@@ -722,18 +722,18 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 1379,
-        "forks": 135,
-        "openIssues": 72,
+        "stars": 1394,
+        "forks": 139,
+        "openIssues": 63,
         "createdAt": "2026-11-20T17:43:52Z",
-        "pushedAt": "2026-11-23T10:20:08Z",
+        "pushedAt": "2026-11-23T13:34:21Z",
         "commits7d": 100,
         "archived": false,
         "missing": false
       },
       "assessedAt": "2026-11-23",
       "assessedBy": "claude",
-      "readmeSha": "8339b7c2f087b476839825c1933199fdf05bd308379578b065c1d09ac0dc67be",
+      "readmeSha": "5823b4075795a039e7ae02650e112b67c40156d53bc890b30b82dde15a45237d",
       "claims": [],
       "readmeChangedAt": "2026-11-23"
     },
@@ -772,18 +772,18 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 33,
+        "stars": 38,
         "forks": 2,
-        "openIssues": 13,
+        "openIssues": 14,
         "createdAt": "2026-11-21T00:18:13Z",
-        "pushedAt": "2026-11-23T03:43:34Z",
+        "pushedAt": "2026-11-23T13:06:28Z",
         "commits7d": 100,
         "archived": false,
         "missing": false
       },
       "assessedAt": "2026-11-23",
       "assessedBy": "claude",
-      "readmeSha": "9b5f1dcef7eac870a020e7629bb441f5f055521842346aec8d0e163da9026470",
+      "readmeSha": "99c8deaa560a88652c791e22e51bb9397e76e36b0f4cad8783360f400a735f6c",
       "claims": [],
       "readmeChangedAt": "2026-11-23"
     },
@@ -823,7 +823,7 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 139,
+        "stars": 143,
         "forks": 4,
         "openIssues": 3,
         "createdAt": "2026-11-20T00:25:27Z",
@@ -870,12 +870,12 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 39,
+        "stars": 41,
         "forks": 4,
-        "openIssues": 3,
+        "openIssues": 0,
         "createdAt": "2026-11-19T20:32:01Z",
-        "pushedAt": "2026-11-23T00:11:43Z",
-        "commits7d": 25,
+        "pushedAt": "2026-11-23T12:55:47Z",
+        "commits7d": 35,
         "archived": false,
         "missing": false
       },
@@ -918,7 +918,7 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 19,
+        "stars": 20,
         "forks": 0,
         "openIssues": 0,
         "createdAt": "2026-11-20T22:59:15Z",
@@ -969,15 +969,16 @@
         "forks": 1,
         "openIssues": 0,
         "createdAt": "2026-11-21T13:29:19Z",
-        "pushedAt": "2026-11-21T14:46:04Z",
-        "commits7d": 14,
+        "pushedAt": "2026-11-23T12:24:22Z",
+        "commits7d": 16,
         "archived": false,
         "missing": false
       },
       "assessedAt": "2026-11-21",
       "assessedBy": "manual",
-      "readmeSha": "b3890be3efa1664b5b9028caf44ffd7a7a2dfeffc6eddde743e7bb77afc85e74",
-      "claims": []
+      "readmeSha": "f9ada1bc3e3b4645bd612f50a90e937e2114b41e7d9d888e1703324e8fa9364b",
+      "claims": [],
+      "readmeChangedAt": "2026-11-23"
     },
     {
       "id": "anybox",
@@ -1014,7 +1015,7 @@
       "stats": {
         "stars": 7,
         "forks": 2,
-        "openIssues": 10,
+        "openIssues": 11,
         "createdAt": "2026-11-20T19:20:23Z",
         "pushedAt": "2026-11-23T07:20:39Z",
         "commits7d": 84,
@@ -1160,8 +1161,8 @@
         "forks": 1,
         "openIssues": 12,
         "createdAt": "2026-11-21T21:05:28Z",
-        "pushedAt": "2026-11-22T02:44:51Z",
-        "commits7d": 91,
+        "pushedAt": "2026-11-23T13:34:05Z",
+        "commits7d": 100,
         "archived": false,
         "missing": false
       },
@@ -1205,7 +1206,7 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 27,
+        "stars": 47,
         "forks": 0,
         "openIssues": 1,
         "createdAt": "2026-11-22T07:31:37Z",
@@ -1254,19 +1255,19 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 0,
+        "stars": 1,
         "forks": 0,
         "openIssues": 0,
         "createdAt": "2026-11-22T14:40:55Z",
-        "pushedAt": "2026-11-23T10:23:43Z",
-        "commits7d": 95,
+        "pushedAt": "2026-11-23T13:27:39Z",
+        "commits7d": 100,
         "archived": false,
         "missing": false
       },
       "assessedAt": "2026-11-22",
       "assessedBy": "claude",
       "claims": [],
-      "readmeSha": "f7b41c1c32e06e381310bcebc881ceddd07e45d972f6b63e4ee24acb2046726d",
+      "readmeSha": "434dbdd04addfad1e3d8cd00e5cc54bda7bbc8ee564de508aa9705ae68e15aa3",
       "readmeChangedAt": "2026-11-23"
     },
     {
@@ -1307,15 +1308,16 @@
         "forks": 0,
         "openIssues": 0,
         "createdAt": "2026-11-22T15:09:24Z",
-        "pushedAt": "2026-11-23T01:52:01Z",
-        "commits7d": 11,
+        "pushedAt": "2026-11-23T12:47:48Z",
+        "commits7d": 12,
         "archived": false,
         "missing": false
       },
       "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "claims": [],
-      "readmeSha": "d0be605c0a80c1ab23f3cfee5b8ec9b8f97fd2b52e47d1b026a9ceb5839fc7c2"
+      "readmeSha": "4800e564eb3de0cc08416d4c7011252389a8125f4376b2e266467c26be978cf5",
+      "readmeChangedAt": "2026-11-23"
     },
     {
       "id": "gta6-compat-layer",
@@ -1355,15 +1357,15 @@
         "forks": 0,
         "openIssues": 0,
         "createdAt": "2026-11-23T02:45:46Z",
-        "pushedAt": "2026-11-23T09:57:39Z",
-        "commits7d": 9,
+        "pushedAt": "2026-11-23T11:21:25Z",
+        "commits7d": 11,
         "archived": false,
         "missing": false
       },
       "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "claims": [],
-      "readmeSha": "64590564eea6b2cf23823de0b9f2b79b5b867fa6f93cbebe3d4100b598a4a004",
+      "readmeSha": "585f75486253f7811f50cb4b048f2352e09f0b1ba7d9449e9ad1beff768b4f3a",
       "readmeChangedAt": "2026-11-23"
     },
     {
@@ -1402,18 +1404,19 @@
       },
       "verification": "self-reported",
       "stats": {
-        "stars": 1,
+        "stars": 3,
         "forks": 0,
-        "openIssues": 12,
+        "openIssues": 17,
         "createdAt": "2026-11-22T20:45:44Z",
-        "pushedAt": "2026-11-23T03:31:11Z",
+        "pushedAt": "2026-11-23T13:20:19Z",
         "commits7d": 4,
         "archived": false,
         "missing": false
       },
       "assessedAt": "2026-11-23",
       "assessedBy": "claude",
-      "claims": []
+      "claims": [],
+      "readmeSha": "c186bc4db9933b3df608262d97007ddf1423ada0ca9cd17d768832b186dc657d"
     }
   ],
   "tools": [
@@ -1433,8 +1436,8 @@
       "kind": "Asset extractor",
       "desc": "CLI and desktop app: models to glTF, textures and map data from your own install.",
       "stats": {
-        "stars": 67,
-        "pushedAt": "2026-11-23T10:24:33Z"
+        "stars": 69,
+        "pushedAt": "2026-11-23T13:32:30Z"
       }
     },
     {
@@ -1443,7 +1446,7 @@
       "kind": "Archive explorer",
       "desc": "Fast Rust RPF9 explorer with a Bink2 player and ADAT Opus audio decoder.",
       "stats": {
-        "stars": 85,
+        "stars": 86,
         "pushedAt": "2026-11-22T21:40:20Z"
       }
     },
@@ -1453,8 +1456,8 @@
       "kind": "Archive explorer",
       "desc": "Windows RPF explorer with model, texture, audio and video previews. Leonida builds on its decoders.",
       "stats": {
-        "stars": 58,
-        "pushedAt": "2026-11-23T06:21:36Z"
+        "stars": 60,
+        "pushedAt": "2026-11-23T13:09:53Z"
       }
     },
     {
@@ -1485,7 +1488,7 @@
       "desc": "View, export and replace .ttpf textures; Bink video playback.",
       "stats": {
         "stars": 11,
-        "pushedAt": "2026-11-23T10:15:33Z"
+        "pushedAt": "2026-11-23T11:06:22Z"
       }
     },
     {
@@ -1504,8 +1507,8 @@
       "kind": "Curated list",
       "desc": "Running list of open-source GTA VI reverse-engineering tools and layers.",
       "stats": {
-        "stars": 266,
-        "pushedAt": "2026-11-23T01:25:59Z"
+        "stars": 281,
+        "pushedAt": "2026-11-23T12:48:15Z"
       }
     },
     {
@@ -1514,7 +1517,7 @@
       "kind": "Asset explorer",
       "desc": "Read-only Python toolkit: browse your packages and extract textures, audio, video and shaders.",
       "stats": {
-        "stars": 4,
+        "stars": 5,
         "pushedAt": "2026-11-23T05:40:29Z"
       }
     },
@@ -1545,7 +1548,7 @@
       "desc": "Pulls music streams (AWC) out of RPF9 archives.",
       "stats": {
         "stars": 3,
-        "pushedAt": "2026-11-23T07:13:15Z"
+        "pushedAt": "2026-11-23T10:49:59Z"
       }
     },
     {
@@ -1699,6 +1702,29 @@
         "6 commits/7d"
       ],
       "kind": "effort",
+      "status": "new"
+    },
+    {
+      "repo": "lynxnathan/rage-tools-vi",
+      "name": "rage-tools-vi",
+      "description": "RPF9 extraction and analysis toolkit",
+      "language": "Python",
+      "stars": 0,
+      "createdAt": "2026-11-21T00:36:06Z",
+      "pushedAt": "2026-11-23T13:33:06Z",
+      "defaultBranch": "main",
+      "sources": [
+        "GitHub search"
+      ],
+      "links": [],
+      "foundAt": "2026-11-23T13:34:26.236Z",
+      "substance": 60,
+      "signals": [
+        "Python",
+        "7 technical terms",
+        "1 commits/7d"
+      ],
+      "kind": "tool",
       "status": "new"
     }
   ],
@@ -3247,18 +3273,46 @@
       "pushedAt": "2026-11-18T22:44:27Z"
     },
     {
-      "repo": "DinosaurPlanetRecomp/dino-recomp",
-      "reason": "off-topic (not about GTA VI or Xbox Series)",
-      "auto": true,
-      "seenAt": "2026-11-23",
-      "pushedAt": "2026-11-23T05:51:15Z"
-    },
-    {
       "repo": "gitlab.com/merkuriy-tv/gta6-game",
       "reason": "thin (substance 17)",
       "auto": true,
       "seenAt": "2026-11-23",
       "pushedAt": "2026-11-23T09:06:42.562Z"
+    },
+    {
+      "repo": "puffnfresh/rebox",
+      "reason": "no real README",
+      "auto": true,
+      "seenAt": "2026-11-23",
+      "pushedAt": "2026-11-23T12:13:19Z"
+    },
+    {
+      "repo": "Van7art/gta6-01-r4-entry",
+      "reason": "off-topic (original fan game, not a port)",
+      "auto": true,
+      "seenAt": "2026-11-23",
+      "pushedAt": "2026-11-23T12:47:26Z"
+    },
+    {
+      "repo": "hoshino-114514/gta6-video-reader",
+      "reason": "thin (substance 28)",
+      "auto": true,
+      "seenAt": "2026-11-23",
+      "pushedAt": "2026-11-23T11:49:55Z"
+    },
+    {
+      "repo": "ONLYUSEmeFEET/Cub-Spiele.Com",
+      "reason": "off-topic (not about GTA VI or Xbox Series)",
+      "auto": true,
+      "seenAt": "2026-11-23",
+      "pushedAt": "2026-11-21T19:35:22Z"
+    },
+    {
+      "repo": "DinosaurPlanetRecomp/dino-recomp",
+      "reason": "off-topic (not about GTA VI or Xbox Series)",
+      "auto": true,
+      "seenAt": "2026-11-23",
+      "pushedAt": "2026-11-23T05:51:15Z"
     }
   ],
   "changes": [
@@ -3546,6 +3600,11 @@
       "date": "2026-11-23",
       "kind": "new",
       "text": "XlaunchVI joins the watchlist after a code review: a tested loader, D3D12 backend and shader translator, with no Xbox title run yet."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "new",
+      "text": "Scout spotted lynxnathan/rage-tools-vi (tool, substance 60)."
     }
   ],
   "history": [
@@ -3571,7 +3630,7 @@
       "leaderId": "xcl",
       "top3": 17,
       "furthest": "groundwork",
-      "tracked": 22
+      "tracked": 23
     }
   ],
   "scout": {
@@ -3613,9 +3672,9 @@
       "xbox series emulator"
     ],
     "x": "(\"gta 6\" OR \"gta vi\" OR gta6) (recomp OR emulator OR \"pc port\" OR scarlett) github.com -is:retweet",
-    "lastRun": "2026-11-23T10:25:08.620Z",
-    "lastSummary": "22 refreshed, 6 READMEs changed, 4 new candidates, 0 flagged.",
-    "lastDmcaCheck": "2026-11-23T10:25:08.620Z",
+    "lastRun": "2026-11-23T13:34:26.236Z",
+    "lastSummary": "23 refreshed, 9 READMEs changed, 1 new candidates, 0 flagged, 5 errors.",
+    "lastDmcaCheck": "2026-11-23T13:34:26.236Z",
     "lastEditorRun": "2026-11-23T07:43:30.000Z"
   },
   "headlines": [
@@ -3688,6 +3747,13 @@
       "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOd3BGTGUzYi1ZaG5YTWtlNlAzM0xiTXVaNXpwNWhXSGNPM1JTUUQ2MHV4WTlQUXFNT1dVTG4xdmU1aVZzaW5uZWM4RGFsQ2ZVemZCTUx1aG9TUlJYcnl5am1pSXdGcmh0eHluM3FwcS1HbUk2QUpiaTYwVXR2UUdieFBSWEloXzVNbGphVnU2UE9VdUc4U0lIVkp4NGxPTmhkYXBpZ0Zpd25xVzNSQTFGVUF4b0ZMbmtLRFNGS1ZMOHc5dXlj?oc=5",
       "date": "2026-11-23T03:50:00.000Z",
       "via": "Google News"
+    },
+    {
+      "title": "What the GTA 6 Leak Means for PC Players as Emulator Projects Race Ahead",
+      "outlet": "Around Prague",
+      "link": "https://aroundprague.cz/en/news/us/what-the-gta-6-leak-means-for-pc-players-as-emulator-projects-race-ahead",
+      "date": "2026-11-23T03:38:00.000Z",
+      "via": "Bing News"
     },
     {
       "title": "GTA VI Leak vs Launch: 99 Metacritic After 4 Years",
@@ -3820,13 +3886,6 @@
       "outlet": "GameRant",
       "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE5TblcwcjczZVNSWmxOZVNPZUhGNEtmM3R3TldQZE1JdWEwUzI0dndiaTNRVkZnTnl5TGc3bWJsWGs1VFFiZlU4WkNrWGd0blYzWk9GOW9hRWxlbXc3VVhiY0syLXpNbFpiTG5GSzN2Zi16Zw?oc=5",
       "date": "2026-11-22T13:24:31.000Z",
-      "via": "Google News"
-    },
-    {
-      "title": "Hackers Pursue GTA 6 PC Port From Leaked Xbox Build",
-      "outlet": "Limapagi",
-      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE16WlpNUlBmaVoyU3VPeVdBaXpMdERVQlFaMmlVOTdhbGFTa0tPSnBTdl9sQ0dSd1A5MlBsRjBXVVpXU0l5TW1ZXzhwNGNWX29HNElwM2xucmhtSW9FQmdraHlsRGxQY19LY3c?oc=5",
-      "date": "2026-11-22T12:37:34.000Z",
       "via": "Google News"
     }
   ],
