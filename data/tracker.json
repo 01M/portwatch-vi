@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T15:00:41.000Z",
+  "updated": "2026-11-23T15:15:58.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -16,6 +16,39 @@
     "source": "https://4lwayz.github.io/portwatch-vi/news/2026-11-23-exe-released.html"
   },
   "news": [
+    {
+      "id": "2026-11-23-exe-readme",
+      "date": "2026-11-23",
+      "category": "Leak",
+      "title": "Cyberleek's README frames the leak as a protest and asks for crypto",
+      "dek": "A note said to ship with the executable says donations fund a secret project and counts every token trade as a vote. None of it can be checked.",
+      "body": [
+        "A text file said to be the README from Cyberleek's archive was shared on Reddit on Nov 23, shortly after the executable drop. We haven't seen the archive ourselves, so we can't confirm the note is genuine. Here is everything it says, in our words.",
+        "It casts the leaks as a fight against what it calls anti-consumer habits in games: subscriptions added to single-player titles, pricey special editions that only unlock content already in the files, and licences sold as if they were purchases. Its own summary: \"The enemy is the tactic, not the game.\" It says players were never the target, which is why the ending and story were kept out of the leaks, and that every release since its first clip in August 2026 has cost nothing.",
+        "Then it turns defiant. It claims months of takedowns, subpoenas and wallet tracing haven't stopped the uploads, and argues that money can't make any protection unbreakable and courts can't pull back what has already spread online.",
+        "Next comes the money. The note says donations fund a project it won't describe until there's something to show, and that some money has already arrived and paid for the first steps. It says the skills behind the build would earn more in other, quieter work, while insisting that isn't a threat. Backers, it says, can only change how fast that project becomes its main focus, not where it goes. It promises future releases will be free whether or not anyone pays, but counts every donation and every trade of its token as a vote.",
+        "It admits the crypto side draws anger and defends it as the only way to move money without names. It ends by calling the build and the executable an early Christmas present to players, a month before the holiday.",
+        "Earlier releases were tied to the same token, in a scheme Decrypt described as a crypto pump. Nothing in the note can be verified, and buying the token buys nothing anyone can check. For the race, nothing changes: no project has booted GTA VI yet."
+      ],
+      "sources": [
+        {
+          "outlet": "Decrypt",
+          "title": "GTA 6 leaker dangles a PC port behind a $15 million crypto pump",
+          "url": "https://decrypt.co/383756/gta-6-leaker-dangles-pc-port-15-million-crypto-pump"
+        },
+        {
+          "outlet": "PC Gamer",
+          "title": "Cyberleek drops what they claim is a near-complete GTA 6 Xbox build online",
+          "url": "https://www.pcgamer.com/games/grand-theft-auto/cyberleek-drops-what-they-claim-is-a-near-complete-gta-6-xbox-build-online/"
+        }
+      ],
+      "image": {
+        "url": "https://4lwayz.github.io/portwatch-vi/assets/img/news/2026-11-23-exe-readme.png",
+        "credit": "the README's opening as shared on Reddit, cropped by PortWatch",
+        "link": "https://4lwayz.github.io/portwatch-vi/assets/img/news/2026-11-23-exe-readme.png"
+      },
+      "by": "claude"
+    },
     {
       "id": "2026-11-23-exe-released",
       "date": "2026-11-23",
