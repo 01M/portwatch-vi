@@ -83,6 +83,8 @@
   "race.sortScore": "Progresso",
   "race.sortStars": "Estrelas",
   "race.sortActive": "Atividade recente",
+  "race.overall": "#{n} no geral",
+  "race.overallTitle": "Posição entre todos os projetos",
   "race.empty": "Nenhum projeto corresponde a este filtro ainda.",
 
   "ms.groundwork.label": "Preparação",

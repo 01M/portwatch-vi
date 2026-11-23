@@ -283,8 +283,14 @@ function renderRace() {
     active: (a, b) => Date.parse(b.stats?.pushedAt || 0) - Date.parse(a.stats?.pushedAt || 0),
   };
   const ranked = [...data.efforts.filter((e) => e.tier === 'tracked')].sort(byScore);
+  const rankedInFilter = [...list].sort(byScore);
+  const filtered = filter !== 'all';
   list.sort(sorters[sort] || byScore);
-  $('#race-list').innerHTML = list.map((e, i) => effortCard(e, ranked.indexOf(e) + 1, sort === 'score' ? i < 3 : false)).join('') ||
+  $('#race-list').innerHTML = list.map((e, i) => {
+    const overall = ranked.indexOf(e) + 1;
+    const rank = filtered ? rankedInFilter.indexOf(e) + 1 : overall;
+    return effortCard(e, rank, sort === 'score' ? i < 3 : false, filtered ? overall : null);
+  }).join('') ||
     `<li class="empty">${esc(t('race.empty'))}</li>`;
   observeBars();
 }
@@ -306,7 +312,7 @@ function ladderCells(e) {
     <div><span class="${st(fpsV)}">${esc(fpsLabel)}</span><span class="${st(stabV)}">${esc(stab)}</span></div>`;
 }
 
-function effortCard(e, rank, open) {
+function effortCard(e, rank, open, overallRank = null) {
   const s = e._s;
   const st = e.stats || {};
   const ticks = MILESTONES.slice(1, -1).map((m) => `<i style="left:${m.at}%"></i>`).join('');
@@ -330,7 +336,7 @@ function effortCard(e, rank, open) {
   const src = avatar(e.repo);
   return `
   <li class="effort ${rank <= 3 ? 'is-top' : ''}" id="effort-${esc(e.id)}">
-    <div class="e-rank">${rank}</div>
+    <div class="e-rank">${rank}${overallRank ? `<small class="e-rank-overall" title="${esc(t('race.overallTitle'))}">${esc(t('race.overall', { n: overallRank }))}</small>` : ''}</div>
     <div class="e-main">
       <div class="e-top">
         ${src ? `<img class="e-avatar" src="${esc(src)}" alt="" loading="lazy" data-hide-on-error>` : ''}

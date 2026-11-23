@@ -83,6 +83,8 @@
   "race.sortScore": "Progress",
   "race.sortStars": "Stars",
   "race.sortActive": "Recently active",
+  "race.overall": "#{n} overall",
+  "race.overallTitle": "Position among all efforts",
   "race.empty": "No efforts match this filter yet.",
 
   "effort.groundworkPct": "Groundwork {n}%",
