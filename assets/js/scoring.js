@@ -86,11 +86,14 @@ export function scoreEffort(effort) {
   };
 }
 
+// Equal scores rank the effort with more GitHub stars first.
+export const byStars = (a, b) => (b.stats?.stars || 0) - (a.stats?.stars || 0);
+
 // The headline number: how close the leading effort is, plus the top-3 average.
 export function overall(efforts) {
   const scored = efforts
     .map((e) => ({ effort: e, ...scoreEffort(e) }))
-    .sort((a, b) => b.score - a.score);
+    .sort((a, b) => b.score - a.score || byStars(a.effort, b.effort));
   const top = scored.slice(0, 3);
   const leader = scored[0] || null;
   const furthest = scored.reduce((best, s) => {

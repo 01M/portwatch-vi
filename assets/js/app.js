@@ -1,4 +1,4 @@
-import { MILESTONES, GROUNDWORK, STABILITY, scoreEffort, overall, ladderValue } from './scoring.js';
+import { MILESTONES, GROUNDWORK, STABILITY, scoreEffort, overall, ladderValue, byStars } from './scoring.js';
 import { backendReady, getLiveViewers, trackView } from './backend.js';
 import { coverHtml, articlePath } from './news-shared.js';
 import { initI18n, t, tr, locale } from './i18n.js';
@@ -276,10 +276,10 @@ function renderRace() {
   let list = data.efforts.filter((e) => e.tier === 'tracked');
   if (filter === 'gta') list = list.filter(isGtaSpecific);
   if (filter === 'generic') list = list.filter((e) => !isGtaSpecific(e));
-  const byScore = (a, b) => b._s.score - a._s.score;
+  const byScore = (a, b) => b._s.score - a._s.score || byStars(a, b);
   const sorters = {
     score: byScore,
-    stars: (a, b) => (b.stats?.stars || 0) - (a.stats?.stars || 0),
+    stars: byStars,
     active: (a, b) => Date.parse(b.stats?.pushedAt || 0) - Date.parse(a.stats?.pushedAt || 0),
   };
   const ranked = [...data.efforts.filter((e) => e.tier === 'tracked')].sort(byScore);
@@ -382,7 +382,7 @@ function effortCard(e, rank, open, overallRank = null) {
 
 /* ---------- Watchlist ---------- */
 function renderWatchlist(data) {
-  const rows = data.efforts.filter((e) => e.tier === 'watchlist').sort((a, b) => b._s.score - a._s.score);
+  const rows = data.efforts.filter((e) => e.tier === 'watchlist').sort((a, b) => b._s.score - a._s.score || byStars(a, b));
   if (!rows.length) { $('#watchlist').hidden = true; return; }
   const head = ['watch.project', 'watch.approach', 'watch.progress', 'watch.stars', 'watch.lastPush'].map((k) => `<span>${esc(t(k))}</span>`).join('');
   $('#watch-list').innerHTML = `
