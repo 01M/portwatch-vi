@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T23:12:26.000Z",
+  "updated": "2026-11-23T23:57:15.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -17,16 +17,44 @@
   },
   "news": [
     {
+      "id": "2026-11-23-leonida-nuked",
+      "date": "2026-11-23",
+      "category": "Port",
+      "title": "Leonida is nuked: GitHub repo deleted, Discord gone, creator quits",
+      "dek": "Within an hour on Monday night the biggest GTA VI port lost its Discord server and its GitHub repository, and its creator said he was stepping away.",
+      "body": [
+        "Leonida, the most-starred GTA VI port with more than 33,000 GitHub stars, went offline in under an hour on Monday night. Its Discord server stopped resolving at about 23:07 UTC. By 23:47 its GitHub repository was gone. Around the same time its creator, NotRexed, posted \"I quit guys\" on X, writing that he kept running into problems he couldn't control and was stepping away, and thanking the Discord community.",
+        "The repository now answers \"not found\", not the \"unavailable\" page GitHub shows after a DMCA takedown, and GitHub's public DMCA log has no notice against it. That points to its owners pulling it rather than Take-Two, though only they can say. Earlier that evening it had moved to a new organization, ProjectLeonida, whose maintainers closed thousands of open pull requests and issues.",
+        "The code isn't lost. Contributors' forks are still on GitHub, among them the one carrying the combined boot fixes, and a mirror on NotRexed's own Git server holds the code as of 23:30 UTC, though it can no longer sync.",
+        "We've marked Leonida as nuked on the tracker. It stays on the board for the record but no longer counts in the rankings."
+      ],
+      "sources": [
+        {
+          "outlet": "X",
+          "title": "NotRexed (@ItsNotRexed)",
+          "url": "https://x.com/ItsNotRexed"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "A contributor fork that survives (ASTROWwwW/Leonida)",
+          "url": "https://github.com/ASTROWwwW/Leonida"
+        }
+      ],
+      "image": null,
+      "by": "report"
+    },
+    {
       "id": "2026-11-23-leonida-discord-down",
       "date": "2026-11-23",
       "category": "Takedown",
       "title": "Leonida's Discord server disappears as the project moves to a new GitHub account",
-      "dek": "The 179,000-member server stopped resolving late on Monday. Members say Discord banned it; nobody has said why, and the code is still up.",
+      "dek": "The 179,000-member server stopped resolving late on Monday. Members say Discord banned it; nobody has said why. Update: the GitHub repository has since been deleted too.",
+      "updatedAt": "2026-11-23",
       "body": [
         "Leonida's Discord server went offline late on Monday. At 23:06 UTC its invite still led to a server of about 179,000 members, 74,000 of them online. Within a minute Discord answered that both the invite and the server were unknown. Members say Discord banned it. Neither Discord nor the Leonida team has said why, and from outside we can't tell a ban from a deletion.",
-        "The code is untouched. About an hour earlier the repository moved from its creator's personal account to a new organization, ProjectLeonida, created at 22:08 UTC. Old links redirect, and issues were still being updated after the server went dark. Around the same time the maintainers closed thousands of stale pull requests, cutting the open list from about 2,900 to roughly 200.",
+        "At first the code was untouched. About an hour earlier the repository had moved from its creator's personal account to a new organization, ProjectLeonida, created at 22:08 UTC. Old links redirected, and issues were still being updated after the server went dark. Around the same time the maintainers closed thousands of open pull requests and issues, cutting the list from nearly 4,900 to about 200.",
         "GitHub's public DMCA log shows no notice against the project. The disappearance follows other pressure on GTA VI communities: earlier this month the GTA 6 Mapping Project's Discord vanished without explanation, and in August Take-Two sought subpoenas against Discord to identify the leaker, which Discord said it hadn't been served.",
-        "Leonida's standing on our tracker doesn't change, since the score follows the code, which is still public."
+        "Update, 23:47 UTC: the GitHub repository has since been deleted, and its creator says he has quit. See our follow-up."
       ],
       "sources": [
         {
@@ -770,16 +798,20 @@
       "tier": "tracked",
       "approach": "Static recompilation",
       "target": "GTA VI only",
-      "summary": "Made just for GTA VI, by Hookshot's author. The retail exe runs for up to 10 minutes without crashing, but every frame it presents is black. Its boot fixes sit on the maintainers' own Git server, not GitHub. Self-reported.",
+      "summary": "Made just for GTA VI, by Hookshot's author. Taken offline on Nov 23: its Discord vanished, the GitHub repo was deleted and the creator said he quit. Last result: the exe ran, frames stayed black.",
+      "nuked": {
+        "at": "2026-11-23",
+        "note": "Discord gone, GitHub repo deleted and creator quit on Nov 23. The code lives on in contributors' forks and a frozen mirror."
+      },
       "highlights": [
-        "Retail exe runs up to 10 minutes without a crash on Windows and Wine, AMD and NVIDIA",
-        "The game issues draw calls (408,781 in one run) and presents frames to its own window",
-        "All 26,503 GTA VI shaders translate to SPIR-V and pass validation; output not checked yet"
+        "Retail exe ran up to 10 minutes without a crash on Windows and Wine, AMD and NVIDIA",
+        "The game issued draw calls (408,781 in one run) and presented frames to its own window",
+        "All 26,503 GTA VI shaders translated to SPIR-V and passed validation"
       ],
       "blockers": [
-        "No picture: every presented frame is black, and after about 5 s the game waits instead of loading",
-        "Boot fixes are merged only on the maintainers' own Git server; GitHub's main branch has none yet",
-        "The exe's own embedded vertex shaders and 42 FidelityFX programs aren't translated yet"
+        "Taken offline: GitHub repo deleted, Discord gone, creator stepped away",
+        "Code survives only in contributors' forks and a mirror frozen at 23:30 UTC",
+        "Last state: every presented frame was black"
       ],
       "groundwork": {
         "loader": 0.7,
@@ -805,7 +837,8 @@
         "pushedAt": "2026-11-23T21:01:51Z",
         "commits7d": 100,
         "archived": false,
-        "missing": false,
+        "missing": true,
+        "missingStatus": 404,
         "mentions7d": 1
       },
       "assessedAt": "2026-11-23",
@@ -4373,6 +4406,11 @@
       "date": "2026-11-23",
       "kind": "up",
       "text": "XCL reaches “Main menu”: fixes merged on its main branch get GTA VI (named by its exe in XCL's notes) to its first menus at 30 fps, and a controller press moves on to the settings (self-reported, no screenshot). Score 25% → 55%, level with VIctory."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "removed",
+      "text": "Leonida is nuked: its Discord vanished, its GitHub repo was deleted and its creator says he quit. It stays on the board for the record, no longer ranked."
     }
   ],
   "history": [
