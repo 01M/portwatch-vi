@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T23:09:49.000Z",
+  "updated": "2026-11-23T23:12:26.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -16,6 +16,42 @@
     "source": "https://www.xda-developers.com/gta-6-xbox-executable-leaked-opening-door-for-pc-recompilation-projects-begin-testing/"
   },
   "news": [
+    {
+      "id": "2026-11-23-leonida-discord-down",
+      "date": "2026-11-23",
+      "category": "Takedown",
+      "title": "Leonida's Discord server disappears as the project moves to a new GitHub account",
+      "dek": "The 179,000-member server stopped resolving late on Monday. Members say Discord banned it; nobody has said why, and the code is still up.",
+      "body": [
+        "Leonida's Discord server went offline late on Monday. At 23:06 UTC its invite still led to a server of about 179,000 members, 74,000 of them online. Within a minute Discord answered that both the invite and the server were unknown. Members say Discord banned it. Neither Discord nor the Leonida team has said why, and from outside we can't tell a ban from a deletion.",
+        "The code is untouched. About an hour earlier the repository moved from its creator's personal account to a new organization, ProjectLeonida, created at 22:08 UTC. Old links redirect, and issues were still being updated after the server went dark. Around the same time the maintainers closed thousands of stale pull requests, cutting the open list from about 2,900 to roughly 200.",
+        "GitHub's public DMCA log shows no notice against the project. The disappearance follows other pressure on GTA VI communities: earlier this month the GTA 6 Mapping Project's Discord vanished without explanation, and in August Take-Two sought subpoenas against Discord to identify the leaker, which Discord said it hadn't been served.",
+        "Leonida's standing on our tracker doesn't change, since the score follows the code, which is still public."
+      ],
+      "sources": [
+        {
+          "outlet": "GitHub",
+          "title": "ProjectLeonida/Leonida (moved from ItsNotRexed/Leonida)",
+          "url": "https://github.com/ProjectLeonida/Leonida"
+        },
+        {
+          "outlet": "Notebookcheck",
+          "title": "GTA 6 Mapping Project reportedly targeted by Take-Two, closing Discord that shared leaks",
+          "url": "https://www.notebookcheck.net/Take-Two-reportedly-targets-GTA-6-Mapping-Project-closing-Discord-that-shared-leaks.1448191.0.html"
+        },
+        {
+          "outlet": "VGC",
+          "title": "Discord denies being served subpoena by Take-Two as GTA 6 leak crackdowns sweep the internet",
+          "url": "https://videogameschronicle.com/news/discord-denies-being-served-subpoena-by-take-two-as-gta-6-leak-crackdowns-sweep-the-internet/"
+        }
+      ],
+      "image": {
+        "url": "https://opengraph.githubassets.com/ca8338e1cd5dbe9b1ed082875cf193e7051cf038680ca1fe453ca16332fc7553/ProjectLeonida/Leonida",
+        "credit": "GitHub",
+        "link": "https://github.com/ProjectLeonida/Leonida"
+      },
+      "by": "report"
+    },
     {
       "id": "2026-11-23-marvis-menus-stream",
       "date": "2026-11-23",
