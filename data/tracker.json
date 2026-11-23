@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T16:20:15.467Z",
+  "updated": "2026-11-23T16:49:44.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -12,8 +12,8 @@
     "timeAnnounced": true,
     "releasedAt": "2026-11-23T14:36:00Z",
     "by": "Cyberleek",
-    "note": "Cyberleek posted on Monday, Nov 23 at 15:36 CET (14:36 UTC) that the missing executable is out, about 2.5 hours before its own 18:00 CET deadline. Set by the owner from the leaker's post; no outlet had confirmed the file was genuine when the countdown was switched. No project has booted GTA VI yet.",
-    "source": "https://4lwayz.github.io/portwatch-vi/news/2026-11-23-exe-released.html"
+    "note": "Cyberleek posted on Monday, Nov 23 at 15:36 CET (14:36 UTC) that the missing executable is out, about 2.5 hours before its own 18:00 CET deadline. XDA Developers, DSOGaming and other outlets have since reported the release, but none has shown the file is genuine and Rockstar hasn't confirmed the leak. No project has booted GTA VI yet.",
+    "source": "https://www.xda-developers.com/gta-6-xbox-executable-leaked-opening-door-for-pc-recompilation-projects-begin-testing/"
   },
   "news": [
     {
@@ -623,7 +623,7 @@
         "PE loader runs a stand-in executable end to end through its GDK shims; controllers via SDL3"
       ],
       "blockers": [
-        "The game does not boot: the executable is missing",
+        "The game does not boot; its loader is untested against the real executable",
         "Graphics has run only its own test programs; game shader output is unchecked",
         "Some wave64 vertex, pixel and geometry shaders are approximate on 32-wide GPUs (NVIDIA, Intel)"
       ],
@@ -1819,79 +1819,29 @@
         "stars": 2,
         "pushedAt": "2026-11-22T20:35:26Z"
       }
-    }
-  ],
-  "candidates": [
+    },
     {
       "repo": "batatinhafcbatatinha-pixel/xseriesrecomp",
       "name": "xseriesrecomp",
-      "description": "Xbox One / Xbox Series X|S titles on Windows: core runtime, shader paths and one front end (xsr)",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-22T16:14:50Z",
-      "pushedAt": "2026-11-23T14:57:54Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T16:20:15.467Z",
-      "substance": 77,
-      "signals": [
-        "Python",
-        "10 technical terms",
-        "34 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "VictorMinister/leonida-pc-recompiler",
-      "name": "leonida-pc-recompiler",
-      "description": "Leonida PC Recompiler 2026 — Static recompilation research tool for Xbox Series games on Windows. Bring your own copy. No game files included.",
-      "language": "HTML",
-      "stars": 0,
-      "createdAt": "2026-11-23T15:14:20Z",
-      "pushedAt": "2026-11-23T15:31:45Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T16:20:15.467Z",
-      "substance": 62,
-      "signals": [
-        "HTML",
-        "8 technical terms",
-        "6 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
+      "kind": "Front end",
+      "desc": "One launcher over bundled snapshots of four tracked projects; untested with any game.",
+      "stats": {
+        "stars": 0,
+        "pushedAt": "2026-11-23T14:57:54Z"
+      }
     },
     {
       "repo": "sub-north/xbox-hle-lab",
       "name": "xbox-hle-lab",
-      "description": "Evidence-gated lab tools and notes for Xbox Series compatibility research",
-      "language": "C++",
-      "stars": 1,
-      "createdAt": "2026-11-23T15:14:40Z",
-      "pushedAt": "2026-11-23T16:19:27Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T16:20:15.467Z",
-      "substance": 39,
-      "signals": [
-        "C++",
-        "4 technical terms",
-        "9 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
+      "kind": "Test tools",
+      "desc": "GPU probes, VM scripts and patches for XCL, for testing in a sandboxed VM.",
+      "stats": {
+        "stars": 1,
+        "pushedAt": "2026-11-23T16:47:27Z"
+      }
     }
   ],
+  "candidates": [],
   "flagged": [
     {
       "id": "switch-emulator-network",
@@ -1906,7 +1856,7 @@
       "pattern": "gamescarletmaster.exe or any “GTA VI PC installer”",
       "label": "Expect many",
       "count": null,
-      "reason": "The real executable isn't out yet, and a scam kit built around a fake installer is reportedly for sale. A download like this, this week, is almost certainly malware. No project here hosts the game or an .exe.",
+      "reason": "Cyberleek says the executable is out, and fake “installers” are riding on that news; a scam kit built around one is reportedly for sale. Nothing plays GTA VI on PC yet, so a download that promises it is almost certainly malware. No project here hosts the game or an .exe.",
       "members": []
     },
     {
@@ -1922,7 +1872,7 @@
       "pattern": "Videos or posts of “GTA VI running on PC”",
       "label": "Viral",
       "count": null,
-      "reason": "Nobody has the executable, so no clip can show GTA VI booting on PC. One viral clip's “specs” text gave itself away as language-model output.",
+      "reason": "No project has booted GTA VI on PC, so a clip that shows it playing isn't real. One viral clip's “specs” text gave itself away as language-model output.",
       "members": []
     },
     {
@@ -1949,7 +1899,7 @@
       "id": "copies",
       "pattern": "Re-uploads of tracked projects under other accounts",
       "label": "",
-      "count": 12,
+      "count": 13,
       "reason": "Copies can be quietly modified to bundle malware. Only use the original repositories linked in the race above.",
       "members": [
         "FaelSemW/RafaVI",
@@ -1963,7 +1913,8 @@
         "Jolymmiles/macos-ci-probe2",
         "zsy-miao/RageForge",
         "NEXARYSE/nexaverse-gta-toolkit",
-        "ZuanCrisp/Leonida"
+        "ZuanCrisp/Leonida",
+        "VictorMinister/leonida-pc-recompiler"
       ]
     }
   ],
@@ -3960,7 +3911,7 @@
     "lastRun": "2026-11-23T16:20:15.467Z",
     "lastSummary": "26 refreshed, 9 READMEs changed, 3 new candidates, 1 flagged.",
     "lastDmcaCheck": "2026-11-23T16:20:15.467Z",
-    "lastEditorRun": "2026-11-23T13:48:48.000Z"
+    "lastEditorRun": "2026-11-23T16:49:44.000Z"
   },
   "headlines": [
     {
