@@ -24,6 +24,15 @@
     dark: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M13.6 10.2A6 6 0 0 1 5.8 2.4a6 6 0 1 0 7.8 7.8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>'
   };
   var LABELS = { system: 'System', light: 'Light', dark: 'Dark' };
+  var PREFIX = 'Theme';
+  var relabel = null;
+
+  // Called by i18n.js once the page's language has loaded, before or after the menu mounts.
+  window.pwSetThemeLabels = function (labels, prefix) {
+    ['system', 'light', 'dark'].forEach(function (k) { if (labels && labels[k]) LABELS[k] = labels[k]; });
+    if (prefix) PREFIX = prefix;
+    if (relabel) relabel();
+  };
 
   function mount() {
     var nav = document.querySelector('.nav-inner');
@@ -43,8 +52,8 @@
     function render() {
       var c = saved();
       btn.innerHTML = ICONS[isDark(c) ? 'dark' : 'light'];
-      btn.setAttribute('aria-label', 'Theme: ' + LABELS[c]);
-      btn.title = 'Theme: ' + LABELS[c];
+      btn.setAttribute('aria-label', PREFIX + ': ' + LABELS[c]);
+      btn.title = PREFIX + ': ' + LABELS[c];
       menu.querySelectorAll('[data-theme-choice]').forEach(function (b) {
         b.setAttribute('aria-checked', String(b.getAttribute('data-theme-choice') === c));
       });
@@ -73,6 +82,12 @@
       }
     });
     if (media && media.addEventListener) media.addEventListener('change', function () { apply(saved()); render(); });
+    relabel = function () {
+      menu.querySelectorAll('[data-theme-choice]').forEach(function (b) {
+        b.querySelector('span').textContent = LABELS[b.getAttribute('data-theme-choice')];
+      });
+      render();
+    };
     render();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount); else mount();
