@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T16:49:44.000Z",
+  "updated": "2026-11-23T16:52:31.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -616,26 +616,26 @@
       "tier": "tracked",
       "approach": "Static recompilation",
       "target": "GTA VI only",
-      "summary": "The most-starred effort and the only one made just for GTA VI, by Hookshot's author (a PC recomp of the Switch 2 Ocarina of Time remake). You build it from your own copy; all shaders are translated for Vulkan.",
+      "summary": "Made just for GTA VI, by Hookshot's author. The real executable now maps and runs its startup code with 30 imports missing; a contributor's patched run stopped at an assert before drawing anything. Self-reported.",
       "highlights": [
+        "Retail executable maps, and its TLS callbacks and DLL startup run without an exception",
         "All 26,503 GTA VI shaders translated RDNA2 → SPIR-V, each passing spirv-val",
-        "Its Xbox D3D12 layer draws pixel-exact frames with translated shaders in its own tests on AMD and NVIDIA",
-        "PE loader runs a stand-in executable end to end through its GDK shims; controllers via SDL3"
+        "A patched test run got through device setup and 581 command lists before an assert"
       ],
       "blockers": [
-        "The game does not boot; its loader is untested against the real executable",
+        "No frame drawn yet; 30 imports missing and most boot fixes still unmerged",
         "Graphics has run only its own test programs; game shader output is unchecked",
         "Some wave64 vertex, pixel and geometry shaders are approximate on 32-wide GPUs (NVIDIA, Intel)"
       ],
       "groundwork": {
-        "loader": 0.5,
+        "loader": 0.55,
         "shaders": 0.9,
         "graphics": 0.45,
         "proven": 0
       },
       "provenOn": null,
       "gta": {
-        "loads": 0,
+        "loads": 0.5,
         "boots": 0,
         "menu": 0,
         "ingame": 0,
@@ -3841,6 +3841,11 @@
       "date": "2026-11-23",
       "kind": "new",
       "text": "Scout spotted sub-north/xbox-hle-lab (possible effort, substance 39)."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "up",
+      "text": "Leonida partly reaches “Exe runs”: the real executable maps and runs its startup code, with 30 imports still missing (self-reported). Score 12.4% → 18.8%."
     }
   ],
   "history": [
@@ -3911,7 +3916,7 @@
     "lastRun": "2026-11-23T16:20:15.467Z",
     "lastSummary": "26 refreshed, 9 READMEs changed, 3 new candidates, 1 flagged.",
     "lastDmcaCheck": "2026-11-23T16:20:15.467Z",
-    "lastEditorRun": "2026-11-23T16:49:44.000Z"
+    "lastEditorRun": "2026-11-23T16:52:31.000Z"
   },
   "headlines": [
     {
