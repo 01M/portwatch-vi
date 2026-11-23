@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T22:22:17.000Z",
+  "updated": "2026-11-23T23:09:49.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -12,7 +12,7 @@
     "timeAnnounced": true,
     "releasedAt": "2026-11-23T14:36:00Z",
     "by": "Cyberleek",
-    "note": "Cyberleek posted on Monday, Nov 23 at 15:36 CET (14:36 UTC) that the missing executable is out, about 2.5 hours before its own 18:00 CET deadline. XDA Developers, DSOGaming and other outlets have since reported the release, but none has shown the file is genuine and Rockstar hasn't confirmed the leak. No project has booted GTA VI yet.",
+    "note": "Cyberleek posted on Monday, Nov 23 at 15:36 CET (14:36 UTC) that the missing executable is out, about 2.5 hours before its own 18:00 CET deadline. XDA Developers, DSOGaming and other outlets have since reported the release, but none has shown the file is genuine and Rockstar hasn't confirmed the leak. Several projects now run the game's own code, and two report reaching its menus.",
     "source": "https://www.xda-developers.com/gta-6-xbox-executable-leaked-opening-door-for-pc-recompilation-projects-begin-testing/"
   },
   "news": [
@@ -525,16 +525,16 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Wine-style layer: game code runs natively while XCL replaces console libraries and recompiles shaders. Its unnamed newer retail game, whose notes name GTA VI's exe, runs at 30 fps on a black screen. Self-reported.",
+      "summary": "Wine-style layer running game code natively. Its unnamed newer retail game, whose notes name GTA VI's exe, shows its first menus at 30 fps and takes controller input; gameplay not reached. Self-reported; no screenshot in the repo.",
       "highlights": [
-        "GTA VI's exe (unnamed in its README) runs at 30 fps for 60 s without a crash",
-        "Minecraft Preview and Unicorn Overlord reported fully playable (self-reported, Nov 22)",
+        "GTA VI's exe (unnamed in its README) shows its account prompt and settings menus at 30 fps",
+        "A contributor's separate RTX 5090 run reached the same menus; the maintainer merged parts of it",
         "All 26,698 RDNA2 programs in GTA VI's shader pack become HLSL; samples compile to DXIL"
       ],
       "blockers": [
-        "GTA VI's image is still black; mesh pipelines with an AS stage aren't supported yet",
-        "Console-tiled MSAA textures are still missing",
-        "Results are self-reported and not yet reproduced by others"
+        "Gameplay not reached; the game's minimap mesh pipelines are still refused",
+        "About 15 GB of memory committed in the menus, tested on a 32 GB PC",
+        "Results are self-reported, described in text only, and not reproduced outside the project"
       ],
       "groundwork": {
         "loader": 0.9,
@@ -545,8 +545,8 @@
       "provenOn": "Minecraft Preview and Unicorn Overlord: playable",
       "gta": {
         "loads": 1,
-        "boots": 0,
-        "menu": 0,
+        "boots": 1,
+        "menu": 1,
         "ingame": 0,
         "fps": 0,
         "stability": "unknown"
@@ -679,16 +679,16 @@
       "tier": "tracked",
       "approach": "Relinker + shader recompiler",
       "target": "GTA VI first",
-      "summary": "Fork of AnyPS5 (branch xbox-series) that asks whether the PS5 port tool's RDNA2 shader recompiler can handle the Xbox game, and builds the Xbox platform pieces around it.",
+      "summary": "Fork of AnyPS5 that tested whether the PS5 port tool's RDNA2 shader recompiler can handle the Xbox game. Gone since Nov 23 (HTTP 404); no DMCA notice is published, so it was likely deleted or made private.",
       "highlights": [
         "Valid SPIR-V for 100% of vertex, 99.97% of pixel, 99.99% of mesh and 99.6% of compute shaders",
         "Recompiled shaders checked bit-for-bit against an independent CPU interpreter on a GPU",
         "xgameruntime stand-in implements 388 of 398 methods; all 611 DLL imports resolve"
       ],
       "blockers": [
+        "Repository gone from GitHub since Nov 23 (HTTP 404); its owner's account is still active",
         "No frame rendered yet",
-        "Vertex layout, blend and descriptor state come from the executable",
-        "Ray-tracing BVH layout not decoded"
+        "Vertex layout, blend and descriptor state come from the executable"
       ],
       "groundwork": {
         "loader": 0.65,
@@ -720,7 +720,7 @@
         "missing": true,
         "missingStatus": 404
       },
-      "assessedAt": "2026-11-22",
+      "assessedAt": "2026-11-23",
       "assessedBy": "claude",
       "readmeSha": "12c7930af7957f9fe62fdcb2d904d17e36f7e458bc85494d874e1e60177abace",
       "claims": [],
@@ -734,15 +734,15 @@
       "tier": "tracked",
       "approach": "Static recompilation",
       "target": "GTA VI only",
-      "summary": "Made just for GTA VI, by Hookshot's author. On contributors' builds stacking about 25 unmerged fixes, the retail exe runs its own code for up to three minutes and opens a window, but it stays blank. Self-reported.",
+      "summary": "Made just for GTA VI, by Hookshot's author. The retail exe runs for up to 10 minutes without crashing, but every frame it presents is black. Its boot fixes sit on the maintainers' own Git server, not GitHub. Self-reported.",
       "highlights": [
-        "Retail exe runs its own code for up to 180 s on Windows, Wine and Proton",
-        "Runs reach 27,856 graphics pipelines and 114,425 D3D12 calls; audio setup gets through",
+        "Retail exe runs up to 10 minutes without a crash on Windows and Wine, AMD and NVIDIA",
+        "The game issues draw calls (408,781 in one run) and presents frames to its own window",
         "All 26,503 GTA VI shaders translate to SPIR-V and pass validation; output not checked yet"
       ],
       "blockers": [
-        "No picture yet: the window stays blank, stuck on a command-allocator call (slot 9)",
-        "None of the boot fixes are merged; a run needs about 25 pull requests stacked by hand",
+        "No picture: every presented frame is black, and after about 5 s the game waits instead of loading",
+        "Boot fixes are merged only on the maintainers' own Git server; GitHub's main branch has none yet",
         "The exe's own embedded vertex shaders and 42 FidelityFX programs aren't translated yet"
       ],
       "groundwork": {
@@ -4426,6 +4426,11 @@
       "date": "2026-11-23",
       "kind": "new",
       "text": "Marvis publishes his code as VIctory. Its README reports the menus at 30 fps and the world loading to a black screen; still unverified, it stays at 55%."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "up",
+      "text": "XCL reaches “Main menu”: fixes merged on its main branch get GTA VI (named by its exe in XCL's notes) to its first menus at 30 fps, and a controller press moves on to the settings (self-reported, no screenshot). Score 25% → 55%, level with VIctory."
     }
   ],
   "history": [
@@ -4496,7 +4501,7 @@
     "lastRun": "2026-11-23T22:03:10.527Z",
     "lastSummary": "25 refreshed, 9 READMEs changed, 5 new candidates, 1 flagged.",
     "lastDmcaCheck": "2026-11-23T22:03:10.527Z",
-    "lastEditorRun": "2026-11-23T18:57:13.000Z"
+    "lastEditorRun": "2026-11-23T23:09:49.000Z"
   },
   "headlines": [
     {
