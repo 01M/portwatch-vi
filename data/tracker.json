@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T18:32:37.000Z",
+  "updated": "2026-11-23T18:57:13.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -661,7 +661,7 @@
       "highlights": [
         "Retail exe runs its own code for up to 180 s on Windows, Wine and Proton",
         "Runs reach 27,856 graphics pipelines and 114,425 D3D12 calls; audio setup gets through",
-        "All 26,503 GTA VI shaders translated RDNA2 → SPIR-V, each passing spirv-val"
+        "All 26,503 GTA VI shaders translate to SPIR-V and pass validation; output not checked yet"
       ],
       "blockers": [
         "No picture yet: the window stays blank, stuck on a command-allocator call (slot 9)",
@@ -669,9 +669,9 @@
         "The exe's own embedded vertex shaders and 42 FidelityFX programs aren't translated yet"
       ],
       "groundwork": {
-        "loader": 0.55,
+        "loader": 0.7,
         "shaders": 0.9,
-        "graphics": 0.45,
+        "graphics": 0.5,
         "proven": 0
       },
       "provenOn": null,
@@ -3972,7 +3972,7 @@
     "lastRun": "2026-11-23T16:20:15.467Z",
     "lastSummary": "26 refreshed, 9 READMEs changed, 3 new candidates, 1 flagged.",
     "lastDmcaCheck": "2026-11-23T16:20:15.467Z",
-    "lastEditorRun": "2026-11-23T18:32:37.000Z"
+    "lastEditorRun": "2026-11-23T18:57:13.000Z"
   },
   "headlines": [
     {
