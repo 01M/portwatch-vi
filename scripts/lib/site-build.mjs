@@ -5,13 +5,16 @@
 
 import { esc, NEWS_ID_RE, articlePath, coverHtml } from '../../assets/js/news-shared.js';
 
-export const SITE_URL = 'https://4lwayz.github.io/portwatch-vi/';
+export const SITE_URL = 'https://portwatch-vi.xyz/';
 const SITE_NAME = 'PortWatch VI';
 const SOCIAL_IMAGE = `${SITE_URL}assets/img/social.jpg`;
 // IndexNow lets Bing, Yandex and others know a URL changed, without an account. The key is public by
 // design: it's served as <key>.txt so the search engines can check the ping came from this site.
 export const INDEXNOW_KEY = '0ab068a65fdde3463a6633b508a2fae0';
 
+// Cloudflare Pages answers /x.html with a 308 to /x, so links that leave the site (canonical, sitemap,
+// RSS, IndexNow) use the address without .html. The files themselves are still written as .html.
+const articleUrl = (n) => `${SITE_URL}${articlePath(n).replace(/\.html$/, '')}`;
 const isDay = (d) => /^\d{4}-\d{2}-\d{2}$/.test(d || '');
 const httpsOnly = (u) => (/^https:\/\/[^\s"'<>]+$/.test(u || '') ? u : null);
 const fmtDay = (d) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -127,7 +130,7 @@ function sourceItem(s) {
 }
 
 function articlePage(n, others) {
-  const url = `${SITE_URL}${articlePath(n)}`;
+  const url = articleUrl(n);
   const img = httpsOnly(n.image?.url);
   const modified = isDay(n.updatedAt) ? n.updatedAt : n.date;
   const ld = {
@@ -200,7 +203,7 @@ function archivePage(news) {
     description,
     url,
     isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
-    mainEntity: { '@type': 'ItemList', itemListElement: news.map((n, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE_URL}${articlePath(n)}` })) },
+    mainEntity: { '@type': 'ItemList', itemListElement: news.map((n, i) => ({ '@type': 'ListItem', position: i + 1, url: articleUrl(n) })) },
   };
   const main = `    <nav class="crumbs" aria-label="Breadcrumb"><a href="../">PortWatch VI</a><span aria-hidden="true">/</span><span>News</span></nav>
     <div class="section-head">
@@ -228,7 +231,7 @@ function archivePage(news) {
 
 function rssFeed(news, updated) {
   const items = news.slice(0, 30).map((n) => {
-    const link = `${SITE_URL}${articlePath(n)}`;
+    const link = articleUrl(n);
     return `  <item>
     <title>${esc(n.title)}</title>
     <link>${link}</link>
@@ -271,8 +274,8 @@ export function buildSite(data) {
   const entries = [
     { loc: SITE_URL, lastmod: updated || undefined },
     { loc: `${SITE_URL}news/`, lastmod: news[0]?.date },
-    { loc: `${SITE_URL}board.html` },
-    ...news.map((n) => ({ loc: `${SITE_URL}${articlePath(n)}`, lastmod: isDay(n.updatedAt) ? n.updatedAt : n.date })),
+    { loc: `${SITE_URL}board` },
+    ...news.map((n) => ({ loc: articleUrl(n), lastmod: isDay(n.updatedAt) ? n.updatedAt : n.date })),
   ];
   const files = {
     'news/index.html': archivePage(news),

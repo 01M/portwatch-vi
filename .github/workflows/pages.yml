@@ -81,8 +81,9 @@ jobs:
         if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome == 'failure'
         uses: actions/deploy-pages@v5
 
-      # Mirror at https://portwatch-vi.xyz/ (Cloudflare Pages project "portwatch-vi"), so the site stays up if
-      # GitHub Pages goes down: the same files, with the site's own address switched to the domain. Runs even
+      # The main site, https://portwatch-vi.xyz/ (Cloudflare Pages project "portwatch-vi"): the same files as
+      # GitHub Pages. The site's own address in the repo is the domain, so the sed below only catches an old
+      # github.io address that slips back in (for example in a news image link). Runs even
       # when the GitHub Pages deploy failed, and never fails the workflow. Does nothing until the
       # CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repository secrets exist. The scout passes them on
       # with "secrets: inherit".
