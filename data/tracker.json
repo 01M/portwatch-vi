@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T16:52:31.000Z",
+  "updated": "2026-11-23T18:32:37.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -16,6 +16,47 @@
     "source": "https://www.xda-developers.com/gta-6-xbox-executable-leaked-opening-door-for-pc-recompilation-projects-begin-testing/"
   },
   "news": [
+    {
+      "id": "2026-11-23-leonida-exe-runs",
+      "date": "2026-11-23",
+      "category": "Port",
+      "title": "Leonida gets GTA VI's executable running, but nothing is on screen yet",
+      "dek": "Contributors' builds run the game's own code for minutes behind a blank window; posts in its Discord say it won't be playable today, but maybe tomorrow.",
+      "body": [
+        "Hours after Cyberleek's executable appeared on Monday, Leonida's contributors began running it through the project's runtime and logging each attempt in a shared issue. On builds that stack about 25 unmerged pull requests, the retail executable now runs its own code for up to three minutes on Windows, Wine and Proton. It sets up the graphics device, gets through audio setup, builds tens of thousands of graphics pipelines and opens a window.",
+        "That window stays blank. The current wall is a console-only call on the game's command allocators that the PC layer doesn't answer, so frames never finish. None of the boot fixes are in Leonida's main branch yet, and contributors call merging them the bottleneck.",
+        "Posts in Leonida's Discord server told the same story. Soon after the drop, one said the game won't be playable today, \"but maybe tomorrow\". Later, another said it \"almost boots\", with a black screen and audio that cuts off. We can't check that timeline, and the repo still lists input, saves and streaming as not started.",
+        "Leonida isn't alone. XCL runs a retail game its notes identify by GTA VI's executable at 30 fps on a black screen, and TuxBox shows the same black window on Proton. All three now sit at our Exe runs stage, 25%. None has drawn a picture."
+      ],
+      "sources": [
+        {
+          "outlet": "GitHub",
+          "title": "Leonida: boot log of where the retail executable stops",
+          "url": "https://github.com/ItsNotRexed/Leonida/issues/7154"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "Leonida: the retail boot chain",
+          "url": "https://github.com/ItsNotRexed/Leonida/blob/main/docs/retail_boot_chain.md"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "XCL README: games",
+          "url": "https://github.com/ivall/xcl#games"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "TuxBox: title progress",
+          "url": "https://github.com/brcly/TuxBox/blob/main/docs/PROGRESS.md"
+        }
+      ],
+      "image": {
+        "url": "https://opengraph.githubassets.com/725a3bb54ed0edb934ec86c33f6d22b15cedc99ac084fa91a61a9887ab07ba4e/ItsNotRexed/Leonida/issues/7154",
+        "credit": "GitHub",
+        "link": "https://github.com/ItsNotRexed/Leonida/issues/7154"
+      },
+      "by": "claude"
+    },
     {
       "id": "2026-11-23-exe-readme",
       "date": "2026-11-23",
@@ -409,14 +450,14 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Wine-style layer: the game's x64 code runs natively while XCL replaces console libraries and recompiles RDNA2 shaders to DXIL. It reports two retail Xbox Series games fully playable.",
+      "summary": "Wine-style layer: game code runs natively while XCL replaces console libraries and recompiles shaders. Its unnamed newer retail game, whose notes name GTA VI's exe, runs at 30 fps on a black screen. Self-reported.",
       "highlights": [
+        "GTA VI's exe (unnamed in its README) runs at 30 fps for 60 s without a crash",
         "Minecraft Preview and Unicorn Overlord reported fully playable (self-reported, Nov 22)",
-        "Fortnite and XDefiant reported working as far as they go offline",
         "All 26,698 RDNA2 programs in GTA VI's shader pack become HLSL; samples compile to DXIL"
       ],
       "blockers": [
-        "GTA VI not run: the executable is missing",
+        "GTA VI's image is still black; mesh pipelines with an AS stage aren't supported yet",
         "Console-tiled MSAA textures are still missing",
         "Results are self-reported and not yet reproduced by others"
       ],
@@ -428,7 +469,7 @@
       },
       "provenOn": "Minecraft Preview and Unicorn Overlord: playable",
       "gta": {
-        "loads": 0,
+        "loads": 1,
         "boots": 0,
         "menu": 0,
         "ingame": 0,
@@ -511,14 +552,14 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Native-first layer for unpacked Xbox Series games, tested mostly on Linux through Proton. It has a second retail-grade title showing real output.",
+      "summary": "Native-first layer for unpacked Xbox Series games, tested mostly on Linux through Proton. GTA VI's exe now opens its window and presents at 4K, but the screen stays black. Self-reported.",
       "highlights": [
+        "GTA VI 1.0.2.1 opens its window on stock Proton, sets up audio and opens its archives",
         "The Matrix Awakens reached the highway chase and open city in Linux tests at reduced settings",
-        "Ships a small test game (Lanes) that uses its Xbox graphics, memory and input libraries",
-        "Publishes shader coverage and per-library support pages"
+        "Ships a small test game (Lanes) that uses its Xbox graphics, memory and input libraries"
       ],
       "blockers": [
-        "At original settings Matrix Awakens stops on a black frame",
+        "GTA VI shows no logo or menu yet: the screen stays black during startup",
         "Windows support still in development",
         "Very new: results not yet reproduced"
       ],
@@ -530,7 +571,7 @@
       },
       "provenOn": "The Matrix Awakens: menu + cinematic (Linux)",
       "gta": {
-        "loads": 0,
+        "loads": 1,
         "boots": 0,
         "menu": 0,
         "ingame": 0,
@@ -616,16 +657,16 @@
       "tier": "tracked",
       "approach": "Static recompilation",
       "target": "GTA VI only",
-      "summary": "Made just for GTA VI, by Hookshot's author. The real executable now maps and runs its startup code with 30 imports missing; a contributor's patched run stopped at an assert before drawing anything. Self-reported.",
+      "summary": "Made just for GTA VI, by Hookshot's author. On contributors' builds stacking about 25 unmerged fixes, the retail exe runs its own code for up to three minutes and opens a window, but it stays blank. Self-reported.",
       "highlights": [
-        "Retail executable maps, and its TLS callbacks and DLL startup run without an exception",
-        "All 26,503 GTA VI shaders translated RDNA2 → SPIR-V, each passing spirv-val",
-        "A patched test run got through device setup and 581 command lists before an assert"
+        "Retail exe runs its own code for up to 180 s on Windows, Wine and Proton",
+        "Runs reach 27,856 graphics pipelines and 114,425 D3D12 calls; audio setup gets through",
+        "All 26,503 GTA VI shaders translated RDNA2 → SPIR-V, each passing spirv-val"
       ],
       "blockers": [
-        "No frame drawn yet; 30 imports missing and most boot fixes still unmerged",
-        "Graphics has run only its own test programs; game shader output is unchecked",
-        "Some wave64 vertex, pixel and geometry shaders are approximate on 32-wide GPUs (NVIDIA, Intel)"
+        "No picture yet: the window stays blank, stuck on a command-allocator call (slot 9)",
+        "None of the boot fixes are merged; a run needs about 25 pull requests stacked by hand",
+        "The exe's own embedded vertex shaders and 42 FidelityFX programs aren't translated yet"
       ],
       "groundwork": {
         "loader": 0.55,
@@ -635,7 +676,7 @@
       },
       "provenOn": null,
       "gta": {
-        "loads": 0.5,
+        "loads": 1,
         "boots": 0,
         "menu": 0,
         "ingame": 0,
@@ -668,7 +709,7 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "MIT-licensed C++20 translation layer targeting D3D12 and Vulkan, with a 60-second hardware test bundle for contributors.",
+      "summary": "MIT-licensed C++20 translation layer targeting D3D12 and Vulkan. It now claims 17 boot stops cleared on a retail title it doesn't name, with no run record or frame shown, so no GTA VI milestone yet.",
       "highlights": [
         "Six unmodified Microsoft Scarlett samples run live at 4K",
         "Reports 775 of 779 RDNA2 opcodes checked on a real GPU",
@@ -3846,6 +3887,21 @@
       "date": "2026-11-23",
       "kind": "up",
       "text": "Leonida partly reaches “Exe runs”: the real executable maps and runs its startup code, with 30 imports still missing (self-reported). Score 12.4% → 18.8%."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "up",
+      "text": "XCL reaches “Exe runs”: a retail game its notes identify by GTA VI's executable runs at 30 fps for 60 s, on a black screen (self-reported). Score 22.1% → 25%."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "up",
+      "text": "TuxBox reaches “Exe runs”: GTA VI opens its window on Proton and presents at 4K, but the screen stays black (self-reported). Score 12.1% → 25%."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "up",
+      "text": "Leonida reaches “Exe runs”: on builds with about 25 unmerged fixes, the retail exe runs for up to three minutes behind a blank window (self-reported). Score 18.8% → 25%."
     }
   ],
   "history": [
@@ -3916,7 +3972,7 @@
     "lastRun": "2026-11-23T16:20:15.467Z",
     "lastSummary": "26 refreshed, 9 READMEs changed, 3 new candidates, 1 flagged.",
     "lastDmcaCheck": "2026-11-23T16:20:15.467Z",
-    "lastEditorRun": "2026-11-23T16:52:31.000Z"
+    "lastEditorRun": "2026-11-23T18:32:37.000Z"
   },
   "headlines": [
     {
