@@ -419,7 +419,7 @@ html:not([lang="en"]) .nav-links a { padding-inline: 9px; }
 .effort > *, .e-main > * { min-width: 0; }
 @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 .e-rank { font-family: var(--display); font-weight: 900; font-size: 34px; line-height: 1; color: var(--rank); text-align: center; padding-top: 4px; letter-spacing: -.04em; }
-.e-rank-overall { display: block; margin-top: 6px; font-family: var(--body, inherit); font-size: 11px; font-weight: 600; letter-spacing: 0; color: var(--muted, #8a8fa3); -webkit-text-fill-color: var(--muted, #8a8fa3); white-space: nowrap; }
+.e-rank-overall { display: block; margin-top: 6px; font-family: var(--body, inherit); font-size: 11px; font-weight: 600; letter-spacing: 0; color: var(--muted, #8a8fa3); -webkit-text-fill-color: var(--muted, #8a8fa3); white-space: normal; line-height: 1.25; }
 .effort.is-top .e-rank { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .e-top { display: flex; gap: 14px; align-items: center; }
 .e-avatar { width: 44px; height: 44px; border-radius: 12px; background: var(--soft-2); flex: none; object-fit: cover; }
