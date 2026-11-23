@@ -2015,29 +2015,6 @@
       "status": "new"
     },
     {
-      "repo": "PlayGta6Web/playgta6web",
-      "name": "playgta6web",
-      "description": "",
-      "language": "JavaScript",
-      "stars": 0,
-      "createdAt": "2026-11-23T19:15:41Z",
-      "pushedAt": "2026-11-23T22:03:52Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T22:03:10.527Z",
-      "substance": 71,
-      "signals": [
-        "JavaScript",
-        "11 technical terms",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "ReverendOzmund/xseries-wine",
       "name": "xseries-wine",
       "description": "Experimental boot harness for Xbox Series X|S (Scarlett) GDK executables on PC/Linux via Wine/Proton",
@@ -2108,52 +2085,6 @@
       "status": "new"
     },
     {
-      "repo": "Maksi-Novagh/Scarlett-Fusion-Lab",
-      "name": "Scarlett-Fusion-Lab",
-      "description": "Open-source Xbox Series X|S compatibility research and development. Integrating proven techniques from XCL, Leonida, OpenScarlett and TomBox to run Xbox executables natively on Windows.",
-      "language": "PowerShell",
-      "stars": 0,
-      "createdAt": "2026-11-23T18:18:46Z",
-      "pushedAt": "2026-11-23T19:14:49Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T19:14:29.039Z",
-      "substance": 54,
-      "signals": [
-        "PowerShell",
-        "5 technical terms",
-        "29 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "danekbiglike/leonida-rtx3090-bringup",
-      "name": "leonida-rtx3090-bringup",
-      "description": "GTA VI Xbox-to-PC startup research on an RTX 3090 with Leonida, reproducible compatibility patches and measured progress.",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-23T18:43:29Z",
-      "pushedAt": "2026-11-23T19:14:30Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T19:14:29.039Z",
-      "substance": 54,
-      "signals": [
-        "Python",
-        "9 technical terms",
-        "3 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "kry-vex-gta/XBOX-Inspector",
       "name": "XBOX-Inspector",
       "description": "An independent Rust toolkit for recompiling Xbox Series XIS files, inspecting open streams, and running static compatibility pre-checks. It is being developed as an emulator aimed at running GTA VI.",
@@ -2172,29 +2103,6 @@
         "Rust",
         "tests",
         "1 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Jake-Jensen/GTAVI_Xbox_ReverseEngineering",
-      "name": "GTAVI_Xbox_ReverseEngineering",
-      "description": "My personal work on reverse engineering the Xbox build of the game for Windows 11",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-23T18:04:11Z",
-      "pushedAt": "2026-11-23T18:36:17Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T19:14:29.039Z",
-      "substance": 50,
-      "signals": [
-        "Python",
-        "10 technical terms",
-        "2 commits/7d"
       ],
       "kind": "effort",
       "status": "new"
@@ -2240,28 +2148,6 @@
       "signals": [
         "23 technical terms",
         "1 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "s1oapppp-sketch/gta6-scarlett-research-notes",
-      "name": "gta6-scarlett-research-notes",
-      "description": "",
-      "language": null,
-      "stars": 0,
-      "createdAt": "2026-11-23T21:15:25Z",
-      "pushedAt": "2026-11-23T21:17:16Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T22:03:10.527Z",
-      "substance": 43,
-      "signals": [
-        "9 technical terms",
-        "2 commits/7d"
       ],
       "kind": "effort",
       "status": "new"
@@ -2345,6 +2231,26 @@
     }
   ],
   "ignored": [
+    {
+      "repo": "PlayGta6Web/playgta6web",
+      "reason": "Plan to run GTA VI in a browser through Wasm64 and WebGPU; nothing shown running"
+    },
+    {
+      "repo": "Maksi-Novagh/Scarlett-Fusion-Lab",
+      "reason": "Scripts combining other projects' engines; by its own account not a working emulator"
+    },
+    {
+      "repo": "danekbiglike/leonida-rtx3090-bringup",
+      "reason": "A contributor's patch and run notes for Leonida on one GPU, not a separate effort"
+    },
+    {
+      "repo": "Jake-Jensen/GTAVI_Xbox_ReverseEngineering",
+      "reason": "Import analysis of the executable; research notes, not a port"
+    },
+    {
+      "repo": "s1oapppp-sketch/gta6-scarlett-research-notes",
+      "reason": "Text-only research notes about the executable, no code"
+    },
     {
       "repo": "aasaasaasss/XS-2-D3D",
       "reason": "Early loader and shader front end, partly adapted from Leonida with credit; no results reported yet"
