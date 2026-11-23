@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T22:03:10.527Z",
+  "updated": "2026-11-23T22:22:17.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -21,14 +21,20 @@
       "date": "2026-11-23",
       "category": "Port",
       "title": "Exclusive: Marvis livestreams GTA VI reaching its menus at about 15 fps",
-      "dek": "He hasn't released any code, so nobody can reproduce it yet, but viewers who studied the stream think it is most likely real.",
+      "dek": "He has since published the code as VIctory, but nobody else has reproduced the run yet. Viewers who studied the stream think it is most likely real.",
+      "updatedAt": "2026-11-23",
       "body": [
         "A developer who goes by Marvis livestreamed GTA VI running on a PC on Monday, getting as far as the game's menus at roughly 15 frames per second. No public project has shown that much yet: Leonida, XCL and TuxBox all run the game's own code, but their screens are still black or blank.",
-        "Marvis hasn't published his code or a build, and hasn't explained how his version works. Without either, nobody outside the stream can reproduce the result, and we haven't been able to verify it ourselves.",
+        "Late on Monday he published the code on GitHub as VIctory, a Rust layer that runs the game's own code natively on Windows. Its README goes further than the stream: boot screens, intro video, start screen and saves work at 30 fps, and loading reaches the open world, where the picture stays black and the graphics card fails within seconds.",
         "Viewers who went through the stream closely mostly concluded it is genuine. A staged fake would take a very elaborate setup, and few think that is what happened. The timing also fits: an outside contributor's unmerged change to XCL reports reaching the first menus on the same day.",
-        "We have added Marvis to the tracker at our Main menu stage, 55%, marked as unverified. We'll update the entry when code, a build or an independent reproduction appears, and take it down if the stream turns out to be staged."
+        "VIctory sits at our Main menu stage, 55%. Its results are still his own, from one PC with an AMD RX 6700 XT; we'll update the entry as others try the code, and take it down if the run turns out to be staged."
       ],
       "sources": [
+        {
+          "outlet": "GitHub",
+          "title": "VIctory: README and status table",
+          "url": "https://github.com/Marvisak/VIctory"
+        },
         {
           "outlet": "GitHub",
           "title": "XCL pull request 195: a retail game shows its first menus (unmerged)",
@@ -416,22 +422,22 @@
   "efforts": [
     {
       "id": "marvis",
-      "name": "Marvis",
-      "repo": null,
-      "avatar": "assets/img/efforts/marvis.png",
-      "link": "news/2026-11-23-marvis-menus-stream.html",
-      "byline": "No public code yet · shown on a livestream",
+      "name": "VIctory",
+      "repo": "Marvisak/VIctory",
+      "branch": "main",
       "tier": "tracked",
-      "approach": "Not disclosed",
-      "target": "GTA VI",
-      "summary": "Livestreamed GTA VI reaching its menus at about 15 fps. No code or build is public, so nobody can reproduce it; viewers who studied the stream think it is most likely real. Unverified.",
+      "approach": "Compatibility layer",
+      "target": "GTA VI only",
+      "summary": "Marvis's Rust layer runs GTA VI's own code natively. After his livestream he published it; the README reports boot screens, intro, start screen and saves at 30 fps, and the world loading to a black screen. Self-reported.",
       "highlights": [
-        "A livestream showed GTA VI's menus running at about 15 fps",
-        "Viewers who went through the stream found it most likely genuine"
+        "README reports first-boot screens, intro video, start screen and saves working at 30 fps",
+        "A livestream showed GTA VI's menus running, at about 15 fps on stream",
+        "Loading reaches the open world after about 50 seconds"
       ],
       "blockers": [
-        "No code or build is public, so nobody can reproduce the result",
-        "How it works hasn't been disclosed"
+        "In the world the picture is black and the GPU fails within seconds",
+        "Tested on one machine (AMD RX 6700 XT); not reproduced by others yet",
+        "Code published hours after the stream; not yet reviewed by PortWatch"
       ],
       "provenOn": null,
       "gta": {
@@ -443,7 +449,16 @@
         "stability": "unknown"
       },
       "verification": "self-reported",
-      "stats": {},
+      "stats": {
+        "stars": 50,
+        "forks": 5,
+        "openIssues": 0,
+        "createdAt": "2026-11-23T21:47:25Z",
+        "pushedAt": "2026-11-23T22:16:40Z",
+        "commits7d": 8,
+        "archived": false,
+        "missing": false
+      },
       "assessedAt": "2026-11-23",
       "assessedBy": "manual",
       "claims": []
@@ -4406,6 +4421,11 @@
       "date": "2026-11-23",
       "kind": "new",
       "text": "Scout spotted PlayGta6Web/playgta6web (possible effort, substance 71)."
+    },
+    {
+      "date": "2026-11-23",
+      "kind": "new",
+      "text": "Marvis publishes his code as VIctory. Its README reports the menus at 30 fps and the world loading to a black screen; still unverified, it stays at 55%."
     }
   ],
   "history": [
