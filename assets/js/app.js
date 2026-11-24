@@ -222,8 +222,9 @@ function renderOverall(data) {
   $('#mega-fill').dataset.width = ov.score;
 
   const top = ov.ranked.slice(0, 6);
-  const draw = () => drawMarkers(top, leader);
+  const draw = () => { drawMarkers(top, leader); layoutMegaLabels(); };
   draw();
+  document.fonts?.ready.then(draw); // Inter swaps in after first paint and changes label widths
   let raf;
   window.addEventListener('resize', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); });
 
@@ -272,6 +273,34 @@ function drawMarkers(ranked, leader) {
                 ${priv ? `<span class="mk-face">${face}<span class="bp-lock"><span class="pb-lock" aria-hidden="true"></span></span></span>` : face}
               </a>`;
     }).join('');
+}
+
+// Milestone labels sit under their ticks, 10% apart up to Playable. When neighbours would touch
+// (phones, longer translations), they're dealt into the fewest rows that keep every row clear:
+// 1-2-1-2, then 1-2-3-1-2-3 and so on, so each row still reads left to right.
+function layoutMegaLabels() {
+  const box = $('#mega-labels');
+  const labels = [...box.querySelectorAll('.mega-label')];
+  if (!labels.length || !box.clientWidth) return;
+  labels.forEach((l) => { l.style.top = '0px'; });
+  const span = (el) => { const r = el.getBoundingClientRect(); return [r.left, r.right]; };
+  const spans = labels.map(span);
+  // The track names between Playable and Complete share the first row (hidden on phones).
+  // Their CSS already stops short of Complete, so only the steps up to Playable are checked against them.
+  const zone = box.querySelector('.mega-zone');
+  const zoneSpan = zone && zone.getClientRects().length ? span(zone) : null;
+  const last = labels.length - 1;
+  const GAP = 10;
+  const clear = (a, b) => a[1] + GAP <= b[0] || b[1] + GAP <= a[0];
+  const fits = (rows) => spans.every((a, i) =>
+    (i % rows || i === last || !zoneSpan || clear(a, zoneSpan)) &&
+    spans.every((b, j) => j <= i || (j - i) % rows || clear(a, b)));
+  let rows = 1;
+  while (rows < labels.length && !fits(rows)) rows++;
+  const h = Math.max(...labels.map((l) => l.offsetHeight));
+  const step = h + 6;
+  labels.forEach((l, i) => { l.style.top = `${(i % rows) * step}px`; });
+  box.style.height = `${(rows - 1) * step + h + 14}px`;
 }
 
 function renderHistory(history) {
