@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T10:32:41.000Z",
+  "updated": "2026-11-24T11:06:54.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -16,6 +16,42 @@
     "source": "https://www.xda-developers.com/gta-6-xbox-executable-leaked-opening-door-for-pc-recompilation-projects-begin-testing/"
   },
   "news": [
+    {
+      "id": "2026-11-24-cgbj-in-game",
+      "date": "2026-11-24",
+      "category": "Port",
+      "title": "Exclusive: CGBJ gets GTA VI in game, walking and talking in an unlit world",
+      "dek": "A private build based on VIctory and XCL lets a player walk around and talk to NPCs, very slowly. A video shows the opening scenes in flat colours, without lighting.",
+      "body": [
+        "A group called CGBJ has got GTA VI into its game world on PC, and a player can move in it. With a controller they walk around, talk to NPCs and open the in-game menu. PortWatch has verified that it gets in game. No public project has shown a player moving yet.",
+        "It is far from playable, and it runs very slowly. In the run where a player walked around, the screen was black. A 77-second video posted on X on Tuesday shows more: GTA VI's opening scenes in flat colours with no lighting, from a car's interior to a street of waving NPCs, a guard and a prison yard. The image above, a debug view that colours each surface by the direction it faces, shows that yard from a doorway.",
+        "CGBJ's code is private. It builds on VIctory, the open-source layer whose author first showed GTA VI's menus on a livestream on Monday, and also takes some of XCL's work. Both are public on GitHub; CGBJ's changes aren't, so nobody outside the group can test them.",
+        "We've added CGBJ to the tracker at 72%, at our In-game stage, which puts it first. That rests on our own check: the video doesn't name the project, and nobody outside the group can reproduce the result yet."
+      ],
+      "sources": [
+        {
+          "outlet": "X",
+          "title": "A 77-second video of the build: GTA VI's opening in flat, unlit colours",
+          "url": "https://x.com/raul_bs3/status/2125172278975729688/video/1"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "VIctory, the layer CGBJ builds on",
+          "url": "https://github.com/Marvisak/VIctory"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "XCL, whose work CGBJ also uses",
+          "url": "https://github.com/ivall/xcl"
+        }
+      ],
+      "image": {
+        "url": "https://portwatch-vi.xyz/assets/img/news/2026-11-24-cgbj-in-game.webp",
+        "credit": "CGBJ (debug view of surface normals, no textures or lighting)",
+        "link": "https://portwatch-vi.xyz/assets/img/news/2026-11-24-cgbj-in-game.webp"
+      },
+      "by": "report"
+    },
     {
       "id": "2026-11-24-xcl-30fps-in-game",
       "date": "2026-11-24",
@@ -562,6 +598,41 @@
     }
   ],
   "efforts": [
+    {
+      "id": "cgbj",
+      "name": "CGBJ",
+      "repo": null,
+      "link": "news/2026-11-24-cgbj-in-game.html",
+      "byline": "Private code · based on VIctory and XCL",
+      "tier": "tracked",
+      "approach": "Compatibility layer",
+      "target": "GTA VI only",
+      "summary": "A private build based on VIctory, using some of XCL's work. PortWatch verified it gets in game: a player moves and talks to NPCs, very slowly. A video shows the opening in flat, unlit colours. Code not public.",
+      "highlights": [
+        "A player moves with a controller, talks to NPCs and opens the in-game menu",
+        "A video on X shows the opening scenes in flat colours: a car, a street, a prison yard",
+        "Built on VIctory's runtime, with some of XCL's work added"
+      ],
+      "blockers": [
+        "No lighting yet, and the screen was black while a player walked around",
+        "Runs very slowly",
+        "Code is private, so nobody outside the group can test or reproduce it"
+      ],
+      "provenOn": null,
+      "gta": {
+        "loads": 1,
+        "boots": 1,
+        "menu": 1,
+        "ingame": 1,
+        "fps": 4,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {},
+      "assessedAt": "2026-11-24",
+      "assessedBy": "manual",
+      "claims": []
+    },
     {
       "id": "marvis",
       "name": "VIctory",
@@ -5172,6 +5243,11 @@
       "date": "2026-11-24",
       "kind": "up",
       "text": "Five Star Recomp gets half credit for “Main menu”: its README reports GTA VI's first-run setup screens answering scripted gamepad input, then the story load starting (self-reported, no capture). Score 40% → 47.5%."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "new",
+      "text": "CGBJ joins at #1 with 72% (“In-game”): PortWatch verified that its private build, based on VIctory with some of XCL's work, moves a player around GTA VI's world, very slowly; a video shows the opening in flat, unlit colours. Its code isn't public."
     }
   ],
   "history": [
