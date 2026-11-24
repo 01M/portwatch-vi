@@ -160,20 +160,37 @@
           <p class="lede" data-i18n="hero.lede">Every serious attempt to recompile, emulate or port the leaked Xbox Series build to PC, scored on one ladder from groundwork to a stable 30&nbsp;FPS.</p>
         </div>
 
-        <aside class="countdown" id="countdown" aria-live="polite">
-          <p class="cd-label"><span class="cd-pulse" aria-hidden="true"></span><span id="cd-title" data-i18n="cd.drop">Executable drop</span></p>
-          <div class="cd-digits" id="cd-digits">
-            <div><span id="cd-d">--</span><small data-i18n="cd.days">days</small></div>
-            <i>:</i>
-            <div><span id="cd-h">--</span><small data-i18n="cd.hours">hours</small></div>
-            <i>:</i>
-            <div><span id="cd-m">--</span><small data-i18n="cd.min">min</small></div>
-            <i>:</i>
-            <div><span id="cd-s">--</span><small data-i18n="cd.sec">sec</small></div>
-          </div>
-          <p class="cd-status" id="cd-status"></p>
-          <p class="cd-foot" id="cd-foot"></p>
-        </aside>
+        <div class="hero-side">
+          <aside class="countdown" id="countdown" aria-live="polite">
+            <p class="cd-label"><span class="cd-pulse" aria-hidden="true"></span><span id="cd-title" data-i18n="cd.drop">Executable drop</span></p>
+            <div class="cd-digits" id="cd-digits">
+              <div><span id="cd-d">--</span><small data-i18n="cd.days">days</small></div>
+              <i>:</i>
+              <div><span id="cd-h">--</span><small data-i18n="cd.hours">hours</small></div>
+              <i>:</i>
+              <div><span id="cd-m">--</span><small data-i18n="cd.min">min</small></div>
+              <i>:</i>
+              <div><span id="cd-s">--</span><small data-i18n="cd.sec">sec</small></div>
+            </div>
+            <p class="cd-status" id="cd-status"></p>
+            <p class="cd-foot" id="cd-foot"></p>
+          </aside>
+
+          <!-- The owner's pinned message, from data/pinned.json (edited in the private dashboard). Hidden when empty. -->
+          <aside class="pinned" id="pinned" aria-labelledby="pin-label" hidden>
+            <p class="pin-label" id="pin-label">
+              <svg class="pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 9V4h1a1 1 0 0 0 0-2H7a1 1 0 0 0 0 2h1v5a3 3 0 0 1-3 3v2h5.97v7l1 1 1-1v-7H19v-2a3 3 0 0 1-3-3z"/></svg>
+              <span data-i18n="pin.label">Pinned</span>
+            </p>
+            <div class="pin-msg">
+              <span class="pin-avatar"><b aria-hidden="true">4</b></span>
+              <div class="pin-bubble">
+                <p class="pin-head"><b class="pin-name">4lwayz</b><span class="pin-badge" data-i18n="pin.badge">Creator</span><time class="pin-time"></time></p>
+                <p class="pin-text"></p>
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
       <p class="art-credit" id="art-credit"></p>
     </section>

@@ -1,6 +1,7 @@
 import { MILESTONES, GROUNDWORK, STABILITY, scoreEffort, overall, ladderValue, byStars } from './scoring.js';
 import { getLiveViewers, trackView } from './backend.js';
 import { coverHtml, articlePath } from './news-shared.js';
+import { fillPinned } from './pinned.js';
 import { initI18n, t, tr, locale } from './i18n.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -58,6 +59,9 @@ const ICON = {
 const state = { data: null, filter: 'all', sort: 'score' };
 
 async function main() {
+  // The pinned message is optional: it loads alongside and never holds up or breaks the page.
+  const pinned = fetch(`data/pinned.json?ts=${Math.floor(Date.now() / 6e4)}`, { cache: 'no-cache' })
+    .then((r) => (r.ok ? r.json() : null)).catch(() => null);
   // Translations load alongside the data; initI18n never throws and falls back to English.
   const [res] = await Promise.all([
     fetch(`data/tracker.json?ts=${Math.floor(Date.now() / 6e4)}`, { cache: 'no-cache' }),
@@ -70,6 +74,7 @@ async function main() {
   renderMeta(data);
   renderHeroArt(data.site || {});
   startCountdown(data.exe || {});
+  pinned.then((p) => fillPinned($('#pinned'), p, { ago, when: (iso) => new Date(iso).toLocaleString(locale()) }));
   renderOverall(data);
   renderChanges(data.changes || []);
   renderRace();

@@ -297,6 +297,51 @@ html:not([lang="en"]) .nav-links a { padding-inline: 9px; }
 .countdown.is-due .cd-digits span { color: var(--gold); }
 .countdown.is-released { background: rgba(22, 163, 106, .22); border-color: rgba(120, 255, 190, .4); }
 
+/* Right-hand column of the hero: the countdown, with the owner's pinned message under it. */
+.hero-side { justify-self: end; display: grid; gap: 14px; width: 100%; max-width: 420px; }
+.hero-side .countdown { justify-self: stretch; max-width: none; }
+
+/* Pinned message: same glass as the countdown, laid out like a chat message. */
+.pinned {
+  padding: 18px 20px 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .26);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  box-shadow: 0 20px 60px rgba(10, 6, 30, .35);
+  animation: pin-in .5s ease both;
+}
+.pinned[hidden] { display: none; }
+.pin-label { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(255, 255, 255, .9); }
+.pin-icon { width: 16px; height: 16px; flex: none; fill: var(--gold); transform: rotate(35deg); filter: drop-shadow(0 0 6px rgba(255, 194, 77, .55)); }
+.pin-msg { display: flex; align-items: flex-start; gap: 12px; }
+.pin-avatar {
+  position: relative; flex: none;
+  width: 50px; height: 50px; padding: 2.5px;
+  border-radius: 50%;
+  background: var(--grad);
+  box-shadow: 0 6px 20px rgba(255, 46, 126, .4);
+}
+.pin-avatar b, .pin-avatar img { display: block; width: 100%; height: 100%; border-radius: 50%; border: 2px solid #1a1033; }
+.pin-avatar b { display: grid; place-items: center; background: #1a1033; font-family: var(--display); font-size: 20px; font-weight: 900; color: #fff; }
+.pin-avatar img { position: absolute; inset: 2.5px; width: calc(100% - 5px); height: calc(100% - 5px); object-fit: cover; background: #1a1033; }
+.pin-bubble {
+  flex: 1; min-width: 0;
+  padding: 10px 14px 12px;
+  border-radius: 6px 18px 18px 18px;
+  background: rgba(255, 255, 255, .13);
+  border: 1px solid rgba(255, 255, 255, .2);
+}
+.pin-head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 0 0 5px; font-size: 14.5px; line-height: 1.3; }
+.pin-name { font-weight: 800; letter-spacing: -.01em; }
+.pin-badge { padding: 2px 8px; border-radius: 999px; background: var(--grad); font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; line-height: 1.4; }
+.pin-time { margin-left: auto; font-size: 12px; color: rgba(255, 255, 255, .62); white-space: nowrap; }
+.pin-text { margin: 0; font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, .95); white-space: pre-line; overflow-wrap: anywhere; }
+.pin-text a { color: #fff; font-weight: 600; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, .45); text-underline-offset: 2px; }
+.pin-text a:hover { text-decoration-color: #fff; }
+@keyframes pin-in { from { opacity: 0; transform: translateY(10px); } }
+
 /* ---------- Overall progress ---------- */
 .overall-wrap { position: relative; z-index: 5; margin-top: -132px; }
 .overall { padding: 30px 34px 26px; box-shadow: var(--shadow-lg); border-radius: 28px; }
@@ -702,6 +747,7 @@ a.tag { text-decoration: none; }
 @media (max-width: 1020px) {
   .hero-inner { grid-template-columns: 1fr; gap: 30px; padding: 56px 0 170px; }
   .countdown { justify-self: start; }
+  .hero-side { justify-self: start; }
   .ov-stats { grid-template-columns: repeat(2, auto); }
   .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .method { grid-template-columns: 1fr; }
@@ -709,6 +755,14 @@ a.tag { text-decoration: none; }
   .news { grid-template-columns: 1fr; }
 }
 @media (max-width: 520px) {
+  .hero-side { max-width: none; gap: 12px; }
+  .pinned { padding: 16px 14px 16px; border-radius: 20px; }
+  .pin-msg { gap: 10px; }
+  .pin-avatar { width: 42px; height: 42px; padding: 2px; }
+  .pin-avatar img { inset: 2px; width: calc(100% - 4px); height: calc(100% - 4px); }
+  .pin-avatar b { font-size: 17px; }
+  .pin-bubble { padding: 9px 12px 11px; }
+  .pin-text { font-size: 14.5px; }
   .story.is-small { grid-template-columns: 104px minmax(0, 1fr); }
   .reader-inner { padding: 20px 20px 26px; }
 }

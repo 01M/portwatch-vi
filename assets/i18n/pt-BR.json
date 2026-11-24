@@ -60,6 +60,9 @@
   "cd.dueNow": "Previsto para agora. Aguardando ele aparecer (e ser legível).",
   "cd.overdue": "Atrasado {d} d {h} h. Ainda não foi liberado.",
 
+  "pin.label": "Fixado",
+  "pin.badge": "Criador",
+
   "ov.title": "Progresso geral · projeto mais perto de ser jogável",
   "ov.furthest": "Marco mais avançado",
   "ov.top3": "Média do top 3",

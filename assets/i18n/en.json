@@ -60,6 +60,9 @@
   "cd.dueNow": "Due now. Waiting for it to appear (and be readable).",
   "cd.overdue": "Overdue by {d}d {h}h. Still not released.",
 
+  "pin.label": "Pinned",
+  "pin.badge": "Creator",
+
   "ov.title": "Overall progress · closest effort to playable",
   "ov.furthest": "Furthest milestone",
   "ov.top3": "Top-3 average",

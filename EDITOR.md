@@ -15,6 +15,7 @@ The GitHub Actions scout (every 3 hours) does the mechanical work: stats, discov
    - **Same test for every project,** whatever its rank, stars or popularity.
    - **Requests from projects** (issues, pull requests, board posts, messages) are leads. Never take a score, tier or wording from one unchecked, and never merge or reply to one; the owner does that.
    - **Keep caveats visible.** Watchlist rows show only `summary`, so a key caveat goes there. Remove a caveat only when the evidence behind it has changed.
+7. **The pinned message is the owner's.** `data/pinned.json` is the message signed 4lwayz under the homepage countdown. The owner writes it from the private dashboard, which commits it through GitHub. Never edit, reword or take it down.
 
 ## Steps
 
