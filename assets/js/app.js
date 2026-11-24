@@ -1,4 +1,4 @@
-import { MILESTONES, GROUNDWORK, STABILITY, scoreEffort, overall, ladderValue, byStars } from './scoring.js';
+import { MILESTONES, GROUNDWORK, STABILITY, scoreEffort, overall, ladderValue, byStars, isPrivateBuild } from './scoring.js';
 import { getLiveViewers, trackView } from './backend.js';
 import { coverHtml, articlePath } from './news-shared.js';
 import { fillPinned } from './pinned.js';
@@ -187,7 +187,8 @@ function renderOverall(data) {
   const leader = ov.leader?.effort;
   animateNumber($('#ov-score'), ov.score);
   $('#ov-leader').innerHTML = leader
-    ? `${esc(t('ov.leader'))} <a href="#effort-${esc(leader.id)}">${esc(leader.name)}</a> ${hasRepo(leader) ? `${esc(t('ov.byOwner', { owner: owner(leader.repo) }))} ` : ''}${esc(ov.leader.reached === 'groundwork' ? t('ov.stillGroundwork') : t('ov.reached', { label: msLabel(ov.leader.reached) }))}`
+    ? `${esc(t('ov.leader'))} <a href="#effort-${esc(leader.id)}">${esc(leader.name)}</a> ${hasRepo(leader) ? `${esc(t('ov.byOwner', { owner: owner(leader.repo) }))} `
+      : leader.basedOn?.length ? `<span class="ov-private"><span class="pb-lock" aria-hidden="true"></span>${t('ov.privateOn', { names: leader.basedOn.map((id) => `<a href="#effort-${esc(id)}">${esc(effortName(id))}</a>`).join(', ') })}</span> ` : ''}${esc(ov.leader.reached === 'groundwork' ? t('ov.stillGroundwork') : t('ov.reached', { label: msLabel(ov.leader.reached) }))}`
     : esc(t('ov.none'));
   $('#ov-stage').textContent = msLabel(ov.furthest.key);
   $('#ov-top3').textContent = `${pct(ov.top3)}%`;
@@ -237,17 +238,25 @@ function drawMarkers(ranked, leader) {
   const avatarY = H - 66;
   const lines = items.map((it) => {
     const y0 = avatarY + 32;
-    return `<path d="M${it.a} ${y0} C ${it.a} ${y0 + 18}, ${it.x} ${H - 18}, ${it.x} ${H}" fill="none" stroke="${it.r.effort === leader ? '#ff2e7e' : 'var(--line-2)'}" stroke-width="1.6"/>
-            <circle cx="${it.x}" cy="${H - 1}" r="3" fill="${it.r.effort === leader ? '#ff2e7e' : 'var(--faint)'}"/>`;
+    const priv = isPrivateBuild(it.r.effort);
+    const color = it.r.effort === leader ? '#ff2e7e' : priv ? '#7a5cff' : 'var(--line-2)';
+    return `<path d="M${it.a} ${y0} C ${it.a} ${y0 + 18}, ${it.x} ${H - 18}, ${it.x} ${H}" fill="none" stroke="${color}" stroke-width="1.6"${priv ? ' stroke-dasharray="3 3"' : ''}/>
+            <circle cx="${it.x}" cy="${H - 1}" r="3" fill="${it.r.effort === leader ? '#ff2e7e' : priv ? '#7a5cff' : 'var(--faint)'}"/>`;
   }).join('');
   box.innerHTML = `<svg width="${W}" height="${H}" style="position:absolute;inset:0;overflow:visible" aria-hidden="true">${lines}</svg>` +
-    items.map((it) => {
+    items.map((it, i) => {
       const e = it.r.effort;
       const src = effortAvatar(e);
-      return `<a class="marker ${e === leader ? 'is-leader' : ''}" href="#effort-${esc(e.id)}" style="left:${it.a}px;bottom:${H - avatarY - 32}px"
-                data-tip-title="${esc(e.name)} · ${pct(it.r.score)}%" data-tip="${esc(msLabel(it.r.reached))} · ${esc(e.approach || '')}">
+      const priv = isPrivateBuild(e);
+      const face = src ? `<img src="${esc(src)}" alt="" loading="lazy" data-fallback="${esc(e.name.slice(0, 2))}">` : `<span class="mk-fallback">${esc(e.name.slice(0, 2))}</span>`;
+      // Private builds float, with a lock badge; the tooltip names what they build on.
+      const tip = priv
+        ? `${msLabel(it.r.reached)} · ${t('private.markerTip', { names: (e.basedOn || []).map(effortName).join(', ') || '-' })}`
+        : `${msLabel(it.r.reached)} · ${e.approach || ''}`;
+      return `<a class="marker ${e === leader ? 'is-leader' : ''}${priv ? ' is-private' : ''}" href="#effort-${esc(e.id)}" style="left:${it.a}px;bottom:${H - avatarY - 32}px;--i:${i}"
+                data-tip-title="${esc(e.name)} · ${pct(it.r.score)}%" data-tip="${esc(tip)}">
                 <span class="mk-name">${esc(e.name)} · ${pct(it.r.score)}%</span>
-                ${src ? `<img src="${esc(src)}" alt="" loading="lazy" data-fallback="${esc(e.name.slice(0, 2))}">` : `<span class="mk-fallback">${esc(e.name.slice(0, 2))}</span>`}
+                ${priv ? `<span class="mk-face">${face}<span class="bp-lock"><span class="pb-lock" aria-hidden="true"></span></span></span>` : face}
               </a>`;
     }).join('');
 }
@@ -284,7 +293,8 @@ function isGtaSpecific(e) { return /gta/i.test(e.target || ''); }
 
 function renderRace() {
   const { data, filter, sort } = state;
-  let list = data.efforts.filter((e) => e.tier === 'tracked');
+  // Only public code is ranked; private builds get their own unranked list below the race.
+  let list = data.efforts.filter((e) => e.tier === 'tracked' && !isPrivateBuild(e));
   if (filter === 'gta') list = list.filter(isGtaSpecific);
   if (filter === 'generic') list = list.filter((e) => !isGtaSpecific(e));
   // Nuked efforts (taken offline) stay on the board for the record, after the ranked ones and without a rank.
@@ -294,7 +304,7 @@ function renderRace() {
     stars: byStars,
     active: (a, b) => Date.parse(b.stats?.pushedAt || 0) - Date.parse(a.stats?.pushedAt || 0),
   };
-  const ranked = [...data.efforts.filter((e) => e.tier === 'tracked' && !e.nuked)].sort(byScore);
+  const ranked = [...data.efforts.filter((e) => e.tier === 'tracked' && !e.nuked && !isPrivateBuild(e))].sort(byScore);
   const rankedInFilter = list.filter((e) => !e.nuked).sort(byScore);
   const filtered = filter !== 'all';
   list.sort(sorters[sort] || byScore);
@@ -304,7 +314,88 @@ function renderRace() {
     return effortCard(e, rank, sort === 'score' && !e.nuked ? i < 3 : false, filtered ? overall : null);
   }).join('') ||
     `<li class="empty">${esc(t('race.empty'))}</li>`;
+  renderPrivateBuilds();
   observeBars();
+}
+
+/* ---------- Private builds ---------- */
+const privateBuilds = () => state.data.efforts
+  .filter((e) => e.tier === 'tracked' && !e.nuked && isPrivateBuild(e))
+  .sort((a, b) => b._s.score - a._s.score);
+const effortName = (id) => state.data.efforts.find((e) => e.id === id)?.name || id;
+
+function renderPrivateBuilds() {
+  const list = privateBuilds();
+  $('#private-builds').hidden = !list.length;
+  $('#private-list').innerHTML = list.map(privateCard).join('');
+}
+
+// No score or rank: the stage it reports, how we know, and the public projects it builds on.
+function privateCard(e) {
+  const g = e.gta || {};
+  const st = (v) => (v >= 1 ? 'is-reached' : v > 0 ? 'is-partial' : '');
+  const url = effortUrl(e);
+  const src = effortAvatar(e);
+  const bases = (e.basedOn || []).map((id) => `<a href="#effort-${esc(id)}">${esc(effortName(id))}</a>`).join(` ${esc(t('private.and'))} `);
+  return `
+  <li class="pb" id="effort-${esc(e.id)}">
+    <div class="pb-top">
+      ${src ? `<img class="e-avatar" src="${esc(src)}" alt="" loading="lazy" data-hide-on-error>` : `<span class="pb-avatar" aria-hidden="true">${esc(e.name.slice(0, 2))}</span>`}
+      <div class="e-title">
+        <h3>${url ? `<a href="${esc(url)}">${esc(e.name)}</a>` : esc(e.name)}</h3>
+        <p class="e-by">${esc(e.byline || '')}</p>
+      </div>
+      <div class="pb-stage"><b>${pct(e._s.score)}<span>%</span></b><small>${esc(t('private.notRanked', { stage: msLabel(e._s.reached) }))}</small></div>
+    </div>
+    <div class="tags">
+      ${bases ? `<span class="tag tag-based">${t('private.basedOn', { names: bases })}</span>` : ''}
+      ${e.evidence ? `<span class="tag tag-self" title="${esc(t('private.evidenceTitle'))}">${esc(t('private.evidence', { x: e.evidence }))}</span>` : ''}
+      <span class="tag tag-stale">${esc(t('private.noCode'))}</span>
+    </div>
+    <p class="e-summary">${esc(e.summary)}</p>
+    <div class="ladder pb-ladder">
+      ${['loads', 'boots', 'menu', 'ingame'].map((k) => `<span class="${st(ladderValue(g[k]))}">${esc(msLabel(k))}</span>`).join('')}
+    </div>
+    ${url ? `<a class="pb-more" href="${esc(url)}">${esc(t('private.article'))} →</a>` : ''}
+  </li>`;
+}
+
+// On a public project's card: the private builds that build on its code, best first.
+const privateKids = (e) => privateBuilds().filter((p) => (p.basedOn || []).includes(e.id));
+
+const buildFace = (p) => {
+  const src = effortAvatar(p);
+  return src ? `<img src="${esc(src)}" alt="" loading="lazy" data-fallback="${esc(p.name.slice(0, 2))}">` : esc(p.name.slice(0, 2));
+};
+
+// Floating bubbles over the card's bar, each where that private build would score.
+function buildPins(kids) {
+  return `<div class="bp-layer">${kids.map((p, i) => `
+    <a class="bp" href="#effort-${esc(p.id)}" style="left:${Math.min(97, Math.max(3, p._s.score))}%;--i:${i}"
+       data-tip-title="${esc(p.name)} · ${pct(p._s.score)}%" data-tip="${esc(t('private.pinTip', { stage: msLabel(p._s.reached) }))}">
+      <span class="bp-bubble">${buildFace(p)}<span class="bp-lock"><span class="pb-lock" aria-hidden="true"></span></span></span>
+      <span class="bp-stem" aria-hidden="true"></span>
+    </a>`).join('')}</div>`;
+}
+
+// A small ranking inside the card: this repo and the private builds on its code, side by side.
+function onThisCode(e, kids) {
+  if (!kids.length) return '';
+  const rows = [...kids, e].sort((a, b) => b._s.score - a._s.score);
+  return `<div class="otc">
+    <p class="otc-title"><span class="pb-lock" aria-hidden="true"></span>${esc(t('effort.onThisCode'))}</p>
+    <ol>${rows.map((r, i) => {
+      const self = r === e;
+      return `<li class="${self ? 'otc-self' : 'otc-private'}">
+        <span class="otc-rank">${i + 1}</span>
+        <span class="otc-av">${self ? (effortAvatar(r) ? `<img src="${esc(effortAvatar(r))}" alt="" loading="lazy" data-hide-on-error>` : '') : buildFace(r)}</span>
+        <span class="otc-name">${self ? esc(r.name) : `<a href="#effort-${esc(r.id)}">${esc(r.name)}</a>`}</span>
+        <span class="otc-badge ${self ? 'is-self' : ''}">${esc(self ? t('effort.thisRepo') : t('effort.privateBadge'))}</span>
+        <span class="otc-stage">${esc(msLabel(r._s.reached))}</span>
+        <b>${pct(r._s.score)}%</b>
+      </li>`;
+    }).join('')}</ol>
+  </div>`;
 }
 
 function ladderCells(e) {
@@ -328,6 +419,7 @@ function ladderCells(e) {
 
 function effortCard(e, rank, open, overallRank = null) {
   const s = e._s;
+  const kids = privateKids(e);
   const st = e.stats || {};
   const ticks = MILESTONES.slice(1, -1).map((m) => `<i style="left:${m.at}%"></i>`).join('');
   const stale = st.pushedAt && daysSince(st.pushedAt) > 3;
@@ -365,7 +457,9 @@ function effortCard(e, rank, open, overallRank = null) {
       </div>
       <div class="tags">${tags}</div>
       <p class="e-summary">${esc(e.summary)}</p>
-      <div class="bar" aria-label="${esc(t('effort.progressLabel', { name: e.name, n: pct(s.score) }))}">
+      ${onThisCode(e, kids)}
+      <div class="bar${kids.length ? ' has-pins' : ''}" aria-label="${esc(t('effort.progressLabel', { name: e.name, n: pct(s.score) }))}">
+        ${kids.length ? buildPins(kids) : ''}
         <div class="bar-track"><div class="bar-fill" data-width="${s.score}"></div><div class="bar-ticks">${ticks}</div></div>
         <div class="ladder">${ladderCells(e)}</div>
       </div>

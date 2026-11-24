@@ -224,7 +224,7 @@
         <div>
           <p class="kicker" data-i18n="race.kicker">Leaderboard</p>
           <h2 id="race-title" data-i18n="race.title">The race</h2>
-          <p class="sub" data-i18n="race.sub">The efforts with real code behind them, ranked by how close each is to running the game. Scores come from each project's public README, commits and issues. Self-reported claims are labelled.</p>
+          <p class="sub" data-i18n="race.sub">The efforts with public code, ranked by how close each is to running the game. Scores come from each project's public README, commits and issues. Self-reported claims are labelled. Private builds are listed below the race, without a rank.</p>
         </div>
         <div class="controls">
           <div class="chips" role="group" aria-label="Filter efforts" data-i18n-attr="aria-label:race.filterLabel">
@@ -242,6 +242,11 @@
         </div>
       </div>
       <ol class="race" id="race-list"></ol>
+      <div class="private-builds" id="private-builds" hidden>
+        <h3 class="pb-title"><span class="pb-lock" aria-hidden="true"></span><span data-i18n="private.title">Private builds · not ranked</span></h3>
+        <p class="sub" data-i18n="private.sub">These have no public code, so nobody outside the group can check or run them. Each one names the public project it builds on, and that project keeps its place in the race.</p>
+        <ul class="pb-list" id="private-list"></ul>
+      </div>
     </section>
 
     <section class="wrap section" id="news" aria-labelledby="news-title">

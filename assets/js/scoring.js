@@ -93,7 +93,11 @@ export function scoreEffort(effort) {
 // Equal scores rank the effort with more GitHub stars first.
 export const byStars = (a, b) => (b.stats?.stars || 0) - (a.stats?.stars || 0);
 
-// The headline number: how close the leading effort is, plus the top-3 average.
+// A private build has no public code (`repo: null`): nobody else can check it, so the race
+// lists it under the project it builds on (`basedOn`) without a rank. The headline counts it.
+export const isPrivateBuild = (e) => !(typeof e.repo === 'string' && e.repo.includes('/'));
+
+// The headline number: how close the leading effort is, private builds included, plus the top-3 average.
 export function overall(efforts) {
   const scored = efforts
     .filter((e) => !e.nuked) // taken offline: still shown on the board, no longer ranked
