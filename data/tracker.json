@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T20:52:32.000Z",
+  "updated": "2026-11-24T20:59:04.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero-miami.jpg"
@@ -640,6 +640,7 @@
     {
       "id": "hyphennn",
       "name": "hyphennn",
+      "manualScore": 65,
       "repo": null,
       "basedOn": [
         "victory-gta6"
@@ -647,15 +648,15 @@
       "evidence": "Live streams on Rumble",
       "byline": "Streams on Rumble as hyphennn · built on victory-gta6, a VIctory fork",
       "tier": "tracked",
-      "summary": "A private build on the public victory-gta6 fork of VIctory, modded further and streamed on Rumble. GTA VI is playable in its opening, the shaders look a lot better than on other builds, and ray tracing now shows. Code not public.",
+      "summary": "A private build on the public victory-gta6 fork of VIctory, streamed on Rumble. In the opening prison scenes, shaders, ray tracing, lighting, textures and hair look very close to the console, but it runs at about 3 fps. Code not public.",
       "highlights": [
+        "Lighting, shadows, textures and hair look very close to the console",
         "Ray tracing seen working on his Rumble stream",
-        "Shaders and lighting look a lot better than on other builds",
-        "Playable in the opening scenes, built on victory-gta6"
+        "Playable in the opening prison scenes, built on victory-gta6"
       ],
       "blockers": [
-        "Frame rate not measured",
-        "Not yet past the opening",
+        "Runs at about 3 fps",
+        "Small rendering glitches remain, and it isn't past the opening yet",
         "No public code or build, so nobody can test it outside the streams"
       ],
       "provenOn": null,
@@ -666,8 +667,8 @@
         "world": 1,
         "playable": 1,
         "story": 0,
-        "render": 0.79,
-        "fps": 0,
+        "render": 0.75,
+        "fps": 3,
         "stability": "unknown"
       },
       "verification": "self-reported",
@@ -6291,6 +6292,11 @@
       "date": "2026-11-24",
       "kind": "up",
       "text": "hyphennn's private build rises to 59.9%: ray tracing now shows on his Rumble stream, a step further for its rendering. Score 59.4% → 59.9%."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "up",
+      "text": "hyphennn's private build rises to 65%: on his Rumble stream the opening prison scenes now look very close to the console, with ray-traced lighting, detailed textures and hair, though at about 3 fps. Score 59.9% → 65%."
     }
   ],
   "history": [
@@ -6320,9 +6326,9 @@
     },
     {
       "date": "2026-11-24",
-      "leader": 59.9,
+      "leader": 65,
       "leaderId": "hyphennn",
-      "top3": 58.4,
+      "top3": 60.1,
       "furthest": "playable",
       "tracked": 33
     }
