@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T19:14:06.668Z",
+  "updated": "2026-11-24T19:26:27.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero-miami.jpg"
@@ -15,6 +15,28 @@
     "source": "https://www.xda-developers.com/gta-6-xbox-executable-leaked-opening-door-for-pc-recompilation-projects-begin-testing/"
   },
   "news": [
+    {
+      "id": "2026-11-24-omonkey-shaders-prison",
+      "date": "2026-11-24",
+      "category": "Port",
+      "title": "GTA VI's shaders start loading on omonkey's build, streamed live on Rumble",
+      "dek": "A player can walk slowly around the opening prison scene, at about 5 frames per second. All of the work goes out live, on a Rumble channel run by someone else.",
+      "body": [
+        "A developer called omonkey has GTA VI running on PC with its shaders starting to load properly. It runs at about 5 frames per second and is stuck in the opening scene, Lucia's prison, but a player can move around in it, slowly.",
+        "That puts omonkey ahead of every project we track. CGBJ, which we added earlier on Tuesday, also has a player moving, but on a black screen, and a video of it shows the opening in flat colours without lighting.",
+        "omonkey streams all of his development work on Rumble, but not on a channel of his own. The streams go out on Swaggely, a channel with about 1,800 followers that belongs to a separate person. It isn't clear why the two work this way.",
+        "We've added omonkey to the tracker at 76%, at our In-game stage, which puts him first. Because the work has been streamed live the whole time, we're confident it's real. We haven't found any public code from him, though, so nobody can test it outside the streams yet."
+      ],
+      "sources": [
+        {
+          "outlet": "Rumble",
+          "title": "Swaggely, the channel that streams omonkey's development work",
+          "url": "https://rumble.com/user/Swaggely"
+        }
+      ],
+      "image": null,
+      "by": "report"
+    },
     {
       "id": "2026-11-24-cgbj-in-game",
       "date": "2026-11-24",
@@ -589,6 +611,40 @@
     }
   ],
   "efforts": [
+    {
+      "id": "omonkey",
+      "name": "omonkey",
+      "manualScore": 76,
+      "repo": null,
+      "link": "news/2026-11-24-omonkey-shaders-prison.html",
+      "byline": "Streamed on Rumble by Swaggely",
+      "tier": "tracked",
+      "summary": "A developer who streams all his work live on Rumble, through Swaggely's channel. GTA VI's shaders have started loading properly, and a player moves slowly around the opening prison scene at about 5 fps. No public code.",
+      "highlights": [
+        "GTA VI's shaders have started to load properly",
+        "A player moves around slowly in the opening scene, Lucia's prison",
+        "All of the development is streamed live on Rumble"
+      ],
+      "blockers": [
+        "Stuck in the opening prison scene",
+        "Runs at about 5 fps",
+        "No public code or build, so nobody can test it outside the streams"
+      ],
+      "provenOn": null,
+      "gta": {
+        "loads": 1,
+        "boots": 1,
+        "menu": 1,
+        "ingame": 1,
+        "fps": 5,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {},
+      "assessedAt": "2026-11-24",
+      "assessedBy": "manual",
+      "claims": []
+    },
     {
       "id": "cgbj",
       "name": "CGBJ",
@@ -5995,6 +6051,11 @@
       "date": "2026-11-24",
       "kind": "flag",
       "text": "New Take-Two DMCA notice on GitHub (1 repos, mentions GTA VI)."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "new",
+      "text": "omonkey joins at #1 with 76% (“In-game”): GTA VI's shaders have started loading properly and a player moves slowly around the opening prison scene, at about 5 fps. The work is streamed live on Rumble, on Swaggely's channel; no code is public."
     }
   ],
   "history": [

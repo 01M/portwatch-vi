@@ -79,6 +79,9 @@ export function scoreEffort(effort) {
     if (fps >= 1 && stab >= 1) reached = 'stable';
   }
 
+  // An owner's call the ladder can't express (EDITOR.md, "Owner decisions"): the score is set by hand.
+  if (Number.isFinite(effort.manualScore)) score = Math.min(100, Math.max(0, effort.manualScore));
+
   return {
     score: Math.round(score * 10) / 10,
     groundwork: gw,
