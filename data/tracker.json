@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T20:34:18.000Z",
+  "updated": "2026-11-24T20:52:32.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero-miami.jpg"
@@ -647,11 +647,11 @@
       "evidence": "Live streams on Rumble",
       "byline": "Streams on Rumble as hyphennn · built on victory-gta6, a VIctory fork",
       "tier": "tracked",
-      "summary": "A private build on the public victory-gta6 fork of VIctory, modded further and streamed on Rumble. GTA VI is playable in its opening, and the shaders look a lot better than on other builds. Code not public.",
+      "summary": "A private build on the public victory-gta6 fork of VIctory, modded further and streamed on Rumble. GTA VI is playable in its opening, the shaders look a lot better than on other builds, and ray tracing now shows. Code not public.",
       "highlights": [
+        "Ray tracing seen working on his Rumble stream",
         "Shaders and lighting look a lot better than on other builds",
-        "Playable in the opening scenes, built on victory-gta6",
-        "The work is streamed on Rumble"
+        "Playable in the opening scenes, built on victory-gta6"
       ],
       "blockers": [
         "Frame rate not measured",
@@ -666,7 +666,7 @@
         "world": 1,
         "playable": 1,
         "story": 0,
-        "render": 0.75,
+        "render": 0.79,
         "fps": 0,
         "stability": "unknown"
       },
@@ -6286,6 +6286,11 @@
       "date": "2026-11-24",
       "kind": "new",
       "text": "hyphennn's private build joins at 59.4% (“Playable”): it's built on victory-gta6 and streamed on Rumble, and its shaders look a lot better than other builds'. Its code isn't public, so it isn't ranked in the race."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "up",
+      "text": "hyphennn's private build rises to 59.9%: ray tracing now shows on his Rumble stream, a step further for its rendering. Score 59.4% → 59.9%."
     }
   ],
   "history": [
@@ -6315,9 +6320,9 @@
     },
     {
       "date": "2026-11-24",
-      "leader": 59.4,
+      "leader": 59.9,
       "leaderId": "hyphennn",
-      "top3": 58.2,
+      "top3": 58.4,
       "furthest": "playable",
       "tracked": 33
     }
