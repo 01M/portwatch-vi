@@ -74,7 +74,6 @@ function shell({ title, description, canonical, ogType = 'website', image, image
       <nav class="nav-links" aria-label="Sections">
         <a href="../#race">Race</a>
         <a href="./" class="is-current">News</a>
-        <a href="../board.html">Board</a>
         <a href="../#method">Scoring</a>
         <a href="../#safety" class="nav-warn">Fake downloads</a>
       </nav>
@@ -276,7 +275,6 @@ export function buildSite(data) {
   const entries = [
     { loc: SITE_URL, lastmod: updated || undefined },
     { loc: `${SITE_URL}news/`, lastmod: news[0]?.date },
-    { loc: `${SITE_URL}board` },
     ...news.map((n) => ({ loc: articleUrl(n), lastmod: isDay(n.updatedAt) ? n.updatedAt : n.date })),
   ];
   const files = {

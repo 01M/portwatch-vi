@@ -1,5 +1,5 @@
 import { MILESTONES, GROUNDWORK, STABILITY, scoreEffort, overall, ladderValue, byStars } from './scoring.js';
-import { backendReady, getLiveViewers, trackView } from './backend.js';
+import { getLiveViewers, trackView } from './backend.js';
 import { coverHtml, articlePath } from './news-shared.js';
 import { initI18n, t, tr, locale } from './i18n.js';
 
@@ -384,7 +384,6 @@ function effortCard(e, rank, open, overallRank = null) {
         <span class="stat-i" title="${esc(t('effort.lastPush'))}">${ICON.clock}${esc(t('effort.pushed', { ago: ago(st.pushedAt) }))}</span>` : ''}
         <span class="spacer"></span>
         <span class="w-muted" title="${esc(t('effort.reviewedTitle'))}">${esc(e.assessedBy === 'claude' ? t('effort.byClaude') : t('effort.reviewed'))} ${esc(e.assessedAt || '')}</span>
-        ${backendReady() ? `<a class="discuss" href="board.html#/b/${esc(e.id)}">${esc(t('effort.discuss'))}</a>` : ''}
         <button class="toggle" data-toggle aria-expanded="${open}">${esc(open ? t('effort.hideDetails') : t('effort.details'))}</button>
         ${hasRepo(e) ? `<a class="gh-link" href="${esc(repoUrl(e.repo, e.branch))}" target="_blank" rel="noopener">${ICON.gh}GitHub</a>` : ''}
       </div>
