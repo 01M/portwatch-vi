@@ -9,7 +9,7 @@ const REPO = '4lwayz/portwatch-vi';
 const FILE = 'data/pinned.json';
 const API = `https://api.github.com/repos/${REPO}/contents/${FILE}`;
 const TOKEN_KEY = 'pw-gh-token';
-const DEFAULTS = { show: false, name: '4lwayz', avatar: 'assets/img/4lwayz.jpg', text: '', updated: null };
+const DEFAULTS = { show: false, name: '4lwayz', avatar: 'assets/img/4lwayz-2.jpg', text: '', updated: null };
 
 const $ = (s) => document.querySelector(s);
 const ago = (iso) => {

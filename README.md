@@ -58,7 +58,7 @@ Scoring is in `assets/js/scoring.js`, shared by the site and the scout. Groundwo
 
 ## Hero photo
 
-The hero shows an original sunset illustration until the photo loads. The photo is `assets/img/hero.jpg` (2400px wide): Brickell, Miami, at night, by Steele Rutherford on Unsplash, free to use under the Unsplash License without a credit line. `assets/img/social.jpg` (1200×630) is the share card, made from the same photo. Don't use GTA VI artwork or footage there.
+The hero shows an original sunset illustration until the photo loads. The photo is `assets/img/hero-miami.jpg` (2400px wide): Brickell, Miami, at night, by Steele Rutherford on Unsplash, free to use under the Unsplash License without a credit line. `assets/img/social-miami.jpg` (1200×630) is the share card, made from the same photo. Give a replaced image a new filename: images are cached for 4 hours in browsers and for days by link previews. Don't use GTA VI artwork or footage there.
 
 ## Local preview
 
