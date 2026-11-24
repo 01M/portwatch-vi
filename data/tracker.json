@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T19:26:27.000Z",
+  "updated": "2026-11-24T19:30:25.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero-miami.jpg"
@@ -1961,16 +1961,16 @@
       "tier": "watchlist",
       "approach": "Compatibility layer",
       "target": "GTA VI only",
-      "summary": "C# layer and toolkit for GTA VI. It reports the game showing its logo, intro video and every first-run setup screen, answered by scripted input, then starting the story load, which fails on corrupted memory. Self-reported; no capture yet.",
+      "summary": "C# layer and toolkit for GTA VI. It reports the game answering every first-run screen, loading story mode and showing the story intro's title card; about 200 s in, a GPU frame runs too long. Self-reported; no capture yet.",
       "highlights": [
-        "Reports GTA VI's first-run screens responding to scripted gamepad input at 30 fps",
-        "Names the exe and logs each boot step, up to the start of the story load",
+        "Reports story mode loading as far as the story intro's title card",
+        "First-run screens answered by scripted gamepad input; later boots skip them using saved settings",
         "Translator marks unsupported instructions as failures instead of faking them"
       ],
       "blockers": [
-        "The story load stops on corrupted game memory",
-        "Its 25,908-program shader count doesn't match the 26,503 records others report",
-        "No screenshot or recording of the menus in the repo"
+        "About 200 s into the story load a GPU frame runs too long; compute loops hit a safety cap",
+        "Not in game yet: no world or player",
+        "No screenshot or recording in the repo"
       ],
       "groundwork": {
         "loader": 0.35,
@@ -1982,7 +1982,7 @@
       "gta": {
         "loads": 1,
         "boots": 1,
-        "menu": 0.5,
+        "menu": 1,
         "ingame": 0,
         "fps": 0,
         "stability": "unknown"
@@ -6056,6 +6056,11 @@
       "date": "2026-11-24",
       "kind": "new",
       "text": "omonkey joins at #1 with 76% (“In-game”): GTA VI's shaders have started loading properly and a player moves slowly around the opening prison scene, at about 5 fps. The work is streamed live on Rumble, on Swaggely's channel; no code is public."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "up",
+      "text": "Five Star Recomp reaches “Main menu”: its README reports GTA VI answering its first-run screens, loading story mode and showing the story intro's title card (self-reported, no capture). Score 47.5% → 55%."
     }
   ],
   "history": [
