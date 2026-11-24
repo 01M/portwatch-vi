@@ -1025,14 +1025,14 @@
       "tier": "tracked",
       "approach": "Static recompilation",
       "target": "Any Xbox Series game",
-      "summary": "Static recompilation research turning Xbox Series x64 code and shaders into Windows C++ and DXIL, with over 50 code contributors. Running GTA VI's own code is unverified.",
+      "summary": "Static recompilation research turning Xbox Series code and shaders into Windows C++ and DXIL, with over 50 contributors. Footage the project shared shows GTA VI's menus, unstable; its repo still lists no verified frame. Unverified.",
       "highlights": [
-        "851 of 12,101 GTA VI pixel shaders (7%) match controlled test output on RTX and WARP",
-        "A source-built EXE draws a triangle identically when run natively, mapped or recompiled",
-        "Native wave64 BVH test passes on 19 Radeon models plus many NVIDIA cards"
+        "Footage the project shared shows GTA VI's menus on PC, though runs are unstable",
+        "The main exe reaches D3D12 pipeline creation in the maintainer's diagnostic runs",
+        "851 of 12,101 GTA VI pixel shaders (7%) match controlled test output on RTX and WARP"
       ],
       "blockers": [
-        "Running the game's own CPU code, full startup and frame rate are unverified",
+        "Menus are unstable, and the footage isn't public or reproduced; the repo lists no verified frame yet",
         "Only 865 of 26,503 shaders have output verified by its own tests so far",
         "Its tests cover about a quarter of shader instruction forms"
       ],
@@ -1044,9 +1044,9 @@
       },
       "provenOn": null,
       "gta": {
-        "loads": 0,
-        "boots": 0,
-        "menu": 0,
+        "loads": 1,
+        "boots": 1,
+        "menu": 0.5,
         "ingame": 0,
         "fps": 0,
         "stability": "unknown"
@@ -1062,8 +1062,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-23",
-      "assessedBy": "claude",
+      "assessedAt": "2026-11-24",
+      "assessedBy": "manual",
       "readmeSha": "37620b35ac0d361f289bf277e9fec3b5d92967ffefde3cc8051c7fda829e3774",
       "claims": [],
       "readmeChangedAt": "2026-11-24"
@@ -5048,6 +5048,11 @@
       "date": "2026-11-24",
       "kind": "new",
       "text": "Scout spotted gitlab.com/wicctory/leonida-backup-deletion_scheduled-89370478 (substance 52)."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "up",
+      "text": "Xbox2Windows gets half credit for “Main menu”: footage the project shared shows GTA VI's menus, but runs are unstable and its repo doesn't claim it yet (unverified). Score 5.8% → 47.5%."
     }
   ],
   "history": [
