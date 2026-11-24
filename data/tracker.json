@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T01:26:54.871Z",
+  "updated": "2026-11-24T01:42:09.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -559,14 +559,14 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "GTA VI only",
-      "summary": "Marvis's Rust layer runs GTA VI's own code natively. Its README reports boot screens, intro, start screen and saves at 30 fps, and the first mission's title card in the world, with the scene still dark. Self-reported, unverified.",
+      "summary": "Marvis's Rust layer runs GTA VI's own code natively. Boot screens, intro, start screen and saves run at 30 fps. In the world some lighting now renders and the first cinematic plays with sound. Self-reported, unverified.",
       "highlights": [
         "README reports first-boot screens, intro video, start screen and saves working at 30 fps",
-        "A livestream showed GTA VI's menus running, at about 15 fps on stream",
+        "In the world, some lighting renders and the first cinematic's audio plays",
         "Reaches the world after about 50 s; the first mission's title card renders"
       ],
       "blockers": [
-        "In the world the scene stays dark at 0.5-1.8 s per frame, and real GPUs can hang",
+        "Most of the scene is still missing, frames take seconds, and real GPUs can hang",
         "Tested on one machine (AMD RX 6700 XT); not reproduced by others yet",
         "Code published hours after the stream; not yet reviewed by PortWatch"
       ],
@@ -575,7 +575,7 @@
         "loads": 1,
         "boots": 1,
         "menu": 1,
-        "ingame": 0,
+        "ingame": 0.8,
         "fps": 0,
         "stability": "unknown"
       },
@@ -592,7 +592,7 @@
         "mentions7d": 1
       },
       "assessedAt": "2026-11-24",
-      "assessedBy": "claude",
+      "assessedBy": "manual",
       "claims": [],
       "readmeSha": "a1f64bb3b89911c551bd175535c9ce09f36fe9e90af530e1bf8d96628a8eb0ae"
     },
@@ -5053,6 +5053,11 @@
       "date": "2026-11-24",
       "kind": "up",
       "text": "Xbox2Windows gets half credit for “Main menu”: footage the project shared shows GTA VI's menus, but runs are unstable and its repo doesn't claim it yet (unverified). Score 5.8% → 47.5%."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "up",
+      "text": "VIctory moves most of the way to “In-game”: in the world it now renders some lighting and plays the first cinematic with sound, though most of the scene is still missing (self-reported). Score 55% → 67%, now first."
     }
   ],
   "history": [
