@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T21:06:54.000Z",
+  "updated": "2026-11-24T21:55:52.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero-miami.jpg"
@@ -637,6 +637,46 @@
     }
   ],
   "efforts": [
+    {
+      "id": "suri",
+      "name": "suri",
+      "avatar": "assets/img/efforts/suri.jpg",
+      "repo": null,
+      "basedOn": [
+        "victory-gta6"
+      ],
+      "evidence": "Confirmed by PortWatch",
+      "byline": "Working in private · built on hyphennn's victory-fork",
+      "tier": "tracked",
+      "summary": "A private build on hyphennn's victory-fork of VIctory. PortWatch confirmed a player moving around Lucia's prologue at about 3 fps, the same scene as the other builds, but with rendering ahead: it looks almost like the retail game. Code not public.",
+      "highlights": [
+        "Looks almost like the retail game in Lucia's prologue",
+        "PortWatch confirmed a player moving around, at about 3 fps",
+        "Rendering ahead of the other builds on the same code"
+      ],
+      "blockers": [
+        "Runs at about 3 fps",
+        "Not yet past the opening",
+        "Code is private, so nobody outside can test or reproduce it"
+      ],
+      "provenOn": null,
+      "gta": {
+        "loads": 1,
+        "boots": 1,
+        "menu": 1,
+        "world": 1,
+        "playable": 1,
+        "story": 0,
+        "render": 0.8,
+        "fps": 3,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {},
+      "assessedAt": "2026-11-24",
+      "assessedBy": "manual",
+      "claims": []
+    },
     {
       "id": "omonkey",
       "name": "omonkey",
@@ -6266,6 +6306,11 @@
       "date": "2026-11-24",
       "kind": "new",
       "text": "hyphennn's build is public: victory-gta6 was renamed fxceless/victory-fork, the code behind his Rumble streams. The two entries are now one, and it leads the race at 59.8%. Its README still lists shadows as black; the streams show a newer build with ray-traced lighting."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "new",
+      "text": "suri's private build joins at 61% (“Playable”): working in private on hyphennn's victory-fork, it moves around Lucia's prologue at about 3 fps, confirmed by PortWatch, and looks almost like the retail game. Its code isn't public, so it isn't ranked in the race."
     }
   ],
   "history": [
@@ -6295,11 +6340,11 @@
     },
     {
       "date": "2026-11-24",
-      "leader": 59.8,
-      "leaderId": "victory-gta6",
-      "top3": 57.4,
+      "leader": 61,
+      "leaderId": "suri",
+      "top3": 59.6,
       "furthest": "playable",
-      "tracked": 32
+      "tracked": 33
     }
   ],
   "scout": {
