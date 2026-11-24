@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T10:21:55.515Z",
+  "updated": "2026-11-24T10:31:40.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -1036,14 +1036,14 @@
       "tier": "tracked",
       "approach": "Static recompilation",
       "target": "Any Xbox Series game",
-      "summary": "Static recompilation research turning Xbox Series code and shaders into Windows C++ and DXIL, with over 50 contributors. Footage the project shared shows GTA VI's menus, unstable; its repo still lists no verified frame. Unverified.",
+      "summary": "Static recompilation research turning Xbox Series code and shaders into Windows C++ and DXIL, with over 50 contributors. Footage the project shared shows GTA VI's menus, unstable. Its README now reports a modified diagnostic exe playing the intro and setup text; the original exe and the menus remain unverified.",
       "highlights": [
         "Footage the project shared shows GTA VI's menus on PC, though runs are unstable",
         "The main exe reaches D3D12 pipeline creation in the maintainer's diagnostic runs",
         "851 of 12,101 GTA VI pixel shaders (7%) match controlled test output on RTX and WARP"
       ],
       "blockers": [
-        "Menus are unstable, and the footage isn't public or reproduced; the repo lists no verified frame yet",
+        "Intro and setup text come from a modified diagnostic exe; the original exe is unverified",
         "Only 865 of 26,503 shaders have output verified by its own tests so far",
         "Its tests cover about a quarter of shader instruction forms"
       ],
@@ -1087,7 +1087,7 @@
       "tier": "tracked",
       "approach": "HLE emulator",
       "target": "Any Xbox Series game",
-      "summary": "French-language prototype: GDK runtime emulation on Unicorn, plus a Wine-style native mode that already runs small GDK test games.",
+      "summary": "French-language prototype: GDK runtime emulation on Unicorn, plus a Wine-style native mode that runs small GDK test games. Its GTA VI runs go through a bundled copy of VIctory, so they earn it no milestone.",
       "highlights": [
         "All 16 DLLs of the Scarlett package initialise with zero unemulated calls",
         "Runs the free SimpleTriangle and SDL3 testgdk games natively",
@@ -1775,7 +1775,7 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "AGPL C++ layer, separate from the other OpenScarlett, that swaps console DLLs for PC Direct3D 12 ones and translates console GPU code. It reports Minecraft Preview playable at about 60 fps. Self-reported; GTA VI untried.",
+      "summary": "AGPL C++ layer, separate from the other OpenScarlett, that swaps console DLLs for PC Direct3D 12 ones and translates console GPU code. It reports Minecraft Preview playable at about 60 fps, and an unnamed newer retail game reaching its start screen. Self-reported; no GTA VI credit until it names the game's files.",
       "highlights": [
         "Reports Minecraft Preview playable at ~60 fps on Windows and Linux, with video",
         "Reports The Matrix Awakens running menus and the opening chase at ~20 fps",
@@ -1784,7 +1784,7 @@
       "blockers": [
         "GTA VI's shaders haven't been tried; no audio yet",
         "Ray-traced passes unverified: some Matrix Awakens scenes render black",
-        "GTA VI not run: the executable is missing"
+        "Its newer-retail-game run doesn't name GTA VI's files, so it isn't counted"
       ],
       "groundwork": {
         "loader": 0.7,
@@ -1813,7 +1813,7 @@
         "missing": false,
         "mentions7d": 1
       },
-      "assessedAt": "2026-11-23",
+      "assessedAt": "2026-11-24",
       "assessedBy": "claude",
       "claims": [],
       "readmeSha": "5ba0bdd173fc80a8596db722adc82569fd29275b1c677870f612cb407984a405",
@@ -1827,16 +1827,16 @@
       "tier": "watchlist",
       "approach": "Compatibility layer",
       "target": "GTA VI only",
-      "summary": "C# layer and toolkit for GTA VI. It reports the game's exe running into its frame loop at 30 fps and drawing its first real image, the intro video, before a memory assert stops it. Self-reported; no capture yet.",
+      "summary": "C# layer and toolkit for GTA VI. It reports the game showing its logo, intro video and every first-run setup screen, answered by scripted input, then starting the story load, which fails on corrupted memory. Self-reported; no capture yet.",
       "highlights": [
-        "Reports GTA VI's intro video and UI layer drawn with the game's own translated shaders",
-        "Names the exe and logs each boot step: archives, D3D12.X device, frame loop",
+        "Reports GTA VI's first-run screens responding to scripted gamepad input at 30 fps",
+        "Names the exe and logs each boot step, up to the start of the story load",
         "Translator marks unsupported instructions as failures instead of faking them"
       ],
       "blockers": [
-        "A game assert in physical-page bookkeeping stops it soon after the intro",
-        "Its 25,884-program shader count doesn't match the 26,503 records others report",
-        "First-image claim has no screenshot or recording in the repo"
+        "The story load stops on corrupted game memory",
+        "Its 25,908-program shader count doesn't match the 26,503 records others report",
+        "No screenshot or recording of the menus in the repo"
       ],
       "groundwork": {
         "loader": 0.35,
@@ -1848,7 +1848,7 @@
       "gta": {
         "loads": 1,
         "boots": 1,
-        "menu": 0,
+        "menu": 0.5,
         "ingame": 0,
         "fps": 0,
         "stability": "unknown"
@@ -1978,13 +1978,13 @@
       "tier": "watchlist",
       "approach": "Static recompilation",
       "target": "GTA VI only",
-      "summary": "Open continuation of Leonida after its repo went private. It documents GTA VI's exe running through 1,600-plus D3D12 calls before a stop in resource creation; no frame yet. Self-reported, one RTX 4090.",
+      "summary": "Open continuation of Leonida after its repo went private. It documents GTA VI's exe running through about 12,000 D3D12 calls into its own render code before it stops; no frame yet. Self-reported, one RTX 4090.",
       "highlights": [
         "Carries Leonida's code forward with history and credit kept",
         "Each boot stop of GTA VI's exe is written up with what cleared it"
       ],
       "blockers": [
-        "No frame yet: the boot stops in placed-resource creation",
+        "No frame yet: the boot stops on an empty container in the game's render code",
         "Shader count rests on spirv-val, which doesn't show the shaders work",
         "Tested on one RTX 4090 only"
       ],
@@ -2228,223 +2228,6 @@
   ],
   "candidates": [
     {
-      "repo": "clquwu/leonida-ultimate",
-      "name": "leonida-ultimate",
-      "description": "Trying to blend progress across gh to make the ultimate port",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T08:25:21Z",
-      "pushedAt": "2026-11-24T08:46:35Z",
-      "defaultBranch": "ultimate",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T10:21:55.515Z",
-      "substance": 98,
-      "signals": [
-        "Python",
-        "21 technical terms",
-        "status table",
-        "tests",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "jtrudeau1530/greenbridge",
-      "name": "greenbridge",
-      "description": "Experimental Xbox Series compatibility runtime and shader translation project.",
-      "language": "Python",
-      "stars": 1,
-      "createdAt": "2026-11-24T01:09:25Z",
-      "pushedAt": "2026-11-24T04:10:52Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 91,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "OGsWorkshop/Port-Gellhorn",
-      "name": "Port-Gellhorn",
-      "description": "Port Gellhorn - independent successor to Leonida",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T02:59:43Z",
-      "pushedAt": "2026-11-24T03:06:33Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 91,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "simomistralii/Leonida-PC",
-      "name": "Leonida-PC",
-      "description": "Leonida Is A Native PC Recompilation Of The Xbox Version Of Grand Theft Auto 6",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-23T15:08:13Z",
-      "pushedAt": "2026-11-24T03:05:45Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 91,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "nullport-re/Leonida-continued",
-      "name": "Leonida-continued",
-      "description": "Fork of ubiquitarianism/leonida (Leonida Continued) - nullport-re contributions",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T02:21:48Z",
-      "pushedAt": "2026-11-24T02:48:20Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 91,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Onajano/CupCake",
-      "name": "CupCake",
-      "description": "",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T02:41:46Z",
-      "pushedAt": "2026-11-24T02:43:05Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 91,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "datanotsecure/LeonidaContinuation",
-      "name": "LeonidaContinuation",
-      "description": "",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T02:17:29Z",
-      "pushedAt": "2026-11-24T02:40:29Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 91,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "mimic-wasm/ViceRecomp",
-      "name": "ViceRecomp",
-      "description": "",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T00:38:12Z",
-      "pushedAt": "2026-11-24T02:36:40Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 91,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "26 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Esquie-rl/open-vice",
-      "name": "open-vice",
-      "description": "Open Vice — branche de travail privée pour faire démarrer GTA VI avec Leonida (code seulement, aucune donnée du jeu)",
-      "language": "Python",
-      "stars": 2,
-      "createdAt": "2026-11-23T18:31:10Z",
-      "pushedAt": "2026-11-24T06:16:11Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T07:34:48.184Z",
-      "substance": 91,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "gookie-dev/g6shim",
       "name": "g6shim",
       "description": "Clean-room replacements for console system DLLs that let console game executables run natively on Windows, without emulation. ",
@@ -2470,99 +2253,6 @@
       "status": "new"
     },
     {
-      "repo": "utkarshxdev/xcl-mac",
-      "name": "xcl-mac",
-      "description": "High-performance native macOS & Apple Silicon compatibility layer for XCL",
-      "language": "Rust",
-      "stars": 3,
-      "createdAt": "2026-11-24T07:44:18Z",
-      "pushedAt": "2026-11-24T10:11:17Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T10:21:55.515Z",
-      "substance": 85,
-      "signals": [
-        "Rust",
-        "8 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "ne3i/BBB",
-      "name": "BBB",
-      "description": "B",
-      "language": null,
-      "stars": 0,
-      "createdAt": "2026-11-24T03:56:20Z",
-      "pushedAt": "2026-11-24T03:53:32Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 81,
-      "signals": [
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Tuxnida/Tuxnida",
-      "name": "Tuxnida",
-      "description": "Tuxnida Is A Native PC Recompilation Of The Xbox Version Of Grand Theft Auto 6 for Linux Distros",
-      "language": null,
-      "stars": 0,
-      "createdAt": "2026-11-24T03:40:27Z",
-      "pushedAt": "2026-11-24T03:49:23Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 81,
-      "signals": [
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "m3ll0wSm0ke/leonida-anyp5",
-      "name": "leonida-anyp5",
-      "description": "Leonida (GTA VI Xbox→PC recompilation) on any%5: open, blind, randomly assigned review with a merge queue and no fixed maintainers",
-      "language": null,
-      "stars": 0,
-      "createdAt": "2026-11-24T01:10:00Z",
-      "pushedAt": "2026-11-24T01:30:49Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T07:34:48.184Z",
-      "substance": 81,
-      "signals": [
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "DesignWithTommy/Neonbridge",
       "name": "Neonbridge",
       "description": "Neonbridge: open-source GTA VI (GTA 6) launcher for Windows PC. Runs your own dumped Xbox Series X|S GDK build natively on D3D12, not emulated. Work in progress, no game files.",
@@ -2581,54 +2271,6 @@
         "Rust",
         "11 technical terms",
         "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Neverchange-dotcom/Leonida-Save",
-      "name": "Leonida-Save",
-      "description": "Leonida Local Save 11/23/2026 6:47 PM",
-      "language": "Python",
-      "stars": 1,
-      "createdAt": "2026-11-24T03:03:32Z",
-      "pushedAt": "2026-11-24T03:33:28Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 71,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "9 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Justyyin/Cyberleek-Gta6-Malware",
-      "name": "Cyberleek-Gta6-Malware",
-      "description": "Wie Cyberleek euch hackt: Malware-Analyse des 'Cyberleek Launcher' (Fake GTA VI Build). DE/EN, IOCs, Sigma, YARA.",
-      "language": "YARA",
-      "stars": 4,
-      "createdAt": "2026-11-23T16:23:43Z",
-      "pushedAt": "2026-11-24T06:08:35Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T07:34:48.184Z",
-      "substance": 71,
-      "signals": [
-        "YARA",
-        "10 technical terms",
-        "status table",
-        "19 commits/7d"
       ],
       "kind": "effort",
       "status": "new"
@@ -2681,54 +2323,6 @@
       "status": "new"
     },
     {
-      "repo": "uiliannn/VItoriaBr",
-      "name": "VItoriaBr",
-      "description": "VItoriaBr - Native Windows Xbox Series X|S runtime & D3D12/DXIL shader translator (PT-BR / EN)",
-      "language": "Rust",
-      "stars": 0,
-      "createdAt": "2026-11-24T10:05:17Z",
-      "pushedAt": "2026-11-24T10:10:09Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T10:21:55.515Z",
-      "substance": 69,
-      "signals": [
-        "Rust",
-        "5 technical terms",
-        "status table",
-        "tests",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "DesignWithTommy/6ixlaunch",
-      "name": "6ixlaunch",
-      "description": "Neonbridge: open-source GTA VI (GTA 6) launcher for Windows PC. Runs your own dumped Xbox Series X|S GDK build natively on D3D12, not emulated. Work in progress, no game files.",
-      "language": "Rust",
-      "stars": 1,
-      "createdAt": "2026-11-23T23:52:16Z",
-      "pushedAt": "2026-11-24T10:19:24Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 68,
-      "signals": [
-        "Rust",
-        "9 technical terms",
-        "56 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "daeken/XSXEmu",
       "name": "XSXEmu",
       "description": "",
@@ -2748,29 +2342,6 @@
         "7 technical terms",
         "tests",
         "31 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "ADWMC/gta6-windows-tracker",
-      "name": "gta6-windows-tracker",
-      "description": "Tracking efforts to run the leaked GTA 6 Xbox Series build on Windows: Leonida successors, xcl, and other ports — evidence-graded, no downloads.",
-      "language": null,
-      "stars": 1,
-      "createdAt": "2026-11-24T04:22:18Z",
-      "pushedAt": "2026-11-24T07:24:38Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T07:34:48.184Z",
-      "substance": 66,
-      "signals": [
-        "7 technical terms",
-        "status table",
-        "46 commits/7d"
       ],
       "kind": "effort",
       "status": "new"
@@ -2800,29 +2371,6 @@
       "status": "new"
     },
     {
-      "repo": "Github-Samuel/sixonpc",
-      "name": "sixonpc",
-      "description": "Does GTA VI run on PC yet? Port tracker, reverse-engineering tools and forum.",
-      "language": "TypeScript",
-      "stars": 0,
-      "createdAt": "2026-11-24T02:38:20Z",
-      "pushedAt": "2026-11-24T03:22:06Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T04:13:54.192Z",
-      "substance": 61,
-      "signals": [
-        "TypeScript",
-        "8 technical terms",
-        "5 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "e85442695-beep/kestrel",
       "name": "kestrel",
       "description": "Console -> PC: static recompilation of the Xbox Series build of GTA VI. No game data.",
@@ -2847,53 +2395,6 @@
       "status": "new"
     },
     {
-      "repo": "FQY55kai/leonida-gta6-pc-notes",
-      "name": "leonida-gta6-pc-notes",
-      "description": "Leonida: running the Xbox Series build of GTA VI on PC by static recompilation / PE manual mapping. Startup-chain debugging log, Xbox-to-PC D3D12 ABI slot tables, PE static analysis, and cross-validation against VIctory. No game assets included.",
-      "language": "Python",
-      "stars": 1,
-      "createdAt": "2026-11-24T07:19:46Z",
-      "pushedAt": "2026-11-24T07:21:36Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T07:34:48.184Z",
-      "substance": 56,
-      "signals": [
-        "Python",
-        "9 technical terms",
-        "status table",
-        "3 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "NinjahZ/Vice",
-      "name": "Vice",
-      "description": "Vice: a clean-room runtime that runs an Xbox Series GTA VI build natively on Windows from your own copy. Continuation of ItsNotRexed/Leonida (upstream now private).",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T06:06:51Z",
-      "pushedAt": "2026-11-24T06:13:20Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T07:34:48.184Z",
-      "substance": 55,
-      "signals": [
-        "Python",
-        "7 technical terms",
-        "2 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "nineforge0/forge9",
       "name": "forge9",
       "description": "General-purpose RPF9 archive toolkit — decrypt, inspect, extract, search, repack. The only tool with full TOC re-encryption.",
@@ -2913,30 +2414,6 @@
         "7 technical terms",
         "status table",
         "2 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "scarlett-commons/scarlett-commons",
-      "name": "scarlett-commons",
-      "description": "Open task board, verification bot and shared tests for Xbox Series X|S to PC compatibility layers",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T08:50:46Z",
-      "pushedAt": "2026-11-24T10:07:21Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T10:21:55.515Z",
-      "substance": 51,
-      "signals": [
-        "Python",
-        "3 technical terms",
-        "status table",
-        "10 commits/7d"
       ],
       "kind": "effort",
       "status": "new"
@@ -3059,6 +2536,116 @@
     }
   ],
   "ignored": [
+    {
+      "repo": "clquwu/leonida-ultimate",
+      "reason": "Merge of Leonida forks made this morning; reports a loop of black frames, nothing beyond Palmetto yet",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "jtrudeau1530/greenbridge",
+      "reason": "Built on Leonida's code and status table; no image of its own verified",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "OGsWorkshop/Port-Gellhorn",
+      "reason": "Leonida copy that bundles VIctory's runtime; no results of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "simomistralii/Leonida-PC",
+      "reason": "Leonida copy or re-upload; no results of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "nullport-re/Leonida-continued",
+      "reason": "Leonida copy or re-upload; no results of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "Onajano/CupCake",
+      "reason": "Leonida copy or re-upload; no results of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "datanotsecure/LeonidaContinuation",
+      "reason": "Leonida copy or re-upload; no results of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "mimic-wasm/ViceRecomp",
+      "reason": "Leonida copy or re-upload; no results of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "Esquie-rl/open-vice",
+      "reason": "Leonida copy or re-upload; no results of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "ne3i/BBB",
+      "reason": "Leonida copy or re-upload; no results of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "Tuxnida/Tuxnida",
+      "reason": "Leonida copy or re-upload; no results of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "m3ll0wSm0ke/leonida-anyp5",
+      "reason": "Leonida copy or re-upload; no results of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "Neverchange-dotcom/Leonida-Save",
+      "reason": "Leonida copy or re-upload; no results of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "NinjahZ/Vice",
+      "reason": "Leonida continuation with no code results of its own yet",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "uiliannn/VItoriaBr",
+      "reason": "Credited fork of VIctory with a Portuguese README; its results are VIctory's",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "utkarshxdev/xcl-mac",
+      "reason": "macOS spin-off of XCL whose results table repeats XCL's own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "DesignWithTommy/6ixlaunch",
+      "reason": "Same README as Neonbridge from the same account; Neonbridge is the one under review",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "ADWMC/gta6-windows-tracker",
+      "reason": "Another tracker, not a port",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "Github-Samuel/sixonpc",
+      "reason": "Another tracker, not a port",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "scarlett-commons/scarlett-commons",
+      "reason": "Shared task board and tests, not a port",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "FQY55kai/leonida-gta6-pc-notes",
+      "reason": "Research notes on Leonida's boot chain, no runtime of its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "Justyyin/Cyberleek-Gta6-Malware",
+      "reason": "Malware analysis of fake launchers, not a port",
+      "seenAt": "2026-11-24"
+    },
     {
       "repo": "Guernica4u/Leonida-archive",
       "reason": "copy of ItsNotRexed/Leonida",
@@ -5618,6 +5205,11 @@
       "date": "2026-11-24",
       "kind": "new",
       "text": "Scout spotted utkarshxdev/xcl-mac (possible effort, substance 85)."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "up",
+      "text": "Five Star Recomp gets half credit for “Main menu”: its README reports GTA VI's first-run setup screens answering scripted gamepad input, then the story load starting (self-reported, no capture). Score 40% → 47.5%."
     }
   ],
   "history": [
@@ -5696,7 +5288,7 @@
     "lastRun": "2026-11-24T10:21:55.515Z",
     "lastSummary": "25 refreshed, 7 READMEs changed, 7 new candidates, 2 flagged.",
     "lastDmcaCheck": "2026-11-24T10:21:55.515Z",
-    "lastEditorRun": "2026-11-24T01:44:45.000Z"
+    "lastEditorRun": "2026-11-24T10:31:40.000Z"
   },
   "headlines": [
     {
