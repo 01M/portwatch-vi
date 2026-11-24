@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T21:55:52.000Z",
+  "updated": "2026-11-24T22:20:00.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero-miami.jpg"
@@ -15,6 +15,28 @@
     "source": "https://www.xda-developers.com/gta-6-xbox-executable-leaked-opening-door-for-pc-recompilation-projects-begin-testing/"
   },
   "news": [
+    {
+      "id": "2026-11-24-take-two-dmca-leonida-forks",
+      "date": "2026-11-24",
+      "category": "Takedown",
+      "title": "Take-Two's first GTA VI port takedown disables Leonida and 3,007 forks",
+      "dek": "A DMCA notice published by GitHub on Tuesday targets the Leonida repository, and GitHub applied it to the project's entire fork network.",
+      "body": [
+        "Take-Two has filed its first DMCA notice against a GTA VI port. The notice, published in GitHub's public DMCA log on Tuesday, names ItsNotRexed's Leonida repository. Because the fork network was larger than 100 repositories and Take-Two said the forks infringe just as the original does, GitHub processed it against the whole network: 3,007 repositories. Contributor forks that survived Leonida's shutdown on Monday now show GitHub's \"unavailable\" page.",
+        "The publisher calls Leonida a derivative work of GTA VI and says it breaches the reverse-engineering ban in Rockstar's terms of service. It also argues that the project's \"bring your own files\" line is misleading: given the timing, it says, the files users must supply can only be the leaked Xbox build.",
+        "The notice names only Leonida. Projects that aren't GitHub forks of it, such as VIctory and XCL, and Leonida copies uploaded as new repositories, are still online for now. But the same argument could apply to any of them.",
+        "Leonida stays on our board as nuked, for the record."
+      ],
+      "sources": [
+        {
+          "outlet": "GitHub",
+          "title": "DMCA notice from Take-Two Interactive, 2026-11-24",
+          "url": "https://github.com/github/dmca/blob/master/2026/11/2026-11-24-take-two.md"
+        }
+      ],
+      "image": null,
+      "by": "claude"
+    },
     {
       "id": "2026-11-24-new-progress-scale",
       "date": "2026-11-24",
@@ -179,11 +201,13 @@
       "category": "Port",
       "title": "Leonida is nuked: GitHub repo deleted, Discord gone, creator quits",
       "dek": "Within an hour on Monday night the biggest GTA VI port lost its Discord server and its GitHub repository, and its creator said he was stepping away.",
+      "updatedAt": "2026-11-24",
       "body": [
         "Leonida, the most-starred GTA VI port with more than 33,000 GitHub stars, went offline in under an hour on Monday night. Its Discord server stopped resolving at about 23:07 UTC. By 23:47 its GitHub repository was gone. Around the same time its creator, NotRexed, posted \"I quit guys\" on X, writing that he kept running into problems he couldn't control and was stepping away, and thanking the Discord community.",
         "The repository now answers \"not found\", not the \"unavailable\" page GitHub shows after a DMCA takedown, and GitHub's public DMCA log has no notice against it. That points to its owners pulling it rather than Take-Two, though only they can say. Earlier that evening it had moved to a new organization, ProjectLeonida, whose maintainers closed thousands of open pull requests and issues.",
         "The code isn't lost. Contributors' forks are still on GitHub, among them the one carrying the combined boot fixes, and a mirror on NotRexed's own Git server holds the code as of 23:30 UTC, though it can no longer sync.",
-        "We've marked Leonida as nuked on the tracker. It stays on the board for the record but no longer counts in the rankings."
+        "We've marked Leonida as nuked on the tracker. It stays on the board for the record but no longer counts in the rankings.",
+        "Update, Nov 24: Take-Two has since filed a DMCA notice against Leonida, published in GitHub's log on Nov 24, and GitHub disabled the repository's whole network of 3,007 forks, including the contributor fork linked below. Copies uploaded as separate repositories are not part of that network."
       ],
       "sources": [
         {
@@ -1150,7 +1174,7 @@
       "summary": "Made just for GTA VI, by Hookshot's author. Taken offline on Nov 23: its Discord vanished, the GitHub repo was deleted and the creator said he quit. Last result: the exe ran, frames stayed black.",
       "nuked": {
         "at": "2026-11-23",
-        "note": "Discord gone, GitHub repo deleted and creator quit on Nov 23. The code lives on in contributors' forks and a frozen mirror."
+        "note": "Discord gone, GitHub repo deleted and creator quit on Nov 23. On Nov 24 a Take-Two DMCA notice disabled its network of 3,007 GitHub forks; separately uploaded copies and a frozen mirror remain."
       },
       "highlights": [
         "Retail exe ran up to 10 minutes without a crash on Windows and Wine, AMD and NVIDIA",
@@ -1159,7 +1183,7 @@
       ],
       "blockers": [
         "Taken offline: GitHub repo deleted, Discord gone, creator stepped away",
-        "Code survives only in contributors' forks and a mirror frozen at 23:30 UTC",
+        "Take-Two DMCA (Nov 24) disabled all 3,007 GitHub forks; copies and a frozen mirror remain",
         "Last state: every presented frame was black"
       ],
       "groundwork": {
@@ -1372,7 +1396,7 @@
       "tier": "tracked",
       "approach": "HLE emulator",
       "target": "Any Xbox Series game",
-      "summary": "French-language prototype: GDK runtime emulation on Unicorn, plus a Wine-style native mode that runs small GDK test games. Its GTA VI runs go through a bundled copy of VIctory, so they earn it no milestone.",
+      "summary": "French-language prototype: GDK runtime emulation on Unicorn, plus a Wine-style native mode that runs small GDK test games. Its GTA VI results (world at about 5 fps) come from a pinned victory-fork build, so they earn it no milestone.",
       "highlights": [
         "All 16 DLLs of the Scarlett package initialise with zero unemulated calls",
         "Runs the free SimpleTriangle and SDL3 testgdk games natively",
@@ -1414,12 +1438,7 @@
       "assessedAt": "2026-11-24",
       "assessedBy": "claude",
       "readmeSha": "db6da79e869bec88cfaa2e3156185eacf786a75e3f04e62973d3686b1fb935dc",
-      "claims": [
-        {
-          "milestone": "fps30",
-          "text": "- ✅ The Xbox Series 1.0.2.1 build of GTA VI launches on PC: boot, profile screen, first-run settings, legal screens, loading, pause menu. Menus run at 30 fps."
-        }
-      ],
+      "claims": [],
       "readmeChangedAt": "2026-11-24"
     },
     {
@@ -2603,33 +2622,6 @@
       "status": "new"
     },
     {
-      "repo": "xcl-dev/xcl",
-      "name": "xcl",
-      "description": "Xbox Series compatibility layer for Windows - runs console game code natively, reimplements the console system libraries and recompiles RDNA2 shaders to DXIL",
-      "language": "Rust",
-      "stars": 7532,
-      "createdAt": "2026-11-20T20:03:21Z",
-      "pushedAt": "2026-11-24T18:29:22Z",
-      "defaultBranch": "main",
-      "sources": [
-        "4chan /vg/"
-      ],
-      "links": [
-        "https://boards.4chan.org/vg/thread/588744758"
-      ],
-      "foundAt": "2026-11-24T19:14:06.668Z",
-      "substance": 98,
-      "signals": [
-        "Rust",
-        "28 technical terms",
-        "status table",
-        "tests",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "nogiszd/scale",
       "name": "scale",
       "description": "An experimental native Xbox Series X|S compatibility layer for Windows x64.",
@@ -2703,54 +2695,6 @@
       "status": "new"
     },
     {
-      "repo": "AlexeySamosadov/Daiana",
-      "name": "Daiana",
-      "description": "Leonida Is A Native PC Recompilation Of The Xbox Version Of Grand Theft Auto 6",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T10:22:22Z",
-      "pushedAt": "2026-11-24T12:48:46Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T13:29:54.857Z",
-      "substance": 91,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "synrgizeross/leonida-sys",
-      "name": "leonida-sys",
-      "description": "Leonida — GTA VI running natively on PC. Build from your own copy, one installer for Windows and macOS.",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T17:16:00Z",
-      "pushedAt": "2026-11-24T17:27:49Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T19:14:06.668Z",
-      "substance": 91,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "gookie-dev/g6shim",
       "name": "g6shim",
       "description": "Clean-room replacements for console system DLLs that let console game executables run natively on Windows, without emulation. ",
@@ -2801,30 +2745,6 @@
       "status": "new"
     },
     {
-      "repo": "emanuele-giuseppe/main-leonida",
-      "name": "main-leonida",
-      "description": "Leonida Continuation",
-      "language": "C++",
-      "stars": 49,
-      "createdAt": "2026-11-24T12:59:56Z",
-      "pushedAt": "2026-11-24T13:47:43Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T16:24:31.934Z",
-      "substance": 81,
-      "signals": [
-        "C++",
-        "24 technical terms",
-        "status table",
-        "5 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "DesignWithTommy/Neonbridge",
       "name": "Neonbridge",
       "description": "Neonbridge: open-source GTA VI (GTA 6) launcher for Windows PC. Runs your own dumped Xbox Series X|S GDK build natively on D3D12, not emulated. Work in progress, no game files.",
@@ -2842,30 +2762,6 @@
       "signals": [
         "Rust",
         "11 technical terms",
-        "100+ commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "Click2x/BananaTheftAuto",
-      "name": "BananaTheftAuto",
-      "description": "Banana Theft Auto: a guided Windows menu built on Leonida (GTA VI recompilation). Full credit to Leonida's authors.",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T15:28:34Z",
-      "pushedAt": "2026-11-24T15:30:25Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T16:24:31.934Z",
-      "substance": 77,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
         "100+ commits/7d"
       ],
       "kind": "effort",
@@ -3184,30 +3080,6 @@
       "status": "new"
     },
     {
-      "repo": "JokiiiBoy/GTA6-btw",
-      "name": "GTA6-btw",
-      "description": "GTA6-btw is an experimental fork/workspace based on [Leonida](https://github.com/ItsNotRexed/Leonida) for boot-tracing and runtime research on the GTA6 Xbox package under Wine on Linux.",
-      "language": "Python",
-      "stars": 0,
-      "createdAt": "2026-11-24T18:54:58Z",
-      "pushedAt": "2026-11-24T18:59:03Z",
-      "defaultBranch": "master",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T19:14:06.668Z",
-      "substance": 63,
-      "signals": [
-        "Python",
-        "24 technical terms",
-        "status table",
-        "1 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "7jycwjmbfn-eng/scenegate-vi",
       "name": "scenegate-vi",
       "description": "Windows startup and graphics research for the Xbox Series build of GTA VI.",
@@ -3436,6 +3308,31 @@
     }
   ],
   "ignored": [
+    {
+      "repo": "synrgizeross/leonida-sys",
+      "reason": "copy of ItsNotRexed/Leonida (README reuses its name and Discord)",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "AlexeySamosadov/Daiana",
+      "reason": "copy of ubiquitarianism/leonida",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "emanuele-giuseppe/main-leonida",
+      "reason": "copy of ubiquitarianism/leonida; points users to a Releases download",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "Click2x/BananaTheftAuto",
+      "reason": "launcher menu over a Leonida copy; no port work of its own, the game does not boot",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "JokiiiBoy/GTA6-btw",
+      "reason": "Leonida-based Wine boot-tracing notes; nothing past Leonida's state, no frames drawn",
+      "seenAt": "2026-11-24"
+    },
     {
       "repo": "ZigZagBoi1/GTA6-PC-Native",
       "reason": "Bundles XCL and VIctory as its runtimes; its menu screenshots come from their code, not its own",
@@ -6311,6 +6208,11 @@
       "date": "2026-11-24",
       "kind": "new",
       "text": "suri's private build joins at 61% (“Playable”): working in private on hyphennn's victory-fork, it moves around Lucia's prologue at about 3 fps, confirmed by PortWatch, and looks almost like the retail game. Its code isn't public, so it isn't ranked in the race."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "down",
+      "text": "Take-Two's DMCA notice against Leonida, published Nov 24, disabled the project's whole GitHub network of 3,007 forks. Other ports, such as VIctory and XCL, aren't named in it."
     }
   ],
   "history": [
@@ -6389,7 +6291,7 @@
     "lastRun": "2026-11-24T19:14:06.668Z",
     "lastSummary": "24 refreshed, 4 READMEs changed, 10 new candidates, 11 flagged, 1 errors.",
     "lastDmcaCheck": "2026-11-24T19:14:06.668Z",
-    "lastEditorRun": "2026-11-24T10:32:41.000Z"
+    "lastEditorRun": "2026-11-24T22:20:00.000Z"
   },
   "headlines": [
     {
