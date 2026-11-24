@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T01:44:45.000Z",
+  "updated": "2026-11-24T01:46:58.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -21,12 +21,13 @@
       "date": "2026-11-24",
       "category": "Port",
       "title": "Exclusive: XCL reports 30 fps in GTA VI but won't say if it's past the menus",
-      "dek": "The team refused to say more for fear of being nuked, but hinted to one of our members that it's working really well.",
+      "dek": "The team refused to say more for fear of being nuked, but hinted to one of our members that it's working really well. Update: testers' reports now show it loading into the world.",
+      "updatedAt": "2026-11-24",
       "body": [
         "XCL says GTA VI now runs at 30 frames per second in game, but won't say where. Asked whether that means the menus it had already reached or actual gameplay, the team refused to answer, saying it feared being nuked. Privately, it hinted to one of our community members that things are working really well.",
         "Its public notes haven't caught up. XCL's README still calls the game \"a newer retail game\" that reaches its menus at a steady 30 fps, with gameplay not reached yet. Early on Tuesday the project merged a change that shows the live frame rate in the game window's title.",
         "The caution runs through the scene. XCL's Discord server is tightly locked down with its chats closed, and members are scared of being nuked after Leonida lost its server, its repository and its creator within an hour on Monday night. The GTA 6 Modding Discord server has now been nuked too.",
-        "Our tracker doesn't change: XCL stays at Main menu, 55%, until its repo shows gameplay or someone reproduces it."
+        "Update, 01:50 UTC: testers on XCL's GitHub now report GTA VI getting past its menus into the world on the public code. The game's own state reads \"Game Running\", but the screen stays on a loading spinner and a GPU watchdog ends each run within minutes. One report claims gameplay at 28 to 30 fps, without a screenshot. XCL moves to 62.5%, halfway to In-game."
       ],
       "sources": [
         {
@@ -38,6 +39,16 @@
           "outlet": "GitHub",
           "title": "XCL pull request 516: live FPS in the game window's title",
           "url": "https://github.com/ivall/xcl/pull/516"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "XCL issue 505: testers reach world loading, then the game's GPU watchdog",
+          "url": "https://github.com/ivall/xcl/issues/505"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "XCL issue 534: a tester reports reaching gameplay (no screenshot)",
+          "url": "https://github.com/ivall/xcl/issues/534"
         }
       ],
       "image": {
@@ -658,16 +669,16 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Wine-style layer running game code natively. Its unnamed newer retail game, whose notes name GTA VI's exe, shows its first menus at 30 fps and takes controller input; gameplay not reached. Self-reported; no screenshot in the repo.",
+      "summary": "Wine-style layer running game code natively. On its main branch GTA VI gets past its menus into the world for several testers, but the screen stays on a loading spinner and a GPU watchdog ends the run. Unverified.",
       "highlights": [
-        "GTA VI's exe (unnamed in its README) shows its account prompt and settings menus at 30 fps",
-        "A contributor's separate RTX 5090 run reached the same menus; the maintainer merged parts of it",
+        "Several testers' runs reach GTA VI's world: the game's own state reads \"Game Running\", peds and vehicles spawned",
+        "Menus at 30 fps; past them the intro video plays and the world streams in",
         "All 26,698 RDNA2 programs in GTA VI's shader pack become HLSL; samples compile to DXIL"
       ],
       "blockers": [
-        "Gameplay not reached; the game's minimap mesh pipelines are still refused",
-        "About 15 GB of memory committed in the menus, tested on a 32 GB PC",
-        "Results are self-reported, described in text only, and not reproduced outside the project"
+        "In the world the screen stays on a loading spinner; no picture of gameplay yet",
+        "The game's GPU watchdog ends each run 3 to 14 minutes in, on AMD and NVIDIA",
+        "Pipeline builds fall behind at world load, and BCPack-compressed textures aren't decoded yet"
       ],
       "groundwork": {
         "loader": 0.9,
@@ -680,7 +691,7 @@
         "loads": 1,
         "boots": 1,
         "menu": 1,
-        "ingame": 0,
+        "ingame": 0.5,
         "fps": 0,
         "stability": "unknown"
       },
@@ -4712,6 +4723,11 @@
       "date": "2026-11-24",
       "kind": "new",
       "text": "Palmetto, the open continuation of Leonida, joins the watchlist: GTA VI's exe runs under it, but no frame yet. 16 Leonida copies and re-uploads set aside."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "up",
+      "text": "XCL gets half credit for “In-game”: several testers' runs on its main branch take GTA VI into the world, where the game reports itself running, but the screen stays on a loading spinner and a GPU watchdog ends each run (no screenshot). Score 55% → 62.5%."
     }
   ],
   "history": [
