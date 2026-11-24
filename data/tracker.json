@@ -24,7 +24,7 @@
       "dek": "A private build based on VIctory and XCL lets a player walk around and talk to NPCs, very slowly. A video shows the opening scenes in flat colours, without lighting.",
       "body": [
         "A group called CGBJ has got GTA VI into its game world on PC, and a player can move in it. With a controller they walk around, talk to NPCs and open the in-game menu. PortWatch has verified that it gets in game. No public project has shown a player moving yet.",
-        "It is far from playable, and it runs very slowly. In the run where a player walked around, the screen was black. A 77-second video posted on X on Tuesday shows more: GTA VI's opening scenes in flat colours with no lighting, from a car's interior to a street of waving NPCs, a guard and a prison yard. The image above, a debug view that colours each surface by the direction it faces, shows that yard from a doorway.",
+        "It is far from playable, and it runs very slowly. In the run where a player walked around, the screen was black. A 77-second video posted on X on Tuesday shows more: GTA VI's opening scenes in flat colours with no lighting, from a car's interior to a street of waving NPCs, a guard and a prison yard.",
         "CGBJ's code is private. It builds on VIctory, the open-source layer whose author first showed GTA VI's menus on a livestream on Monday, and also takes some of XCL's work. Both are public on GitHub; CGBJ's changes aren't, so nobody outside the group can test them.",
         "We've added CGBJ to the tracker at 72%, at our In-game stage, which puts it first. That rests on our own check: the video doesn't name the project, and nobody outside the group can reproduce the result yet."
       ],
@@ -45,11 +45,7 @@
           "url": "https://github.com/ivall/xcl"
         }
       ],
-      "image": {
-        "url": "https://portwatch-vi.xyz/assets/img/news/2026-11-24-cgbj-in-game.webp",
-        "credit": "CGBJ (debug view of surface normals, no textures or lighting)",
-        "link": "https://portwatch-vi.xyz/assets/img/news/2026-11-24-cgbj-in-game.webp"
-      },
+      "image": null,
       "by": "report"
     },
     {
@@ -219,11 +215,7 @@
           "url": "https://github.com/ivall/xcl/pull/195"
         }
       ],
-      "image": {
-        "url": "https://portwatch-vi.xyz/assets/img/news/2026-11-23-marvis-menus-stream.png",
-        "credit": "Marvis's Discord profile, cropped by PortWatch",
-        "link": "https://portwatch-vi.xyz/assets/img/news/2026-11-23-marvis-menus-stream.png"
-      },
+      "image": null,
       "by": "report"
     },
     {
