@@ -1,5 +1,5 @@
 // Shared Supabase access for the public pages: board data and anonymous page views.
-import { SUPABASE_URL, SUPABASE_KEY } from './config.js';
+import { SUPABASE_URL, SUPABASE_KEY, STATS_PAUSED } from './config.js';
 
 const LIB = 'https://esm.sh/@supabase/supabase-js@2';
 let clientPromise = null;
@@ -26,7 +26,7 @@ function sessionId() {
 
 // How many people are on the site now, or null when there's nothing to show (under 25, or unavailable).
 export async function getLiveViewers() {
-  if (!backendReady()) return null;
+  if (!backendReady() || STATS_PAUSED) return null;
   try {
     const { data, error } = await (await getClient()).rpc('live_viewers');
     return !error && Number.isInteger(data) ? data : null;
@@ -37,7 +37,7 @@ export async function getLiveViewers() {
 // (sessions seen in the last few minutes), so visitors don't hold a realtime connection open:
 // that hit the realtime plan's connection limit under heavy traffic.
 export async function trackView(page) {
-  if (!backendReady() || navigator.doNotTrack === '1') return;
+  if (!backendReady() || STATS_PAUSED || navigator.doNotTrack === '1') return;
   try {
     const client = await getClient();
     const { sid, isNew } = sessionId();

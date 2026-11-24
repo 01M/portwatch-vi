@@ -4,3 +4,6 @@
 // Leave both empty to run the site without the board and analytics.
 export const SUPABASE_URL = 'https://ukkphczkthpiosuezgfj.supabase.co';
 export const SUPABASE_KEY = 'sb_publishable_6bI_-WqCLu73dqaIOznDag_FmpTBSij';
+// true = public pages neither count views nor ask for the "watching now" number; the board still works.
+// Turned on 2026-11-24 ~00:30 UTC: ~290k requests an hour swamped the free-plan database. Set back to false to resume.
+export const STATS_PAUSED = true;
