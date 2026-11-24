@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T20:01:32.000Z",
+  "updated": "2026-11-24T20:10:10.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero-miami.jpg"
@@ -21,11 +21,13 @@
       "category": "Port",
       "title": "GTA VI's shaders start loading on omonkey's build, streamed live on Rumble",
       "dek": "A player can walk slowly around the opening prison scene, at about 5 frames per second. All of the work goes out live, on a Rumble channel run by someone else.",
+      "updatedAt": "2026-11-24",
       "body": [
         "A developer called omonkey has GTA VI running on PC with its shaders starting to load properly. It runs at about 5 frames per second and is stuck in the opening scene, Lucia's prison, but a player can move around in it, slowly.",
         "That puts omonkey ahead of every project we track. CGBJ, which we added earlier on Tuesday, also has a player moving, but on a black screen, and a video of it shows the opening in flat colours without lighting.",
         "omonkey streams all of his development work on Rumble, but not on a channel of his own. The streams go out on Swaggely, a channel with about 1,800 followers that belongs to a separate person. It isn't clear why the two work this way.",
-        "We've added omonkey to the tracker at 76%, at our In-game stage, which puts him first. Because the work has been streamed live the whole time, we're confident it's real. We haven't found any public code from him, though, so nobody can test it outside the streams yet."
+        "We've added omonkey to the tracker at 76%, at our In-game stage, which puts him first. Because the work has been streamed live the whole time, we're confident it's real. We haven't found any public code from him, though, so nobody can test it outside the streams yet.",
+        "Update, 20:10 UTC: omonkey's build is based on victory-gta6, fxceless's public fork of VIctory, which we've now added to the race at 74%. Our race now ranks only projects with public code, so omonkey's private build is listed below it without a rank. At 76% it still leads our overall progress number, and it shows on victory-gta6's card as a build on that code."
       ],
       "sources": [
         {
@@ -43,11 +45,13 @@
       "category": "Port",
       "title": "Exclusive: CGBJ gets GTA VI in game, walking and talking in an unlit world",
       "dek": "A private build based on VIctory and XCL lets a player walk around and talk to NPCs, very slowly. A video shows the opening scenes in flat colours, without lighting.",
+      "updatedAt": "2026-11-24",
       "body": [
         "A group called CGBJ has got GTA VI into its game world on PC, and a player can move in it. With a controller they walk around, talk to NPCs and open the in-game menu. PortWatch has verified that it gets in game. No public project has shown a player moving yet.",
         "It is far from playable, and it runs very slowly. In the run where a player walked around, the screen was black. A 77-second video posted on X on Tuesday shows more: GTA VI's opening scenes in flat colours with no lighting, from a car's interior to a street of waving NPCs, a guard and a prison yard.",
         "CGBJ's code is private. It builds on VIctory, the open-source layer whose author first showed GTA VI's menus on a livestream on Monday, and also takes some of XCL's work. Both are public on GitHub; CGBJ's changes aren't, so nobody outside the group can test them.",
-        "We've added CGBJ to the tracker at 72%, at our In-game stage, which puts it first. That rests on our own check: the video doesn't name the project, and nobody outside the group can reproduce the result yet."
+        "We've added CGBJ to the tracker at 72%, at our In-game stage, which puts it first. That rests on our own check: the video doesn't name the project, and nobody outside the group can reproduce the result yet.",
+        "Update, 20:10 UTC: our race now ranks only projects with public code, so CGBJ's private build is listed below it without a rank, still at 72%. It counts toward our overall progress number, which omonkey's private build now leads at 76%, and it shows on the cards of VIctory and XCL as a build on their code."
       ],
       "sources": [
         {
