@@ -1,10 +1,12 @@
 # Site translations
 
-The homepage and the board load their interface text from these files. `en.json` is the source and the
-fallback: any key missing from another language shows in English.
+The homepage, including its news reader, loads its interface text from these files. `en.json` is the
+source and the fallback for any missing key.
 
 - **Add a language:** copy `pt-BR.json`, translate the values (never the keys), save it as `<code>.json`
   (a BCP 47 code such as `fr` or `de`), then add it to `LANGS` and to `pickLang()` in `assets/js/i18n.js`.
+  Keys starting with `board.`, plus `meta.boardTitle`, `nav.board` and `effort.discuss`, belong to the
+  removed discussion board and can be omitted.
 - **Placeholders** such as `{n}`, `{ago}` or `{name}` are filled in by the page. Keep them as they are.
 - **`_one` / `_other`** keys are the singular and plural forms of a count.
 - **`ms.*`, `gw.*` and `stab.*`** translate the milestone, groundwork and stability names. Their English

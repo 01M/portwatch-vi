@@ -473,6 +473,8 @@ html:not([lang="en"]) .nav-links a { padding-inline: 9px; }
 .ladder { display: grid; grid-template-columns: 25fr 15fr 15fr 15fr 15fr 15fr; margin-top: 8px; font-size: 11.5px; color: var(--faint); font-weight: 600; }
 .ladder > div { display: flex; justify-content: space-between; gap: 8px; min-width: 0; }
 .ladder span { display: flex; align-items: center; gap: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html[lang="ru-RU"] .ladder > div { flex-wrap: wrap; gap: 4px; }
+html[lang="ru-RU"] .ladder span { white-space: normal; }
 .ladder span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--line); flex: none; }
 .ladder .is-reached { color: var(--ink); }
 .ladder .is-reached::before { background: var(--pink); }
@@ -732,6 +734,14 @@ a.tag { text-decoration: none; }
   .footer-inner { grid-template-columns: 1fr; }
   .footer-meta { text-align: left; }
   .changes-card { flex-direction: column; align-items: stretch; gap: 10px; }
+}
+@media (min-width: 761px) and (max-width: 900px) {
+  html[lang="ru-RU"] .mega-labels { height: 76px; }
+  html[lang="ru-RU"] .mega-label:last-child { top: 38px; }
+}
+@media (max-width: 520px) {
+  html[lang="ru-RU"] .mega-labels { height: 68px; }
+  html[lang="ru-RU"] .mega-label:last-child { top: 44px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

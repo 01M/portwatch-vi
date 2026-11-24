@@ -18,7 +18,21 @@ const hasRepo = (e) => REPO_RE.test(e.repo || '');
 const effortAvatar = (e) => (/^assets\/img\/[\w/.-]+$/.test(e.avatar || '') ? e.avatar : avatar(e.repo));
 const effortUrl = (e) => (hasRepo(e) ? repoUrl(e.repo, e.branch) : /^news\/[a-z0-9-]+\.html$/.test(e.link || '') ? e.link : '');
 const safeHttp = (u) => (/^https:\/\//.test(u || '') ? u : '#');
-const pct = (v) => `${Math.round(v * 10) / 10}`;
+const ruNumber = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 });
+const ruCompact = new Intl.NumberFormat('ru-RU', { notation: 'compact', maximumFractionDigits: 1 });
+const fmtNumber = (n) => (locale() === 'ru-RU' ? ruNumber.format(n) : String(n));
+const pctNumber = (v) => fmtNumber(Math.round(v * 10) / 10);
+const pctSign = () => (locale() === 'ru-RU' ? '\u00a0%' : '%');
+const pct = (v) => `${pctNumber(v)}${pctSign()}`;
+
+function fmtDay(date, withYear = true) {
+  const day = new Date(`${date}T00:00:00Z`);
+  if (!Number.isFinite(day.getTime())) return date || '';
+  return day.toLocaleDateString(locale(), {
+    day: 'numeric', month: 'short', year: withYear ? 'numeric' : undefined, timeZone: 'UTC',
+  });
+}
+const fmtProjectDate = (date) => (locale() === 'ru-RU' ? fmtDay(date) : date || '');
 
 // Names from scoring.js, in the page's language when a translation exists.
 const msLabel = (key) => tr(`ms.${key}.label`, MILESTONES.find((m) => m.key === key)?.label || key);
@@ -42,7 +56,11 @@ function ago(iso) {
   return new Date(ms).toLocaleDateString(locale(), { day: 'numeric', month: 'short' });
 }
 const daysSince = (iso) => (Date.now() - Date.parse(iso)) / 864e5;
-const fmtK = (n) => (n == null ? '-' : n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k` : `${n}`);
+function fmtK(n) {
+  if (n == null) return '-';
+  if (locale() === 'ru-RU') return ruCompact.format(n);
+  return n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k` : String(n);
+}
 
 const ICON = {
   // Radiation trefoil: three 60-degree blades around a dot.
@@ -131,7 +149,10 @@ function startCountdown(exe) {
   const by = exe.by ? t('cd.dropBy', { by: exe.by }) : t('cd.drop');
   const released = exe.status === 'released' && exe.releasedAt;
   const target = Date.parse(released ? exe.releasedAt : exe.expectedAt || `${exe.expected}T00:00:00Z`);
-  const dayFmt = new Intl.DateTimeFormat(locale(), { weekday: 'short', day: 'numeric', month: 'short' });
+  const dayFmt = new Intl.DateTimeFormat(locale(), {
+    weekday: 'short', day: 'numeric', month: 'short',
+    timeZone: released || exe.timeAnnounced ? undefined : 'UTC',
+  });
   const timeFmt = new Intl.DateTimeFormat(locale(), { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
 
   $('#cd-title').textContent = released ? t('cd.released') : by;
@@ -180,12 +201,13 @@ function renderOverall(data) {
   const all = data.efforts;
   const ov = overall(all);
   const leader = ov.leader?.effort;
+  $('#ov-score + .pct').textContent = pctSign();
   animateNumber($('#ov-score'), ov.score);
   $('#ov-leader').innerHTML = leader
     ? `${esc(t('ov.leader'))} <a href="#effort-${esc(leader.id)}">${esc(leader.name)}</a> ${hasRepo(leader) ? `${esc(t('ov.byOwner', { owner: owner(leader.repo) }))} ` : ''}${esc(ov.leader.reached === 'groundwork' ? t('ov.stillGroundwork') : t('ov.reached', { label: msLabel(ov.leader.reached) }))}`
     : esc(t('ov.none'));
   $('#ov-stage').textContent = msLabel(ov.furthest.key);
-  $('#ov-top3').textContent = `${pct(ov.top3)}%`;
+  $('#ov-top3').textContent = pct(ov.top3);
   const booted = all.filter((e) => ladderValue(e.gta?.boots) >= 1).length;
   $('#ov-boot').textContent = `${booted} / ${all.length}`;
   $('#ov-count').textContent = `${all.length}`;
@@ -198,7 +220,7 @@ function renderOverall(data) {
   $('#mega-ticks').innerHTML = MILESTONES.slice(1, -1).map((m) => `<i style="left:${m.at}%"></i>`).join('');
   $('#mega-labels').innerHTML = MILESTONES.map((m, i) => {
     const cls = i <= furthestIdx ? 'is-reached' : i === furthestIdx + 1 ? 'is-next' : '';
-    return `<div class="mega-label ${cls}" style="left:${m.at}%" data-tip="${esc(msDesc(m))}" data-tip-title="${esc(msLabel(m.key))}"><b>${m.at}%</b><span class="dot"></span>${esc(msLabel(m.key))}</div>`;
+    return `<div class="mega-label ${cls}" style="left:${m.at}%" data-tip="${esc(msDesc(m))}" data-tip-title="${esc(msLabel(m.key))}"><b>${pct(m.at)}</b><span class="dot"></span>${esc(msLabel(m.key))}</div>`;
   }).join('');
   $('#mega-fill').dataset.width = ov.score;
 
@@ -240,8 +262,8 @@ function drawMarkers(ranked, leader) {
       const e = it.r.effort;
       const src = effortAvatar(e);
       return `<a class="marker ${e === leader ? 'is-leader' : ''}" href="#effort-${esc(e.id)}" style="left:${it.a}px;bottom:${H - avatarY - 32}px"
-                data-tip-title="${esc(e.name)} · ${pct(it.r.score)}%" data-tip="${esc(msLabel(it.r.reached))} · ${esc(e.approach || '')}">
-                <span class="mk-name">${esc(e.name)} · ${pct(it.r.score)}%</span>
+                data-tip-title="${esc(e.name)} · ${pct(it.r.score)}" data-tip="${esc(msLabel(it.r.reached))} · ${esc(e.approach || '')}">
+                <span class="mk-name">${esc(e.name)} · ${pct(it.r.score)}</span>
                 ${src ? `<img src="${esc(src)}" alt="" loading="lazy" data-fallback="${esc(e.name.slice(0, 2))}">` : `<span class="mk-fallback">${esc(e.name.slice(0, 2))}</span>`}
               </a>`;
     }).join('');
@@ -271,7 +293,7 @@ function renderChanges(changes) {
   const items = [...changes].reverse().slice(0, 12);
   if (!items.length) { $('#changes').hidden = true; return; }
   const cls = { up: 'ck-up', down: 'ck-down', flag: 'ck-flag', new: 'ck-new', removed: 'ck-down', claim: 'ck-flag' };
-  list.innerHTML = items.map((c) => `<li><span class="ck ${cls[c.kind] || ''}"></span><time>${esc(new Date(`${c.date}T12:00:00Z`).toLocaleDateString(locale(), { day: 'numeric', month: 'short' }))}</time><span>${esc(c.text)}</span></li>`).join('');
+  list.innerHTML = items.map((c) => `<li><span class="ck ${cls[c.kind] || ''}"></span><time>${esc(fmtDay(c.date, false))}</time><span>${esc(c.text)}</span></li>`).join('');
 }
 
 /* ---------- Race ---------- */
@@ -335,32 +357,33 @@ function effortCard(e, rank, open, overallRank = null) {
     e.provenOn && ladderValue(e.groundwork?.proven) > 0 && `<span class="tag tag-proven" title="${esc(t('effort.runsTitle'))}">${esc(t('effort.runs', { x: e.provenOn }))}</span>`,
     stale && `<span class="tag tag-stale">${esc(t('effort.quiet', { n: Math.floor(daysSince(st.pushedAt)) }))}</span>`,
     st.missing && `<span class="tag tag-stale">${esc(t('effort.gone'))}</span>`,
-    st.dmca && `<a class="tag tag-stale" href="${esc(safeHttp(st.dmca.url))}" target="_blank" rel="noopener" title="${esc(t('effort.dmcaTitle'))}">${esc(t('effort.dmca', { date: st.dmca.date || '' }))}</a>`,
+    st.dmca && `<a class="tag tag-stale" href="${esc(safeHttp(st.dmca.url))}" target="_blank" rel="noopener" title="${esc(t('effort.dmcaTitle'))}">${esc(t('effort.dmca', { date: fmtProjectDate(st.dmca.date) }))}</a>`,
   ].filter(Boolean).join('');
   const gwRows = GROUNDWORK.map((g) => {
     const v = Math.max(0, Math.min(1, +(e.groundwork?.[g.key]) || 0));
-    return `<div class="gw-row" title="${esc(gwDesc(g))}"><span>${esc(gwLabel(g))}</span><b>${Math.round(v * 100)}%</b><div class="gw-bar"><i data-width="${v * 100}"></i></div></div>`;
+    return `<div class="gw-row" title="${esc(gwDesc(g))}"><span>${esc(gwLabel(g))}</span><b>${pct(Math.round(v * 100))}</b><div class="gw-bar"><i data-width="${v * 100}"></i></div></div>`;
   }).join('');
   const claims = (e.claims || []).slice(0, 2).map((c) => `<div class="claim"><b>${esc(t('effort.claim'))}</b> “${esc(c.text)}”, ${esc(t('effort.mayMean'))} <em>${esc(MILESTONES.some((m) => m.key === c.milestone) ? msLabel(c.milestone) : c.milestone)}</em>. ${esc(t('effort.awaiting'))}</div>`).join('');
   const src = effortAvatar(e);
   const url = effortUrl(e);
   const external = hasRepo(e) ? ' target="_blank" rel="noopener"' : '';
+  const nukedTitle = e.nuked ? esc(t('effort.nukedTitle', { date: fmtProjectDate(e.nuked.at) })) : '';
   return `
   <li class="effort ${rank && rank <= 3 ? 'is-top' : ''}${e.nuked ? ' is-nuked' : ''}" id="effort-${esc(e.id)}">
-    <div class="e-rank">${e.nuked ? `<span class="nuke-rank" title="${esc(t('effort.nukedTitle', { date: e.nuked.at || '' }))}">${ICON.nuke}</span>` : rank}${overallRank ? `<small class="e-rank-overall" title="${esc(t('race.overallTitle'))}">${esc(t('race.overall', { n: overallRank }))}</small>` : ''}</div>
+    <div class="e-rank">${e.nuked ? `<span class="nuke-rank" title="${nukedTitle}">${ICON.nuke}</span>` : rank}${overallRank ? `<small class="e-rank-overall" title="${esc(t('race.overallTitle'))}">${esc(t('race.overall', { n: overallRank }))}</small>` : ''}</div>
     <div class="e-main">
-      ${e.nuked ? `<div class="nuke-banner" title="${esc(t('effort.nukedTitle', { date: e.nuked.at || '' }))}">${ICON.nuke}<b>${esc(t('effort.nuked'))}</b><span>${esc(e.nuked.note || '')}</span></div>` : ''}
+      ${e.nuked ? `<div class="nuke-banner" title="${nukedTitle}">${ICON.nuke}<b>${esc(t('effort.nuked'))}</b><span>${esc(e.nuked.note || '')}</span></div>` : ''}
       <div class="e-top">
         ${src ? `<img class="e-avatar" src="${esc(src)}" alt="" loading="lazy" data-hide-on-error>` : ''}
         <div class="e-title">
           <h3>${url ? `<a href="${esc(url)}"${external}>${esc(e.name)}</a>` : esc(e.name)}</h3>
           <p class="e-by">${hasRepo(e) ? `${esc(e.repo)}${e.branch && !['main', 'master'].includes(e.branch) ? ` · ${esc(t('effort.branch', { b: e.branch }))}` : ''}` : esc(e.byline || '')}</p>
         </div>
-        <div class="e-score"><b>${pct(s.score)}<span>%</span></b><small>${esc(msLabel(s.reached))}</small></div>
+        <div class="e-score"><b>${pctNumber(s.score)}<span>${pctSign()}</span></b><small>${esc(msLabel(s.reached))}</small></div>
       </div>
       <div class="tags">${tags}</div>
       <p class="e-summary">${esc(e.summary)}</p>
-      <div class="bar" aria-label="${esc(t('effort.progressLabel', { name: e.name, n: pct(s.score) }))}">
+      <div class="bar" aria-label="${esc(t('effort.progressLabel', { name: e.name, n: pctNumber(s.score) }))}">
         <div class="bar-track"><div class="bar-fill" data-width="${s.score}"></div><div class="bar-ticks">${ticks}</div></div>
         <div class="ladder">${ladderCells(e)}</div>
       </div>
@@ -383,7 +406,7 @@ function effortCard(e, rank, open, overallRank = null) {
         ${st.commits7d != null ? `<span class="stat-i" title="${esc(t('effort.commitsTitle'))}">${ICON.commit}${esc(t('effort.commits', { n: st.commits7d >= 100 ? '100+' : st.commits7d }))}</span>` : ''}
         <span class="stat-i" title="${esc(t('effort.lastPush'))}">${ICON.clock}${esc(t('effort.pushed', { ago: ago(st.pushedAt) }))}</span>` : ''}
         <span class="spacer"></span>
-        <span class="w-muted" title="${esc(t('effort.reviewedTitle'))}">${esc(e.assessedBy === 'claude' ? t('effort.byClaude') : t('effort.reviewed'))} ${esc(e.assessedAt || '')}</span>
+        <span class="w-muted" title="${esc(t('effort.reviewedTitle'))}">${esc(e.assessedBy === 'claude' ? t('effort.byClaude') : t('effort.reviewed'))} ${esc(fmtProjectDate(e.assessedAt))}</span>
         <button class="toggle" data-toggle aria-expanded="${open}">${esc(open ? t('effort.hideDetails') : t('effort.details'))}</button>
         ${hasRepo(e) ? `<a class="gh-link" href="${esc(repoUrl(e.repo, e.branch))}" target="_blank" rel="noopener">${ICON.gh}GitHub</a>` : ''}
       </div>
@@ -402,7 +425,7 @@ function renderWatchlist(data) {
     <div class="w-row" role="row" id="effort-${esc(e.id)}">
       <div class="w-name"><a href="${esc(repoUrl(e.repo, e.branch))}" target="_blank" rel="noopener">${esc(e.name)}</a><p>${esc(e.summary)}</p></div>
       <span class="w-muted">${esc(e.approach)}${e.target && /gta|ps5/i.test(e.target) ? ` · ${esc(e.target)}` : ''}</span>
-      <div class="w-bar"><div class="bar-track"><div class="bar-fill" data-width="${e._s.score}"></div></div><b>${pct(e._s.score)}%</b></div>
+      <div class="w-bar"><div class="bar-track"><div class="bar-fill" data-width="${e._s.score}"></div></div><b>${pct(e._s.score)}</b></div>
       <span class="w-muted">★ ${fmtK(e.stats?.stars)}</span>
       <span class="w-muted">${esc(ago(e.stats?.pushedAt))}</span>
     </div>`).join('');
@@ -440,7 +463,6 @@ function renderInbox(data) {
 
 /* ---------- News ---------- */
 const safeLink = (u) => (/^#[\w-]+$/.test(u || '') ? u : safeHttp(u));
-const fmtDay = (d) => new Date(`${d}T12:00:00Z`).toLocaleDateString(locale(), { day: 'numeric', month: 'short', year: 'numeric' });
 
 function storyMedia(n) {
   const img = n.image && /^https:\/\//.test(n.image.url || '')
@@ -515,7 +537,7 @@ function renderFlags(flags) {
 function renderMethod() {
   $('#ladder-explain').innerHTML = MILESTONES.map((m, i) => `
     <li><span class="le-at">${i === 0 ? '0–25' : m.at}</span><div><h4>${esc(msLabel(m.key))}</h4><p>${esc(msDesc(m))}</p></div></li>`).join('');
-  $('#gw-explain').innerHTML = GROUNDWORK.map((g) => `<li><b>${esc(gwLabel(g))}<span>${esc(t('method.pts', { n: Math.round(g.weight * 25 * 10) / 10 }))}</span></b>${esc(gwDesc(g))}</li>`).join('');
+  $('#gw-explain').innerHTML = GROUNDWORK.map((g) => `<li><b>${esc(gwLabel(g))}<span>${esc(t('method.pts', { n: pctNumber(g.weight * 25) }))}</span></b>${esc(gwDesc(g))}</li>`).join('');
 }
 
 /* ---------- Interaction ---------- */
@@ -590,7 +612,7 @@ function animateNumber(node, to) {
   const step = (now) => {
     const p = Math.min(1, (now - start) / dur);
     const eased = 1 - (1 - p) ** 3;
-    node.textContent = (to * eased).toFixed(to % 1 ? 1 : 0);
+    node.textContent = fmtNumber((to * eased).toFixed(to % 1 ? 1 : 0));
     if (p < 1) requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
