@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T23:57:15.000Z",
+  "updated": "2026-11-24T01:22:43.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -16,6 +16,42 @@
     "source": "https://www.xda-developers.com/gta-6-xbox-executable-leaked-opening-door-for-pc-recompilation-projects-begin-testing/"
   },
   "news": [
+    {
+      "id": "2026-11-24-tuxbox-first-frame-victory-world",
+      "date": "2026-11-24",
+      "category": "Port",
+      "title": "TuxBox draws GTA VI's first screen as VIctory edges into the world",
+      "dek": "Overnight, a Linux-first layer showed GTA VI's player-selection prompt, VIctory reported a title card inside the game world, and two smaller projects got GTA VI's code running.",
+      "body": [
+        "Leonida's exit hasn't slowed the other GTA VI ports. TuxBox, a compatibility layer tested mostly on Linux through Proton, published a run record showing the game's player-selection prompt at 4K on an RTX 4070 Ti SUPER. It hasn't sent the game any input yet, so we count it as a first frame, not a menu. That takes TuxBox from 25% to 40%.",
+        "VIctory, level with XCL at the main menu, now says its runs reach the world. The first mission's title card renders, but the scene behind it stays dark at roughly one frame every one to two seconds, and the project warns that real GPUs can hang. That isn't playable, so VIctory stays at 55%.",
+        "PercyScarlett reports GTA VI running to a frame loop of black frames before the GPU hangs, and a new project, GTA6-BootTest, gets its exe through the same stage with stand-in DLLs. Both now sit at \"Exe runs\". As always, these are the projects' own reports; none has been reproduced independently."
+      ],
+      "sources": [
+        {
+          "outlet": "GitHub",
+          "title": "TuxBox: progress and compatibility",
+          "url": "https://github.com/brcly/TuxBox/blob/main/docs/PROGRESS.md"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "VIctory README: status",
+          "url": "https://github.com/Marvisak/VIctory"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "PercyScarlett README: status",
+          "url": "https://github.com/rpatty-dev/PercyScarlett"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "GTA6-BootTest boot findings",
+          "url": "https://github.com/OnlyMoisties/GTA6-BootTest/blob/main/REPORT.md"
+        }
+      ],
+      "image": null,
+      "by": "claude"
+    },
     {
       "id": "2026-11-23-leonida-nuked",
       "date": "2026-11-23",
@@ -492,14 +528,14 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "GTA VI only",
-      "summary": "Marvis's Rust layer runs GTA VI's own code natively. After his livestream he published it; the README reports boot screens, intro, start screen and saves at 30 fps, and the world loading to a black screen. Self-reported.",
+      "summary": "Marvis's Rust layer runs GTA VI's own code natively. Its README reports boot screens, intro, start screen and saves at 30 fps, and the first mission's title card in the world, with the scene still dark. Self-reported, unverified.",
       "highlights": [
         "README reports first-boot screens, intro video, start screen and saves working at 30 fps",
         "A livestream showed GTA VI's menus running, at about 15 fps on stream",
-        "Loading reaches the open world after about 50 seconds"
+        "Reaches the world after about 50 s; the first mission's title card renders"
       ],
       "blockers": [
-        "In the world the picture is black and the GPU fails within seconds",
+        "In the world the scene stays dark at 0.5-1.8 s per frame, and real GPUs can hang",
         "Tested on one machine (AMD RX 6700 XT); not reproduced by others yet",
         "Code published hours after the stream; not yet reviewed by PortWatch"
       ],
@@ -523,8 +559,8 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-23",
-      "assessedBy": "manual",
+      "assessedAt": "2026-11-24",
+      "assessedBy": "claude",
       "claims": []
     },
     {
@@ -692,16 +728,16 @@
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Native-first layer for unpacked Xbox Series games, tested mostly on Linux through Proton. GTA VI's exe now opens its window and presents at 4K, but the screen stays black. Self-reported.",
+      "summary": "Native-first layer for unpacked Xbox Series games, tested mostly on Linux through Proton. GTA VI's exe now draws its player-selection prompt at 4K; input, intro and gameplay aren't shown yet. Self-reported.",
       "highlights": [
-        "GTA VI 1.0.2.1 opens its window on stock Proton, sets up audio and opens its archives",
+        "GTA VI 1.0.2.1 shows its player-selection prompt at 3840×2160 on stock Proton, with a run record",
         "The Matrix Awakens reached the highway chase and open city in Linux tests at reduced settings",
         "Ships a small test game (Lanes) that uses its Xbox graphics, memory and input libraries"
       ],
       "blockers": [
-        "GTA VI shows no logo or menu yet: the screen stays black during startup",
-        "Windows support still in development",
-        "Very new: results not yet reproduced"
+        "No input sent to GTA VI yet; the recorded run exits after about 97 s",
+        "Only 2,755 of 11,429 captured GTA VI shader requests compile so far",
+        "Windows support still in development; results not yet reproduced"
       ],
       "groundwork": {
         "loader": 0.6,
@@ -712,7 +748,7 @@
       "provenOn": "The Matrix Awakens: menu + cinematic (Linux)",
       "gta": {
         "loads": 1,
-        "boots": 0,
+        "boots": 1,
         "menu": 0,
         "ingame": 0,
         "fps": 0,
@@ -729,7 +765,7 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-23",
+      "assessedAt": "2026-11-24",
       "assessedBy": "claude",
       "readmeSha": "e7236eec51ad3ddcbd636a8cb741882a67f44ed35265ee90f6c52b396d1508f8",
       "claims": [],
@@ -1299,13 +1335,13 @@
       "tier": "watchlist",
       "approach": "Compatibility layer",
       "target": "Any Xbox Series game",
-      "summary": "Rust layer with a PE loader, nine stand-in system DLLs and an early shader recompiler. It swapped its 100% shader figure for a stricter 3,060 of 21,522, but its stage counts still don't match other projects'.",
+      "summary": "Rust layer with stand-in system DLLs and an early shader recompiler. GTA VI now runs to a frame loop of black frames, then the GPU hangs. Its shader path still uses stand-ins, and its stage counts don't match other projects'.",
       "highlights": [
-        "Its own sample program presents frames through the stand-in DLLs",
-        "Six of GTA VI's package DLLs load on Windows 11"
+        "GTA VI's own code runs to a frame loop and its first presents (black frames)",
+        "README reports Minecraft's Scarlett build reaching in-game"
       ],
       "blockers": [
-        "Only its own test programs run; no Xbox title",
+        "GTA VI hangs the GPU (887a0006) a few seconds in; nothing visible yet",
         "Its shader stage counts don't match GTA VI's known breakdown",
         "Strict count is decoder-based, so it doesn't yet show the shaders work"
       ],
@@ -1317,7 +1353,7 @@
       },
       "provenOn": null,
       "gta": {
-        "loads": 0,
+        "loads": 1,
         "boots": 0,
         "menu": 0,
         "ingame": 0,
@@ -1335,15 +1371,10 @@
         "archived": false,
         "missing": false
       },
-      "assessedAt": "2026-11-23",
+      "assessedAt": "2026-11-24",
       "assessedBy": "claude",
       "readmeSha": "c59f7bfa194bf9aa1d7d3bb3cc3bc6cfc7379536adf00c84236d96827915d8ce",
-      "claims": [
-        {
-          "milestone": "boots",
-          "text": "GTA VI Boots to a running frame loop and first PresentX (black frames); stops at a GPU hang (887a0006) about 5 s in, plus an intermittent early device removal. Shader stand-ins, console bottom-of-pipe writes and memory w"
-        }
-      ],
+      "claims": [],
       "readmeChangedAt": "2026-11-23"
     },
     {
@@ -1840,6 +1871,54 @@
       "assessedBy": "claude",
       "claims": [],
       "readmeSha": "164285286ae2798f50db40b8bead9376e88e7d060124e5d743e4f5ae22261ca1"
+    },
+    {
+      "id": "gta6-boottest",
+      "name": "GTA6-BootTest",
+      "repo": "OnlyMoisties/GTA6-BootTest",
+      "branch": "main",
+      "tier": "watchlist",
+      "approach": "Compatibility layer",
+      "target": "GTA VI only",
+      "summary": "C stand-in DLLs and a debugger harness that run GTA VI's exe on Windows through its frame loop. It says the first UI screen now draws on a PC GPU, but shows no capture yet. Self-reported.",
+      "highlights": [
+        "GTA VI's exe streams its archives and runs its frame loop with stand-in DLLs",
+        "Detailed public report of the console DLLs and calls the exe needs"
+      ],
+      "blockers": [
+        "First-UI-screen claim has no screenshot or run record yet",
+        "Shader translator covers only shaders a run logged; output unverified",
+        "Very new, single developer; tested on one AMD PC"
+      ],
+      "groundwork": {
+        "loader": 0.5,
+        "shaders": 0.05,
+        "graphics": 0.2,
+        "proven": 0
+      },
+      "provenOn": null,
+      "gta": {
+        "loads": 1,
+        "boots": 0,
+        "menu": 0,
+        "ingame": 0,
+        "fps": 0,
+        "stability": "unknown"
+      },
+      "verification": "self-reported",
+      "stats": {
+        "stars": 25,
+        "forks": 1,
+        "openIssues": 0,
+        "createdAt": "2026-11-23T16:34:11Z",
+        "pushedAt": "2026-11-24T01:09:59Z",
+        "commits7d": 11,
+        "archived": false,
+        "missing": false
+      },
+      "assessedAt": "2026-11-24",
+      "assessedBy": "claude",
+      "claims": []
     }
   ],
   "tools": [
@@ -2032,196 +2111,19 @@
         "stars": 0,
         "pushedAt": "2026-11-23T21:34:29Z"
       }
-    }
-  ],
-  "candidates": [
-    {
-      "repo": "Batushn/KestrelX",
-      "name": "KestrelX",
-      "description": "Clean-room Xbox Series X|S compatibility & dual-wave RDNA2 -> SM 6.6 DXIL shader recompiler (C++23 / D3D12) | v0.4.0: 18/18 Dual-GPU PASS, MUBUF/MIMG Textured Rendering & Disk DXIL Cache",
-      "language": "C++",
-      "stars": 1,
-      "createdAt": "2026-11-23T20:41:28Z",
-      "pushedAt": "2026-11-23T21:39:10Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T22:03:10.527Z",
-      "substance": 74,
-      "signals": [
-        "C++",
-        "22 technical terms",
-        "status table",
-        "tests",
-        "5 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "rcx2135/proton-scarlett",
-      "name": "proton-scarlett",
-      "description": "Heavily vibeslopped experimental Proton fork for the Xbox Series X|S build of GTA VI on Linux. ",
-      "language": "C++",
-      "stars": 4,
-      "createdAt": "2026-11-23T16:43:05Z",
-      "pushedAt": "2026-11-23T19:08:23Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T19:14:29.039Z",
-      "substance": 71,
-      "signals": [
-        "C++",
-        "6 technical terms",
-        "18 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "ReverendOzmund/xseries-wine",
-      "name": "xseries-wine",
-      "description": "Experimental boot harness for Xbox Series X|S (Scarlett) GDK executables on PC/Linux via Wine/Proton",
-      "language": "C",
-      "stars": 0,
-      "createdAt": "2026-11-23T16:36:40Z",
-      "pushedAt": "2026-11-23T16:54:09Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T19:14:29.039Z",
-      "substance": 68,
-      "signals": [
-        "C",
-        "13 technical terms",
-        "status table",
-        "6 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "fablinoo/palmwave",
-      "name": "palmwave",
-      "description": "Palmwave by Moon AI, an AI platform by Stellarr Studio. Experimental Xbox Series to Windows compatibility layer and RDNA2 to SPIR-V toolchain. Target: a verified GTA VI frame. GPL-3.0.",
-      "language": "Python",
-      "stars": 2,
-      "createdAt": "2026-11-23T18:24:29Z",
-      "pushedAt": "2026-11-23T19:13:10Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T19:14:29.039Z",
-      "substance": 68,
-      "signals": [
-        "Python",
-        "10 technical terms",
-        "14 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "OnlyMoisties/GTA6-BootTest",
-      "name": "GTA6-BootTest",
-      "description": "Stand-in DLLs and harness that boot the Xbox Series X|S GTA VI build on Windows up to the GPU wall. No game code or data.",
-      "language": "C",
-      "stars": 7,
-      "createdAt": "2026-11-23T16:34:11Z",
-      "pushedAt": "2026-11-23T18:58:01Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T19:14:29.039Z",
-      "substance": 59,
-      "signals": [
-        "C",
-        "12 technical terms",
-        "11 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
     },
     {
       "repo": "kry-vex-gta/XBOX-Inspector",
       "name": "XBOX-Inspector",
-      "description": "An independent Rust toolkit for recompiling Xbox Series XIS files, inspecting open streams, and running static compatibility pre-checks. It is being developed as an emulator aimed at running GTA VI.",
-      "language": "Rust",
-      "stars": 2,
-      "createdAt": "2026-11-23T18:07:23Z",
-      "pushedAt": "2026-11-23T18:20:58Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T19:14:29.039Z",
-      "substance": 52,
-      "signals": [
-        "Rust",
-        "tests",
-        "1 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "fedor655/gta6-port",
-      "name": "gta6-port",
-      "description": "Independent parallel port of GTA VI (Xbox 1.0.2.1 Cyberleek build) to Windows - exe-first loader track",
-      "language": "C++",
-      "stars": 0,
-      "createdAt": "2026-11-23T19:41:09Z",
-      "pushedAt": "2026-11-23T20:42:17Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T22:03:10.527Z",
-      "substance": 47,
-      "signals": [
-        "C++",
-        "9 technical terms",
-        "2 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "VladTop46/XSX-Compat",
-      "name": "XSX-Compat",
-      "description": "Compatibility layer for launch Xbox Series games on Linux PC",
-      "language": null,
-      "stars": 0,
-      "createdAt": "2026-11-23T20:29:53Z",
-      "pushedAt": "2026-11-23T21:13:34Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-23T22:03:10.527Z",
-      "substance": 45,
-      "signals": [
-        "23 technical terms",
-        "1 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
+      "kind": "Build inspector",
+      "desc": "Rust desktop tool that inventories an unpacked Xbox Series build read-only and checks RPF9 headers and open data ranges. Russian-language docs.",
+      "stats": {
+        "stars": 2,
+        "pushedAt": "2026-11-23T18:20:58Z"
+      }
     }
   ],
+  "candidates": [],
   "flagged": [
     {
       "id": "switch-emulator-network",
@@ -2279,7 +2181,7 @@
       "id": "copies",
       "pattern": "Re-uploads of tracked projects under other accounts",
       "label": "",
-      "count": 14,
+      "count": 15,
       "reason": "Copies can be quietly modified to bundle malware. Only use the original repositories linked in the race above.",
       "members": [
         "FaelSemW/RafaVI",
@@ -2295,11 +2197,37 @@
         "NEXARYSE/nexaverse-gta-toolkit",
         "ZuanCrisp/Leonida",
         "VictorMinister/leonida-pc-recompiler",
-        "T-Crypt/bathyal"
+        "T-Crypt/bathyal",
+        "fablinoo/palmwave"
       ]
     }
   ],
   "ignored": [
+    {
+      "repo": "Batushn/KestrelX",
+      "reason": "Shader recompiler tested only on its own synthetic shaders; no Xbox Series title or GTA VI shaders run yet",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "rcx2135/proton-scarlett",
+      "reason": "Early Proton fork: only synthetic DLL tests pass; by its own account no retail frame yet",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "ReverendOzmund/xseries-wine",
+      "reason": "README-first research harness with no run results; one day of pushes",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "fedor655/gta6-port",
+      "reason": "Static notes on GTA VI's exe (imports, sections); no run results yet",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "VladTop46/XSX-Compat",
+      "reason": "Mostly documentation (18 KB repo); describes early GTA VI start-up but shows no frame",
+      "seenAt": "2026-11-24"
+    },
     {
       "repo": "PlayGta6Web/playgta6web",
       "reason": "Plan to run GTA VI in a browser through Wasm64 and WebGPU; nothing shown running"
@@ -4411,6 +4339,26 @@
       "date": "2026-11-23",
       "kind": "removed",
       "text": "Leonida is nuked: its Discord vanished, its GitHub repo was deleted and its creator says he quit. It stays on the board for the record, no longer ranked."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "up",
+      "text": "TuxBox reaches “First frame”: a recorded run on Linux shows GTA VI's player-selection prompt at 4K (self-reported; no input sent yet). Score 25% → 40%."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "up",
+      "text": "PercyScarlett reaches “Exe runs”: GTA VI runs to a frame loop of black frames before the GPU hangs (self-reported). Score 3.4% → 25%; it stays on the watchlist."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "new",
+      "text": "GTA6-BootTest joins the watchlist at “Exe runs” (25%): stand-in DLLs run GTA VI's exe through its frame loop on Windows. Its first-UI-screen claim isn't credited until it shows a capture."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "new",
+      "text": "VIctory's README now reports the first mission's title card rendering in the world, with the scene still dark at under 2 fps. Not enough for “In-game”; it stays at 55%."
     }
   ],
   "history": [
@@ -4481,7 +4429,7 @@
     "lastRun": "2026-11-23T22:03:10.527Z",
     "lastSummary": "25 refreshed, 9 READMEs changed, 5 new candidates, 1 flagged.",
     "lastDmcaCheck": "2026-11-23T22:03:10.527Z",
-    "lastEditorRun": "2026-11-23T23:09:49.000Z"
+    "lastEditorRun": "2026-11-24T01:22:43.000Z"
   },
   "headlines": [
     {
