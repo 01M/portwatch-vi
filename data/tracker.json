@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T20:59:04.000Z",
+  "updated": "2026-11-24T21:01:46.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero-miami.jpg"
@@ -640,7 +640,6 @@
     {
       "id": "hyphennn",
       "name": "hyphennn",
-      "manualScore": 65,
       "repo": null,
       "basedOn": [
         "victory-gta6"
@@ -648,9 +647,9 @@
       "evidence": "Live streams on Rumble",
       "byline": "Streams on Rumble as hyphennn · built on victory-gta6, a VIctory fork",
       "tier": "tracked",
-      "summary": "A private build on the public victory-gta6 fork of VIctory, streamed on Rumble. In the opening prison scenes, shaders, ray tracing, lighting, textures and hair look very close to the console, but it runs at about 3 fps. Code not public.",
+      "summary": "A private build on the public victory-gta6 fork of VIctory, streamed on Rumble. In the opening prison scenes, shaders, ray tracing, lighting, textures and hair look very good, but it runs at about 3 fps. Code not public.",
       "highlights": [
-        "Lighting, shadows, textures and hair look very close to the console",
+        "Lighting, shadows, textures and hair look very good",
         "Ray tracing seen working on his Rumble stream",
         "Playable in the opening prison scenes, built on victory-gta6"
       ],
@@ -667,7 +666,7 @@
         "world": 1,
         "playable": 1,
         "story": 0,
-        "render": 0.75,
+        "render": 0.7,
         "fps": 3,
         "stability": "unknown"
       },
@@ -6295,8 +6294,8 @@
     },
     {
       "date": "2026-11-24",
-      "kind": "up",
-      "text": "hyphennn's private build rises to 65%: on his Rumble stream the opening prison scenes now look very close to the console, with ray-traced lighting, detailed textures and hair, though at about 3 fps. Score 59.9% → 65%."
+      "kind": "flag",
+      "text": "hyphennn's private build re-rated at 59.8%: on his Rumble stream the opening prison scenes look very good, with ray-traced lighting and detailed textures and hair, but at about 3 fps."
     }
   ],
   "history": [
@@ -6326,9 +6325,9 @@
     },
     {
       "date": "2026-11-24",
-      "leader": 65,
+      "leader": 59.8,
       "leaderId": "hyphennn",
-      "top3": 60.1,
+      "top3": 58.3,
       "furthest": "playable",
       "tracked": 33
     }
