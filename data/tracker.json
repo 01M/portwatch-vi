@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T11:06:54.000Z",
+  "updated": "2026-11-24T11:41:43.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -894,7 +894,11 @@
       "tier": "tracked",
       "approach": "Relinker + shader recompiler",
       "target": "GTA VI first",
-      "summary": "Fork of AnyPS5 that tested whether the PS5 port tool's RDNA2 shader recompiler can handle the Xbox game. Gone since Nov 23 (HTTP 404); no DMCA notice is published, so it was likely deleted or made private.",
+      "summary": "Fork of AnyPS5 that tested whether the PS5 port tool's RDNA2 shader recompiler can handle the Xbox game. Taken offline on Nov 23: the repo answers 404, its owner's account is still active, and no DMCA notice is published.",
+      "nuked": {
+        "at": "2026-11-23",
+        "note": "GitHub repo gone since about 22:00 UTC on Nov 23 (HTTP 404). Its owner's account is still active and no DMCA notice is published, so it was likely deleted or made private."
+      },
       "highlights": [
         "Valid SPIR-V for 100% of vertex, 99.97% of pixel, 99.99% of mesh and 99.6% of compute shaders",
         "Recompiled shaders checked bit-for-bit against an independent CPU interpreter on a GPU",
@@ -5248,6 +5252,11 @@
       "date": "2026-11-24",
       "kind": "new",
       "text": "CGBJ joins at #1 with 72% (“In-game”): PortWatch verified that its private build, based on VIctory with some of XCL's work, moves a player around GTA VI's world, very slowly; a video shows the opening in flat, unlit colours. Its code isn't public."
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "down",
+      "text": "americas-recomp is nuked: its GitHub repo has answered 404 since Nov 23, with its owner's account still active and no DMCA notice published. It stays on the board for the record, no longer ranked."
     }
   ],
   "history": [
