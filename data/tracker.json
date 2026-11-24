@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T01:22:43.000Z",
+  "updated": "2026-11-24T01:24:00.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -16,6 +16,37 @@
     "source": "https://www.xda-developers.com/gta-6-xbox-executable-leaked-opening-door-for-pc-recompilation-projects-begin-testing/"
   },
   "news": [
+    {
+      "id": "2026-11-24-xcl-30fps-in-game",
+      "date": "2026-11-24",
+      "category": "Port",
+      "title": "Exclusive: XCL reports 30 fps in GTA VI but won't say if it's past the menus",
+      "dek": "The team refused to say more for fear of being nuked, but hinted to one of our members that it's working really well.",
+      "body": [
+        "XCL says GTA VI now runs at 30 frames per second in game, but won't say where. Asked whether that means the menus it had already reached or actual gameplay, the team refused to answer, saying it feared being nuked. Privately, it hinted to one of our community members that things are working really well.",
+        "Its public notes haven't caught up. XCL's README still calls the game \"a newer retail game\" that reaches its menus at a steady 30 fps, with gameplay not reached yet. Early on Tuesday the project merged a change that shows the live frame rate in the game window's title.",
+        "The caution runs through the scene. XCL's Discord server is tightly locked down with its chats closed, and members are scared of being nuked after Leonida lost its server, its repository and its creator within an hour on Monday night. The GTA 6 Modding Discord server has now been nuked too.",
+        "Our tracker doesn't change: XCL stays at Main menu, 55%, until its repo shows gameplay or someone reproduces it."
+      ],
+      "sources": [
+        {
+          "outlet": "GitHub",
+          "title": "XCL README: games",
+          "url": "https://github.com/ivall/xcl#games"
+        },
+        {
+          "outlet": "GitHub",
+          "title": "XCL pull request 516: live FPS in the game window's title",
+          "url": "https://github.com/ivall/xcl/pull/516"
+        }
+      ],
+      "image": {
+        "url": "https://opengraph.githubassets.com/55105f3151bd37eaaca9d6bec3a4a1c7d4cdff884c82656c389260ca34eb0f7e/ivall/xcl/pull/516",
+        "credit": "GitHub",
+        "link": "https://github.com/ivall/xcl/pull/516"
+      },
+      "by": "report"
+    },
     {
       "id": "2026-11-24-tuxbox-first-frame-victory-world",
       "date": "2026-11-24",
