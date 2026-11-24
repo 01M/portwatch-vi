@@ -262,16 +262,18 @@ create policy "admins read views" on public.pageviews for select to authenticate
 -- Older rows have w = 1.
 alter table public.pageviews add column if not exists w smallint not null default 1;
 
--- The 4-argument version is dropped first: two overloads would leave PostgREST unable to choose.
+-- The 4-argument version is dropped first: two overloads would leave PostgREST unable to choose. p_w has no
+-- default, so old copies of the site that still send only the 4 original arguments match nothing and aren't counted.
 drop function if exists public.track_view(text, text, text, boolean);
-create or replace function public.track_view(p_page text, p_ref text default null, p_sid text default null, p_new boolean default false, p_w integer default 1) returns void
+drop function if exists public.track_view(text, text, text, boolean, integer);
+create or replace function public.track_view(p_page text, p_w integer, p_ref text default null, p_sid text default null, p_new boolean default false) returns void
 language sql security definer set search_path = '' as $$
   insert into public.pageviews (page, ref, sid, new_session, w)
   values (left(coalesce(p_page, '/'), 120), left(nullif(p_ref, ''), 120), left(p_sid, 40), coalesce(p_new, false),
           least(greatest(coalesce(p_w, 1), 1), 50));
 $$;
-revoke all on function public.track_view(text, text, text, boolean, integer) from public;
-grant execute on function public.track_view(text, text, text, boolean, integer) to anon, authenticated;
+revoke all on function public.track_view(text, integer, text, text, boolean) from public;
+grant execute on function public.track_view(text, integer, text, text, boolean) to anon, authenticated;
 
 -- ---------- Public live viewer count ----------
 -- Same definition as the dashboard: tabs seen in the last 5 minutes. The threshold lives here, so small
