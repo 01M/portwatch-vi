@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T10:31:40.000Z",
+  "updated": "2026-11-24T10:32:41.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero.jpg",
@@ -2347,54 +2347,6 @@
       "status": "new"
     },
     {
-      "repo": "ZigZagBoi1/GTA6-PC-Native",
-      "name": "GTA6-PC-Native",
-      "description": "Grand Theft Auto VI running natively on Windows from your own Xbox Series dump. No emulator: the game's x64 code runs on your CPU and its GPU code is recompiled for your card.",
-      "language": "Rust",
-      "stars": 14,
-      "createdAt": "2026-11-24T09:36:26Z",
-      "pushedAt": "2026-11-24T09:36:36Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T10:21:55.515Z",
-      "substance": 63,
-      "signals": [
-        "Rust",
-        "12 technical terms",
-        "status table",
-        "1 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
-      "repo": "e85442695-beep/kestrel",
-      "name": "kestrel",
-      "description": "Console -> PC: static recompilation of the Xbox Series build of GTA VI. No game data.",
-      "language": "Batchfile",
-      "stars": 0,
-      "createdAt": "2026-11-24T09:37:26Z",
-      "pushedAt": "2026-11-24T10:03:11Z",
-      "defaultBranch": "main",
-      "sources": [
-        "GitHub search"
-      ],
-      "links": [],
-      "foundAt": "2026-11-24T10:21:55.515Z",
-      "substance": 59,
-      "signals": [
-        "Batchfile",
-        "11 technical terms",
-        "status table",
-        "3 commits/7d"
-      ],
-      "kind": "effort",
-      "status": "new"
-    },
-    {
       "repo": "nineforge0/forge9",
       "name": "forge9",
       "description": "General-purpose RPF9 archive toolkit — decrypt, inspect, extract, search, repack. The only tool with full TOC re-encryption.",
@@ -2536,6 +2488,16 @@
     }
   ],
   "ignored": [
+    {
+      "repo": "ZigZagBoi1/GTA6-PC-Native",
+      "reason": "Bundles XCL and VIctory as its runtimes; its menu screenshots come from their code, not its own",
+      "seenAt": "2026-11-24"
+    },
+    {
+      "repo": "e85442695-beep/kestrel",
+      "reason": "Thin Leonida continuation; its first boot dies in the game's startup code, with no device or frame",
+      "seenAt": "2026-11-24"
+    },
     {
       "repo": "clquwu/leonida-ultimate",
       "reason": "Merge of Leonida forks made this morning; reports a loop of black frames, nothing beyond Palmetto yet",
@@ -5288,7 +5250,7 @@
     "lastRun": "2026-11-24T10:21:55.515Z",
     "lastSummary": "25 refreshed, 7 READMEs changed, 7 new candidates, 2 flagged.",
     "lastDmcaCheck": "2026-11-24T10:21:55.515Z",
-    "lastEditorRun": "2026-11-24T10:31:40.000Z"
+    "lastEditorRun": "2026-11-24T10:32:41.000Z"
   },
   "headlines": [
     {
