@@ -16,6 +16,33 @@
   },
   "news": [
     {
+      "id": "2026-11-25-zettrox-no-crashes",
+      "date": "2026-11-25",
+      "category": "Port",
+      "title": "ZETTROX's GTA VI build looks uncrashable so far",
+      "dek": "It hasn't crashed once from Lucia's prologue to Jason's first mission, and it's slowly heading for free roam. Something in it is different.",
+      "body": [
+        "ZETTROX's build of GTA VI hasn't crashed yet. It has played from Lucia's prologue into Jason's first mission, \"Gone Fishing\", where it showed the first kill with a gun in GTA VI on PC, and it hasn't gone down once along the way. Its README reports more than an hour and a half in one session without a crash.",
+        "That's rare this early. Running a game built for other hardware usually means crashing, and often. ZETTROX's is the only build on our board rated better than \"Crashes sometimes\": on Wednesday its stability went from 0.5 to 0.8 (\"Rarely crashes\"), which puts it first at 64.2%.",
+        "It's also slowly getting toward free roam, the point where the story lets go and the open world is yours. That takes patience: the build runs at 1 to 3 frames per second, and the picture is still poor, with anything in shadow drawn black and bright scenes overexposed.",
+        "What keeps it running isn't clear yet. Like Uilian's VItoriaBr, it's based on VIctory and hyphennn's victory-fork, with ZETTROX's own work for NVIDIA cards, tested on an RTX 3050. Unlike most builds this far along, its code is public, as Zettrox/ztrx, so anyone can compare it with victory-fork and find what's different."
+      ],
+      "sources": [
+        {
+          "outlet": "GitHub",
+          "title": "ztrx, ZETTROX's build and its stability notes",
+          "url": "https://github.com/Zettrox/ztrx"
+        },
+        {
+          "outlet": "Reddit",
+          "title": "\"first kill\", the recording from Gone Fishing",
+          "url": "https://www.reddit.com/r/FitGirlRepack/comments/1y4u9v2/first_kill/"
+        }
+      ],
+      "image": null,
+      "by": "report"
+    },
+    {
       "id": "2026-11-25-prologue-gone-fishing",
       "date": "2026-11-25",
       "category": "Port",
