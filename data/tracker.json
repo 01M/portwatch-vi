@@ -1039,9 +1039,9 @@
       "gpu": [
         "NVIDIA"
       ],
-      "summary": "A build shown on darkworldhm's Rumble stream on 25 Nov, running GTA VI's free roam at about 12 fps on average, swinging between 5 and 18: the highest frame rate on our board. It's as far into the story as the leading builds and hasn't crashed so far. The picture looks alright, with some texture or ray-tracing glitches. Reportedly on an NVIDIA RTX 50-series card. Code not public, and what it builds on isn't known.",
+      "summary": "A build shown on darkworldhm's Rumble stream on 25 Nov, running GTA VI's free roam at about 12-15 fps, swinging between 5 and 18: the highest frame rate on our board. It's as far into the story as the leading builds and hasn't crashed so far. The picture looks alright, with some texture or ray-tracing glitches. Reportedly on an NVIDIA RTX 50-series card. Code not public, and what it builds on isn't known.",
       "highlights": [
-        "About 12 fps in free roam on average, up to 18: the highest frame rate on our board",
+        "About 12-15 fps in free roam, up to 18: the highest frame rate on our board",
         "As far into the story as the leading builds",
         "No crashes seen so far"
       ],
@@ -1059,7 +1059,7 @@
         "playable": 1,
         "story": 0.5,
         "render": 0.7,
-        "fps": 12,
+        "fps": 15,
         "stability": 0.7
       },
       "verification": "self-reported",
@@ -7558,7 +7558,7 @@
     {
       "date": "2026-11-25",
       "kind": "new",
-      "text": "darkworldhm joins as a private build at 78.5%, second overall: his Rumble stream shows GTA VI's free roam at about 12 fps on average and up to 18, the highest frame rate on our board, reportedly on an RTX 50-series card."
+      "text": "darkworldhm joins as a private build at 79.5% and leads our overall number: his Rumble stream shows GTA VI's free roam at about 12-15 fps and up to 18, the highest frame rate on our board, reportedly on an RTX 50-series card."
     }
   ],
   "history": [
@@ -7596,9 +7596,9 @@
     },
     {
       "date": "2026-11-25",
-      "leader": 78.7,
-      "leaderId": "doomsday",
-      "top3": 78.4,
+      "leader": 79.5,
+      "leaderId": "darkworldhm",
+      "top3": 78.7,
       "furthest": "playable",
       "tracked": 40
     }
