@@ -338,6 +338,8 @@ html:not([lang="en"]) .nav-links a { padding-inline: 9px; }
 .pin-text { margin: 0; font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, .95); white-space: pre-line; overflow-wrap: anywhere; }
 .pin-text a { color: #fff; font-weight: 600; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, .45); text-underline-offset: 2px; }
 .pin-text a:hover { text-decoration-color: #fff; }
+.pin-gif { display: block; max-width: 100%; max-height: 240px; margin-top: 10px; border-radius: 12px; }
+.pin-text[hidden] + .pin-gif { margin-top: 2px; }
 @keyframes pin-in { from { opacity: 0; transform: translateY(10px); } }
 
 /* ---------- Overall progress ---------- */
