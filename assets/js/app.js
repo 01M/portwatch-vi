@@ -87,6 +87,7 @@ async function main() {
   pinned.then((p) => fillPinned($('#pinned'), p, { ago, when: (iso) => new Date(iso).toLocaleString(locale()) }));
   renderOverall(data);
   renderChanges(data.changes || []);
+  renderFilterChips();
   renderRace();
   renderNews(data.news || []);
   renderWatchlist(data);
@@ -334,9 +335,20 @@ function isGtaSpecific(e) { return /gta/i.test(e.target || ''); }
 
 // The graphics cards a build has been run on (`gpu`: ["AMD"], ["NVIDIA"] or both, main one first),
 // from its README's test machine or the owner's report. Left off when nobody has said.
-const GPU_CLASS = { AMD: 'tag-amd', NVIDIA: 'tag-nvidia' };
+// "Mac" means it runs on a Mac (Apple's own graphics).
+const GPU_CLASS = { AMD: 'tag-amd', NVIDIA: 'tag-nvidia', Intel: 'tag-intel', Mac: 'tag-mac' };
+const gpuTitle = (v) => (v === 'Mac' ? t('effort.macTitle') : t('effort.gpuTitle', { v }));
 const gpuTags = (e) => (Array.isArray(e.gpu) ? e.gpu : []).filter((v) => GPU_CLASS[v])
-  .map((v) => `<span class="tag ${GPU_CLASS[v]}" title="${esc(t('effort.gpuTitle', { v }))}">${esc(v)}</span>`).join('');
+  .map((v) => `<span class="tag ${GPU_CLASS[v]}" title="${esc(gpuTitle(v))}">${esc(v)}</span>`).join('');
+
+// The race's filter chips: "All", then one per brand that at least one build in the race has run on,
+// so Intel or Mac chips only appear once such a build is in the race.
+function renderFilterChips() {
+  const inRace = state.data.efforts.filter((e) => e.tier === 'tracked' && !e.nuked && !isPrivateBuild(e));
+  const brands = Object.keys(GPU_CLASS).filter((v) => inRace.some((e) => Array.isArray(e.gpu) && e.gpu.includes(v)));
+  $('#race-chips').innerHTML = `<button class="chip is-on" data-filter="all">${esc(t('race.all'))}</button>` +
+    brands.map((v) => `<button class="chip" data-filter="${esc(v)}" title="${esc(gpuTitle(v))}">${esc(v)}</button>`).join('');
+}
 
 function renderRace() {
   const { data, filter, sort } = state;
@@ -344,8 +356,8 @@ function renderRace() {
   // Nuked efforts (taken offline) aren't shown (owner's call, 2026-11-25). They stay in tracker.json,
   // where their repo names keep the scout from listing copies of them as new candidates.
   let list = data.efforts.filter((e) => e.tier === 'tracked' && !e.nuked && !isPrivateBuild(e));
-  if (filter === 'gta') list = list.filter(isGtaSpecific);
-  if (filter === 'generic') list = list.filter((e) => !isGtaSpecific(e));
+  // The AMD / NVIDIA chips keep the builds that have run on that brand of card (`gpu`).
+  if (GPU_CLASS[filter]) list = list.filter((e) => Array.isArray(e.gpu) && e.gpu.includes(filter));
   const byScore = (a, b) => Number(!!a.nuked) - Number(!!b.nuked) || b._s.score - a._s.score || byStars(a, b);
   const sorters = {
     score: byScore,
