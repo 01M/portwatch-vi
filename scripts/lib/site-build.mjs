@@ -88,6 +88,7 @@ ${main}
       <div>
         <a class="brand brand-sm" href="../"><span>PortWatch<b>VI</b></span></a>
         <p>Fan-made tracker. Not affiliated with or endorsed by Rockstar Games, Take-Two or Microsoft. Grand Theft Auto and related marks belong to their owners. No game files, keys or executables are hosted or linked here.</p>
+        <p class="no-coin">PortWatch VI has no coin, token or presale. Anything using our name to sell one, like $PortWatch on pump.fun, is a scam.</p>
       </div>
       <div class="footer-meta">
         <p><a href="../">Does GTA VI run on PC yet? See the live tracker.</a></p>

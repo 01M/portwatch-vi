@@ -260,6 +260,7 @@
   "method.pts": "{n} pts",
 
   "footer.disclaimer": "Rastreador feito por fãs. Sem afiliação ou endosso da Rockstar Games, Take-Two ou Microsoft. Grand Theft Auto e as marcas relacionadas pertencem aos seus donos. Nenhum arquivo do jogo, chave ou executável é hospedado ou indicado aqui.",
+  "footer.noCoin": "O PortWatch VI não tem moeda, token nem pré-venda. Qualquer um que use nosso nome para vender uma, como o $PortWatch na pump.fun, está aplicando um golpe.",
   "footer.data": "Dados:",
   "footer.dataTail": ", atualizados a cada 3 horas pelo robô de busca.",
   "footer.scoutRun": "Última execução do robô de busca {ago}",
