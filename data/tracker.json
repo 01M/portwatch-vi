@@ -689,6 +689,10 @@
       "avatar": "assets/img/efforts/zettrox.jpg",
       "repo": "Zettrox/ztrx",
       "branch": "main",
+      "proof": {
+        "label": "Watch the first kill",
+        "url": "https://www.reddit.com/r/FitGirlRepack/comments/1y4u9v2/first_kill/"
+      },
       "tier": "tracked",
       "approach": "Compatibility layer",
       "target": "GTA VI only",

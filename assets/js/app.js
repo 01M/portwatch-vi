@@ -501,6 +501,8 @@ function effortCard(e, rank, open, overallRank = null) {
     stale && `<span class="tag tag-stale">${esc(t('effort.quiet', { n: Math.floor(daysSince(st.pushedAt)) }))}</span>`,
     st.missing && `<span class="tag tag-stale">${esc(t('effort.gone'))}</span>`,
     st.dmca && `<a class="tag tag-stale" href="${esc(safeHttp(st.dmca.url))}" target="_blank" rel="noopener" title="${esc(t('effort.dmcaTitle'))}">${esc(t('effort.dmca', { date: st.dmca.date || '' }))}</a>`,
+    // A recording that backs the entry up (owner-added), opened off-site.
+    e.proof?.url && `<a class="tag tag-proof" href="${esc(safeHttp(e.proof.url))}" target="_blank" rel="noopener nofollow" title="${esc(e.proof.url)}">${esc(e.proof.label || 'Watch')} ↗</a>`,
   ].filter(Boolean).join('');
   const gwRows = GROUNDWORK.map((g) => {
     const v = Math.max(0, Math.min(1, +(e.groundwork?.[g.key]) || 0));
