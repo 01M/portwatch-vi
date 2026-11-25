@@ -747,7 +747,7 @@
         "menu": 1,
         "world": 1,
         "playable": 1,
-        "story": 0.05,
+        "story": 0.1,
         "render": 0.2,
         "fps": 4,
         "stability": 0.4
@@ -6522,7 +6522,7 @@
     {
       "date": "2026-11-25",
       "kind": "new",
-      "text": "Uilian joins the race at 58.7% (“Playable”) with VItoriaBr, built on hyphennn's victory-fork: on his YouTube streams it reaches Jason's “Gone Fishing” mission with poor rendering, up to 4 fps and few crashes."
+      "text": "Uilian joins the race at 59.6% (“Playable”) with VItoriaBr, built on hyphennn's victory-fork: on his YouTube streams it reaches Jason's “Gone Fishing” mission with poor rendering, up to 4 fps and few crashes."
     }
   ],
   "history": [
