@@ -391,6 +391,7 @@ function privateCard(e) {
       ${bases ? `<span class="tag tag-based">${t('private.basedOn', { names: bases })}</span>` : ''}
       ${e.evidence ? `<span class="tag tag-self" title="${esc(t('private.evidenceTitle'))}">${esc(t('private.evidence', { x: e.evidence }))}</span>` : ''}
       <span class="tag tag-stale">${esc(t('private.noCode'))}</span>
+      ${e.proof?.url ? `<a class="tag tag-proof" href="${esc(safeHttp(e.proof.url))}" target="_blank" rel="noopener nofollow" title="${esc(e.proof.url)}">${esc(e.proof.label || 'Watch')} ↗</a>` : ''}
     </div>
     <p class="e-summary">${esc(e.summary)}</p>
     <div class="pb-ladder">${ladderCells(e)}</div>
