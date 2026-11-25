@@ -7,7 +7,7 @@ import { esc, NEWS_ID_RE, articlePath, coverHtml } from '../../assets/js/news-sh
 
 export const SITE_URL = 'https://portwatch-vi.xyz/';
 const SITE_NAME = 'PortWatch VI';
-const SOCIAL_IMAGE = `${SITE_URL}assets/img/social.jpg`;
+const SOCIAL_IMAGE = `${SITE_URL}assets/img/social-miami.jpg`;
 // IndexNow lets Bing, Yandex and others know a URL changed, without an account. The key is public by
 // design: it's served as <key>.txt so the search engines can check the ping came from this site.
 export const INDEXNOW_KEY = '0ab068a65fdde3463a6633b508a2fae0';
@@ -75,7 +75,6 @@ function shell({ title, description, canonical, ogType = 'website', image, image
         <a href="../#race">Race</a>
         <a href="./" class="is-current">News</a>
         <a href="../#method">Scoring</a>
-        <a href="../#safety" class="nav-warn">Fake downloads</a>
       </nav>
     </div>
   </header>
