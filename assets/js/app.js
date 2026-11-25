@@ -1,4 +1,4 @@
-import { MILESTONES, GROUNDWORK, STABILITY, TRACKS, scoreEffort, overall, ladderValue, byStars, isPrivateBuild, trackStep } from './scoring.js';
+import { MILESTONES, GROUNDWORK, STABILITY, TRACKS, scoreEffort, overall, ladderValue, byStars, isPrivateBuild, trackStep, stabilityKey } from './scoring.js';
 import { getLiveViewers, trackView } from './backend.js';
 import { coverHtml, articlePath } from './news-shared.js';
 import { fillPinned } from './pinned.js';
@@ -464,7 +464,7 @@ function ladderCells(e) {
 // What each track reads as, in words: a written step, a frame rate or a stability label.
 function trackText(key, g, v) {
   if (key === 'perf') return g.fps ? t('effort.fps', { n: Math.round(g.fps) }) : t('track.unmeasured');
-  if (key === 'stability') return stabLabel(g.stability && STABILITY[g.stability] ? g.stability : 'unknown');
+  if (key === 'stability') return stabLabel(stabilityKey(g.stability));
   const step = trackStep(key, v);
   return step ? stepLabel(key, step) : '';
 }
