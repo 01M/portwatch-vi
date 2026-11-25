@@ -753,7 +753,7 @@
       ],
       "approach": "Compatibility layer",
       "target": "GTA VI only",
-      "summary": "Belobug's fork of VIctory for AMD Radeon, run on an all-AMD PC: Radeon RX 9070 XT 16 GB, Ryzen 7 9800X3D, 64 GB RAM, Windows 11. PortWatch has seen it running: GTA VI's open world renders lit, with textures, people, vehicles, vegetation, water and sky, and looks close to the retail game. It plays through missions at about 5 fps and rarely crashes.",
+      "summary": "Belobug's fork of VIctory for AMD Radeon, run on an all-AMD PC: Radeon RX 9070 XT 16 GB, Ryzen 7 9800X3D, 64 GB RAM, Windows 11. PortWatch has seen it running: GTA VI's open world renders lit, with textures, people, vehicles, vegetation, water and sky, and looks close to the retail game. It plays through missions at about 4 fps and rarely crashes.",
       "highlights": [
         "Platform: AMD Radeon RX 9070 XT 16 GB, Ryzen 7 9800X3D, 64 GB RAM, Windows 11",
         "The open world looks close to the retail game: lit, with textures, people, vehicles, vegetation, water and sky",
@@ -761,7 +761,7 @@
         "Built on VIctory's main and upstream pull requests, not on victory-fork; GPL-3.0"
       ],
       "blockers": [
-        "About 5 fps; its README calls that \"not playable yet\" (5-7 fps, less while driving)",
+        "About 4 fps; its README reports 5-7 fps (less while driving) and calls that \"not playable yet\"",
         "Moving vehicles lose or stretch parts, distant trees aren't drawn, and a flat constant stands in for ray-traced light in the shade",
         "Needs about 22 GB of RAM and more than 16 GB of video memory; tested on one AMD PC only, nothing on NVIDIA or Intel yet"
       ],
@@ -774,7 +774,7 @@
         "playable": 1,
         "story": 0.5,
         "render": 0.85,
-        "fps": 5,
+        "fps": 4,
         "stability": 0.7
       },
       "verification": "portwatch",
@@ -7135,7 +7135,7 @@
     {
       "date": "2026-11-25",
       "kind": "up",
-      "text": "Belobug's build speeds up from about 3 to 5 fps (5-7 in its README), rising to 78%, level with DexNom; more GitHub stars put it back at #1 in the race."
+      "text": "Belobug's build speeds up from about 3 to 4 fps (its README reports 5-7), rising to 77.7%, just behind DexNom."
     }
   ],
   "history": [
@@ -7175,7 +7175,7 @@
       "date": "2026-11-25",
       "leader": 78.7,
       "leaderId": "doomsday",
-      "top3": 78.2,
+      "top3": 78.1,
       "furthest": "playable",
       "tracked": 39
     }
