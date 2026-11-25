@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25T00:40:00.000Z",
+  "updated": "2026-11-25T00:55:00.000Z",
   "site": {
     "title": "PortWatch VI",
     "heroImage": "assets/img/hero-miami.jpg"
@@ -683,6 +683,46 @@
     }
   ],
   "efforts": [
+    {
+      "id": "zettrox",
+      "name": "ZETTROX",
+      "avatar": "assets/img/efforts/zettrox.jpg",
+      "repo": null,
+      "basedOn": [
+        "victory-gta6"
+      ],
+      "evidence": "Confirmed by PortWatch",
+      "byline": "Working in private · built on hyphennn's victory-fork",
+      "tier": "tracked",
+      "summary": "A private build on hyphennn's victory-fork of VIctory. It plays from Lucia's prologue into Jason's first mission, \"Gone Fishing\", where PortWatch verified the first kill with a gun in GTA VI on PC. Rendering is still poor and it runs at about 2 fps, but it's playable. Code not public yet, but expected soon.",
+      "highlights": [
+        "Plays from Lucia's prologue into Jason's first mission, \"Gone Fishing\"",
+        "The first kill with a gun in GTA VI on PC, verified by PortWatch",
+        "Prologue cleared: the first build credited on our story track"
+      ],
+      "blockers": [
+        "Rendering is still poor",
+        "Runs at about 2 fps",
+        "Code is private for now, so nobody outside can test or reproduce it"
+      ],
+      "provenOn": null,
+      "gta": {
+        "loads": 1,
+        "boots": 1,
+        "menu": 1,
+        "world": 1,
+        "playable": 1,
+        "story": 0.1,
+        "render": 0.3,
+        "fps": 2,
+        "stability": "sometimes"
+      },
+      "verification": "self-reported",
+      "stats": {},
+      "assessedAt": "2026-11-25",
+      "assessedBy": "manual",
+      "claims": []
+    },
     {
       "id": "suri",
       "name": "suri",
@@ -6438,6 +6478,11 @@
       "date": "2026-11-24",
       "kind": "new",
       "text": "Scout spotted xcl-dev/xcl (possible effort, substance 98)."
+    },
+    {
+      "date": "2026-11-25",
+      "kind": "new",
+      "text": "ZETTROX's private build joins at 61.7% (“Playable”): built on hyphennn's victory-fork, it plays from Lucia's prologue into Jason's “Gone Fishing” mission, where PortWatch verified the first kill with a gun in GTA VI on PC. Rendering is still poor, at about 2 fps, and its code isn't public yet, so it isn't ranked in the race."
     }
   ],
   "history": [
@@ -6472,6 +6517,14 @@
       "top3": 59.6,
       "furthest": "playable",
       "tracked": 33
+    },
+    {
+      "date": "2026-11-25",
+      "leader": 61.7,
+      "leaderId": "zettrox",
+      "top3": 60.8,
+      "furthest": "playable",
+      "tracked": 34
     }
   ],
   "scout": {
