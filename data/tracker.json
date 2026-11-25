@@ -852,6 +852,10 @@
       "avatar": "assets/img/efforts/zettrox.jpg",
       "repo": "Zettrox/ztrx",
       "branch": "main",
+      "nuked": {
+        "at": "2026-11-25",
+        "note": "GitHub repo and the Zettrox account gone on Nov 25 (HTTP 404 by 17:26 UTC). No DMCA notice is published yet."
+      },
       "proof": {
         "label": "Watch the first kill",
         "url": "https://www.reddit.com/r/FitGirlRepack/comments/1y4u9v2/first_kill/"
@@ -7122,6 +7126,11 @@
       "date": "2026-11-25",
       "kind": "new",
       "text": "Scout spotted xcl-dev/xcl (possible effort, substance 98)."
+    },
+    {
+      "date": "2026-11-25",
+      "kind": "flag",
+      "text": "ZETTROX is nuked: its GitHub repo, Zettrox/ztrx, and the Zettrox account are gone. It leaves the race; no DMCA notice is published yet."
     }
   ],
   "history": [
