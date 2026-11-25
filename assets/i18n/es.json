@@ -260,7 +260,6 @@
   "method.pts": "{n} pts",
 
   "footer.disclaimer": "Tracker hecho por fans. Sin afiliación ni respaldo de Rockstar Games, Take-Two o Microsoft. Grand Theft Auto y las marcas relacionadas pertenecen a sus dueños. Aquí no se alojan ni se enlazan archivos del juego, claves ni ejecutables.",
-  "footer.noCoin": "PortWatch VI no tiene moneda, token ni preventa. Cualquiera que use nuestro nombre para vender una, como $PortWatch en pump.fun, es una estafa.",
   "footer.data": "Datos:",
   "footer.dataTail": ", actualizados cada 3 horas por el rastreador.",
   "footer.scoutRun": "Última ejecución del rastreador {ago}",

@@ -831,7 +831,6 @@ a.tag { text-decoration: none; }
 .footer { margin-top: 100px; border-top: 1px solid var(--line); background: var(--soft); }
 .footer-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; padding: 36px 0 48px; font-size: 13px; color: var(--muted); }
 .footer p { margin: 10px 0 0; max-width: 64ch; }
-.footer .no-coin { color: var(--ink-2); font-weight: 600; }
 .footer-meta { text-align: right; }
 .brand-sm { font-size: 17px; }
 
